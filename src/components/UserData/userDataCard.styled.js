@@ -7,10 +7,10 @@ export const UserBlock = styled.div`
   width: 280px;
   min-height: 537px;
   padding: 20px 12px 20px 16px;
-  border-radius: 40px;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  background-color: #ffffff;
-  @media screen and (min-width: 768px) {
+  border-radius: ${(p) => p.theme.radii.large};
+  box-shadow: 7px 4px 14px ${(p) => p.theme.colors.shadow};
+  background-color: ${(p) => p.theme.colors.white};
+  @media ${(p) => p.theme.media.tablet} {
     position: relative;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -19,7 +19,7 @@ export const UserBlock = styled.div`
     padding: 24px 40px 24px 32px;
     border-radius: 0 40px 40px 0;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${(p) => p.theme.media.desktop} {
     flex-direction: column;
     justify-content: inherit;
     width: 411px;
@@ -33,7 +33,7 @@ export const BoxImg = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media screen and (min-width: 1280px) {
+  @media ${(p) => p.theme.media.desktop} {
     margin-bottom: 36px;
   }
 `;
@@ -41,14 +41,14 @@ export const BoxImg = styled.div`
 export const ImageContainer = styled.div`
   & input {
     position: absolute;
-    width: 0px;
-    height: 0px;
+    width: ${(p) => p.theme.space[0]};
+    height: ${(p) => p.theme.space[0]};
     z-index: -1;
     opacity: 0;
   }
   & #image-label {
-    @media screen and (min-width: 768px) {
-      margin-top: 0px;
+    @media ${(p) => p.theme.media.tablet} {
+      margin-top: ${(p) => p.theme.space[0]};
     }
   }
 `;
@@ -56,51 +56,51 @@ export const ImageContainer = styled.div`
 export const ImgUser = styled.img`
   width: 233px;
   height: 233px;
-  border-radius: 50%;
+  border-radius: ${(p) => p.theme.radii.round};
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
-  background-color: #e1e1e1;
 `;
 export const EditImgBtn = styled.button`
   display: inline-flex;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: ${(p) => p.theme.space[5]};
   margin-left: auto;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: ${(p) => p.theme.fontWeights.normal};
+  font-size: ${(p) => p.theme.fontSizes.xxs};
+  font-family: ${(p) => p.theme.fonts.main};
   border: none;
   background-color: transparent;
   cursor: pointer;
   :hover svg,
   :focus svg {
-    fill: #ff6101;
+    fill: ${(p) => p.theme.colors.active};
   }
-  @media screen and (min-width: 768px) {
+  @media ${(p) => p.theme.media.tablet} {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0;
+    bottom: ${(p) => p.theme.space[0]};
+    right: ${(p) => p.theme.space[0]};
+    margin: ${(p) => p.theme.space[0]};
   }
 `;
 
 export const IconEditImgBtn = styled(HiCamera)`
   width: 20px;
   height: 20px;
-  margin-right: 4px;
+  margin-right: ${(p) => p.theme.space[2]};
   margin-bottom: -5px;
   cursor: pointer;
-  fill: #f59256;
+  fill: ${(p) => p.theme.colors.accent};
 `;
 
 export const BoxInfo = styled.div`
   margin-bottom: 42px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 0;
+  @media ${(p) => p.theme.media.tablet} {
+    margin-bottom: ${(p) => p.theme.space[0]};
     margin-right: 52px;
-    margin-top: 16px;
+    margin-top: ${(p) => p.theme.space[4]};
   }
-  @media screen and (min-width: 1280px) {
-    margin-top: 0;
-    margin-right: 0;
+  @media ${(p) => p.theme.media.desktop} {
+    margin-top: ${(p) => p.theme.space[0]};
+    margin-right: ${(p) => p.theme.space[0]};
     margin-bottom: 46px;
   }
 `;
@@ -109,12 +109,12 @@ export const BoxTitle = styled.div`
   display: flex;
   align-items: center;
   &:not(:last-child) {
-    margin-bottom: 8px;
-    @media screen and (min-width: 1280px) {
+    margin-bottom: ${(p) => p.theme.space[3]};
+    @media ${(p) => p.theme.media.desktop} {
       margin-bottom: 10px;
     }
   }
-  @media screen and (min-width: 768px) {
+  @media s${(p) => p.theme.media.tablet} {
     width: 379px;
   }
 `;
@@ -122,17 +122,19 @@ export const BoxTitle = styled.div`
 export const Title = styled.label`
   width: 64px;
   font-size: 12px;
-  font-weight: 500;
-  @media screen and (min-width: 768px) {
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-family: ${(p) => p.theme.fonts.main};
+  @media ${(p) => p.theme.media.tablet} {
     width: 90px;
     font-size: 18px;
   }
 `;
 export const Text = styled.p`
   margin-left: 18px;
-  font-size: 14px;
-  font-weight: 400;
-  @media screen and (min-width: 768px) {
+  font-size: ${(p) => p.theme.fontSizes.xxm};
+  font-weight: ${(p) => p.theme.fontWeights.normal};
+  font-family: ${(p) => p.theme.fonts.main};
+  @media ${(p) => p.theme.media.tablet} {
     margin-left: 12px;
     font-size: 18px;
   }
@@ -144,8 +146,9 @@ export const Block = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+
   column-gap: 5px;
-  @media screen and (min-width: 768px) {
+  @media ${(p) => p.theme.media.tablet} {
     column-gap: 15px;
   }
 `;
@@ -166,7 +169,7 @@ export const ErrorText = styled.div`
   }
   font-size: 10px;
   color: red;
-  font-weight: 700;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
   font-style: italic;
   bottom: -12px;
   z-index: 2;
