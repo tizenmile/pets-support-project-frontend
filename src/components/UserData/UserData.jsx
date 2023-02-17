@@ -1,11 +1,11 @@
-import { TitleUser, BoxTitleUser } from "./UserData.styled";
+import { TitleUser, UserTitleWrapper } from "./UserData.styled";
 import { UserDataCard } from "./UserDataCard";
 export const UserData = () => {
   return (
     <>
-      <BoxTitleUser>
+      <UserTitleWrapper>
         <TitleUser>My information:</TitleUser>
-      </BoxTitleUser>
+      </UserTitleWrapper>
       <UserDataCard />
     </>
   );
