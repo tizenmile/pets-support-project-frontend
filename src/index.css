@@ -6,6 +6,8 @@ html {
   box-sizing: border-box;
 }
 
+@import-normalize;
+
 body {
   margin: 0;
   font-family: "DM Sans", sans-serif;
