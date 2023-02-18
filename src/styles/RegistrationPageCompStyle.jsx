@@ -141,7 +141,7 @@ export const RegistrationPageButton = styled(Link)`
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
-
+  width: 280px;
   color: #ffffff;
   padding: 10px 28px;
   cursor: pointer;
@@ -149,9 +149,9 @@ export const RegistrationPageButton = styled(Link)`
     background: #dc712f;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
-    width: 410px;
+    width: 448px;
   }
   @media (min-width: 1279px) {
-    width: 420px;
+    width: 458px;
   }
 `;
