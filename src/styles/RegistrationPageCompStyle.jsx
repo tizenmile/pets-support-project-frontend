@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import login_page_bg from "../media/login_page_bg.svg";
 import mobile_hero_img from "../media/mobile_hero_img.svg";
 export const RegistrationPageContainer = styled.div`
@@ -128,7 +128,7 @@ export const RegistrationPageFormInput = styled.input`
   }
 `;
 
-export const RegistrationPageButton = styled(Link)`
+export const RegistrationPageButton = styled.button`
   display: flex;
   justify-content: center;
   list-style: none;
