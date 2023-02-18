@@ -369,7 +369,6 @@ Error generating stack: `+i.message+`
   }
 `,ww=B.div`
   width: 280px;
-
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -476,7 +475,7 @@ Error generating stack: `+i.message+`
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
-
+  width: 280px;
   color: #ffffff;
   padding: 10px 28px;
   cursor: pointer;
@@ -484,10 +483,10 @@ Error generating stack: `+i.message+`
     background: #dc712f;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
-    width: 410px;
+    width: 448px;
   }
   @media (min-width: 1279px) {
-    width: 420px;
+    width: 458px;
   }
 `,Cw=()=>L(vw,{children:Ze(ww,{children:[L(xw,{children:"Login"}),L(sd,{placeholder:"Email"}),L(sd,{placeholder:"Password"}),L(kw,{children:"Login"}),Ze(Sw,{children:["Don't have an account?",L(Ew,{children:"Register"})]})]})}),Pw=()=>L(Un,{children:L(Cw,{})}),_w=B.div`
   margin-top: 28px;
@@ -609,7 +608,7 @@ Error generating stack: `+i.message+`
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
-
+  width: 280px;
   color: #ffffff;
   padding: 10px 28px;
   cursor: pointer;
@@ -617,10 +616,10 @@ Error generating stack: `+i.message+`
     background: #dc712f;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
-    width: 410px;
+    width: 448px;
   }
   @media (min-width: 1279px) {
-    width: 420px;
+    width: 458px;
   }
 `,$w=()=>L(_w,{children:Ze(Ow,{children:[L(Rw,{children:"Registration"}),L($s,{placeholder:"Email"}),L($s,{placeholder:"Password"}),L($s,{placeholder:"Confirm Password"}),L(Aw,{children:"Next"}),Ze(Tw,{children:["Already have an account?",L(Nw,{children:"Login"})]})]})}),Lw=()=>L(Un,{children:L($w,{})}),Iw=()=>L(Un,{children:L("div",{children:"FIND PET PAGE"})}),jw=()=>L(Un,{children:L("div",{children:"OUR FRIEND PAGE"})});function zw(){return L(Ov,{children:Ze(Gt,{path:"/",element:L(mw,{}),children:[L(Gt,{index:!0,element:L(gw,{})}),L(Gt,{path:"news",element:L(yw,{})}),L(Gt,{path:"FindPet",element:L(Iw,{})}),L(Gt,{path:"OurFriend",element:L(jw,{})}),L(Gt,{path:"login",element:L(Pw,{})}),L(Gt,{path:"registration",element:L(Lw,{})})]})})}var qa={},Dw={get exports(){return qa},set exports(e){qa=e}},Sm={};/**
  * @license React
