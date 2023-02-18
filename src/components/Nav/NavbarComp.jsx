@@ -69,8 +69,12 @@ function Navbar() {
       {extendNavbar && (
         <NavbarExtendedContainer>
           <NavbarExtendedAuthContainer>
-            <LoginButton>Login</LoginButton>
-            <RegisterButton>Registration</RegisterButton>
+            <LoginButton>
+              {extendNavbar ? <CloseMenuIcon /> : <OpenMenuIcon />}Login
+            </LoginButton>
+            <RegisterButton>
+              {extendNavbar ? <CloseMenuIcon /> : <OpenMenuIcon />}Registration
+            </RegisterButton>
           </NavbarExtendedAuthContainer>
           <NavbarLinkExtendedContainer>
             {links.map(({ path, label, exact }) => (
