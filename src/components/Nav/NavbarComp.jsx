@@ -18,7 +18,7 @@ import {
   NavbarLinkExtendedContainer,
 } from "../../styles/Navbar";
 import LogoImg from "../../media/logo.svg";
-
+import { Link } from "react-router-dom";
 import { LoginButton } from "../Auth/LoginButtonComp";
 import { RegisterButton } from "../Auth/RegistrationButtonComp";
 const links = [
@@ -32,7 +32,7 @@ function Navbar() {
   return (
     <NavbarContainer extendNavbar={extendNavbar}>
       <NavbarInnerContainer>
-        <LogoContainer>
+        <LogoContainer to="/">
           <Logo src={LogoImg}></Logo>
         </LogoContainer>
         <MenuContainer>
