@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import laptop_hero_img from "../media/laptop_hero_img.svg";
-import tablet_hero_img from "../media/tablet_hero_img.svg";
-import mobile_hero_img from "../media/mobile_hero_img.svg";
-import laptop_girl_img from "../media/bg1-home-laptop-min.png";
-import tablet_girl_img from "../media/bg1-home-tablet-min.png";
-import mobile_girl_img from "../media/bg1-home-mobile-min.png";
+import laptop_hero_img from "../../media/laptop_hero_img.svg";
+import tablet_hero_img from "../../media/tablet_hero_img.svg";
+import mobile_hero_img from "../../media/mobile_hero_img.svg";
+import laptop_girl_img from "../../media/bg1-home-laptop-min.png";
+import tablet_girl_img from "../../media/bg1-home-tablet-min.png";
+import mobile_girl_img from "../../media/bg1-home-mobile-min.png";
 
 export const HeroContainer = styled.div`
   background-position: center bottom -80px;
@@ -13,13 +13,13 @@ export const HeroContainer = styled.div`
   overflow: hidden;
   background-image: url(${mobile_hero_img});
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     background-image: url(${tablet_hero_img});
     background-position: center bottom -200px;
     position: relative;
     height: 1100px;
   }
-  @media (min-width: 1280px) {
+  @media (${(p) => p.theme.media.tablet}) {
     background-image: url(${laptop_hero_img});
     background-position: center bottom;
     position: relative;
@@ -37,11 +37,11 @@ export const HeroContentContainer = styled.div`
   align-items: center;
   text-align: center;
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     padding: 0px 32px 0px 32px;
     margin-top: 64px;
   }
-  @media (min-width: 1280px) {
+  @media (${(p) => p.theme.media.desktop}) {
     flex-direction: row;
     margin-left: auto;
     margin-right: auto;
@@ -56,13 +56,13 @@ export const HeroTitle = styled.h1`
 
   max-width: 407px;
 
-  color: #000000;
-  @media (min-width: 768px) and (max-width: 1279px) {
+  color: ${(p) => p.theme.colors.mainText};
+  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     font-size: 68px;
     line-height: 100px;
     max-width: 600px;
   }
-  @media (min-width: 1280px) {
+  @media (${(p) => p.theme.media.desktop}) {
     font-size: 68px;
     line-height: 100px;
     text-align: left;
@@ -81,13 +81,13 @@ export const RightContainer = styled.div`
   margin-top: 60px;
   background-image: url(${mobile_girl_img});
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     background-image: url(${tablet_girl_img});
     width: 645px;
     height: 715px;
     margin-top: 122px;
   }
-  @media (min-width: 1280px) {
+  @media (${(p) => p.theme.media.desktop}) {
     background-image: url(${laptop_girl_img});
     width: 590px;
     height: 640px;

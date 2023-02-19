@@ -16,16 +16,19 @@ import {
   OpenMenuIcon,
   CloseMenuIcon,
   NavbarLinkExtendedContainer,
-} from "../../styles/Navbar";
+  LoginButtonStyled,
+  RegisterButtonStyled,
+  AuthButtonStyled,
+} from "./NavbarCompStyle";
 import LogoImg from "../../media/logo.svg";
-import { Link } from "react-router-dom";
-import { LoginButton } from "../Auth/LoginButtonComp";
-import { RegisterButton } from "../Auth/RegistrationButtonComp";
+import { NavLink, Link } from "react-router-dom";
+
 const links = [
   { path: "/News", label: "News", exact: "false" },
   { path: "/FindPet", label: "Find pet", exact: "false" },
   { path: "/OurFriend", label: "Our friends", exact: "false" },
 ];
+
 function Navbar() {
   const [extendNavbar, setExtendNavbar] = useState(false);
 
@@ -51,8 +54,15 @@ function Navbar() {
         </MenuContainer>
         {!extendNavbar && (
           <AuthContainer>
-            <LoginButton />
-            <RegisterButton />
+            <AuthButtonStyled component={NavLink} to="/">
+              Account
+            </AuthButtonStyled>
+            <LoginButtonStyled component={NavLink} to="/Login">
+              Login
+            </LoginButtonStyled>
+            <RegisterButtonStyled component={Link} to="/Registration">
+              Registration
+            </RegisterButtonStyled>
           </AuthContainer>
         )}
 
@@ -69,12 +79,33 @@ function Navbar() {
       {extendNavbar && (
         <NavbarExtendedContainer>
           <NavbarExtendedAuthContainer>
-            <LoginButton>
-              {extendNavbar ? <CloseMenuIcon /> : <OpenMenuIcon />}Login
-            </LoginButton>
-            <RegisterButton>
-              {extendNavbar ? <CloseMenuIcon /> : <OpenMenuIcon />}Registration
-            </RegisterButton>
+            <AuthButtonStyled
+              component={NavLink}
+              to="/Login"
+              onClick={() => {
+                setExtendNavbar((current) => !current);
+              }}
+            >
+              Account
+            </AuthButtonStyled>
+            <LoginButtonStyled
+              component={NavLink}
+              to="/Login"
+              onClick={() => {
+                setExtendNavbar((current) => !current);
+              }}
+            >
+              Login
+            </LoginButtonStyled>
+            <RegisterButtonStyled
+              component={Link}
+              to="/Registration"
+              onClick={() => {
+                setExtendNavbar((current) => !current);
+              }}
+            >
+              Registration
+            </RegisterButtonStyled>
           </NavbarExtendedAuthContainer>
           <NavbarLinkExtendedContainer>
             {links.map(({ path, label, exact }) => (

@@ -1,22 +1,22 @@
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
-import MenuIcon from "../media/menu_icon.svg";
-import CloseIcon from "../media/close_menu_icon.svg";
-
+import MenuIcon from "../../media/menu_icon.svg";
+import CloseIcon from "../../media/close_menu_icon.svg";
+import AccIcon from "../../media/acc_icon.svg";
 export const NavbarContainer = styled.nav`
   padding: 20px 16px 20px 16px;
   max-width: 1248px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #fdf7f2;
+  background-color: ${(p) => p.theme.colors.background};
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 280px) and (max-width: 767px) {
+  @media (${(p) => p.theme.media.mobileMin}) and (max-width: 767px) {
     padding: 20px 16px 20px 16px;
   }
 
-  @media (min-width: 768px) and (max-width: 1280px) {
+  @media (${(p) => p.theme.media.tablet}) and (max-width: 1280px) {
     padding: 24px 32px 24px 32px;
   }
 `;
@@ -81,16 +81,15 @@ export const NavbarLinkContainer = styled.ul`
 `;
 
 export const NavbarLink = styled(NavLink)`
-  color: #111111;
+  color: ${(p) => p.theme.colors.mainText};
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
   text-decoration: none;
-
   margin-left: 80px;
 
   &.active {
-    color: #f59256;
+    color: ${(p) => p.theme.colors.accent};
     text-decoration: underline;
   }
 
@@ -99,7 +98,7 @@ export const NavbarLink = styled(NavLink)`
   }
 
   &:hover {
-    color: #f59256;
+    color: ${(p) => p.theme.colors.accent};
     text-decoration: underline;
   }
 `;
@@ -108,18 +107,18 @@ export const NavbarLinkExtended = styled(NavLink)`
   font-weight: 500;
   font-size: 32px;
   line-height: 44px;
-  color: #181c27;
+  color: ${(p) => p.theme.colors.mainText};
   text-decoration: none;
 
   &.active {
-    color: #f59256;
+    color: ${(p) => p.theme.colors.accent};
     text-decoration: underline;
   }
   &:not(:first-child) {
     margin-top: 40px;
   }
   &:hover {
-    color: #f59256;
+    color: ${(p) => p.theme.colors.accent};
     text-decoration: underline;
   }
 
@@ -138,7 +137,7 @@ export const Logo = styled.img`
 export const OpenLinksButton = styled.button`
   background: none;
   border: none;
-  color: black;
+  color: ${(p) => p.theme.colors.mainText};
   font-size: 45px;
   margin-left: auto;
   cursor: pointer;
@@ -183,5 +182,59 @@ export const CloseMenuIcon = styled.div`
     position: absolute;
     right: 38px;
     top: 30px;
+  }
+`;
+export const LoginButtonStyled = styled(NavLink)`
+  display: flex;
+  background: ${(p) => p.theme.colors.accent};
+  border-radius: ${(p) => p.theme.radii.large};
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: ${(p) => p.theme.fontSizes.xm};
+  color: ${(p) => p.theme.colors.white};
+  padding: 12px 28px;
+  cursor: pointer;
+  &:hover {
+    background: ${(p) => p.theme.colors.hover};
+  }
+`;
+export const RegisterButtonStyled = styled(Link)`
+  display: flex;
+  margin-left: 20px;
+  background: ${(p) => p.theme.colors.white};
+  border-radius: ${(p) => p.theme.radii.large};
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: ${(p) => p.theme.fontSizes.xm};
+  color: ${(p) => p.theme.colors.mainText};
+  border: 2px solid ${(p) => p.theme.colors.accent};
+  padding: 10px 28px;
+  cursor: pointer;
+  &:hover {
+    background: ${(p) => p.theme.colors.hover};
+    border: 2px solid ${(p) => p.theme.colors.hover};
+    color: ${(p) => p.theme.colors.white};
+  }
+`;
+
+export const AuthButtonStyled = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  background: ${(p) => p.theme.colors.accent};
+  border-radius: ${(p) => p.theme.radii.large};
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: ${(p) => p.theme.fontSizes.xm};
+  color: ${(p) => p.theme.colors.white};
+  height: 47px;
+  padding-left: 28px;
+  padding-right: 28px;
+
+  cursor: pointer;
+  &:hover {
+    background: ${(p) => p.theme.colors.hover};
+  }
+  &:before {
+    content: url(${AccIcon});
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
   }
 `;

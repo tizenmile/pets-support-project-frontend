@@ -7,20 +7,21 @@ import { store } from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
 import { theme, GlobalStyle } from "./styles";
+import { HashRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <BrowserRouter basename="/pets-support-project-frontend">
+    <Provider store={store}>
+      <HashRouter>
+        <ThemeProvider theme={theme}>
           <App />
           <GlobalStyle />
-        </BrowserRouter>
-      </Provider>
-    </ThemeProvider>
+        </ThemeProvider>
+      </HashRouter>
+    </Provider>
   </React.StrictMode>
 );
 
