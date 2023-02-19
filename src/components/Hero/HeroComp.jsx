@@ -4,7 +4,7 @@ import {
   LeftContainer,
   RightContainer,
   HeroTitle,
-} from "../../styles/HeroCompStyle";
+} from "./HeroCompStyle";
 const Hero = () => {
   return (
     <HeroContainer>
