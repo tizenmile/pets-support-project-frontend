@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import MenuIcon from "../media/menu_icon.svg";
 import CloseIcon from "../media/close_menu_icon.svg";
 
@@ -21,7 +21,7 @@ export const NavbarContainer = styled.nav`
   }
 `;
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(Link)`
   display: flex;
   justify-content: baseline;
   align-items: center;

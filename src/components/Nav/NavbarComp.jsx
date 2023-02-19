@@ -18,7 +18,7 @@ import {
   NavbarLinkExtendedContainer,
 } from "../../styles/Navbar";
 import LogoImg from "../../media/logo.svg";
-
+import { Link } from "react-router-dom";
 import { LoginButton } from "../Auth/LoginButtonComp";
 import { RegisterButton } from "../Auth/RegistrationButtonComp";
 const links = [
@@ -32,7 +32,7 @@ function Navbar() {
   return (
     <NavbarContainer extendNavbar={extendNavbar}>
       <NavbarInnerContainer>
-        <LogoContainer>
+        <LogoContainer to="/">
           <Logo src={LogoImg}></Logo>
         </LogoContainer>
         <MenuContainer>
@@ -69,8 +69,12 @@ function Navbar() {
       {extendNavbar && (
         <NavbarExtendedContainer>
           <NavbarExtendedAuthContainer>
-            <LoginButton>Login</LoginButton>
-            <RegisterButton>Registration</RegisterButton>
+            <LoginButton>
+              {extendNavbar ? <CloseMenuIcon /> : <OpenMenuIcon />}Login
+            </LoginButton>
+            <RegisterButton>
+              {extendNavbar ? <CloseMenuIcon /> : <OpenMenuIcon />}Registration
+            </RegisterButton>
           </NavbarExtendedAuthContainer>
           <NavbarLinkExtendedContainer>
             {links.map(({ path, label, exact }) => (
