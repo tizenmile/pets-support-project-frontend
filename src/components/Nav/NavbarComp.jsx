@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useAuth} from "../../hooks/useAuth"
 import {
   NavbarContainer,
   LogoContainer,
@@ -31,6 +32,7 @@ const links = [
 
 function Navbar() {
   const [extendNavbar, setExtendNavbar] = useState(false);
+  const {isLoggedIn} = useAuth()
 
   return (
     <NavbarContainer extendNavbar={extendNavbar}>
@@ -54,15 +56,14 @@ function Navbar() {
         </MenuContainer>
         {!extendNavbar && (
           <AuthContainer>
-            <AuthButtonStyled component={NavLink} to="/">
+            {isLoggedIn? <AuthButtonStyled component={NavLink} to="/user">
               Account
-            </AuthButtonStyled>
-            <LoginButtonStyled component={NavLink} to="/Login">
+            </AuthButtonStyled> : <><LoginButtonStyled component={NavLink} to="/login">
               Login
             </LoginButtonStyled>
-            <RegisterButtonStyled component={Link} to="/Registration">
+            <RegisterButtonStyled component={Link} to="/register">
               Registration
-            </RegisterButtonStyled>
+            </RegisterButtonStyled></>}
           </AuthContainer>
         )}
 
@@ -79,18 +80,17 @@ function Navbar() {
       {extendNavbar && (
         <NavbarExtendedContainer>
           <NavbarExtendedAuthContainer>
-            <AuthButtonStyled
+            {isLoggedIn ? <AuthButtonStyled
               component={NavLink}
-              to="/Login"
+              to="/user"
               onClick={() => {
                 setExtendNavbar((current) => !current);
               }}
             >
               Account
-            </AuthButtonStyled>
-            <LoginButtonStyled
+            </AuthButtonStyled> : <><LoginButtonStyled
               component={NavLink}
-              to="/Login"
+              to="/login"
               onClick={() => {
                 setExtendNavbar((current) => !current);
               }}
@@ -99,13 +99,13 @@ function Navbar() {
             </LoginButtonStyled>
             <RegisterButtonStyled
               component={Link}
-              to="/Registration"
+              to="/register"
               onClick={() => {
                 setExtendNavbar((current) => !current);
               }}
             >
               Registration
-            </RegisterButtonStyled>
+            </RegisterButtonStyled></>}          
           </NavbarExtendedAuthContainer>
           <NavbarLinkExtendedContainer>
             {links.map(({ path, label, exact }) => (

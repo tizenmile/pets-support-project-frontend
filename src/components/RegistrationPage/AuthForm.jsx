@@ -3,7 +3,7 @@ import { register } from "../../redux/auth/operations";
 import {
   RegistrationPageFormInput,
   RegistrationPageButton,
-} from "../../styles/RegistrationPageCompStyle";
+} from "./RegistrationPageCompStyle";
 
 export const AuthForm = () => {
   const dispatch = useDispatch()

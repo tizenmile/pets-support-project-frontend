@@ -23,11 +23,17 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     console.log(credentials);
     try {
-      const res = await axios.post('/auth/register', credentials);
+      const user = await axios.post('/auth/register', credentials);
+      
+      if (user.statusText !== 'OK') {
+        return thunkAPI.rejectWithValue(error.message);
+      }
       // After successful registration, add the token to the HTTP header
-      // setAuthHeader(res.data.token);
-      console.log(res);
-      // return res.data;
+      const token = await axios.post('/auth/login', credentials)
+      setAuthHeader(token.data.token)
+      
+      const res = {user: user.data, token: token.data.token}
+      return res
     } catch (error) {
       console.log(error);
       // Notify.failure('User is already exist');
@@ -73,7 +79,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await axios.post('/auth/logout');
     clearAuthHeader();
   } catch (error) {
     if (error.response.status === 500) {

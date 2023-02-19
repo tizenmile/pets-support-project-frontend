@@ -5,7 +5,7 @@ import {
   RegistrationPageFormContainer,
   RegistrationPageDescription,
   RegistrationPageDescriptionLink,
-} from "../../styles/RegistrationPageCompStyle";
+} from "../../components/RegistrationPage/RegistrationPageCompStyle";
 
 const RegisterPage = () => {
   return (
