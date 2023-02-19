@@ -21,19 +21,22 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
-    console.log(credentials);
     try {
-      const user = await axios.post('/auth/register', credentials);
+      const res = await axios.post('/auth/register', credentials);
+
+      console.log(res);
       
-      if (user.statusText !== 'OK') {
+      if (res.statusText !== 'OK') {
         return thunkAPI.rejectWithValue(error.message);
       }
+
       // After successful registration, add the token to the HTTP header
-      const token = await axios.post('/auth/login', credentials)
-      setAuthHeader(token.data.token)
+      setAuthHeader(res.data.token)
       
-      const res = {user: user.data, token: token.data.token}
-      return res
+      // const res = {user: user.data, 
+      //   token: token.data.token
+      // }
+      return res.data
     } catch (error) {
       console.log(error);
       // Notify.failure('User is already exist');
