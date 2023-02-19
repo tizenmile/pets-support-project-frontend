@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 import MenuIcon from "../../media/menu_icon.svg";
 import CloseIcon from "../../media/close_menu_icon.svg";
-
+import AccIcon from "../../media/acc_icon.svg";
 export const NavbarContainer = styled.nav`
   padding: 20px 16px 20px 16px;
   max-width: 1248px;
@@ -212,5 +212,29 @@ export const RegisterButtonStyled = styled(Link)`
     background: ${(p) => p.theme.colors.hover};
     border: 2px solid ${(p) => p.theme.colors.hover};
     color: ${(p) => p.theme.colors.white};
+  }
+`;
+
+export const AuthButtonStyled = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  background: ${(p) => p.theme.colors.accent};
+  border-radius: ${(p) => p.theme.radii.large};
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: ${(p) => p.theme.fontSizes.xm};
+  color: ${(p) => p.theme.colors.white};
+  height: 47px;
+  padding-left: 28px;
+  padding-right: 28px;
+
+  cursor: pointer;
+  &:hover {
+    background: ${(p) => p.theme.colors.hover};
+  }
+  &:before {
+    content: url(${AccIcon});
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
   }
 `;
