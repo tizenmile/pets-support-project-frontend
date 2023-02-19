@@ -723,4 +723,4 @@ img {
   color: ${e=>e.theme.colors.accent};
   background-color: ${e=>e.theme.colors.background};
 }
-`;const O2=Js.createRoot(document.getElementById("root"));O2.render($(Q.StrictMode,{children:$(I1,{theme:P2,children:$(cx,{store:v2,children:He(Iv,{basename:"/pets-support-project-frontend",children:[$(zw,{}),$(_2,{})]})})})}));
+`;const O2=Js.createRoot(document.getElementById("root"));O2.render($(Q.StrictMode,{children:$(cx,{store:v2,children:$(Iv,{basename:"/pets-support-project-frontend",children:He(I1,{theme:P2,children:[$(zw,{}),$(_2,{})]})})})}));
