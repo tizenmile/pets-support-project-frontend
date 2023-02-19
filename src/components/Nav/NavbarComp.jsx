@@ -18,6 +18,7 @@ import {
   NavbarLinkExtendedContainer,
   LoginButtonStyled,
   RegisterButtonStyled,
+  AuthButtonStyled,
 } from "./NavbarCompStyle";
 import LogoImg from "../../media/logo.svg";
 import { NavLink, Link } from "react-router-dom";
@@ -53,6 +54,9 @@ function Navbar() {
         </MenuContainer>
         {!extendNavbar && (
           <AuthContainer>
+            <AuthButtonStyled component={NavLink} to="/Login">
+              Account
+            </AuthButtonStyled>
             <LoginButtonStyled component={NavLink} to="/Login">
               Login
             </LoginButtonStyled>
