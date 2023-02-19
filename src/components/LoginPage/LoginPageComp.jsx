@@ -6,7 +6,7 @@ import {
   LoginPageButton,
   LoginPageDescription,
   LoginPageDescriptionLink,
-} from "../../styles/LoginPageCompStyle";
+} from "./LoginPageCompStyle";
 
 export const LoginPage = () => {
   return (

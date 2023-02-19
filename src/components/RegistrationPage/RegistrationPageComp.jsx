@@ -6,7 +6,7 @@ import {
   RegistrationPageButton,
   RegistrationPageDescription,
   RegistrationPageDescriptionLink,
-} from "../../styles/RegistrationPageCompStyle";
+} from "./RegistrationPageCompStyle";
 
 export const RegistrationPage = () => {
   return (
