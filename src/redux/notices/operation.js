@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-const API_KEY = '262a417f78469232900b1579d8d8e776';
+
 // axios.defaults.baseURL = 'https://pet.tizenmile.keenetic.pro/api';
 axios.defaults.baseURL = 'http://localhost:3002/api';
 axios.defaults.headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YwOWRkMWUwNjhhYjQ3MzRiMjIxMTciLCJpYXQiOjE2NzY5MDkxNDgsImV4cCI6MTY3Njk0NTE0OH0.HXO04D-FixgI3Ujb4DKEmLRl8WJzaJwSaRLzjtliWRY"};
