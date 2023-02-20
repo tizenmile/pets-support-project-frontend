@@ -1,3 +1,8 @@
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../redux/auth/operations';
+
 export const LogOut = () => {
-  return <button>logout</button>;
+  const dispatch = useDispatch();
+
+  return <button type="button" onClick={() => dispatch(logOut())}>logout</button>;
 };

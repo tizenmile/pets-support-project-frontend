@@ -19,7 +19,7 @@ export const HeroContainer = styled.div`
     position: relative;
     height: 1100px;
   }
-  @media (${(p) => p.theme.media.tablet}) {
+  @media (${(p) => p.theme.media.desktop}) {
     background-image: url(${laptop_hero_img});
     background-position: center bottom;
     position: relative;

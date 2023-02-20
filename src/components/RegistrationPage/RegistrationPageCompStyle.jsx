@@ -117,7 +117,7 @@ export const RegistrationPageFormInput = styled.input`
   }
 `;
 
-export const RegistrationPageButton = styled(Link)`
+export const RegistrationPageButton = styled.button`
   display: flex;
   justify-content: center;
   list-style: none;
