@@ -3,7 +3,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://pet.tizenmile.keenetic.pro/api';
 //axios.defaults.baseURL = 'http://localhost:3002/api';
-axios.defaults.headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YwOWRkMWUwNjhhYjQ3MzRiMjIxMTciLCJpYXQiOjE2NzY5MDkxNDgsImV4cCI6MTY3Njk0NTE0OH0.HXO04D-FixgI3Ujb4DKEmLRl8WJzaJwSaRLzjtliWRY"};
+axios.defaults.headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YwOWRkMWUwNjhhYjQ3MzRiMjIxMTciLCJpYXQiOjE2NzY5MjA1OTgsImV4cCI6MTY3Njk1NjU5OH0.cumCSE0JTio5eqh9cLbGMczD2CBToKWNWrNAyCPMU64"};
 
 
 export const fetchSellNotices = createAsyncThunk(
