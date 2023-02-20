@@ -312,7 +312,7 @@ Error generating stack: `+i.message+`
     position: relative;
     height: 1100px;
   }
-  @media (${e=>e.theme.media.tablet}) {
+  @media (${e=>e.theme.media.desktop}) {
     background-image: url(${SS});
     background-position: center bottom;
     position: relative;
