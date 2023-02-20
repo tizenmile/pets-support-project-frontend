@@ -6,5 +6,6 @@ export const store = configureStore({
     reducer: {
         news: newsReducer,
         notices: noticesReducer,
+        auth: authReducer,
     }
 });
