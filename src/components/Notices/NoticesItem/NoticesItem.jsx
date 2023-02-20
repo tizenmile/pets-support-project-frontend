@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { heartFull as HeartFull, heart as Heart } from '../../../media';
-import { selectFavNotices } from '../../../redux/selector';
+import { selectFavNotices } from '../../../redux/notices/selector';
 import { addNoticeToFavorite, delNoticeFromFavorite } from '../../../redux/notices/operation';
 import { NoticeItem, CardTumb, ImageWrapp, Image, ImageText, HeartButton, Title, FeaturesList, FeaturesItem, FeaturesText, CardButton } from './NoticesItem.styled';
 
@@ -12,11 +12,17 @@ import { NoticeItem, CardTumb, ImageWrapp, Image, ImageText, HeartButton, Title,
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
-  const [isFavorite, setIsFavorite] = useState(favNotices.includes(item._id))
+  const [isFavorite, setIsFavorite] = useState(false)
   const [isAvtorized, setIsAvtorized] = useState(true)
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  useEffect(() => {
+ setIsFavorite(favNotices.includes(item._id))
+  },[favNotices])
+
   const handleAuthorizedClick = () => {
-    dispatch(favNotices.includes(item._id) ? delNoticeFromFavorite(item._id) : addNoticeToFavorite(item._id))
+    dispatch(isFavorite ? delNoticeFromFavorite(item._id) : addNoticeToFavorite(item._id))
     setIsFavorite(prev => !prev)
   }
   const CustomToastWithLink = () => (
@@ -58,7 +64,7 @@ export const Notice = ({ item }) => {
                   }    
           })}
           </FeaturesList>
-          <CardButton>
+          <CardButton onClick={() => navigate('/')}>
               Learn more
           </CardButton>
           <CardButton>
