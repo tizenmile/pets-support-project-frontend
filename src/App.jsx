@@ -8,8 +8,19 @@ import Login from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegistrationPage";
 import FindPet from "./pages/FindPet/FindPetPage";
 import OurFriend from "./pages/OurFriends/OurFrindsPage";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "./redux/auth/operations";
+import { useAuth } from "./hooks/useAuth";
 function App() {
-  return (
+  const dispatch = useDispatch()
+  const {isRefreshing} = useAuth()
+
+  useEffect(()=> {
+    dispatch(refreshUser)
+  }, [])
+
+  return  !isRefreshing && (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
