@@ -22,9 +22,7 @@ const stepOneValidationSchema = Yup.object().shape({
     .max(32)
     .required().label("Password"),
   confirmPassword: Yup.string()
-    .min(7)
-    .max(32)
-    .required().label("Confirm password"),
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
 })
 
 const stepTwoValidationSchema  = Yup.object().shape({
@@ -50,7 +48,7 @@ export const AuthForm = () => {
   const makeRequest = (formData) => {
     console.log(formData);
       dispatch(
-        register(formData).selected("-confirmPassword")
+        register(formData)
       );
   }
 
