@@ -1,7 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { close_menu_icon, heart, heartFull } from "../../media";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
+import {
+  addNoticeToFavorite,
+  delNoticeFromFavorite,
+} from "../../redux/notices/operation";
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+
 import {
   NoticeImgContainer,
   NoticeCloseModalButton,
@@ -23,8 +33,28 @@ import {
   NoticeCloseModalButtonImg,
 } from "./NoticeInfoModal.styled";
 
-export const NoticeInfoModal = ({ onClose, itemId }) => {
+export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+    // const isLoggedIn = true
+
   const [notice, setNotice] = useState(null);
+  const [isFav, setIsFav] = useState(isFavorite)
+  const dispatch = useDispatch()
+  
+  const handleClick = () => {
+    dispatch(
+      isFav
+        ? delNoticeFromFavorite(itemId)
+        : addNoticeToFavorite(itemId)
+    );
+    setIsFav((prev) => !prev);
+  }
+
+  const CustomToastWithLink = () => (
+    <div>
+      <Link to="/login">You need to log in</Link>
+    </div>
+  );
 
   useEffect(() => {
     const info = axios
@@ -44,7 +74,7 @@ export const NoticeInfoModal = ({ onClose, itemId }) => {
   return (
     <ModalBackdrop>
       <NoticeModalContainer>
-        <NoticeCloseModalButton onClick={onClose}>
+        <NoticeCloseModalButton onClick={ () => onClose(isFav) }>
           <NoticeCloseModalButtonImg
             src={close_menu_icon}
             alt="close_menu_icon"
@@ -81,7 +111,7 @@ export const NoticeInfoModal = ({ onClose, itemId }) => {
               <NoticeModalListItem>
                 <NoticeModalTopText>Place:</NoticeModalTopText>
                 <NoticeModalBottomText>
-                  {notice.notice.location}
+                  {notice.notice.place}
                 </NoticeModalBottomText>
               </NoticeModalListItem>
               <NoticeModalListItem>
@@ -128,13 +158,16 @@ export const NoticeInfoModal = ({ onClose, itemId }) => {
           </NoticeModalCommentsText>
         </NoticeModalComments>
         <NoticeModalButtonContainer>
-          <NoticeModalAddToFavoriteBtn>
-            add to
+          <NoticeModalAddToFavoriteBtn onClick={() => {
+              isLoggedIn ? handleClick() : toast(CustomToastWithLink)
+            } }>
+            {!isFav ? 'add to' : 'del from'}
             <NoticeModalAddToFavoriteBtnImage
-              src={notice.notice.favorite ? heartFull : heart}
-              alt={notice.notice.favorite ? "heartFull" : "heart"}
+              src={isFav ? heartFull : heart}
+              alt={isFav ? "heartFull" : "heart"}
             ></NoticeModalAddToFavoriteBtnImage>
           </NoticeModalAddToFavoriteBtn>
+          <ToastContainer />
           <NoticeContactBtn href={"tel:" + notice.user.mobile}>
             contact
           </NoticeContactBtn>

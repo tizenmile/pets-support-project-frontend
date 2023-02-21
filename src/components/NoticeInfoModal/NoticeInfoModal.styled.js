@@ -9,6 +9,9 @@ export const NoticeModalContainer = styled.div`
   padding-top: 32px;
   padding-right: 24px;
   border-radius: 40px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 280px;
+  }
 `;
 
 export const NoticeCloseModalButton = styled.button`
@@ -20,7 +23,7 @@ export const NoticeCloseModalButton = styled.button`
   right: 20px;
   width: 44px;
   height: 44px;
-  background-collor: #fdf7f2;
+  background-color: #fdf7f2;
   backdrop-filter: blur(2px);
   border-radius: 50px;
   transition: ${(p) => p.theme.transition};
@@ -29,29 +32,49 @@ export const NoticeCloseModalButton = styled.button`
     color: #ffffff;
     transition: ${(p) => p.theme.transition};
   }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 34px;
+    height: 34px;
+    top: 20px;
+    right: 20px;
+  }
 `;
 
 export const NoticeCloseModalButtonImg = styled.img`
   display: block;
   width: 20px;
-  heigth: 20px;
+  height: 20px;
 `;
 
 export const NoticeModalGeneralContainer = styled.div`
   display: flex;
   margin-bottom: 28px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    flex-direction: column;
+    width: 240px;
+    margin-top: 30px;
+  }
 `;
 
 export const NoticeImgContainer = styled.div`
   position: relative;
   margin-right: 20px;
-   width: 288px;
-  height: 328px:
-   
+  width: 288px;
+  height: 328px;
+  border-radius: 0px 0px 40px 40px;
+  overflow: hidden;
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 240px;
+    height: 240px;
+
+    border-radius: 0px 0px 40px 40px;
+  }
 `;
 
 export const NoticeModalImg = styled.img`
-  border-radius: 0px 0px 40px 40px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    margin-top: -40px;
+  }
 `;
 
 export const NoticeModalCategory = styled.p`
@@ -81,6 +104,9 @@ export const NoticeModalTitle = styled.h2`
   letter-spacing: -0.01em;
   margin-bottom: 20px;
   color: #000000;
+  @media (min-width: 320px) and (max-width: 767px) {
+    margin-top: 16px;
+  }
 `;
 
 export const NoticeModalTopText = styled.p`
@@ -91,6 +117,9 @@ export const NoticeModalTopText = styled.p`
   line-height: 1.36;
   width: 131px;
   color: #000000;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const NoticeModalBottomText = styled.p`
@@ -100,6 +129,9 @@ export const NoticeModalBottomText = styled.p`
   font-size: 16px;
   line-height: 1.36;
   color: #000000;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const NoticeModalList = styled.ul`
@@ -120,6 +152,10 @@ export const NoticeModalComments = styled.p`
   font-size: 16px;
   line-height: 1.36;
   color: #000000;
+  margin-top: 28px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const NoticeModalCommentsText = styled.span`
@@ -129,6 +165,9 @@ export const NoticeModalCommentsText = styled.span`
   font-size: 16px;
   line-height: 1.36;
   color: #000000;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const NoticeModalButtonContainer = styled.div`
@@ -138,6 +177,10 @@ export const NoticeModalButtonContainer = styled.div`
   flex-direction: raw;
   justify-content: flex-end;
   margin-right: 40px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    flex-direction: column;
+    margin-top: 40px;
+  }
 `;
 
 export const NoticeModalAddToFavoriteBtn = styled.button`
@@ -162,6 +205,9 @@ export const NoticeModalAddToFavoriteBtn = styled.button`
     transition: ${(p) => p.theme.transition};
     background: #f59256;
     color: #ffffff;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 240px;
   }
 `;
 
@@ -194,5 +240,9 @@ export const NoticeContactBtn = styled.a`
     transition: ${(p) => p.theme.transition};
     background: #f59256;
     color: #ffffff;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 240px;
+    margin-top: 12px;
   }
 `;
