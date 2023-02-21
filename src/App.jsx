@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { RestrictedRoute } from "./RestrictedRoute";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import Home from "./pages/Home/Home";
-import News from "./pages/News/NewsPage";
+import NewsPage from "./pages/News/";
 import UserAccount from "./pages/UserAccount/UserAccount";
 import Login from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegistrationPage";
@@ -25,7 +25,7 @@ function App() {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
-        <Route path="news" element={<News />} />
+        <Route path="news" element={<NewsPage />} />
         <Route path="FindPet" element={<FindPet />} />
         <Route path="OurFriend" element={<OurFriend />} />
         <Route
