@@ -46,9 +46,9 @@ export const AuthForm = () => {
   const dispatch = useDispatch()
 
   const makeRequest = (formData) => {
-    console.log(formData);
+    const {email, password, name, city, mobile} = formData
       dispatch(
-        register(formData)
+        register({email, password, name, city, mobile})
       );
   }
 
