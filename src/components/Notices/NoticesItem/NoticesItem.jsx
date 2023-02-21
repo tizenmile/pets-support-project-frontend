@@ -98,7 +98,7 @@ export const Notice = ({ item }) => {
             }
           })}
         </FeaturesList>
-        <CardButton onClick={openModal}>Learn more</CardButton>
+        <CardButton style={!isLoggedIn && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>
         {item.userId === user.id && <CardButton>
             Delete
             <HiTrash style={{width: '16px', height: '17px'}}/>  
