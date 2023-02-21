@@ -154,3 +154,13 @@ export const RegistrationPageButton = styled.button`
     width: 458px;
   }
 `;
+
+export const ErrorText = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 5px;
+  letter-spacing: 0.04em;
+  color: red;
+`;

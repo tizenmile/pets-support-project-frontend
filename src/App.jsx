@@ -30,15 +30,15 @@ function App() {
         <Route path="OurFriend" element={<OurFriend />} />
         <Route
           path="/login"
-          element={<RestrictedRoute redirectTo="/user" component={<Login />} />}
+          element={<RestrictedRoute redirectTo="/current" component={<Login />} />}
         />
         <Route
           path="/register"
           element={
-            <RegisterPage redirectTo="/user" component={<RegisterPage />} />
+            <RegisterPage redirectTo="/current" component={<RegisterPage />} />
           }
         />
-        <Route path="/user" element={<UserAccount />} />
+        <Route path="/current" element={<UserAccount />} />
       </Route>
     </Routes>
   );

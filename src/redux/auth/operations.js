@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = 'https://pet.tizenmile.keenetic.pro/api/';
 
@@ -12,7 +13,18 @@ const setAuthHeader = token => {
 // Utility to remove JWT
 const clearAuthHeader = () => {
   axios.defaults.headers.common['Authorization'] = '';
-};
+}; 
+
+const notify = (msg) => toast.info(msg, {
+  position: "bottom-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "colored",
+  });;
 
 /*
  * POST @ /auth/register
@@ -29,29 +41,24 @@ export const register = createAsyncThunk(
         return thunkAPI.rejectWithValue(error.message);
       }
 
-      console.log("res", res);
-
       // After successful registration, add the token to the HTTP header
-    
-
-    console.log(res.data.token);
     // setAuthHeader(res.data.token)
     
       
       return res.data
     } catch (error) {
-      console.log(error);
-      // Notify.failure('User is already exist');
+      notify('User is already exist')
 
-      if (error.response.status === 400) {
-        console.log(error);
-        // Notify.failure('User is already exist');
+      if (response.status === 409) {
+        notify('User is already exist')
+      }
+
+      if (response.status === 400) {
+        notify('User is already exist')
       } else if (error.response.status === 500) {
-        console.log(error);
-        // Notify.failure('Oops! Server error! Please try later!');
+        notify('Oops! Server error! Please try later!')
       } else {
-        console.log(error);
-        // Notify.failure('Something went wrong!');
+        notify('Something went wrong!')
       }
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -104,8 +111,7 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
     const {token} = thunkAPI.getState().auth;
-    console.log(token);
-
+ 
     if (!token) {
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
@@ -114,7 +120,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(token);
-      const res = await axios.get('/users');
+      const res = await axios.get('current');
       return res.data;
     } catch (error) {
       clearAuthHeader();
