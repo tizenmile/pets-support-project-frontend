@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {Form, Field, ErrorMessage} from "formik"
 import login_page_bg from "../../media/login_page_bg.svg";
 import mobile_hero_img from "../../media/mobile_hero_img.svg";
 export const RegistrationPageContainer = styled.div`
@@ -38,6 +39,15 @@ export const RegistrationPageFormContainer = styled.div`
     border-radius: 40px;
   }
 `;
+
+export const RegistrationPageForm = styled(Form)`
+display: flex;
+margin-left: auto;
+margin-right: auto;
+flex-direction: column;
+align-items: center;
+`;
+
 export const RegistrationPageTitle = styled.p`
   font-style: normal;
   font-weight: 700;
@@ -86,7 +96,7 @@ export const RegistrationPageDescriptionLink = styled.a`
   color: #3091eb;
 `;
 
-export const RegistrationPageFormInput = styled.input`
+export const RegistrationPageFormInput = styled(Field)`
   width: 266px;
   height: 40px;
   left: 20px;
