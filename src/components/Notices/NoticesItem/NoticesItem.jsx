@@ -3,17 +3,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { heartFull as HeartFull, heart as Heart } from '../../../media';
+import { HiTrash } from "react-icons/hi2";
+import { heartFull as HeartFull, heart as Heart, } from '../../../media';
 import { selectFavNotices } from '../../../redux/notices/selector';
+import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
 import { addNoticeToFavorite, delNoticeFromFavorite } from '../../../redux/notices/operation';
-import { NoticeItem, CardTumb, ImageWrapp, Image, ImageText, HeartButton, Title, FeaturesList, FeaturesItem, FeaturesText, CardButton } from './NoticesItem.styled';
+import { NoticeItem, CardTumb, ImageWrapp, Image, ImageText, HeartButton, Title, FeaturesList, FeaturesItem, FeaturesText, CardButton, IconTrash } from './NoticesItem.styled';
 
 
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const [isFavorite, setIsFavorite] = useState(false)
-  const [isAvtorized, setIsAvtorized] = useState(true)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const user = useSelector(selectUser)
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -43,7 +46,7 @@ export const Notice = ({ item }) => {
           <ImageText>{item.category}</ImageText>
           <HeartButton
             onClick={() => {
-              isAvtorized ? handleAuthorizedClick() : toast(CustomToastWithLink)
+              isLoggedIn ? handleAuthorizedClick() : toast(CustomToastWithLink)
             } }
           >
            {isFavorite ? <img  src={HeartFull} alt="heartFull" /> : <img  src={Heart} alt="heart" />}
@@ -67,9 +70,10 @@ export const Notice = ({ item }) => {
           <CardButton onClick={() => navigate('/')}>
               Learn more
           </CardButton>
-          <CardButton>
-              Delete
-          </CardButton>
+        {item.userId === user.id && <CardButton>
+            Delete
+            <HiTrash style={{width: '16px', height: '17px'}}/>  
+          </CardButton>}
       </CardTumb>
     </NoticeItem>
   );

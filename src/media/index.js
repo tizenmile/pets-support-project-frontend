@@ -14,3 +14,5 @@ export { default as female } from "./female.svg";
 export { default as plus } from "./plus.svg";
 export { default as heart } from "./heart.svg";
 export { default as heartFull } from "./heartFull.svg";
+export { default as trash } from "./trash.svg";
+
