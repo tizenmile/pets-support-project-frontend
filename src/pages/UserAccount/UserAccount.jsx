@@ -1,12 +1,12 @@
 import { UserPageContainer, UserWrapper } from "./UserAccount.styled.js";
 import { UserData } from "../../components/UserData/UserData.jsx";
-import { LogOut } from "../../components/Logout/Logout.jsx";
+import { Logout } from "../../components/Logout/Logout.jsx";
 const UserAccount = () => {
   return (
     <UserPageContainer>
       <UserWrapper>
         <UserData />
-        <LogOut />
+        <Logout />
       </UserWrapper>
       {/* <PetsData  /> */}
     </UserPageContainer>
