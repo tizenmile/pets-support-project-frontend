@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { heartFull as HeartFull, heart as Heart } from "../../../media";
 import { selectFavNotices } from "../../../redux/notices/selector";
+import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
@@ -26,9 +28,12 @@ import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const user = useSelector(selectUser)
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isAvtorized, setIsAvtorized] = useState(true);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -67,10 +72,8 @@ export const Notice = ({ item }) => {
           <ImageText>{item.category}</ImageText>
           <HeartButton
             onClick={() => {
-              isAvtorized
-                ? handleAuthorizedClick()
-                : toast(CustomToastWithLink);
-            }}
+              isLoggedIn ? handleAuthorizedClick() : toast(CustomToastWithLink)
+            } }
           >
             {isFavorite ? (
               <img src={HeartFull} alt="heartFull" />
@@ -95,8 +98,11 @@ export const Notice = ({ item }) => {
             }
           })}
         </FeaturesList>
-        <CardButton onClick={openModal}>Learn more</CardButton>
-        <CardButton>Delete</CardButton>
+        <CardButton style={!isLoggedIn && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>
+        {item.userId === user.id && <CardButton>
+            Delete
+            <HiTrash style={{width: '16px', height: '17px'}}/>  
+          </CardButton>}
       </CardTumb>
       {isModlOpen && <NoticeInfoModal itemId={item._id} onClose={closeModal} />}
     </NoticeItem>
