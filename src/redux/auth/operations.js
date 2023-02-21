@@ -6,12 +6,16 @@ axios.defaults.baseURL = 'https://pet.tizenmile.keenetic.pro/api/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
+<<<<<<< Updated upstream
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+=======
+  return axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+>>>>>>> Stashed changes
 };
 
 // Utility to remove JWT
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
+  axios.defaults.headers.common['Authorization'] = '';
 };
 
 /*
@@ -29,7 +33,12 @@ export const register = createAsyncThunk(
       }
 
       // After successful registration, add the token to the HTTP header
+<<<<<<< Updated upstream
     //  axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+=======
+    const token = setAuthHeader(res.data.token)
+    console.log(token);
+>>>>>>> Stashed changes
       
       return res.data
     } catch (error) {
