@@ -29,10 +29,10 @@ import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn)
+  // const isLoggedIn = true
   const user = useSelector(selectUser)
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isAvtorized, setIsAvtorized] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,8 +41,9 @@ export const Notice = ({ item }) => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (isFav) => {
     setIsModalOpen(false);
+    setIsFavorite(isFav)
   };
 
   useEffect(() => {
@@ -98,13 +99,13 @@ export const Notice = ({ item }) => {
             }
           })}
         </FeaturesList>
-        <CardButton style={!isLoggedIn && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>
+        <CardButton style={item.userId !== user.id && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>
         {item.userId === user.id && <CardButton>
             Delete
             <HiTrash style={{width: '16px', height: '17px'}}/>  
           </CardButton>}
       </CardTumb>
-      {isModlOpen && <NoticeInfoModal itemId={item._id} onClose={closeModal} />}
+      {isModlOpen && <NoticeInfoModal itemId={item._id} isFavorite={isFavorite} onClose={closeModal} />}
     </NoticeItem>
   );
 };
