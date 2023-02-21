@@ -5,25 +5,27 @@ export const UserTitleWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-  margin-left: 32px;
-  @media screen and (min-width: 768px) {
+  margin-left: ${(p) => p.theme.space[5]}px;
+  @media ${(p) => p.theme.media.tablet} {
     margin-bottom: 40px;
   }
-  @media screen and (min-width: 1280px) {
-    margin-left: 16px;
+  @media ${(p) => p.theme.media.desktop} {
+    margin-left: ${(p) => p.theme.space[4]}px;
     margin-bottom: 24px;
   }
 `;
 
 export const TitleUser = styled.h2`
-  color: #000000;
-  font-weight: 500;
-  font-size: 20px;
+  color: ${(p) => p.theme.colors.mainText};
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: ${(p) => p.theme.fontSizes.xm};
+  line-height: ${(p) => p.theme.lineHeights.body};
+  font-family: ${(p) => p.theme.fonts.main};
   letter-spacing: 0.04em;
-  @media screen and (min-width: 768px) {
-    font-size: 28px;
+  @media ${(p) => p.theme.media.tablet} {
+    font-size: ${(p) => p.theme.fontSizes.l};
   }
-  @media screen and (min-width: 1280px) {
-    font-size: 28px;
+  @media ${(p) => p.theme.media.desktop} {
+    font-size: ${(p) => p.theme.fontSizes.l};
   }
 `;

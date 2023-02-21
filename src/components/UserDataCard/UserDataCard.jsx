@@ -10,15 +10,26 @@ import {
   BoxTitle,
   Title,
   Block,
-  Form,
+  UserForms,
   ImageContainer,
   Label,
 } from "./userDataCard.styled";
 export const UserDataCard = () => {
-  const [isChangeUserAvatar, setIsChangeUserAvatar] = useState(false);
   const [newUserAvatar, setNewUserAvatar] = useState();
+  const [previewImageUrl, setPreviewImageUrl] = useState(null);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-  const maxDate = new Date().toISOString().slice(0, 10);
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreviewImageUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setNewUserAvatar(file);
+    }
+  };
 
   return (
     <UserBlock>
@@ -26,9 +37,13 @@ export const UserDataCard = () => {
         <BoxImg>
           <ImgUser
             id="img_container"
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            src={
+              previewImageUrl ||
+              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            }
             alt="avatar"
           />
+
           <EditImgBtn>
             <ImageContainer>
               <form>
@@ -37,6 +52,7 @@ export const UserDataCard = () => {
                   type="file"
                   id="userAvatar"
                   accept="image/jpg, image/png, image/jpeg, image/bmp"
+                  onChange={handleAvatarChange}
                 />
               </form>
             </ImageContainer>
@@ -49,7 +65,7 @@ export const UserDataCard = () => {
         <BoxInfo>
           <BoxTitle>
             <Block>
-              <Form>
+              <UserForms>
                 <BoxTitle>
                   <Title>Name:</Title>
                   <Block>
@@ -57,7 +73,7 @@ export const UserDataCard = () => {
                       isBtnDisabled={isBtnDisabled}
                       setIsBtnDisabled={setIsBtnDisabled}
                       defaultValue={"Rodri"}
-                      name={"name"}
+                      name="userName"
                       type={"text"}
                     />
                   </Block>
@@ -69,24 +85,24 @@ export const UserDataCard = () => {
                       isBtnDisabled={isBtnDisabled}
                       setIsBtnDisabled={setIsBtnDisabled}
                       defaultValue={"rodri@mail.com"}
-                      name={"email"}
+                      name="email"
                       type={"email"}
                     />
                   </Block>
                 </BoxTitle>
-                <BoxTitle>
+                {/* <BoxTitle>
                   <Title>Birthday:</Title>
                   <Block>
                     <UserDataItem
                       isBtnDisabled={isBtnDisabled}
                       setIsBtnDisabled={setIsBtnDisabled}
                       defaultValue={"16.06.1995"}
-                      name={"birthday"}
+                      name="birthday"
                       type={"date"}
                       min="1940-01-01"
                     />
                   </Block>
-                </BoxTitle>
+                </BoxTitle> */}
                 <BoxTitle>
                   <Title>Phone:</Title>
                   <Block>
@@ -94,7 +110,7 @@ export const UserDataCard = () => {
                       isBtnDisabled={isBtnDisabled}
                       setIsBtnDisabled={setIsBtnDisabled}
                       defaultValue={"+380635973039"}
-                      name={"phone"}
+                      name="phone"
                       type={"tel"}
                     />
                   </Block>
@@ -106,12 +122,12 @@ export const UserDataCard = () => {
                       isBtnDisabled={isBtnDisabled}
                       setIsBtnDisabled={setIsBtnDisabled}
                       defaultValue={"Liverpool"}
-                      name={"city"}
+                      name="city"
                       type={"text"}
                     />
                   </Block>
                 </BoxTitle>
-              </Form>
+              </UserForms>
             </Block>
           </BoxTitle>
         </BoxInfo>

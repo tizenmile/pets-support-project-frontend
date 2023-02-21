@@ -1,5 +1,5 @@
 import { TitleUser, UserTitleWrapper } from "./UserData.styled";
-import { UserDataCard } from "./UserDataCard";
+import { UserDataCard } from "../UserDataCard/UserDataCard";
 export const UserData = () => {
   return (
     <>

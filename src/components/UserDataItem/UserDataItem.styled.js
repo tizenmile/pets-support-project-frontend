@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { BsCheckLg } from "react-icons/bs";
-
+import { Formik, Form } from "formik";
 export const EditTextBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: ${(p) => p.theme.space[0]};
   width: 20px;
   height: 20px;
   border-radius: ${(p) => p.theme.radii.round};
@@ -19,8 +19,8 @@ export const EditTextBtn = styled.button`
     color: ${(p) => p.theme.colors.active};
   }
   @media ${(p) => p.theme.media.tablet} {
-    width: ${(p) => p.theme.space[5]};
-    height: ${(p) => p.theme.space[5]};
+    width: ${(p) => p.theme.space[5]}px;
+    height: ${(p) => p.theme.space[5]}px;
   }
   :disabled {
     color: grey;
@@ -47,14 +47,14 @@ export const IconCheck = styled(BsCheckLg)`
 `;
 
 export const UserDataInput = styled.input`
-  ${"" /* padding: 4px 18px; */}
   width: 159px;
   height: 24px;
+  padding: 4px 18px;
   background-color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.background};
   border: ${(p) => (p.disabled ? "none" : p.theme.borders.normal)};
   border-color: ${(p) => p.theme.colors.active};
-  color: #111111;
+  color: ${(p) => p.theme.colors.mainText};
   border-radius: ${(p) => p.theme.radii.large};
   font-size: ${(p) => p.theme.fontSizes.xxs};
   font-weight: ${(p) => p.theme.fontWeights.normal};
@@ -65,8 +65,22 @@ export const UserDataInput = styled.input`
   }
   @media ${(p) => p.theme.media.tablet} {
     width: 216px;
-    height: 32px;
+
+    height: ${(p) => p.theme.space[5]}px;
     padding: 4px 12px;
     font-size: ${(p) => p.theme.fontSizes.xxm};
+  }
+`;
+
+export const UserForm = styled(Form)`
+  position: relative;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  column-gap: 5px;
+  @media ${(p) => p.theme.media.tablet} {
+    column-gap: 24px;
   }
 `;
