@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { newsReducer } from "./news/newsSlice";
 import { noticesReducer } from "./notices/noticesSlice";
+import {authReducer} from "./auth/authSlice"
 
 const middleware = [
   ...getDefaultMiddleware({

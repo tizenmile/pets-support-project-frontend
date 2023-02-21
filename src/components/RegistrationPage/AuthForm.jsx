@@ -1,80 +1,137 @@
 import { useDispatch } from "react-redux";
-
-import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import { register } from "../../redux/auth/operations";
 import {
   RegistrationPageFormInput,
+  RegistrationPageForm,
   RegistrationPageButton,
   RegistrationPageFormContainer
 } from "./RegistrationPageCompStyle";
 import { useState } from "react";
 
+const stepOneValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .max(63)
+    .min(6)
+    .email("Invalid email address")
+    .required().label("Email"),
+  password: Yup.string()
+    .min(7)
+    .max(32)
+    .required().label("Password"),
+  confirmPassword: Yup.string()
+    .min(7)
+    .max(32)
+    .required().label("Confirm password"),
+})
+
+const stepTwoValidationSchema  = Yup.object().shape({
+  name: Yup.string().required().label("Name"),
+  city: Yup.string().required().label("City, region"),
+  mobile: Yup.string().min(13).max(13).required().label("Mobile phone")
+})
+
 const initialValues = {
-email: "", 
- password: "",
- name: "", 
- city: "",
- mobile: "", 
+  email: "", 
+  password: "",
+  name: "", 
+  city: "",
+  mobile: "", 
 }
 
 export const AuthForm = () => {
-  const [currentStepsIsFirst, setcurrentStepsIsFirst] = useState(true)
-  const [currentStepsIsSecond, setcurrentStepsIsSecond] = useState(false)
+  const [data, setData] = useState(initialValues)
+  const [currentStep, setCurrentStep] = useState(0)
+
   const dispatch = useDispatch()
 
-  const handleSubmit = (values, actions) => {
-    console.log("values", values);
-    console.log("actions", actions);
-    // e.preventDefault();
-    // const form = e.currentTarget;
-    // dispatch(
-    //   register({
-    //     email: form.elements.email.value,
-    //     password: form.elements.password.value,
-    //     name: form.elements.name.value,
-    //     city: form.elements.city.value,
-    //     mobile: form.elements.mobile.value
-    //   })
-    // );
-    // form.reset();
-  };
+  const makeRequest = (formData) => {
+    console.log(formData);
+      dispatch(
+        register(formData).selected("-confirmPassword")
+      );
+  }
+
+  const handleNextStep = (newData, final = false) => {
+    setData(prev => ({...prev, ...newData }))
+
+    if (final) {
+      makeRequest(newData)
+      return
+    }
+
+    setCurrentStep(prev => prev + 1)
+  }
+
+  const handlePrevStep = (newData) => {
+    setData(prev => ({...prev, ...newData }))
+    setCurrentStep(prev => prev - 1)
+  }
+
+  const steps = [
+  <StepOne next={handleNextStep} data={data}/>, 
+  <StepTwo next={handleNextStep} prev={handlePrevStep} data={data}/>
+]
 
   return (
-    <Formik
-    initialValues={initialValues}
-    onSubmit={handleSubmit}>
-      <Form autoComplete="off">
-        {currentStepsIsFirst && <>
-          <Field 
-        placeholder="Email" 
-        type="email" 
-        name="email"/>
-      <Field 
-        placeholder="Password" 
-        type="password" 
-        name="password"/>
-      <Field 
-        placeholder="Confirm Password" 
-        type="password" 
-        name="confirmPassword"/>
-      <button>Next</button></>}
-         {currentStepsIsSecond && <>
-          <Field 
-        placeholder="Name" 
-        type="text" 
-        name="name"/>
-      <Field 
-        placeholder="City, region" 
-        type="text" 
-        name="city"/>
-      <Field 
-        placeholder="Mobile phone" 
-        type="text" 
-        name="mobile"/>
-      <button type="submit">Register</button>
-      <button>Back</button></>}
-    </Form>
-    </Formik>
+    <>
+      {steps[currentStep]}
+    </>
   );
 };
+
+const StepOne = (props) => {
+  const handleSubmit = (values) => {
+    props.next(values)
+  }
+
+  return <Formik
+            initialValues={props.data}
+            validationSchema={stepOneValidationSchema}
+            onSubmit={handleSubmit}>
+    {() => (
+      
+          <RegistrationPageForm>
+            <RegistrationPageFormInput placeholder="Email" name="email"/>
+            <ErrorMessage name="email"/>
+            <RegistrationPageFormInput placeholder="Password" name="password"/>
+            <ErrorMessage name="password"/>
+            <RegistrationPageFormInput placeholder="Confirm Password"  name="confirmPassword"/>
+            <ErrorMessage name="confirmPassword"/>
+
+            <RegistrationPageButton type="submit">Next</RegistrationPageButton>
+          </RegistrationPageForm>
+          
+       
+    )}
+  </Formik>
+}
+
+const StepTwo = (props) => {
+  const handleSubmit = (values, actions) => {
+    props.next(values, true)
+  }
+
+  return <Formik
+            initialValues={props.data}
+            validationSchema={stepTwoValidationSchema}
+            onSubmit={handleSubmit}>
+    {({values}) => (
+       
+          <RegistrationPageForm>
+            <RegistrationPageFormInput placeholder="Name" name="name"/>
+            <ErrorMessage name="name"/>
+            <RegistrationPageFormInput placeholder="City, region" name="city"/>
+            <ErrorMessage name="city"/>
+            <RegistrationPageFormInput placeholder="Mobile phone" name="mobile"/>
+            <ErrorMessage name="mobile"/>
+
+            <RegistrationPageButton type="submit">Register</RegistrationPageButton>
+            <RegistrationPageButton type="button" onClick={()=>props.prev(values)}>Back</RegistrationPageButton>
+          </RegistrationPageForm>
+        
+    )}
+  </Formik>
+}
