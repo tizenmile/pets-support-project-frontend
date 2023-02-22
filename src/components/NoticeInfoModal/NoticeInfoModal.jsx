@@ -31,7 +31,6 @@ export const NoticeInfoModal = ({ onClose, itemId }) => {
       .get(`https://pet.tizenmile.keenetic.pro/api/notices/notice/${itemId}`)
       .then((info) => {
         const data = info.data.data;
-        console.log(data);
         setNotice(data);
       });
   }, []);
@@ -39,7 +38,6 @@ export const NoticeInfoModal = ({ onClose, itemId }) => {
   if (!notice) {
     return;
   }
-  console.log(notice.notice.favorite);
 
   return (
     <ModalBackdrop>
