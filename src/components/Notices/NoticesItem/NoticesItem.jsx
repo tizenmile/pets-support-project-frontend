@@ -29,10 +29,10 @@ import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn)
+  // const isLoggedIn = true
   const user = useSelector(selectUser)
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isAvtorized, setIsAvtorized] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,8 +41,9 @@ export const Notice = ({ item }) => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (isFav) => {
     setIsModalOpen(false);
+    setIsFavorite(isFav)
   };
 
   useEffect(() => {
@@ -62,7 +63,21 @@ export const Notice = ({ item }) => {
       <Link to="/login">You need to log in</Link>
     </div>
   );
-
+  
+  const date = parseInt(new Date().getFullYear()) 
+  const age =  date - parseInt(new Date(item.birthDate).getFullYear())
+  const variantAgeArr = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen"]
+  let ageAsWord 
+  if (age < 1) {
+    ageAsWord = "Less than a year"
+  } else if (age > 15) {
+    ageAsWord = "very old dog"
+  } else if (age >= 1 && age <= 15) {
+    ageAsWord = variantAgeArr[age - 1]
+  } else {
+     ageAsWord = "unknown"
+  }
+  
   const features = ["Breed", "Place", "Age"];
   return (
     <NoticeItem>
@@ -83,28 +98,37 @@ export const Notice = ({ item }) => {
           </HeartButton>
           <ToastContainer />
         </ImageWrapp>
-        <Title>{item.title}</Title>
+        <Title style={{width: "280px"}}>{item.title}</Title>
         <FeaturesList>
-          {features.map((prop) => {
-            if (Object.keys(item).includes(prop.toLowerCase())) {
-              return (
-                <FeaturesItem key={prop}>
-                  <FeaturesText style={{ width: "50px" }}>{prop}</FeaturesText>
+                <FeaturesItem>
+                  <FeaturesText style={{ width: "50px" }}>Breed:</FeaturesText>
                   <FeaturesText style={{ marginLeft: "40px" }}>
-                    {item[prop.toLowerCase()]}
+                    {item.breed}
+                  </FeaturesText>
+                  </FeaturesItem>
+                  <FeaturesItem>
+                  <FeaturesText style={{ width: "50px" }}>Place:</FeaturesText>
+                  <FeaturesText style={{ marginLeft: "40px" }}>
+                    {item.place}
                   </FeaturesText>
                 </FeaturesItem>
-              );
-            }
-          })}
+                  <FeaturesItem>
+                  <FeaturesText style={{ width: "50px" }}>Age:</FeaturesText>
+                  <FeaturesText style={{ marginLeft: "40px" }}>
+                    {ageAsWord}
+                  </FeaturesText>
+                </FeaturesItem>
+
         </FeaturesList>
-        <CardButton style={!isLoggedIn && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>
+        <CardButton style={item.userId !== user.id && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>
         {item.userId === user.id && <CardButton>
             Delete
             <HiTrash style={{width: '16px', height: '17px'}}/>  
           </CardButton>}
       </CardTumb>
-      {isModlOpen && <NoticeInfoModal itemId={item._id} onClose={closeModal} />}
+      {isModlOpen && <NoticeInfoModal itemId={item._id} isFavorite={isFavorite} onClose={closeModal} />}
     </NoticeItem>
   );
 };
+
+

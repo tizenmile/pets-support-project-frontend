@@ -21,6 +21,8 @@ const FindPet = () => {
     setIsModalOpen(false);
   };
 
+  // const isLoggedIn = true
+
   useEffect(() => {
     isLoggedIn && dispatch(getFavNotices());
     dispatch(fetchSellNotices());
