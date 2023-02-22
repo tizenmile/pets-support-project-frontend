@@ -100,24 +100,24 @@ export const Notice = ({ item }) => {
         </ImageWrapp>
         <Title style={{width: "280px"}}>{item.title}</Title>
         <FeaturesList>
-                <FeaturesItem>
+                {item.breed && <FeaturesItem>
                   <FeaturesText style={{ width: "50px" }}>Breed:</FeaturesText>
                   <FeaturesText style={{ marginLeft: "40px" }}>
                     {item.breed}
                   </FeaturesText>
-                  </FeaturesItem>
+                  </FeaturesItem>}
                   <FeaturesItem>
                   <FeaturesText style={{ width: "50px" }}>Place:</FeaturesText>
                   <FeaturesText style={{ marginLeft: "40px" }}>
                     {item.place}
                   </FeaturesText>
-                </FeaturesItem>
-                  <FeaturesItem>
+                  </FeaturesItem>
+                  {item.birthDate && <FeaturesItem>
                   <FeaturesText style={{ width: "50px" }}>Age:</FeaturesText>
                   <FeaturesText style={{ marginLeft: "40px" }}>
                     {ageAsWord}
                   </FeaturesText>
-                </FeaturesItem>
+                  </FeaturesItem>}
 
         </FeaturesList>
         <CardButton style={item.userId !== user.id && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>

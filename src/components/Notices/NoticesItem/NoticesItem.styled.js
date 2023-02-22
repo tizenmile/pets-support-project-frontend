@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const NoticeItem = styled.li`
   background-color: #fff;
   border-radius: 0 0 40px 40px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 `;
 
 export const CardTumb = styled.div``;
