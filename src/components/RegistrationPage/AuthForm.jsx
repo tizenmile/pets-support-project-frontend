@@ -113,14 +113,14 @@ const StepOne = (props) => {
             initialValues={props.data}
             validationSchema={stepOneValidationSchema}
             onSubmit={handleSubmit}>
-    {() => (
+    {({values}) => (
       
           <RegistrationPageForm>
-            <RegistrationPageFormInput placeholder="Email" type="email" name="email"/>
+            <RegistrationPageFormInput placeholder="Email" type="email" name="email" value={values.email || ""}/>
             <FormError name="email"/>
-            <RegistrationPageFormInput placeholder="Password" type="password"  name="password"/>
+            <RegistrationPageFormInput placeholder="Password" type="password"  name="password" value={values.password || ""}/>
             <FormError name="password"/>
-            <RegistrationPageFormInput placeholder="Confirm Password" type="password" name="confirmPassword"/>
+            <RegistrationPageFormInput placeholder="Confirm Password" type="password" name="confirmPassword" value={values.confirmPassword || ""}/>
             <FormError name="confirmPassword"/>
 
             <RegistrationPageButton type="submit">Next</RegistrationPageButton>
@@ -143,11 +143,11 @@ const StepTwo = (props) => {
     {({values}) => (
        
           <RegistrationPageForm>
-            <RegistrationPageFormInput placeholder="Name" type="text" name="name"/>
+            <RegistrationPageFormInput placeholder="Name" type="text" name="name" value={values.name || ""}/>
             <FormError name="name"/>
-            <RegistrationPageFormInput placeholder="City, region" type="text" name="city"/>
+            <RegistrationPageFormInput placeholder="City, region" type="text" name="city" value={values.city || ""}/>
             <FormError name="city"/>
-            <RegistrationPageFormInput placeholder="Mobile phone" type="text"  name="mobile"/>
+            <RegistrationPageFormInput placeholder="Mobile phone" type="text"  name="mobile" value={values.mobile || ""}/>
             <FormError name="mobile"/>
 
             <RegistrationPageButton type="submit">Register</RegistrationPageButton>

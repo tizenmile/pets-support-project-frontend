@@ -7,7 +7,15 @@ axios.defaults.baseURL = 'https://pet.tizenmile.keenetic.pro/api/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  axios.interceptors.request.use(
+    config => {
+      config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+          return config;
+      },
+      error => {
+          return Promise.reject(error);
+      }
+  );
 };
 
 // Utility to remove JWT
@@ -35,28 +43,30 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
 
     try {
-      const res = await axios.post('/auth/register', credentials);
+      const res = await axios.post('auth/register', credentials);
       
       if (res.status !== 200) {
         return thunkAPI.rejectWithValue(error.message);
       }
 
       // After successful registration, add the token to the HTTP header
-    // setAuthHeader(res.data.token)
+    setAuthHeader(res.data.token)
     
       
       return res.data
     } catch (error) {
-      notify('User is already exist')
+      console.log(error);
 
-      if (response.status === 409) {
+      if (error.response.status === 409) {
         notify('User is already exist')
+        return
       }
-
-      if (response.status === 400) {
+      if (error.response.status === 400) {
         notify('User is already exist')
+        return
       } else if (error.response.status === 500) {
         notify('Oops! Server error! Please try later!')
+        return
       } else {
         notify('Something went wrong!')
       }
@@ -110,28 +120,51 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
-    const {token} = thunkAPI.getState().auth;
- 
-    if (!token) {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     try {
       // If there is a token, add it to the HTTP header and perform the request
-      setAuthHeader(token);
-      const res = await axios.get('current');
+      setAuthHeader(persistedToken);
+      const res = await axios.get('auth/current');
       return res.data;
     } catch (error) {
-      clearAuthHeader();
-      if (error.response.status === 401) {
-        console.log(
-          'something went wrong, user unauthorized. Please, try again'
-        );
-        return thunkAPI.rejectWithValue(error.response.data.message);
-      }
-      console.log('something went wrong, please, try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
+
+
+  // 'auth/refresh',
+  // async (_, thunkAPI) => {
+  //   // Reading the token from the state via getState()
+  //   const {token} = thunkAPI.getState().auth;
+  //   console.log(token);
+ 
+  //   if (!token) {
+  //     // If there is no token, exit without performing any request
+  //     return thunkAPI.rejectWithValue('Unable to fetch user');
+  //   }
+
+  //   try {
+  //     // If there is a token, add it to the HTTP header and perform the request
+  //     setAuthHeader(token);
+  //     const res = await axios.get('current');
+  //     return res.data;
+  //   } catch (error) {
+  //     clearAuthHeader();
+  //     if (error.response.status === 401) {
+  //       console.log(
+  //         'something went wrong, user unauthorized. Please, try again'
+  //       );
+  //       return thunkAPI.rejectWithValue(error.response.data.message);
+  //     }
+  //     console.log('something went wrong, please, try again');
+  //     return thunkAPI.rejectWithValue(error.message);
+  //   }
+  // }
 );
