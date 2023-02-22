@@ -14,14 +14,6 @@ import { noticesReducer } from "./notices/noticesSlice";
 import { authReducer } from "./auth/authSlice";
 import { newsReducer } from "./news/newsSlice";
 
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-];
-
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -35,7 +27,11 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
   },
-  middleware,
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: {
+      ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    }
+  }),
   devTools: process.env.NODE_ENV === "development",
 });
 
