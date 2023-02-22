@@ -61,7 +61,6 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
       .get(`https://pet.tizenmile.keenetic.pro/api/notices/notice/${itemId}`)
       .then((info) => {
         const data = info.data.data;
-        console.log(data);
         setNotice(data);
       });
   }, []);
@@ -69,7 +68,16 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   if (!notice) {
     return;
   }
-  console.log(notice.notice.favorite);
+  const birthDate = (birthDate) => {
+    let dd = new Date(birthDate).getDate()
+    if (dd < 10) dd = '0' + dd
+    let mm = new Date(birthDate).getMonth()
+    if (mm < 10) mm = '0' + mm;
+    let yy = new Date(birthDate).getFullYear()
+    if (yy < 10) yy = '0' + yy;
+    return dd + '.' + mm + '.' + yy;
+  } 
+  
 
   return (
     <ModalBackdrop>
@@ -99,7 +107,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
               <NoticeModalListItem>
                 <NoticeModalTopText>Birthday:</NoticeModalTopText>
                 <NoticeModalBottomText>
-                  {notice.notice.birthDate}
+                  {birthDate(notice.notice.birthDate)}
                 </NoticeModalBottomText>
               </NoticeModalListItem>
               <NoticeModalListItem>
@@ -143,7 +151,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
                 <NoticeModalListItem>
                   <NoticeModalTopText>Price:</NoticeModalTopText>
                   <NoticeModalBottomText>
-                    {notice.notice.price}
+                    {`${notice.notice.price}$`}
                   </NoticeModalBottomText>
                 </NoticeModalListItem>
               )}

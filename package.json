@@ -22,6 +22,7 @@
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.6",
     "validator": "^13.9.0",
+    "uuidv4": "^6.2.13",
     "yup": "^1.0.0"
   },
   "devDependencies": {
