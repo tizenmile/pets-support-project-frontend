@@ -16,7 +16,7 @@ const authSlice = createSlice({
       .addCase(register.pending, (state, action) => state)
       .addCase(register.fulfilled, (state, action) => {
         console.log(action);
-        state.user = action.payload.user;
+        state.user = action.payload?.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -35,7 +35,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.userResult;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

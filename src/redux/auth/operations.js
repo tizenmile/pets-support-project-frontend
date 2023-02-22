@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 axios.defaults.baseURL = 'https://pet.tizenmile.keenetic.pro/api/';
 
 // Utility to add JWT
-const setAuthHeader = token => {
+const setAuthHeader = () => {
   axios.interceptors.request.use(
     config => {
       config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
@@ -50,7 +50,7 @@ export const register = createAsyncThunk(
       }
 
       // After successful registration, add the token to the HTTP header
-    setAuthHeader(res.data.token)
+    setAuthHeader()
     
       
       return res.data
@@ -105,9 +105,11 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     clearAuthHeader();
   } catch (error) {
     if (error.response.status === 500) {
-      Notify.failure('Oops! Server error! Please try later!');
+      console.log('Oops! Server error! Please try later!');
+      // Notify.failure('Oops! Server error! Please try later!');
     }
-    Notify.failure('Something went wrong! Please reload the page!');
+    console.log('Something went wrong! Please reload the page!');
+    // Notify.failure('Something went wrong! Please reload the page!');
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -120,22 +122,29 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
-    const state = thunkAPI.getState();
-    console.log(state);
+    // const state = thunkAPI.getState();
 
-    const persistedToken = state.auth.token;
+    // const persistedToken = state.auth.token;
 
-    console.log(persistedToken);
-
-    if (persistedToken === null) {
-      // If there is no token, exit without performing any request
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
+    // if (persistedToken === null) {
+    //   // If there is no token, exit without performing any request
+    //   return thunkAPI.rejectWithValue('Unable to fetch user');
+    // }
 
     try {
       // If there is a token, add it to the HTTP header and perform the request
-      setAuthHeader(persistedToken);
-      const res = await axios.get('auth/current');
+      axios.interceptors.request.use(
+        config => {
+          config.headers['Authorization'] = `Bearer ${thunkAPI.getState().auth?.token}`;
+              return config;
+          },
+          error => {
+            return thunkAPI.rejectWithValue('Unable to fetch user');
+          }
+      );
+
+     const res = await axios.get('auth/current');
+      console.log(res);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
