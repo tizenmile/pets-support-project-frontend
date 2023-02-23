@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { TbSearch } from "react-icons/Tb";
 
+
 export const ContainerMain = styled.div`
   padding-left: 15px;
   padding-right: 15px;
