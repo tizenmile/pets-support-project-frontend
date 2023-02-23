@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {Form, Field, ErrorMessage} from "formik"
 import login_page_bg from "../../media/login_page_bg.svg";
 import mobile_hero_img from "../../media/mobile_hero_img.svg";
@@ -83,7 +83,7 @@ export const RegistrationPageDescription = styled.p`
     margin-bottom: 60px;
   }
 `;
-export const RegistrationPageDescriptionLink = styled.a`
+export const RegistrationPageDescriptionLink = styled(NavLink)`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -153,4 +153,14 @@ export const RegistrationPageButton = styled.button`
   @media (${(p) => p.theme.media.desktop}) {
     width: 458px;
   }
+`;
+
+export const ErrorText = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 5px;
+  letter-spacing: 0.04em;
+  color: red;
 `;
