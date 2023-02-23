@@ -1,4 +1,4 @@
-import{s as i,k as E,j as e,d as g,l as I,r as x,e as T,n as A,a as n,o as P,Q as B,p as L,q as j,t as D,v as W,w as Y,x as H,y as O,z as q}from"./index-a4e9d7c0.js";const U=t=>t.notices.items,G=t=>t.notices.favNotices;const S="/pets-support-project-frontend/assets/heart-4779bb70.svg",_="/pets-support-project-frontend/assets/heartFull-d00981e8.svg",Q=i.li`
+import{s as i,k as E,j as e,d as g,l as I,r as x,e as T,n as A,a as n,o as P,Q as B,p as L,q as j,t as D,v as W,w as Y,x as H,y as O,z as q}from"./index-05d3539e.js";const U=t=>t.notices.items,G=t=>t.notices.favNotices;const S="/pets-support-project-frontend/assets/heart-4779bb70.svg",_="/pets-support-project-frontend/assets/heartFull-d00981e8.svg",Q=i.li`
   background-color: #fff;
   border-radius: 0 0 40px 40px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
