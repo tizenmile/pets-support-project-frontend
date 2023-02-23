@@ -34,8 +34,8 @@ import {
 } from "./NoticeInfoModal.styled";
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn)
-    // const isLoggedIn = true
+  // const isLoggedIn = useSelector(selectIsLoggedIn)
+    const isLoggedIn = true
 
   const [notice, setNotice] = useState(null);
   const [isFav, setIsFav] = useState(isFavorite)
@@ -97,25 +97,25 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
           <div>
             <NoticeModalTitle>{notice.notice.title}</NoticeModalTitle>
             <NoticeModalList>
-              <NoticeModalListItem>
+              {notice.notice.name && <NoticeModalListItem>
                 <NoticeModalTopText>Name:</NoticeModalTopText>
                 <NoticeModalBottomText>
                   {notice.notice.name}
                 </NoticeModalBottomText>
-              </NoticeModalListItem>
+              </NoticeModalListItem>}
 
-              <NoticeModalListItem>
+              {notice.notice.birthDate && <NoticeModalListItem>
                 <NoticeModalTopText>Birthday:</NoticeModalTopText>
                 <NoticeModalBottomText>
                   {birthDate(notice.notice.birthDate)}
                 </NoticeModalBottomText>
-              </NoticeModalListItem>
-              <NoticeModalListItem>
+              </NoticeModalListItem>}
+              {notice.notice.breed && <NoticeModalListItem>
                 <NoticeModalTopText>Breed:</NoticeModalTopText>
                 <NoticeModalBottomText>
                   {notice.notice.breed}
                 </NoticeModalBottomText>
-              </NoticeModalListItem>
+              </NoticeModalListItem>}
               <NoticeModalListItem>
                 <NoticeModalTopText>Place:</NoticeModalTopText>
                 <NoticeModalBottomText>

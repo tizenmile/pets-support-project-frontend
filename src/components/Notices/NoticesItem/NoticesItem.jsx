@@ -28,14 +28,13 @@ import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
-  const isLoggedIn = useSelector(selectIsLoggedIn)
-  // const isLoggedIn = true
+  // const isLoggedIn = useSelector(selectIsLoggedIn)
+  const isLoggedIn = true
   const user = useSelector(selectUser)
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -45,9 +44,14 @@ export const Notice = ({ item }) => {
     setIsModalOpen(false);
     setIsFavorite(isFav)
   };
+  
+  const favNoticesIdArr = favNotices.reduce((acc, item) => {
+      acc.push(item._id)
+      return acc
+  }, [])
 
   useEffect(() => {
-    setIsFavorite(favNotices.includes(item._id));
+    setIsFavorite(favNoticesIdArr.includes(item._id));
   }, [favNotices]);
 
   const handleAuthorizedClick = () => {

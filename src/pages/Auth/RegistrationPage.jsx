@@ -1,3 +1,4 @@
+
 import { AuthForm } from "../../components/RegistrationPage/AuthForm";
 import {
   RegistrationPageContainer,
@@ -15,7 +16,8 @@ const RegisterPage = () => {
       <AuthForm/>
       <RegistrationPageDescription>
         Already have an account?
-        <RegistrationPageDescriptionLink>
+        <RegistrationPageDescriptionLink
+              to="/login">
           Login
         </RegistrationPageDescriptionLink>
       </RegistrationPageDescription>

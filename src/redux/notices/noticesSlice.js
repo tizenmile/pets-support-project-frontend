@@ -30,10 +30,7 @@ const noticesSlice = createSlice({
             .addCase(
                 getFavNotices.fulfilled, (state, action) => {
                     console.log(action.payload);
-                    state.favNotices = action.payload.reduce((acc, item) => {
-                        acc.push(item._id)
-                        return acc
-                    }, [])
+                    state.favNotices = action.payload
                 }
         )
             .addMatcher(
