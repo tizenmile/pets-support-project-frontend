@@ -1,7 +1,7 @@
-import{s as a,m as k,N as y,r as x,e as P,j as t,F as S,a as d,k as v}from"./index-b130e904.js";import{F as R,e as F,c as u,a as r,d as b,E as s}from"./index.esm-4e849818.js";import{l as C}from"./login_page_bg-e3bfa072.js";const q=a.div`
+import{s as a,m as y,N as k,r as x,e as P,j as t,F as S,a as d,i as v}from"./index-a4e9d7c0.js";import{F as R,e as F,c as u,a as r,d as b,E as s}from"./index.esm-267e7965.js";import{l as C}from"./login_page_bg-e3bfa072.js";const q=a.div`
   margin-top: 28px;
   height: 100vh;
-  background-image: url(${k});
+  background-image: url(${y});
   background-position: center bottom -170px;
   background-repeat: no-repeat;
   @media (${e=>e.theme.media.tablet}) {
@@ -71,7 +71,7 @@ align-items: center;
   @media (${e=>e.theme.media.desktop}) {
     margin-bottom: 60px;
   }
-`,M=a(y)`
+`,M=a(k)`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
