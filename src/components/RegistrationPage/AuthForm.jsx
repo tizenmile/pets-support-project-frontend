@@ -150,7 +150,7 @@ const StepTwo = (props) => {
             <RegistrationPageFormInput placeholder="Mobile phone" type="text"  name="mobile" value={values.mobile || ""}/>
             <FormError name="mobile"/>
 
-            <RegistrationPageButton type="submit" >Register</RegistrationPageButton>
+            <RegistrationPageButton type="submit">Register</RegistrationPageButton>
             <RegistrationPageButton type="button" onClick={()=>props.prev(values)}>Back</RegistrationPageButton>
           </RegistrationPageForm>
         
