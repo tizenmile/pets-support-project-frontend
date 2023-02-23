@@ -43,6 +43,7 @@ export const delNoticeFromFavorite = createAsyncThunk(
     } catch (e) {
       console.log(e);
       return thunkAPI.rejectWithValue(e.message);
+
     }
   }
 );

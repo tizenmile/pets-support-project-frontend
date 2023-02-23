@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import login_page_bg from "../../media/login_page_bg.svg";
 import mobile_hero_img from "../../media/mobile_hero_img.svg";
 import { Field, Form } from "formik";
@@ -75,7 +75,7 @@ export const LoginPageDescription = styled.p`
     margin-bottom: 60px;
   }
 `;
-export const LoginPageDescriptionLink = styled.a`
+export const LoginPageDescriptionLink = styled(NavLink)`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;

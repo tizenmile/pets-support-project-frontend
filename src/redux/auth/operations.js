@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ToastContainer, toast } from "react-toastify";
 
+
 axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api/";
 
 // Utility to add JWT
@@ -23,9 +24,9 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
+
     try {
       const res = await axios.post("/auth/register", credentials);
-
       if (res.status !== 200) {
         return thunkAPI.rejectWithValue(error.message);
       }
@@ -39,17 +40,19 @@ export const register = createAsyncThunk(
       return res.data;
     } catch (error) {
       console.log(error);
-      // Notify.failure('User is already exist');
 
+      if (error.response.status === 409) {
+        notify('User is already exist')
+        return
+      }
       if (error.response.status === 400) {
-        console.log(error);
-        // Notify.failure('User is already exist');
+        notify('User is already exist')
+        return
       } else if (error.response.status === 500) {
-        console.log(error);
-        // Notify.failure('Oops! Server error! Please try later!');
+        notify('Oops! Server error! Please try later!')
+        return
       } else {
-        console.log(error);
-        // Notify.failure('Something went wrong!');
+        notify('Something went wrong!')
       }
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -127,4 +130,34 @@ export const refreshUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
+
+
+  // 'auth/refresh',
+  // async (_, thunkAPI) => {
+  //   // Reading the token from the state via getState()
+  //   const {token} = thunkAPI.getState().auth;
+  //   console.log(token);
+ 
+  //   if (!token) {
+  //     // If there is no token, exit without performing any request
+  //     return thunkAPI.rejectWithValue('Unable to fetch user');
+  //   }
+
+  //   try {
+  //     // If there is a token, add it to the HTTP header and perform the request
+  //     setAuthHeader(token);
+  //     const res = await axios.get('current');
+  //     return res.data;
+  //   } catch (error) {
+  //     clearAuthHeader();
+  //     if (error.response.status === 401) {
+  //       console.log(
+  //         'something went wrong, user unauthorized. Please, try again'
+  //       );
+  //       return thunkAPI.rejectWithValue(error.response.data.message);
+  //     }
+  //     console.log('something went wrong, please, try again');
+  //     return thunkAPI.rejectWithValue(error.message);
+  //   }
+  // }
 );
