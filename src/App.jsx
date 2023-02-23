@@ -32,6 +32,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="FindPet/:categoryName" element={<FindPet />} />
+
             <Route path="OurFriend" element={<OurFriend />} />
             <Route
               path="/login"
