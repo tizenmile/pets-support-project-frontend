@@ -41,7 +41,7 @@ function App() {
         <Route
           path="/register"
           element={
-            <RegisterPage redirectTo="/current" component={<RegisterPage />} />
+            <RestrictedRoute redirectTo="/current" component={<RegisterPage />} />
           }
         />
          <Route
