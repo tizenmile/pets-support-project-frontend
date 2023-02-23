@@ -52,9 +52,10 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
       breed: isBreed,
       name: isPetName,
       birthDate,
-      category: isCategory,
+      category: isCategory.value,
     };
     onSubmit(notice);
+    console.log(notice);
     isNext();
   };
 
@@ -137,7 +138,6 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
             Date of birth:
             <AddNoticeModalInput
               type="date"
-              placeholder="Type date of birth"
               name="birthDate"
               value={isBirthDate}
               onChange={onChangeBirthDate}

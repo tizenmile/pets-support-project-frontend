@@ -52,7 +52,13 @@ export const NoticeModalImgListSexLable = styled.label`
 `;
 
 export const NoticeAddModalSexInput = styled.input`
-  display: none;
+  opacity: 0;
+  height: 0;
+  width:0;
+  line-heigth: 0 ;
+  overflow: hidden;
+  padding: 0;
+  margin:0;
   transition: ${(p) => p.theme.transition};
   &:checked + ${NoticeModalImgListSexLable} {
     transition: ${(p) => p.theme.transition};
@@ -82,17 +88,33 @@ export const NoticeAddModalFileLableBtn = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  // box-sizing: border-box;
+  z-index: 1;
   :hover {
     border: 1px solid rgba(245, 146, 86, 0.5);
   }
 `;
 
-export const NoticeAddModalFileLableImg = styled.img`
+export const NoticeAddModalFileLableImg1 = styled.img`
   width: 47px;
   hegth: 47px;
 `;
+export const NoticeAddModalFileLableImg2 = styled.img`
+  min-width: 140px;
+  max-width: 140px;
+  max-height: 140px;
+  min-height: 140px;
+  border-radius: inherit;
+`;
 
 export const NoticeAddModalFileInput = styled.input`
+  opacity: 0;
+  height: 0;
+  width: 0;
+  line-heigth: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
   // display: none;
 `;
 

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useRef, useState } from "react";
 import { close_menu_icon, female, male, plus } from "../../../media";
 import {
   AddNoticeModalBtn,
@@ -15,7 +16,7 @@ import {
 import {
   AddNoticeModalContainerSecond,
   NoticeAddModalFileInput,
-  NoticeAddModalFileLableImg,
+  NoticeAddModalFileLableImg1,
   NoticeAddModalmgSex,
   NoticeAddModalTextArea,
   NoticeAddModalTextAreaLabel,
@@ -26,13 +27,26 @@ import {
   NoticeAddModalSexInput,
   NoticeAddModalFileLableBtn,
   NoticeAddModalFileLable,
+  NoticeAddModalFileLableImg2,
 } from "./NoticeAddModalStep2.styled";
 
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VmZmY5NTAyOWVmNjIxMTZmNmQ2YmEiLCJpYXQiOjE2NzcxNTQ3OTQsImV4cCI6MTY3NzE5MDc5NH0.nsr1hgbQscCgatXGScxuivU5RcHsX9e-I3OaGiNjMnE`;
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = ``;
+//   },
+// };
+
 export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
+  const filePicker = useRef(null);
   const [isMale, setIsMale] = useState("");
   const [isLocation, setIsLocation] = useState("");
   const [isPrice, setIsPrice] = useState("");
   const [isImage, setIsImage] = useState(null);
+  const [isImageName, setIsImageName] = useState(null);
+  const [isImageUrl, setIsImageUrl] = useState(null);
   const [isComments, setIsComments] = useState("");
 
   const onChangeMale = (evt) => {
@@ -47,29 +61,55 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     setIsPrice(evt.target.value);
   };
 
-  const onChangeImage = (evt) => {
-    setIsImage(evt.target.value);
+  const onChangeImg = (evt) => {
+    const { files } = evt.target;
+    setIsImage(files[0]);
+    files[0] && setIsImageName(files[0].name);
+    if (files) {
+      setIsImageUrl(URL.createObjectURL(files[0]));
+    }
   };
 
   const onChangeComments = (evt) => {
     setIsComments(evt.target.value);
   };
 
-  const hundleSubmit = (evt) => {
+  const handlePick = () => {
+    filePicker.current.click();
+  };
+
+  const hundleSubmit = async (evt) => {
     evt.preventDefault();
-    const currentNotice = {
-      ...notice,
-      male: isMale,
-      location: isLocation,
-      price: isPrice,
-      image: isImage,
-      comments: isComments,
-    };
-    console.log(currentNotice);
+    const formData = new FormData();
+
+    formData.append("image", isImage);
+    formData.append("sex", isMale);
+    formData.append("place", isLocation);
+    formData.append("price", isPrice ? isPrice : 1);
+    formData.append("comments", isComments);
+    formData.append("title", notice.title);
+    formData.append("breed", notice.breed);
+    formData.append("birthDate", notice.birthDate);
+    formData.append("category", notice.category);
+    formData.append("name", notice.name);
+
+    const data = await axios.post(
+      `http://localhost:3002/api/notices/notice`,
+      formData,
+      {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VmZmY5NTAyOWVmNjIxMTZmNmQ2YmEiLCJpYXQiOjE2NzcxNjczMjAsImV4cCI6MTY3NzIwMzMyMH0.mdIhH5Eswm5yS7M1EAFVp5EGJCwBcbUaybMjx3cORPs",
+        },
+      }
+    );
+    console.log(formData);
+
+    console.log(data);
   };
 
   return (
-    <AddNoticeModalContainerSecond onSubmit={hundleSubmit}>
+    <AddNoticeModalContainerSecond name="newForm" onSubmit={hundleSubmit}>
       <AddNoticeModalBtn type="button" onClick={onClose}>
         <AddNoticeModalBtnImg src={close_menu_icon}></AddNoticeModalBtnImg>
       </AddNoticeModalBtn>
@@ -120,6 +160,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
             <NoticeAddModalLabel>
               Price*:
               <AddNoticeModalInput
+                type="number"
                 placeholder="Type price"
                 name="price"
                 value={isPrice}
@@ -132,15 +173,23 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
         <NoticeAddModalInputListItem>
           <NoticeAddModalFileLable>
             Load the pet’s image:
-            <NoticeAddModalFileLableBtn type="button">
-              <NoticeAddModalFileLableImg
-                src={plus}
-              ></NoticeAddModalFileLableImg>
+            <NoticeAddModalFileLableBtn type="button" onClick={handlePick}>
+              {isImageUrl ? (
+                <NoticeAddModalFileLableImg2
+                  src={isImageUrl}
+                ></NoticeAddModalFileLableImg2>
+              ) : (
+                <NoticeAddModalFileLableImg1
+                  src={plus}
+                ></NoticeAddModalFileLableImg1>
+              )}
             </NoticeAddModalFileLableBtn>
             <NoticeAddModalFileInput
               type="file"
               name="image"
-              onChange={onChangeImage}
+              ref={filePicker}
+              accept="image/*,.png,.jpg,.gif,.web"
+              onChange={onChangeImg}
             />
           </NoticeAddModalFileLable>
         </NoticeAddModalInputListItem>

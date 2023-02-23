@@ -4,8 +4,6 @@ import { fetchSellNotices, getFavNotices } from "../../redux/notices/operation";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { NoticeList } from "../../components/Notices/NoticesList/NoticesList";
 import { Container } from "../../components/Notices/NoticesList/NoticesList.styled";
-
-import { AddNoticeModalStep1 } from "../../components/NoticeAddModal/NoticeAddModalStep1/NoticeAddModalStep1";
 import { NoticeAddModal } from "../../components/NoticeAddModal/NoticeAddModal";
 
 const FindPet = () => {
