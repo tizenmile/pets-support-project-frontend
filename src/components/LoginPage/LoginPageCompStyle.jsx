@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import login_page_bg from "../../media/login_page_bg.svg";
 import mobile_hero_img from "../../media/mobile_hero_img.svg";
+import { Field, Form } from "formik";
 
 export const LoginPageContainer = styled.div`
   margin-top: 28px;
@@ -15,7 +16,7 @@ export const LoginPageContainer = styled.div`
     position: relative;
   }
 `;
-export const LoginPageFormContainer = styled.div`
+export const LoginPageFormContainer = styled(Form)`
   width: 280px;
   display: flex;
   margin-left: auto;
@@ -87,7 +88,7 @@ export const LoginPageDescriptionLink = styled(NavLink)`
   color: #3091eb;
 `;
 
-export const LoginPageFormInput = styled.input`
+export const LoginPageFormInput = styled(Field)`
   width: 266px;
   height: 40px;
   left: 20px;
@@ -118,7 +119,7 @@ export const LoginPageFormInput = styled.input`
   }
 `;
 
-export const LoginPageButton = styled(Link)`
+export const LoginPageButton = styled.button`
   display: flex;
   justify-content: center;
   list-style: none;
