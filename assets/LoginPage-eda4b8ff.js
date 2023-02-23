@@ -1,15 +1,15 @@
-import{s as i,m as d,N as s,r as l,e as p,j as t,a,G as h,F as g}from"./index-70b8d19b.js";import{F as c,e as x,c as b,a as o,d as u}from"./index.esm-8b495fee.js";import{l as f}from"./login_page_bg-e3bfa072.js";const w=i.div`
+import{s as i,m as d,N as l,r as p,e as h,j as t,a,I as g,F as c}from"./index-bf8a4a96.js";import{F as x,e as b,c as u,a as o,d as f,E as n}from"./index.esm-e9c02e25.js";import{l as w}from"./login_page_bg-e3bfa072.js";const $=i.div`
   margin-top: 28px;
   height: 100vh;
   background-image: url(${d});
   background-position: center bottom -170px;
   background-repeat: no-repeat;
   @media (${e=>e.theme.media.tablet}) {
-    background-image: url(${f});
+    background-image: url(${w});
     background-position: center bottom -180px;
     position: relative;
   }
-`,$=i(c)`
+`,k=i(x)`
   width: 280px;
   display: flex;
   margin-left: auto;
@@ -31,7 +31,7 @@ import{s as i,m as d,N as s,r as l,e as p,j as t,a,G as h,F as g}from"./index-70
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
-`,k=i.p`
+`,L=i.p`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -47,7 +47,7 @@ import{s as i,m as d,N as s,r as l,e as p,j as t,a,G as h,F as g}from"./index-70
   @media (${e=>e.theme.media.desktop}) {
     margin-top: 60px;
   }
-`,L=i.p`
+`,y=i.p`
   margin-top: 40px;
   font-style: normal;
   font-weight: 400;
@@ -64,7 +64,7 @@ import{s as i,m as d,N as s,r as l,e as p,j as t,a,G as h,F as g}from"./index-70
   @media (${e=>e.theme.media.desktop}) {
     margin-bottom: 60px;
   }
-`,y=i(s)`
+`,P=i(l)`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -75,7 +75,7 @@ import{s as i,m as d,N as s,r as l,e as p,j as t,a,G as h,F as g}from"./index-70
   text-align: center;
   letter-spacing: 0.04em;
   color: #3091eb;
-`,n=i(x)`
+`,r=i(b)`
   width: 266px;
   height: 40px;
   left: 20px;
@@ -104,7 +104,7 @@ import{s as i,m as d,N as s,r as l,e as p,j as t,a,G as h,F as g}from"./index-70
     width: 458px;
     height: 52px;
   }
-`,P=i.button`
+`,v=i.button`
   display: flex;
   justify-content: center;
   list-style: none;
@@ -130,4 +130,4 @@ import{s as i,m as d,N as s,r as l,e as p,j as t,a,G as h,F as g}from"./index-70
   @media (${e=>e.theme.media.desktop}) {
     width: 458px;
   }
-`,v=b().shape({email:o().max(63).min(6).email("Invalid email address").required().label("Email"),password:o().min(7).max(32).required().label("Password")}),F={email:"",password:""},S=()=>{const[e,z]=l.useState(F),r=p();return t(u,{initialValues:e,validationSchema:v,onSubmit:m=>{r(h(m))},children:()=>t(w,{children:a($,{children:[t(k,{children:"Login"}),t(n,{placeholder:"Email",name:"email"}),t(n,{placeholder:"Password",name:"password"}),t(P,{type:"submit",children:"Login"}),a(L,{children:["Don't have an account?",t(y,{children:"Register"})]})]})})})},E=()=>t(g,{children:t(S,{})});export{E as default};
+`,F=u().shape({email:o().max(63).min(6).email("Invalid email address").required().label("Email"),password:o().min(7).max(32).required().label("Password")}),S={email:"",password:""},z=()=>{const[e,D]=p.useState(S),m=h();return t(f,{initialValues:e,validationSchema:F,onSubmit:s=>{m(g(s))},children:()=>t($,{children:a(k,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",name:"password"}),t(n,{name:"password"}),t(v,{type:"submit",children:"Login"}),a(y,{children:["Don't have an account?",t(P,{to:"/register",children:"Register"})]})]})})})},B=()=>t(c,{children:t(z,{})});export{B as default};
