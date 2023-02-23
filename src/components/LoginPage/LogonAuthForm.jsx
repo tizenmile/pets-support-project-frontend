@@ -19,11 +19,11 @@ const stepOneValidationSchema = Yup.object().shape({
     .required()
     .label("Email"),
   password: Yup.string().min(7).max(32).required().label("Password"),
-  confirmPassword: Yup.string()
-    .min(7)
-    .max(32)
-    .required()
-    .label("Confirm password"),
+  //   confirmPassword: Yup.string()
+  //     .min(7)
+  //     .max(32)
+  //     .required()
+  //     .label("Confirm password"),
 });
 
 const stepTwoValidationSchema = Yup.object().shape({
