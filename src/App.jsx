@@ -13,7 +13,7 @@ const NewsPage = lazy(() => import('./pages/News/'));
 const UserAccount = lazy(() => import('./pages/UserAccount/UserAccount'));
 const RegisterPage = lazy(() => import('./pages/Auth/RegistrationPage'));
 const FindPet = lazy(() => import('./pages/FindPet/FindPetPage'));
-const OurFriend = lazy(() => import('./pages/OurFriends/OurFrindsPage'));
+const OurFriend = lazy(() => import('./pages/OurFriends/OurFriendsPage'));
 const LoginPage = lazy(() => import('./pages/Auth/LoginPage'));
 
 
@@ -36,16 +36,16 @@ function App() {
         <Route path="OurFriend" element={<OurFriend />} />
         <Route
           path="/login"
-          element={<RestrictedRoute redirectTo="/current" component={<LoginPage />} />}
+          element={<RestrictedRoute redirectTo="/user" component={<LoginPage />} />}
         />
         <Route
           path="/register"
           element={
-            <RestrictedRoute redirectTo="/current" component={<RegisterPage />} />
+            <RestrictedRoute redirectTo="/user" component={<RegisterPage />} />
           }
         />
          <Route
-            path="/current"
+            path="/user"
             element={
               <PrivateRoute redirectTo="/login" component={<UserAccount />} />
             }

@@ -56,7 +56,7 @@ function Navbar() {
         </MenuContainer>
         {!extendNavbar && (
           <AuthContainer>
-            {isLoggedIn? <AuthButtonStyled component={NavLink} to="/current">
+            {isLoggedIn? <AuthButtonStyled component={NavLink} to="/user">
               Account
             </AuthButtonStyled> : <><LoginButtonStyled component={NavLink} to="/login">
               Login
@@ -82,7 +82,7 @@ function Navbar() {
           <NavbarExtendedAuthContainer>
             {isLoggedIn ? <AuthButtonStyled
               component={NavLink}
-              to="/current"
+              to="/user"
               onClick={() => {
                 setExtendNavbar((current) => !current);
               }}
