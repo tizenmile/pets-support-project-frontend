@@ -11,13 +11,3 @@ export const Logout = () => {
     </LogOut>
   );
 };
-
-// export const LogOut = () => {
-//   const dispatch = useDispatch();
-
-//   return (
-//     <button type="button" onClick={() => dispatch(logOut())}>
-//       logout
-//     </button>
-//   );
-// };

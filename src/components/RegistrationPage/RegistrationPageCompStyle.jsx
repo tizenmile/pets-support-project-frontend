@@ -84,16 +84,24 @@ export const RegistrationPageDescription = styled.p`
   }
 `;
 export const RegistrationPageDescriptionLink = styled(NavLink)`
-  font-style: normal;
+   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  text-decoration: underline;
+  // text-decoration: underline;
+  text-decoration-thickness: 1px;
   cursor: pointer;
   margin-left: 5px;
   text-align: center;
   letter-spacing: 0.04em;
   color: #3091eb;
+  &.active {
+    text-decoration-thickness: 2px;
+  }
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
 `;
 
 export const RegistrationPageFormInput = styled(Field)`
@@ -154,6 +162,36 @@ export const RegistrationPageButton = styled.button`
     width: 458px;
   }
 `;
+
+export const RegisterPrevButtonStyled = styled.button`
+display: flex;
+justify-content: center;
+list-style: none;
+margin-top: 16px;
+padding: 0px;
+background: ${(p) => p.theme.colors.white};
+border-radius: ${(p) => p.theme.radii.large};
+font-style: normal;
+font-weight: ${(p) => p.theme.fontWeights.semiBold};
+font-size: ${(p) => p.theme.fontSizes.xm};
+color: ${(p) => p.theme.colors.mainText};
+border: 2px solid ${(p) => p.theme.colors.accent};
+text-decoration: none;
+padding: 10px 28px;
+cursor: pointer;
+&:hover {
+  background: ${(p) => p.theme.colors.hover};
+  border: 2px solid ${(p) => p.theme.colors.hover};
+  color: ${(p) => p.theme.colors.white};
+}
+
+@media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  width: 448px;
+}
+@media (${(p) => p.theme.media.desktop}) {
+  width: 458px;
+}
+`
 
 export const ErrorText = styled.p`
   font-style: normal;
