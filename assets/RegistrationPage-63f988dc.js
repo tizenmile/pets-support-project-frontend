@@ -1,0 +1,1 @@
+import{j as i,a}from"./index-a34b60b1.js";import{R as e,a as t,b as r,A as n,c as o,d as s}from"./AuthForm-82253a0e.js";import"./index.esm-dae884d7.js";const d=()=>i(e,{children:a(t,{children:[i(r,{children:"Registration"}),i(n,{}),a(o,{children:["Already have an account?",i(s,{to:"/login",children:"Login"})]})]})});export{d as default};
