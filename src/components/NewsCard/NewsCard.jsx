@@ -12,7 +12,6 @@ import {
     Strip,
     Title,
     Wrapper,
-    WrapperContent,
 } from './Newscard.styled';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -28,7 +27,7 @@ export const Newscard = ({ news }) => {
     return (
 
         <Wrapper>
-            <WrapperContent>
+            
                 <div>
                     <Strip />
                     <Title>{title || 'no title'}</Title>
@@ -44,7 +43,7 @@ export const Newscard = ({ news }) => {
                         </P>
                     </Div>
                 </Content>
-            </WrapperContent>
+           
             <Footer>
                 <Data>{date || ''}</Data>
                 <Link href={url} target="_blank">
