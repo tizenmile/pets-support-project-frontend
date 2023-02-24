@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useAuth} from "../../hooks/useAuth"
+import { useAuth } from "../../hooks/useAuth";
 import {
   NavbarContainer,
   LogoContainer,
@@ -26,13 +26,13 @@ import { NavLink, Link } from "react-router-dom";
 
 const links = [
   { path: "/News", label: "News", exact: "false" },
-  { path: "/FindPet", label: "Find pet", exact: "false" },
+  { path: "/FindPet/:categoryName", label: "Find pet", exact: "false" },
   { path: "/OurFriend", label: "Our friends", exact: "false" },
 ];
 
 function Navbar() {
   const [extendNavbar, setExtendNavbar] = useState(false);
-  const {isLoggedIn} = useAuth()
+  const { isLoggedIn } = useAuth();
 
   return (
     <NavbarContainer extendNavbar={extendNavbar}>
@@ -56,14 +56,20 @@ function Navbar() {
         </MenuContainer>
         {!extendNavbar && (
           <AuthContainer>
-            {isLoggedIn? <AuthButtonStyled component={NavLink} to="/current">
-              Account
-            </AuthButtonStyled> : <><LoginButtonStyled component={NavLink} to="/login">
-              Login
-            </LoginButtonStyled>
-            <RegisterButtonStyled component={Link} to="/register">
-              Registration
-            </RegisterButtonStyled></>}
+            {isLoggedIn ? (
+              <AuthButtonStyled component={NavLink} to="/user">
+                Account
+              </AuthButtonStyled>
+            ) : (
+              <>
+                <LoginButtonStyled component={NavLink} to="/login">
+                  Login
+                </LoginButtonStyled>
+                <RegisterButtonStyled component={Link} to="/register">
+                  Registration
+                </RegisterButtonStyled>
+              </>
+            )}
           </AuthContainer>
         )}
 
@@ -80,32 +86,38 @@ function Navbar() {
       {extendNavbar && (
         <NavbarExtendedContainer>
           <NavbarExtendedAuthContainer>
-            {isLoggedIn ? <AuthButtonStyled
-              component={NavLink}
-              to="/current"
-              onClick={() => {
-                setExtendNavbar((current) => !current);
-              }}
-            >
-              Account
-            </AuthButtonStyled> : <><LoginButtonStyled
-              component={NavLink}
-              to="/login"
-              onClick={() => {
-                setExtendNavbar((current) => !current);
-              }}
-            >
-              Login
-            </LoginButtonStyled>
-            <RegisterButtonStyled
-              component={Link}
-              to="/register"
-              onClick={() => {
-                setExtendNavbar((current) => !current);
-              }}
-            >
-              Registration
-            </RegisterButtonStyled></>}          
+            {isLoggedIn ? (
+              <AuthButtonStyled
+                component={NavLink}
+                to="/user"
+                onClick={() => {
+                  setExtendNavbar((current) => !current);
+                }}
+              >
+                Account
+              </AuthButtonStyled>
+            ) : (
+              <>
+                <LoginButtonStyled
+                  component={NavLink}
+                  to="/login"
+                  onClick={() => {
+                    setExtendNavbar((current) => !current);
+                  }}
+                >
+                  Login
+                </LoginButtonStyled>
+                <RegisterButtonStyled
+                  component={Link}
+                  to="/register"
+                  onClick={() => {
+                    setExtendNavbar((current) => !current);
+                  }}
+                >
+                  Registration
+                </RegisterButtonStyled>
+              </>
+            )}
           </NavbarExtendedAuthContainer>
           <NavbarLinkExtendedContainer>
             {links.map(({ path, label, exact }) => (
