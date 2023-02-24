@@ -1,4 +1,4 @@
-import{s as a,J as m,N as p,r as l,e as c,j as t,a as i,K as h,F as g}from"./index-97a66680.js";import{F as x,e as b,c as u,a as o,V as w,d as f}from"./index.esm-a3ce5241.js";import{l as $,i as k,F as n}from"./AuthForm-9b00b39c.js";const y=a.div`
+import{s as a,N as m,P as p,r as l,e as c,j as t,a as i,S as h,F as g}from"./index-e28ab8d3.js";import{F as x,e as b,c as u,a as o,V as w,d as f}from"./index.esm-5346380b.js";import{l as $,i as k,F as n}from"./AuthForm-67f6e86c.js";const y=a.div`
   margin-top: 28px;
   height: 100vh;
   background-image: url(${m});
@@ -47,7 +47,7 @@ import{s as a,J as m,N as p,r as l,e as c,j as t,a as i,K as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     margin-top: 60px;
   }
-`,z=a.p`
+`,P=a.p`
   margin-top: 40px;
   font-style: normal;
   font-weight: 400;
@@ -64,7 +64,7 @@ import{s as a,J as m,N as p,r as l,e as c,j as t,a as i,K as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     margin-bottom: 60px;
   }
-`,F=a(p)`
+`,z=a(p)`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -112,7 +112,7 @@ import{s as a,J as m,N as p,r as l,e as c,j as t,a as i,K as h,F as g}from"./ind
     width: 458px;
     height: 52px;
   }
-`,P=a.button`
+`,F=a.button`
   display: flex;
   justify-content: center;
   list-style: none;
@@ -138,4 +138,4 @@ import{s as a,J as m,N as p,r as l,e as c,j as t,a as i,K as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     width: 458px;
   }
-`,S=u().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new w("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),E={email:"",password:""},D=()=>{const[e,M]=l.useState(E),s=c();return t(f,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:i(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(P,{type:"submit",children:"Login"}),i(z,{children:["Don't have an account?",t(F,{to:"/register",children:"Register"})]})]})})})},I=()=>t(g,{children:t(D,{})});export{I as default};
+`,S=u().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new w("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),E={email:"",password:""},D=()=>{const[e,M]=l.useState(E),s=c();return t(f,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:i(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(F,{type:"submit",children:"Login"}),i(P,{children:["Don't have an account?",t(z,{to:"/register",children:"Register"})]})]})})})},I=()=>t(g,{children:t(D,{})});export{I as default};
