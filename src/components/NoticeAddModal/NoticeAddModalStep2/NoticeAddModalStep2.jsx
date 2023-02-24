@@ -79,20 +79,23 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   });
 
   const onChangeMale = (evt) => {
-    setIsMale(evt.target.value);
+    setIsMale(evt.target.value.trim());
   };
 
   const onChangeLocation = (evt) => {
-    setIsLocation(evt.target.value);
+    setIsLocation(evt.target.value.trim());
   };
 
   const onChangePrice = (evt) => {
-    setIsPrice(evt.target.value);
+    setIsPrice(evt.target.value.trim());
   };
 
   const onChangeImg = (evt) => {
     const { files } = evt.target;
-    console.log(files);
+    if (files[0].size > 5242880) {
+      return notifyInfo();
+    }
+    // console.log(files[0].size);
     setIsImage(files[0]);
     files[0] && setIsImageName(files[0].name);
     if (files) {
@@ -101,7 +104,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const onChangeComments = (evt) => {
-    setIsComments(evt.target.value);
+    setIsComments(evt.target.value.trim());
   };
 
   const handlePick = () => {
@@ -125,7 +128,8 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
     try {
       const data = await axios.post(
-        `https://pet.tizenmile.keenetic.pro/api/notices/notice`,
+        // `https://pet.tizenmile.keenetic.pro/api/notices/notice`,
+        `http://localhost:3002/api/notices/notice`,
         formData,
         {
           headers: {
@@ -158,6 +162,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
   const notifyError = () => toast.error("Please enter correct data!");
   const notifySuccess = () => toast.success("Notice created!");
+  const notifyInfo = () => toast.error("The file must not exceed 5.2 mb!");
 
   return (
     <>
@@ -209,6 +214,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                 <NoticeAddModalLabel>
                   Location*:
                   <AddNoticeModalInput
+                    type=""
                     placeholder="Type location"
                     name="place"
                     value={isLocation}
@@ -222,6 +228,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                     Price*:
                     <AddNoticeModalInput
                       type="number"
+                      pattern="[1-9]*[.]?[1-9]+"
                       placeholder="Type price"
                       name="price"
                       value={isPrice}
@@ -261,6 +268,10 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                 <NoticeAddModalTextAreaLabel>
                   Comments:
                   <NoticeAddModalTextArea
+                    type="text"
+                    min="8"
+                    max="120"
+                    required={true}
                     placeholder="Type comment"
                     name="comments"
                     value={isComments}

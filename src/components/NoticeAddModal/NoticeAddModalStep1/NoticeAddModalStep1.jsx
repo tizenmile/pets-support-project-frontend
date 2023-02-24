@@ -51,19 +51,19 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
   }, [isTitle, isBreed, isPetName, isBirthDate, isCategory]);
 
   const onChangeCategory = (evt) => {
-    setIsCategory(evt.target.value);
+    setIsCategory(evt.target.value.trim());
   };
   const onChangeTitle = (evt) => {
-    setIsTitle(evt.target.value);
+    setIsTitle(evt.target.value.trim());
   };
   const onChangePetName = (evt) => {
-    setIsPetName(evt.target.value);
+    setIsPetName(evt.target.value.trim());
   };
   const onChangeBirthDate = (evt) => {
-    setIsBirthDate(evt.target.value);
+    setIsBirthDate(evt.target.value.trim());
   };
   const onChangeBreed = (evt) => {
-    setIsBreed(evt.target.value);
+    setIsBreed(evt.target.value.trim());
   };
 
   const getAllField = () => {
@@ -138,6 +138,9 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
             Tittle of ad*:
             <AddNoticeModalInput
               type="text"
+              min="2"
+              max="48"
+              required={true}
               placeholder="Type name"
               name="title"
               value={isTitle}
@@ -150,6 +153,8 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
             Name pet:
             <AddNoticeModalInput
               type="text"
+              min="2"
+              max="16"
               placeholder="Type name pet"
               name="name"
               value={isPetName}
@@ -172,6 +177,9 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
           <NoticeAddModalLabel>
             Breed:
             <AddNoticeModalInput
+              type="text"
+              min="2"
+              max="24"
               placeholder="Type breed"
               name="breed"
               value={isBreed}
