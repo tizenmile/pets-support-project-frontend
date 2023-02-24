@@ -1,5 +1,29 @@
 import styled from "styled-components";
 import { TbSearch } from "react-icons/tb";
+import { FiXCircle } from "react-icons/fi";
+
+export const IconSearchReset = styled(FiXCircle)`
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  fill: white;
+  color: black;
+  &:hover {
+    color: ${(p) => p.theme.colors.accent};
+    scale: 1.15;
+  }
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media (${(p) => p.theme.media.mobileMax}) {
+    width: 20px;
+    height: 20px;
+  }
+  @media (${(p) => p.theme.media.tablet}) {
+    width: 24px;
+    height: 24px;
+  }
+`;
 
 export const ContainerMain = styled.div`
   padding-left: 15px;
