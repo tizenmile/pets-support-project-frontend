@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: rgba(17, 17, 17, 1);
+  background-color: rgba(0, 0, 0, 0);
  @media ${p => p.theme.media.mobileMax} {
     padding: 100px 20px 100px 20px;
   }
