@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
   HeaderSearchBar,
@@ -7,23 +7,23 @@ import {
   SearchFormButton,
   SearchFormButtonLabel,
   SearchFormInput,
-} from "./SearchBar.styled.js";
-// import PropTypes from "prop-types";
-import { useSearchParams } from "react-router-dom";
+} from './SearchBar.styled.js';
+import PropTypes from 'prop-types';
+import { useSearchParams } from 'react-router-dom';
 
 export const SearchBar = ({ submitForm }) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [, setSearchParams] = useSearchParams();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     // Эта функция которая отвечает за отправку запроса. Приходит в пропсе.
     setSearchParams({ text: input });
     // submitForm(input);
-    setInput("");
+    setInput('');
   };
 
-  const saveInputState = (e) => {
+  const saveInputState = e => {
     setInput(e.target.value);
   };
 
@@ -47,6 +47,6 @@ export const SearchBar = ({ submitForm }) => {
   );
 };
 
-// SearchBar.propTypes = {
-//   submitForm: PropTypes.func,
-// };
+SearchBar.propTypes = {
+  submitForm: PropTypes.func,
+};

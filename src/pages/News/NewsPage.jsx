@@ -1,14 +1,14 @@
 // import { Newscard } from 'components/NewsCard';
-import { SearchBar } from "../../components/SearchBar/SearchBar";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useSearchParams } from "react-router-dom";
-import { getByQueryNews, getNews } from "../../redux/news/newsOperations";
+import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, useSearchParams } from 'react-router-dom';
+import { getByQueryNews, getNews } from '../../redux/news/newsOperations';
 import {
   selectNews,
   selectSpinnerToggle,
   selectTotalPages,
-} from "../../redux/news/newsSelectors";
+} from '../../redux/news/newsSelectors';
 
 import {
   ItemCard,
@@ -16,15 +16,14 @@ import {
   Title,
   Wrapper,
   WrapperList,
-  Img,
   // NotFoundBox,
-} from "./NewsPage.styled";
-import { Newscard } from "../../components/NewsCard/NewsCard";
+} from './NewsPage.styled';
+import { Newscard } from '../../components/NewsCard/NewsCard';
 
 export const NewsPage = () => {
   const [search, setSearch] = useSearchParams();
-  const page = search.get("page");
-  const query = search.get("text");
+  const page = search.get('page');
+  const query = search.get('text');
 
   const spinner = useSelector(selectSpinnerToggle);
 
@@ -33,7 +32,7 @@ export const NewsPage = () => {
   const newss = useSelector(selectNews);
   const totalPages = useSelector(selectTotalPages);
 
-  const searchNews = (query) => {
+  const searchNews = query => {
     dispatch(getByQueryNews(query));
   };
 
@@ -56,7 +55,7 @@ export const NewsPage = () => {
       ) : (
         <WrapperList>
           <ListCard>
-            {newss?.news?.map((value) => (
+            {newss?.news?.map(value => (
               <ItemCard key={value?._id}>
                 <Newscard news={value} />
               </ItemCard>
@@ -66,6 +65,5 @@ export const NewsPage = () => {
         </WrapperList>
       )}
     </Wrapper>
-  );
+  )
 };
-
