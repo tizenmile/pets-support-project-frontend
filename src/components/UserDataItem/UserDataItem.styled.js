@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { BsCheckLg } from "react-icons/bs";
-import { Formik, Form } from "formik";
+import { Form } from "formik";
 export const EditTextBtn = styled.button`
   display: flex;
   align-items: center;
@@ -84,3 +84,12 @@ export const UserForm = styled(Form)`
     column-gap: 24px;
   }
 `;
+
+export const ErrorText = styled.div`
+  position: absolute;
+  color: red;
+  font-size: 9px;
+  margin-left: 15px;
+`;
+
+export const InputWrapper = styled.div``;

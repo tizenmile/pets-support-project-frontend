@@ -8,28 +8,35 @@ import Login from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegistrationPage";
 import FindPet from "./pages/FindPet/FindPetPage";
 import OurFriend from "./pages/OurFriends/OurFrindsPage";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="news" element={<News />} />
-        <Route path="FindPet" element={<FindPet />} />
-        <Route path="OurFriend" element={<OurFriend />} />
-        <Route
-          path="/login"
-          element={<RestrictedRoute redirectTo="/user" component={<Login />} />}
-        />
-        <Route
-          path="/register"
-          element={
-            <RegisterPage redirectTo="/user" component={<RegisterPage />} />
-          }
-        />
-        <Route path="/user" element={<UserAccount />} />
-      </Route>
-    </Routes>
+    <>
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="news" element={<News />} />
+          <Route path="FindPet" element={<FindPet />} />
+          <Route path="OurFriend" element={<OurFriend />} />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/user" component={<Login />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RegisterPage redirectTo="/user" component={<RegisterPage />} />
+            }
+          />
+          <Route path="/user" element={<UserAccount />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
