@@ -16,7 +16,6 @@ import {
   Title,
   Wrapper,
   WrapperList,
-  Img,
   NotFoundBox,
 } from './NewsPage.styled';
 import { Newscard } from '../../components/NewsCard/NewsCard';
