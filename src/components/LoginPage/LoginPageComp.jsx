@@ -52,14 +52,18 @@ export const LoginPage = () => {
               placeholder="Email"
               name="email"
             ></LoginPageFormInput>
+            <ErrorMessage name="email" />
             <LoginPageFormInput
               placeholder="Password"
               name="password"
             ></LoginPageFormInput>
+            <ErrorMessage name="password" />
             <LoginPageButton type="submit">Login</LoginPageButton>
             <LoginPageDescription>
               Don't have an account?
-              <LoginPageDescriptionLink>Register</LoginPageDescriptionLink>
+              <LoginPageDescriptionLink to="/register">
+                Register
+              </LoginPageDescriptionLink>
             </LoginPageDescription>
           </LoginPageFormContainer>
         </LoginPageContainer>
