@@ -22,6 +22,8 @@ import {
   ImageContainer,
   Label,
 } from "./userDataCard.styled";
+
+import AnimationLoader from "../AnimationLoader";
 export const UserDataCard = () => {
   const dispatch = useDispatch();
 
@@ -63,7 +65,7 @@ export const UserDataCard = () => {
   return (
     <UserBlock>
       {isLoading ? (
-        <div>LOADING</div>
+        <AnimationLoader />
       ) : (
         <>
           <BoxImg>

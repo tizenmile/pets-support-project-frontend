@@ -9,8 +9,6 @@ import { ThemeProvider } from "styled-components";
 import { theme, GlobalStyle } from "./styles";
 import { HashRouter } from "react-router-dom";
 import { PersistGate } from 'redux-persist/integration/react';
-import "react-toastify/dist/ReactToastify.css";
-import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

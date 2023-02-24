@@ -92,10 +92,18 @@ export const CardButton = styled.button`
   line-height: 1.37;
   letter-spacing: 0.04em;
   color: #f59256;
+  
 
   &&:hover {
     border-color: #ff6101;
     color: #ff6101;
+    
     cursor: pointer;
   }
+`;
+
+export const IconTrash = styled.img`
+ width: 16px;
+ height: 17px;
+ fill: currentColor;
 `;

@@ -3,19 +3,15 @@ import * as Yup from "yup";
 export const UserSchema = Yup.object().shape({
   name: Yup.string()
     .required("Required")
-    .min(3, "Username must be at least 3 characters")
+    .min(2, "Username must be at least 2 characters")
     .max(30, "Username must be less than 30 characters")
     .matches(
       /^[a-zA-Zа-щА-ЩЬьЮюЯяІіЇїЄєҐґ\s]+$/,
       "Username can only contain letters and spaces"
     ),
   email: Yup.string()
-    .email("Invalid email")
     .required("Required")
-    .matches(
-      /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/,
-      "Username can only contain letters and spaces"
-    ),
+    .matches(/^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/, "Invalid email"),
 
   mobile: Yup.string()
     .matches(/^[+](380)[0-9]{9}$/, "Invalid phone number")

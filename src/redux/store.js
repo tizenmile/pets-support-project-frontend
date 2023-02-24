@@ -10,18 +10,12 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { newsReducer } from "./news/newsSlice";
 import { noticesReducer } from "./notices/noticesSlice";
 import { authReducer } from "./auth/authSlice";
+import { newsReducer } from "./news/newsSlice";
 import { userReducer } from "./userAccount/userSlice";
-
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-];
+import { searchSlice } from "./notices/searchSlice";
+import { filtersReducer } from "./notices/filterSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -33,10 +27,18 @@ export const store = configureStore({
   reducer: {
     news: newsReducer,
     notices: noticesReducer,
-    user: userReducer,
+    search: searchSlice.reducer,
+    filters: filtersReducer,
     auth: persistReducer(authPersistConfig, authReducer),
+    news: newsReducer,
+    user: userReducer,
   },
-  middleware,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
   devTools: process.env.NODE_ENV === "development",
 });
 
