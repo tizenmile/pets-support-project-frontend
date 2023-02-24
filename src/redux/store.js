@@ -13,6 +13,7 @@ import storage from "redux-persist/lib/storage";
 import { noticesReducer } from "./notices/noticesSlice";
 import { authReducer } from "./auth/authSlice";
 import { newsReducer } from "./news/newsSlice";
+import { userReducer } from "./userAccount/userSlice";
 import { searchSlice } from "./notices/searchSlice";
 import { filtersReducer } from "./notices/filterSlice";
 
@@ -30,6 +31,7 @@ export const store = configureStore({
     filters: filtersReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
+    user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

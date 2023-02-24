@@ -1,48 +1,50 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api/";
 // axios.defaults.baseURL = 'http://localhost:3002/api/';
 
-
 // Utility to add JWT
 const setAuthHeader = () => {
   axios.interceptors.request.use(
-    config => {
-      config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
-          return config;
-      },
-      error => {
-          return Promise.reject(error);
-      }
+    (config) => {
+      config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+        "token"
+      )}`;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
   );
 };
 
 // Utility to remove JWT
 const clearAuthHeader = () => {
   axios.interceptors.request.use(
-    config => {
-      config.headers['Authorization'] = ``;
-          return config;
-      },
-      error => {
-          return Promise.reject(error);
-      }
+    (config) => {
+      config.headers["Authorization"] = ``;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
   );
 };
 
-const notify = (msg) => toast.info(msg, {
-  position: "bottom-right",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  theme: "colored",
-  });;
+const notify = (msg) =>
+  toast.info(msg, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
 /*
  * POST @ /auth/register
@@ -51,7 +53,6 @@ const notify = (msg) => toast.info(msg, {
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
-
     try {
       const res = await axios.post("auth/register", credentials);
       if (res.status !== 200) {
@@ -68,17 +69,17 @@ export const register = createAsyncThunk(
       console.log(error);
 
       if (error.response.status === 409) {
-        notify('User is already exist')
-        return
+        notify("User is already exist");
+        return;
       }
       if (error.response.status === 400) {
-        notify('User is already exist')
-        return
+        notify("User is already exist");
+        return;
       } else if (error.response.status === 500) {
-        notify('Oops! Server error! Please try later!')
-        return
+        notify("Oops! Server error! Please try later!");
+        return;
       } else {
-        notify('Something went wrong!')
+        notify("Something went wrong!");
       }
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -130,7 +131,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const token = thunkAPI.getState().auth?.token
+    const token = thunkAPI.getState().auth?.token;
 
     if (!token) {
       // If there is no token, exit without performing any request
@@ -139,28 +140,27 @@ export const refreshUser = createAsyncThunk(
 
     try {
       axios.interceptors.request.use(
-        config => {
-          config.headers['Authorization'] = `Bearer ${thunkAPI.getState().auth?.token}`;
-              return config;
-          },
-          error => {
-            return thunkAPI.rejectWithValue('Unable to fetch user');
-          }
+        (config) => {
+          config.headers["Authorization"] = `Bearer ${
+            thunkAPI.getState().auth?.token
+          }`;
+          return config;
+        },
+        (error) => {
+          return thunkAPI.rejectWithValue("Unable to fetch user");
+        }
       );
 
-     const res = await axios.get('auth/current');
-     return res.data;
+      const res = await axios.get("auth/current");
+      return res.data;
     } catch (error) {
       clearAuthHeader();
       if (error.response.status === 401) {
-       notify(
-          "something went wrong, user unauthorized. Please, try again"
-        );
+        notify("something went wrong, user unauthorized. Please, try again");
         return thunkAPI.rejectWithValue(error.response.data.message);
       }
-     notify("something went wrong, please, try again");
+      notify("something went wrong, please, try again");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-
 );
