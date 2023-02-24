@@ -138,6 +138,9 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
             Tittle of ad*:
             <AddNoticeModalInput
               type="text"
+              min="2"
+              max="48"
+              required={true}
               placeholder="Type name"
               name="title"
               value={isTitle}
@@ -150,6 +153,8 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
             Name pet:
             <AddNoticeModalInput
               type="text"
+              min="2"
+              max="16"
               placeholder="Type name pet"
               name="name"
               value={isPetName}
@@ -172,6 +177,9 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
           <NoticeAddModalLabel>
             Breed:
             <AddNoticeModalInput
+              type="text"
+              min="2"
+              max="24"
               placeholder="Type breed"
               name="breed"
               value={isBreed}
