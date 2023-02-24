@@ -36,24 +36,25 @@ const noticesSlice = createSlice({
         state.items = action.payload;
       })
 
-      .addMatcher(fetchNoticesByCategory.pending, (state) => {
+      .addCase(fetchNoticesByCategory.pending, (state) => {
         state.isLoading = true;
       })
-      .addMatcher(getFavNotices.pending, (state) => {
+      .addCase(getFavNotices.pending, (state) => {
         state.isLoading = true;
       })
-      .addMatcher(getOwnNotices.pending, (state) => {
+      .addCase(getOwnNotices.pending, (state) => {
         state.isLoading = true;
       })
 
-      .addMatcher(fetchNoticesByCategory.rejected, (state, action) => {
+      .addCase(fetchNoticesByCategory.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addMatcher(getFavNotices.rejected, (state, action) => {
+      .addCase(getFavNotices.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
       })
-      .addMatcher(getOwnNotices.rejected, (state, action) => {
+      .addCase(getOwnNotices.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

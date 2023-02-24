@@ -19,11 +19,14 @@ import {
   getStatusFilter,
   selectFavNotices,
 } from "../../../redux/notices/selector";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 import { setStatusFilter } from "../../../redux/notices/filterSlice";
 import { ButtonEl } from "../Button/Button";
 // import { selectIsLoggedIn } from "../../redux/notices/selector";
 
 export default function CategoriesNav({ category }) {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const filter = useSelector(getStatusFilter);
@@ -81,7 +84,7 @@ export default function CategoriesNav({ category }) {
               </ButtonEl>
             </Item>
 
-            {true && (
+            {isLoggedIn && (
               <>
                 <Item>
                   <ButtonEl
