@@ -1,14 +1,14 @@
 // import { Newscard } from 'components/NewsCard';
-import { SearchBar } from 'components/SearchBar/SearchBar';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useSearchParams } from 'react-router-dom';
-import { getByQueryNews, getNews } from 'redux/news/newsOperations';
+import { getByQueryNews, getNews } from '../../redux/news/newsOperations';
 import {
   selectNews,
   selectSpinnerToggle,
   selectTotalPages,
-} from 'redux/news/newsSelectors';
+} from '../../redux/news/newsSelectors';
 
 import {
   ItemCard,
@@ -16,7 +16,7 @@ import {
   Title,
   Wrapper,
   WrapperList,
-  NotFoundBox,
+  // NotFoundBox,
 } from './NewsPage.styled';
 import { Newscard } from '../../components/NewsCard/NewsCard';
 
@@ -49,9 +49,9 @@ export const NewsPage = () => {
       <Title>News</Title>
       <SearchBar submitForm={searchNews} />
       {!newss ? (
-        <NotFoundBox>
+        <div>
           <Title>Nothing found. Please, try again</Title>
-        </NotFoundBox>
+        </div>
       ) : (
         <WrapperList>
           <ListCard>

@@ -28,6 +28,11 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const Span = styled.span`
+  display: inline-block;
+  text-align: justify;
+`;
+
 export const Strip = styled.div`
   display: block;
   width: 200px;
@@ -147,3 +152,4 @@ export const Link = styled.a`
     color: rgba(255, 97, 1, 1);
   }
 `;
+

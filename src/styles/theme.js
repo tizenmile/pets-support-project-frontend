@@ -1,9 +1,11 @@
 export const theme = {
   colors: {
     white: "rgba(255, 255, 255, 1)",
+    black: "rgba(0, 0, 0, 1)",
     accent: "rgba(245, 146, 86, 1)",
+    hover: "rgba(255, 113, 47, 1)",
     background: "rgba(253, 247, 242, 1)",
-    mainText: "rgba(17, 17, 17, 1)",
+    mainText: "rgba(47, 48, 64, 1)",
     pageTitleText: "rgba(24, 28, 39, 1)",
     searchText: "rgba(83, 83, 83, 1)",
     newsText: "rgba(17, 19, 33, 1)",
