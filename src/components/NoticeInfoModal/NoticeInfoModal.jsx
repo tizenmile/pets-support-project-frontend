@@ -34,8 +34,8 @@ import {
 } from "./NoticeInfoModal.styled";
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn)
-    const isLoggedIn = true
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+    // const isLoggedIn = true
 
   const [notice, setNotice] = useState(null);
   const [isFav, setIsFav] = useState(isFavorite)

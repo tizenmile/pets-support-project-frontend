@@ -6,7 +6,11 @@ export const NoticeItem = styled.li`
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 `;
 
-export const CardTumb = styled.div``;
+export const CardTumb = styled.div`
+ display: flex;
+ flex-direction: column;
+ height: 600px;
+`;
 
 export const Image = styled.img`
   width: 100%;
@@ -60,11 +64,14 @@ export const Title = styled.p`
 `;
 
 export const FeaturesList = styled.ul`
-  margin-top: 20px;
-  margin-left: 20px;
+  margin: 20px;
 `;
 export const FeaturesItem = styled.li`
   display: flex;
+  margin-bottom: 8px;
+
+  &&:last-child {
+  margin-bottom: 0;
 `;
 export const FeaturesText = styled.p`
   font-family: "Manrope";
@@ -75,7 +82,7 @@ export const FeaturesText = styled.p`
 `;
 
 export const CardButton = styled.button`
-  margin: 20px auto 12px auto;
+  margin: 0 auto 12px auto;
   width: 248px;
   display: flex;
   justify-content: center;
