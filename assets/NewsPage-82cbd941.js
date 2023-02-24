@@ -1,4 +1,4 @@
-import{s as i,p as z,r as b,u as y,j as n,a as p,d as g,e as C,g as u,f as j,O as F}from"./index-e28ab8d3.js";import{G as D}from"./iconBase-ad57ddb2.js";function E(e){return D({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{d:"M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"}}]})(e)}const I=i.div`
+import{s as i,p as z,r as b,u as y,j as n,a as p,d as g,e as C,g as u,f as j,O as F}from"./index-1757c857.js";import{G as D}from"./iconBase-6002dec3.js";function E(e){return D({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{d:"M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"}}]})(e)}const I=i.div`
   top: 0;
   left: 0;
   /* position: sticky; */
@@ -66,7 +66,7 @@ import{s as i,p as z,r as b,u as y,j as n,a as p,d as g,e as C,g as u,f as j,O a
   height: 20px;
   margin: auto;
 `,w=({submitForm:e})=>{const[t,o]=b.useState(""),[,r]=y();return n(I,{children:p(M,{onSubmit:c=>{c.preventDefault(),r({text:t}),o("")},children:[n(T,{onChange:c=>{o(c.target.value)},name:"name",type:"text",autocomplete:"off",placeholder:"Search",value:t}),p(N,{type:"submit",children:[n(R,{children:"Search"}),n(B,{})]})]})})};w.propTypes={submitForm:z.func};const L=e=>{var t;return(t=e.news.news)==null?void 0:t.data},P=e=>{var t,o;return(o=(t=e.news.news)==null?void 0:t.data)==null?void 0:o.totalPages},V=e=>e.news.isLoading,A=i.div`
-  background-color: rgba(17, 17, 17, 1);
+  background-color: rgba(0, 0, 0, 0);
  @media ${e=>e.theme.media.mobileMax} {
     padding: 100px 20px 100px 20px;
   }
