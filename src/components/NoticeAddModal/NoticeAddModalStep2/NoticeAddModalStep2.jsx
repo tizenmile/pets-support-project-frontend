@@ -128,8 +128,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
     try {
       const data = await axios.post(
-        // `https://pet.tizenmile.keenetic.pro/api/notices/notice`,
-        `http://localhost:3002/api/notices/notice`,
+        `https://pet.tizenmile.keenetic.pro/api/notices/notice`,
         formData,
         {
           headers: {
