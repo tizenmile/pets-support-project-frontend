@@ -43,7 +43,6 @@ export default function CategoriesNav({ category }) {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getOwnNotices());
     navigate(`/FindPet/${filterStatus}`, { replace: true });
-    console.log("dispatch getOwnNotices");
   };
 
   const BBB = (filterStatus) => {

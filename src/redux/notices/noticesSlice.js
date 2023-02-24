@@ -27,7 +27,6 @@ const noticesSlice = createSlice({
       .addCase(getFavNotices.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log(action.payload);
         state.favNotices = action.payload;
       })
       .addCase(getOwnNotices.fulfilled, (state, action) => {

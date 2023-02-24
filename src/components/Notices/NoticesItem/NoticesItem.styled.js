@@ -3,11 +3,14 @@ import styled from "styled-components";
 export const NoticeItem = styled.li`
   background-color: #fff;
   border-radius: 0 0 40px 40px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 `;
 
-export const CardTumb = styled.div``;
+export const CardTumb = styled.div`
+ display: flex;
+ flex-direction: column;
+ height: 612px;
+`;
 
 export const Image = styled.img`
   width: 100%;
@@ -61,11 +64,14 @@ export const Title = styled.p`
 `;
 
 export const FeaturesList = styled.ul`
-  margin-top: 20px;
-  margin-left: 20px;
+  margin: 20px;
 `;
 export const FeaturesItem = styled.li`
   display: flex;
+  margin-bottom: 8px;
+
+  &&:last-child {
+  margin-bottom: 0;
 `;
 export const FeaturesText = styled.p`
   font-family: "Manrope";
@@ -76,7 +82,7 @@ export const FeaturesText = styled.p`
 `;
 
 export const CardButton = styled.button`
-  margin: 20px auto 12px auto;
+  margin: 0 auto 12px auto;
   width: 248px;
   display: flex;
   justify-content: center;
