@@ -10,6 +10,7 @@ import {
   RegistrationPageButton,
   RegistrationPageFormContainer,
   ErrorText,
+  RegisterPrevButtonStyled,
 } from "./RegistrationPageCompStyle";
 import { useState } from "react";
 
@@ -20,7 +21,7 @@ const stepOneValidationSchema = Yup.object().shape({
     .email("Invalid email address")
     .matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/, "The @ symbol must be preceded by at least 2 characters")
     .required("Email is required")
-    .test("is-valid", (message) => `${message.path} is invalid`, (value) => value ? isEmail(value) : new yup.ValidationError("Invalid value")),
+    .test("is-valid", (message) => `${message.path} is invalid`, (value) => value ? isEmail(value) : new Yup.ValidationError("Invalid value")),
   password: Yup.string()
     .min(7, "Must be between 7 and 32 characters.")
     .max(32, "Must be between 7 and 32 characters.")
@@ -44,7 +45,7 @@ const initialValues = {
   mobile: "",
 };
 
-const FormError = ({name}) => {
+export const FormError = ({name}) => {
   return (
     <ErrorMessage 
     name={name}
@@ -155,7 +156,7 @@ const StepTwo = (props) => {
             <FormError name="mobile"/>
 
             <RegistrationPageButton type="submit">Register</RegistrationPageButton>
-            <RegistrationPageButton type="button" onClick={()=>props.prev(values)}>Back</RegistrationPageButton>
+            <RegisterPrevButtonStyled type="button" onClick={()=>props.prev(values)}>Back</RegisterPrevButtonStyled>
           </RegistrationPageForm>
         
     )}
