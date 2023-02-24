@@ -2,7 +2,6 @@ import {
   Wrapper,
   List,
   Item,
-  ButtonAddNotice,
   NoticesCategoriesNavBox,
 } from "./NoticesCategoriesNav-styled";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +20,7 @@ import {
 } from "../../../redux/notices/selector";
 import { setStatusFilter } from "../../../redux/notices/filterSlice";
 import { ButtonEl } from "../Button/Button";
+import { ButtonAddNotice } from "../ButtonAddNotice/ButtonAddNotice";
 // import { selectIsLoggedIn } from "../../redux/notices/selector";
 
 export default function CategoriesNav({ category }) {
@@ -103,6 +103,7 @@ export default function CategoriesNav({ category }) {
           </List>
         </Wrapper>
         <ButtonAddNotice />
+        <div></div>
       </NoticesCategoriesNavBox>
     </section>
   );

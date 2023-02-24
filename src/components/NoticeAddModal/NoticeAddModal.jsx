@@ -6,11 +6,6 @@ import { AddNoticeModalStep2 } from "./NoticeAddModalStep2/NoticeAddModalStep2";
 export const NoticeAddModal = ({ onClose }) => {
   const [isNext, setIsNext] = useState(false);
   const [isNotice, setIsNotice] = useState(null);
-  // const [isCategory, setIsCategory] = useState("sell");
-  // const [isTitle, setIsTitle] = useState("");
-  // const [isPetName, setIsPetName] = useState("");
-  // const [isBirthDate, setIsBirthDate] = useState(null);
-  // const [isBreed, setIsBreed] = useState(null);
 
   const onSubmit = (notice) => {
     setIsNotice(notice);
