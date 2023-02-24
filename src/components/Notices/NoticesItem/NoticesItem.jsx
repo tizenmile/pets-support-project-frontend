@@ -50,6 +50,13 @@ export const Notice = ({ item }) => {
   const closeModal = (isFav) => {
     setIsModalOpen(false);
     setIsFavorite(isFav);
+    if (category === "fav-notice") {
+        dispatch(getFavNotices())
+      } else if (category === "own-notices") {
+        dispatch(getOwnNotices())
+      } else {
+       dispatch(fetchNoticesByCategory(category))
+    }  
   };
   const favNoticesIdArr = favNotices.reduce((acc, item) => {
     acc.push(item._id);
@@ -60,28 +67,30 @@ export const Notice = ({ item }) => {
     setIsFavorite(favNoticesIdArr.includes(item._id));
   }, [favNotices]);
 
-  const handleAuthorizedClick = () => {
-    dispatch(
+  const handleAuthorizedClick = async () => {
+     setIsFavorite((prev) => !prev);
+   await dispatch(
       isFavorite
         ? delNoticeFromFavorite(item._id)
         : addNoticeToFavorite(item._id)
     );
+   
     dispatch(getFavNotices());
-    setIsFavorite((prev) => !prev);
+    
   };
 
   
   const handleDeleteClick = async() => {
     const arrOfCategoryName = ["sell", "lost-found", "for-free"]
    await dispatch(delNotice(item._id))
-    {
+    
       if (arrOfCategoryName.includes(category)) {
         dispatch(fetchNoticesByCategory(category))
       } else if (category === "own-notices") {
         dispatch(getOwnNotices())
       } else {
         dispatch(getFavNotices())
-      } 
+      
     }  
   }
   
