@@ -1,4 +1,4 @@
-export const selectPets = (state) => state.pets;
+export const selectPets = (state) => state.pets.pets;
 
 export const selectIsLoading = (state) => state.pets.isLoading;
 

@@ -18,7 +18,7 @@ export const LoginPage = () => {
         <LoginPageButton>Login</LoginPageButton>
         <LoginPageDescription>
           Don't have an account?
-          <LoginPageDescriptionLink>Register</LoginPageDescriptionLink>
+          <LoginPageDescriptionLink to="/register">Register</LoginPageDescriptionLink>
         </LoginPageDescription>
       </LoginPageFormContainer>
     </LoginPageContainer>

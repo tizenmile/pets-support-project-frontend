@@ -10,18 +10,10 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { newsReducer } from "./news/newsSlice";
 import { noticesReducer } from "./notices/noticesSlice";
 import { authReducer } from "./auth/authSlice";
+import { newsReducer } from "./news/newsSlice";
 import { petsReducer } from "./pets/petsSlice";
-
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-];
 
 const authPersistConfig = {
   key: "auth",
@@ -36,7 +28,12 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     pets: petsReducer,
   },
-  middleware,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
   devTools: process.env.NODE_ENV === "development",
 });
 

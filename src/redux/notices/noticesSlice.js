@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
     fetchSellNotices,
-    getFavNotices
+    getFavNotices,
+    addNoticeToFavorite
 } from './operation';
 
 const noticesInitialState = {
@@ -33,7 +34,7 @@ const noticesSlice = createSlice({
                         return acc
                     }, [])
                 }
-            )
+        )
             .addMatcher(
                 fetchSellNotices.pending, state => {
                     state.isLoading = true;

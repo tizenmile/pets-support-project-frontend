@@ -11,12 +11,11 @@ import { fetchPets } from "../../redux/pets/operations";
 import { NotFoundPet } from "./PetsList.styled";
 
 const PetsList = () => {
-  const { pets } = useSelector(selectPets);
-  const { isLoading } = useSelector(selectIsLoading);
-  const { error } = useSelector(selectError);
+  const pets = useSelector(selectPets);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchPets());
   }, [dispatch]);

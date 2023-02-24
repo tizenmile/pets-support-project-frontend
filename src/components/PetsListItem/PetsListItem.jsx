@@ -19,7 +19,7 @@ const PetsListItem = ({ id, name, date, breed, comment, petAvatar }) => {
   const dispatch = useDispatch();
 
   const removePet = (id) => {
-    dispatch(deletePet(petId)).unwrap();
+    dispatch(deletePet(id)).unwrap();
   };
 
   return (

@@ -6,7 +6,7 @@ const petsInitialState = {
   isLoading: false,
   isDeleting: false,
   isAdding: false,
-  error: false,
+  error: null,
 };
 
 const handlePending = (state) => {
@@ -59,7 +59,7 @@ const petsSlice = createSlice({
       .addCase(fetchPets.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.pets = action.payload.data.pets;
+        state.pets = action.payload;
       })
 
       //addNewPet

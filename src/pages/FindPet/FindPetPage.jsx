@@ -8,6 +8,8 @@ import { Container } from "../../components/Notices/NoticesList/NoticesList.styl
 
 const FindPet = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
+    // const isLoggedIn = true
+
   const dispatch = useDispatch()
 
   useEffect(() => {
