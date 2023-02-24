@@ -9,7 +9,7 @@ export const NoticeItem = styled.li`
 export const CardTumb = styled.div`
  display: flex;
  flex-direction: column;
- height: 600px;
+ height: 612px;
 `;
 
 export const Image = styled.img`

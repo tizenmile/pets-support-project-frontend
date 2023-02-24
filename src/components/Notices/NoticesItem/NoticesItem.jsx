@@ -15,6 +15,8 @@ import {
   delNoticeFromFavorite,
   delNotice,
   getFavNotices,
+  fetchNoticesByCategory,
+  getOwnNotices
 } from "../../../redux/notices/operation";
 import {
   NoticeItem,
@@ -34,13 +36,11 @@ import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const isLoggedIn = true
+  const category = useSelector(getStatusFilter)
+   // const isLoggedIn = true
   const user = useSelector(selectUser);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  console.log("userId:", user._id);
-  console.log("itemUserId:", item.userId);
-  console.log(user._id === item.userId);
   const dispatch = useDispatch();
 
   const openModal = () => {
@@ -70,8 +70,19 @@ export const Notice = ({ item }) => {
     setIsFavorite((prev) => !prev);
   };
 
-  const handleDeleteClick = () => {
-    dispatch(delNotice(item._id))
+  
+  const handleDeleteClick = async() => {
+    const arrOfCategoryName = ["sell", "lost-found", "for-free"]
+   await dispatch(delNotice(item._id))
+    {
+      if (arrOfCategoryName.includes(category)) {
+        dispatch(fetchNoticesByCategory(category))
+      } else if (category === "own-notices") {
+        dispatch(getOwnNotices())
+      } else {
+        dispatch(getFavNotices())
+      } 
+    }  
   }
   
   const CustomToastWithLink = () => (
@@ -110,7 +121,6 @@ export const Notice = ({ item }) => {
     ageAsWord = "unknown";
   }
 
-  const features = ["Breed", "Place", "Age"];
   return (
     <NoticeItem>
       <CardTumb>
