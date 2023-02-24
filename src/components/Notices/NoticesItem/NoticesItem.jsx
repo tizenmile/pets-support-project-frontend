@@ -1,15 +1,18 @@
-
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { heartFull as HeartFull, heart as Heart } from "../../../media";
-import { selectFavNotices } from "../../../redux/notices/selector";
+import {
+  selectFavNotices,
+  getStatusFilter,
+} from "../../../redux/notices/selector";
 import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
+  getFavNotices,
 } from "../../../redux/notices/operation";
 import {
   NoticeItem,
@@ -25,12 +28,13 @@ import {
   CardButton,
 } from "./NoticesItem.styled";
 import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
+import { HiTrash } from "react-icons/hi";
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
-  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   // const isLoggedIn = true
-  const user = useSelector(selectUser)
+  const user = useSelector(selectUser);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -43,11 +47,15 @@ export const Notice = ({ item }) => {
 
   const closeModal = (isFav) => {
     setIsModalOpen(false);
-    setIsFavorite(isFav)
+    setIsFavorite(isFav);
   };
+  const favNoticesIdArr = favNotices.reduce((acc, item) => {
+    acc.push(item._id);
+    return acc;
+  }, []);
 
   useEffect(() => {
-    setIsFavorite(favNotices.includes(item._id));
+    setIsFavorite(favNoticesIdArr.includes(item._id));
   }, [favNotices]);
 
   const handleAuthorizedClick = () => {
@@ -56,6 +64,7 @@ export const Notice = ({ item }) => {
         ? delNoticeFromFavorite(item._id)
         : addNoticeToFavorite(item._id)
     );
+    dispatch(getFavNotices());
     setIsFavorite((prev) => !prev);
   };
   const CustomToastWithLink = () => (
@@ -63,21 +72,37 @@ export const Notice = ({ item }) => {
       <Link to="/login">You need to log in</Link>
     </div>
   );
-  
-  const date = parseInt(new Date().getFullYear()) 
-  const age =  date - parseInt(new Date(item.birthDate).getFullYear())
-  const variantAgeArr = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen"]
-  let ageAsWord 
+
+  const date = parseInt(new Date().getFullYear());
+  const age = date - parseInt(new Date(item.birthDate).getFullYear());
+  const variantAgeArr = [
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "Eleven",
+    "Twelve",
+    "Thirteen",
+    "Fourteen",
+    "Fifteen",
+  ];
+  let ageAsWord;
   if (age < 1) {
-    ageAsWord = "Less than a year"
+    ageAsWord = "Less than a year";
   } else if (age > 15) {
-    ageAsWord = "very old dog"
+    ageAsWord = "very old dog";
   } else if (age >= 1 && age <= 15) {
-    ageAsWord = variantAgeArr[age - 1]
+    ageAsWord = variantAgeArr[age - 1];
   } else {
-     ageAsWord = "unknown"
+    ageAsWord = "unknown";
   }
-  
+
   const features = ["Breed", "Place", "Age"];
   return (
     <NoticeItem>
@@ -87,8 +112,8 @@ export const Notice = ({ item }) => {
           <ImageText>{item.category}</ImageText>
           <HeartButton
             onClick={() => {
-              isLoggedIn ? handleAuthorizedClick() : toast(CustomToastWithLink)
-            } }
+              isLoggedIn ? handleAuthorizedClick() : toast(CustomToastWithLink);
+            }}
           >
             {isFavorite ? (
               <img src={HeartFull} alt="heartFull" />
@@ -98,37 +123,47 @@ export const Notice = ({ item }) => {
           </HeartButton>
           <ToastContainer />
         </ImageWrapp>
-        <Title style={{width: "280px"}}>{item.title}</Title>
+        <Title style={{ width: "280px" }}>{item.title}</Title>
         <FeaturesList>
-                <FeaturesItem>
-                  <FeaturesText style={{ width: "50px" }}>Breed:</FeaturesText>
-                  <FeaturesText style={{ marginLeft: "40px" }}>
-                    {item.breed}
-                  </FeaturesText>
-                  </FeaturesItem>
-                  <FeaturesItem>
-                  <FeaturesText style={{ width: "50px" }}>Place:</FeaturesText>
-                  <FeaturesText style={{ marginLeft: "40px" }}>
-                    {item.place}
-                  </FeaturesText>
-                </FeaturesItem>
-                  <FeaturesItem>
-                  <FeaturesText style={{ width: "50px" }}>Age:</FeaturesText>
-                  <FeaturesText style={{ marginLeft: "40px" }}>
-                    {ageAsWord}
-                  </FeaturesText>
-                </FeaturesItem>
-
+          <FeaturesItem>
+            <FeaturesText style={{ width: "50px" }}>Breed:</FeaturesText>
+            <FeaturesText style={{ marginLeft: "40px" }}>
+              {item.breed}
+            </FeaturesText>
+          </FeaturesItem>
+          <FeaturesItem>
+            <FeaturesText style={{ width: "50px" }}>Place:</FeaturesText>
+            <FeaturesText style={{ marginLeft: "40px" }}>
+              {item.place}
+            </FeaturesText>
+          </FeaturesItem>
+          <FeaturesItem>
+            <FeaturesText style={{ width: "50px" }}>Age:</FeaturesText>
+            <FeaturesText style={{ marginLeft: "40px" }}>
+              {ageAsWord}
+            </FeaturesText>
+          </FeaturesItem>
         </FeaturesList>
-        <CardButton style={item.userId !== user.id && {marginBottom: '32px'}} onClick={openModal}>Learn more</CardButton>
-        {item.userId === user.id && <CardButton>
+        <CardButton
+          style={item.userId !== user.id && { marginBottom: "32px" }}
+          onClick={openModal}
+        >
+          Learn more
+        </CardButton>
+        {item.userId === user.id && (
+          <CardButton>
             Delete
-            <HiTrash style={{width: '16px', height: '17px'}}/>  
-          </CardButton>}
+            <HiTrash style={{ width: "16px", height: "17px" }} />
+          </CardButton>
+        )}
       </CardTumb>
-      {isModlOpen && <NoticeInfoModal itemId={item._id} isFavorite={isFavorite} onClose={closeModal} />}
+      {isModlOpen && (
+        <NoticeInfoModal
+          itemId={item._id}
+          isFavorite={isFavorite}
+          onClose={closeModal}
+        />
+      )}
     </NoticeItem>
   );
 };
-
-

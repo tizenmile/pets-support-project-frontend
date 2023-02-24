@@ -1,29 +1,24 @@
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+
 import { register } from "../../redux/auth/operations";
 import {
   RegistrationPageFormInput,
   RegistrationPageForm,
   RegistrationPageButton,
   RegistrationPageFormContainer,
-  ErrorText,
 } from "./RegistrationPageCompStyle";
 import { useState } from "react";
 
 const stepOneValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .max(63, "Must be between 6 and 63 characters.")
-    .min(6, "Must be between 6 and 63 characters.")
+    .max(63)
+    .min(6)
     .email("Invalid email address")
     .required()
     .label("Email"),
   password: Yup.string().min(7).max(32).required().label("Password"),
-  confirmPassword: Yup.string()
-    .min(7)
-    .max(32)
-    .required()
-    .label("Confirm password"),
 });
 
 const stepTwoValidationSchema = Yup.object().shape({
@@ -40,14 +35,6 @@ const initialValues = {
   mobile: "",
 };
 
-const FormError = ({name}) => {
-  return (
-    <ErrorMessage 
-    name={name}
-    render={message => <ErrorText>{message}</ErrorText>}/>
-  )
-}
-
 export const AuthForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
@@ -58,7 +45,6 @@ export const AuthForm = () => {
     console.log(formData);
     dispatch(register(formData).selected("-confirmPassword"));
   };
-
 
   const handleNextStep = (newData, final = false) => {
     setData((prev) => ({ ...prev, ...newData }));
@@ -80,9 +66,8 @@ export const AuthForm = () => {
     <StepOne next={handleNextStep} data={data} />,
     <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
-  
-  return <>{steps[currentStep]}</>;
 
+  return <>{steps[currentStep]}</>;
 };
 
 const StepOne = (props) => {
@@ -149,4 +134,3 @@ const StepTwo = (props) => {
     </Formik>
   );
 };
-
