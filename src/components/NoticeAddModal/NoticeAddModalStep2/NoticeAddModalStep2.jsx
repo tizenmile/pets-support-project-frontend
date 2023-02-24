@@ -79,15 +79,15 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   });
 
   const onChangeMale = (evt) => {
-    setIsMale(evt.target.value.trim());
+    setIsMale(evt.target.value);
   };
 
   const onChangeLocation = (evt) => {
-    setIsLocation(evt.target.value.trim());
+    setIsLocation(evt.target.value);
   };
 
   const onChangePrice = (evt) => {
-    setIsPrice(evt.target.value.trim());
+    setIsPrice(evt.target.value);
   };
 
   const onChangeImg = (evt) => {
@@ -104,7 +104,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const onChangeComments = (evt) => {
-    setIsComments(evt.target.value.trim());
+    setIsComments(evt.target.value);
   };
 
   const handlePick = () => {

@@ -51,19 +51,19 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
   }, [isTitle, isBreed, isPetName, isBirthDate, isCategory]);
 
   const onChangeCategory = (evt) => {
-    setIsCategory(evt.target.value.trim());
+    setIsCategory(evt.target.value);
   };
   const onChangeTitle = (evt) => {
-    setIsTitle(evt.target.value.trim());
+    setIsTitle(evt.target.value);
   };
   const onChangePetName = (evt) => {
-    setIsPetName(evt.target.value.trim());
+    setIsPetName(evt.target.value);
   };
   const onChangeBirthDate = (evt) => {
-    setIsBirthDate(evt.target.value.trim());
+    setIsBirthDate(evt.target.value);
   };
   const onChangeBreed = (evt) => {
-    setIsBreed(evt.target.value.trim());
+    setIsBreed(evt.target.value);
   };
 
   const getAllField = () => {
