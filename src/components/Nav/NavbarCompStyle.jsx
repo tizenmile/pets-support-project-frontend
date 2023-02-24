@@ -191,6 +191,7 @@ export const LoginButtonStyled = styled(NavLink)`
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   font-size: ${(p) => p.theme.fontSizes.xm};
   color: ${(p) => p.theme.colors.white};
+  text-decoration: none;
   padding: 12px 28px;
   cursor: pointer;
   &:hover {
@@ -206,6 +207,7 @@ export const RegisterButtonStyled = styled(Link)`
   font-size: ${(p) => p.theme.fontSizes.xm};
   color: ${(p) => p.theme.colors.mainText};
   border: 2px solid ${(p) => p.theme.colors.accent};
+  text-decoration: none;
   padding: 10px 28px;
   cursor: pointer;
   &:hover {
@@ -223,6 +225,7 @@ export const AuthButtonStyled = styled(NavLink)`
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   font-size: ${(p) => p.theme.fontSizes.xm};
   color: ${(p) => p.theme.colors.white};
+  text-decoration: none;
   height: 47px;
   padding-left: 28px;
   padding-right: 28px;

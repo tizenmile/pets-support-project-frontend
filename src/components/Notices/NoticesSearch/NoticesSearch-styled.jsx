@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TbSearch } from "react-icons/Tb";
+import { TbSearch } from "react-icons/tb";
 import { FiXCircle } from "react-icons/fi";
 
 export const IconSearchReset = styled(FiXCircle)`

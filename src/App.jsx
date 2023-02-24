@@ -9,7 +9,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 
 const Home = lazy(() => import("./pages/Home/Home"));
-const NewsPage = lazy(() => import("./pages/News/"));
+const NewsPage = lazy(() => import("./pages/News/NewsPage"));
 const UserAccount = lazy(() => import("./pages/UserAccount/UserAccount"));
 const RegisterPage = lazy(() => import("./pages/Auth/RegistrationPage"));
 const FindPet = lazy(() => import("./pages/FindPet/FindPetPage"));
@@ -32,6 +32,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="FindPet/:categoryName" element={<FindPet />} />
+
             <Route path="OurFriend" element={<OurFriend />} />
             <Route
               path="/login"

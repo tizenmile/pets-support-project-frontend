@@ -9,7 +9,7 @@ export const AnimationLoader = () => {
   };
   return (
     <div>
-      <Lottie options={defaultOptions} height={500} width={500} />
+      <Lottie options={defaultOptions} height={300} width={300} />
     </div>
   );
 };

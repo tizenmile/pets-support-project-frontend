@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getFavNotices } from "../../redux/notices/operation";
+import {
+  getFavNotices,
+  getOwnNotices,
+  fetchNoticesByCategory,
+} from "../../redux/notices/operation";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { getStatusFilter, selectNotices } from "../../redux/notices/selector";
 import { NoticeList } from "../../components/Notices/NoticesList/NoticesList";
 import { Container } from "../../components/Notices/NoticesList/NoticesList.styled";
 import NoticesCategoriesNav from "../../components/Notices/NoticesCategoriesNav/NoticesCategoriesNav";
@@ -12,8 +17,14 @@ import { useParams } from "react-router-dom";
 
 const FindPet = () => {
   const { categoryName } = useParams();
+  const notices = useSelector(selectNotices);
+  const category = useSelector(getStatusFilter);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const isLoggedIn = true
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    isLoggedIn && dispatch(getFavNotices());
+  }, [dispatch]);
 
   return (
     <>

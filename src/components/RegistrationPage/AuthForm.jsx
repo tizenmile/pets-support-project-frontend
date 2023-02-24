@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import isEmail from 'validator/lib/isEmail';
+import { Formik, ErrorMessage } from "formik";
+import { ToastContainer, toast } from 'react-toastify';
 import { register } from "../../redux/auth/operations";
 import {
   RegistrationPageFormInput,
@@ -8,6 +10,7 @@ import {
   RegistrationPageButton,
   RegistrationPageFormContainer,
   ErrorText,
+  RegisterPrevButtonStyled,
 } from "./RegistrationPageCompStyle";
 import { useState } from "react";
 
@@ -16,21 +19,23 @@ const stepOneValidationSchema = Yup.object().shape({
     .max(63, "Must be between 6 and 63 characters.")
     .min(6, "Must be between 6 and 63 characters.")
     .email("Invalid email address")
-    .required()
-    .label("Email"),
-  password: Yup.string().min(7).max(32).required().label("Password"),
+    .matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/, "The @ symbol must be preceded by at least 2 characters")
+    .required("Email is required")
+    .test("is-valid", (message) => `${message.path} is invalid`, (value) => value ? isEmail(value) : new Yup.ValidationError("Invalid value")),
+  password: Yup.string()
+    .min(7, "Must be between 7 and 32 characters.")
+    .max(32, "Must be between 7 and 32 characters.")
+    .matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/, "Must include numbers and/or letters (uppercase and lowercase) except for whitespace.")
+    .required("Password is required"),
   confirmPassword: Yup.string()
-    .min(7)
-    .max(32)
-    .required()
-    .label("Confirm password"),
-});
+  .oneOf([Yup.ref("password"), null], "Passwords must match")
+})
 
-const stepTwoValidationSchema = Yup.object().shape({
-  name: Yup.string().required().label("Name"),
-  city: Yup.string().required().label("City, region"),
-  mobile: Yup.string().min(13).max(13).required().label("Mobile phone"),
-});
+const stepTwoValidationSchema  = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  city: Yup.string().required("City, region are required"),
+  mobile: Yup.string().length(13, "For example +380##########. Must be 13 characters.").required("Mobile phone is required")
+})
 
 const initialValues = {
   email: "",
@@ -40,7 +45,7 @@ const initialValues = {
   mobile: "",
 };
 
-const FormError = ({name}) => {
+export const FormError = ({name}) => {
   return (
     <ErrorMessage 
     name={name}
@@ -55,9 +60,11 @@ export const AuthForm = () => {
   const dispatch = useDispatch();
 
   const makeRequest = (formData) => {
-    console.log(formData);
-    dispatch(register(formData).selected("-confirmPassword"));
-  };
+    const {email, password, name, city, mobile} = formData
+      dispatch(
+        register({email, password, name, city, mobile})
+      );
+  }
 
 
   const handleNextStep = (newData, final = false) => {
@@ -81,8 +88,22 @@ export const AuthForm = () => {
     <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
   
-  return <>{steps[currentStep]}</>;
-
+  return (
+    <>
+      {steps[currentStep]}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"></ToastContainer>
+    </>
+  );
 };
 
 const StepOne = (props) => {
@@ -92,27 +113,26 @@ const StepOne = (props) => {
 
   return (
     <Formik
-      initialValues={props.data}
-      validationSchema={stepOneValidationSchema}
-      onSubmit={handleSubmit}
-    >
-      {() => (
-        <RegistrationPageForm>
-          <RegistrationPageFormInput placeholder="Email" name="email" />
-          <ErrorMessage name="email" />
-          <RegistrationPageFormInput placeholder="Password" name="password" />
-          <ErrorMessage name="password" />
-          <RegistrationPageFormInput
-            placeholder="Confirm Password"
-            name="confirmPassword"
-          />
-          <ErrorMessage name="confirmPassword" />
+        initialValues={props.data}
+        validationSchema={stepOneValidationSchema}
+        onSubmit={handleSubmit}>
+      {({values}) => (
 
-          <RegistrationPageButton type="submit">Next</RegistrationPageButton>
-        </RegistrationPageForm>
+      <RegistrationPageForm>
+        <RegistrationPageFormInput placeholder="Email" type="email" name="email" value={values.email || ""}/>
+        <FormError name="email"/>
+        <RegistrationPageFormInput placeholder="Password" type="password"  name="password" value={values.password || ""}/>
+        <FormError name="password"/>
+        <RegistrationPageFormInput placeholder="Confirm Password" type="password" name="confirmPassword" value={values.confirmPassword || ""}/>
+        <FormError name="confirmPassword"/>
+
+        <RegistrationPageButton type="submit">Next</RegistrationPageButton>
+      </RegistrationPageForm>
+
+
       )}
-    </Formik>
-  );
+      </Formik>
+  )
 };
 
 const StepTwo = (props) => {
@@ -122,31 +142,25 @@ const StepTwo = (props) => {
 
   return (
     <Formik
-      initialValues={props.data}
-      validationSchema={stepTwoValidationSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ values }) => (
-        <RegistrationPageForm>
-          <RegistrationPageFormInput placeholder="Name" name="name" />
-          <ErrorMessage name="name" />
-          <RegistrationPageFormInput placeholder="City, region" name="city" />
-          <ErrorMessage name="city" />
-          <RegistrationPageFormInput placeholder="Mobile phone" name="mobile" />
-          <ErrorMessage name="mobile" />
+            initialValues={props.data}
+            validationSchema={stepTwoValidationSchema}
+            onSubmit={handleSubmit}>
+    {({values}) => (
+       
+          <RegistrationPageForm>
+            <RegistrationPageFormInput placeholder="Name" type="text" name="name" value={values.name || ""}/>
+            <FormError name="name"/>
+            <RegistrationPageFormInput placeholder="City, region" type="text" name="city" value={values.city || ""}/>
+            <FormError name="city"/>
+            <RegistrationPageFormInput placeholder="Mobile phone" type="text"  name="mobile" value={values.mobile || ""}/>
+            <FormError name="mobile"/>
 
-          <RegistrationPageButton type="submit">
-            Register
-          </RegistrationPageButton>
-          <RegistrationPageButton
-            type="button"
-            onClick={() => props.prev(values)}
-          >
-            Back
-          </RegistrationPageButton>
-        </RegistrationPageForm>
-      )}
-    </Formik>
+            <RegistrationPageButton type="submit">Register</RegistrationPageButton>
+            <RegisterPrevButtonStyled type="button" onClick={()=>props.prev(values)}>Back</RegisterPrevButtonStyled>
+          </RegistrationPageForm>
+        
+    )}
+  </Formik>
   );
 };
 

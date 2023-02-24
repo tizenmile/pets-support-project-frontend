@@ -34,21 +34,19 @@ import {
 } from "./NoticeInfoModal.styled";
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn)
-    // const isLoggedIn = true
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = true
 
   const [notice, setNotice] = useState(null);
-  const [isFav, setIsFav] = useState(isFavorite)
-  const dispatch = useDispatch()
-  
+  const [isFav, setIsFav] = useState(isFavorite);
+  const dispatch = useDispatch();
+
   const handleClick = () => {
     dispatch(
-      isFav
-        ? delNoticeFromFavorite(itemId)
-        : addNoticeToFavorite(itemId)
+      isFav ? delNoticeFromFavorite(itemId) : addNoticeToFavorite(itemId)
     );
     setIsFav((prev) => !prev);
-  }
+  };
 
   const CustomToastWithLink = () => (
     <div>
@@ -68,21 +66,21 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   if (!notice) {
     return;
   }
+
   const birthDate = (birthDate) => {
-    let dd = new Date(birthDate).getDate()
-    if (dd < 10) dd = '0' + dd
-    let mm = new Date(birthDate).getMonth()
-    if (mm < 10) mm = '0' + mm;
-    let yy = new Date(birthDate).getFullYear()
-    if (yy < 10) yy = '0' + yy;
-    return dd + '.' + mm + '.' + yy;
-  } 
-  
+    let dd = new Date(birthDate).getDate();
+    if (dd < 10) dd = "0" + dd;
+    let mm = new Date(birthDate).getMonth();
+    if (mm < 10) mm = "0" + mm;
+    let yy = new Date(birthDate).getFullYear();
+    if (yy < 10) yy = "0" + yy;
+    return dd + "." + mm + "." + yy;
+  };
 
   return (
     <ModalBackdrop>
       <NoticeModalContainer>
-        <NoticeCloseModalButton onClick={ () => onClose(isFav) }>
+        <NoticeCloseModalButton onClick={() => onClose(isFav)}>
           <NoticeCloseModalButtonImg
             src={close_menu_icon}
             alt="close_menu_icon"
@@ -97,25 +95,25 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
           <div>
             <NoticeModalTitle>{notice.notice.title}</NoticeModalTitle>
             <NoticeModalList>
-              <NoticeModalListItem>
+              {notice.notice.name && <NoticeModalListItem>
                 <NoticeModalTopText>Name:</NoticeModalTopText>
                 <NoticeModalBottomText>
                   {notice.notice.name}
                 </NoticeModalBottomText>
-              </NoticeModalListItem>
+              </NoticeModalListItem>}
 
-              <NoticeModalListItem>
+              {notice.notice.birthDate && <NoticeModalListItem>
                 <NoticeModalTopText>Birthday:</NoticeModalTopText>
                 <NoticeModalBottomText>
                   {birthDate(notice.notice.birthDate)}
                 </NoticeModalBottomText>
-              </NoticeModalListItem>
-              <NoticeModalListItem>
+              </NoticeModalListItem>}
+              {notice.notice.breed && <NoticeModalListItem>
                 <NoticeModalTopText>Breed:</NoticeModalTopText>
                 <NoticeModalBottomText>
                   {notice.notice.breed}
                 </NoticeModalBottomText>
-              </NoticeModalListItem>
+              </NoticeModalListItem>}
               <NoticeModalListItem>
                 <NoticeModalTopText>Place:</NoticeModalTopText>
                 <NoticeModalBottomText>
@@ -166,10 +164,12 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
           </NoticeModalCommentsText>
         </NoticeModalComments>
         <NoticeModalButtonContainer>
-          <NoticeModalAddToFavoriteBtn onClick={() => {
-              isLoggedIn ? handleClick() : toast(CustomToastWithLink)
-            } }>
-            {!isFav ? 'add to' : 'del from'}
+          <NoticeModalAddToFavoriteBtn
+            onClick={() => {
+              isLoggedIn ? handleClick() : toast(CustomToastWithLink);
+            }}
+          >
+            {!isFav ? "add to" : "del from"}
             <NoticeModalAddToFavoriteBtnImage
               src={isFav ? heartFull : heart}
               alt={isFav ? "heartFull" : "heart"}

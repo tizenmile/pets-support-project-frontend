@@ -80,12 +80,20 @@ export const LoginPageDescriptionLink = styled(NavLink)`
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  text-decoration: underline;
+  // text-decoration: underline;
+  text-decoration-thickness: 1px;
   cursor: pointer;
   margin-left: 5px;
   text-align: center;
   letter-spacing: 0.04em;
   color: #3091eb;
+  &.active {
+    text-decoration-thickness: 2px;
+  }
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
 `;
 
 export const LoginPageFormInput = styled(Field)`

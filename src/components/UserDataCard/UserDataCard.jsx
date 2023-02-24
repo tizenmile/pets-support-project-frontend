@@ -1,5 +1,13 @@
 import { UserDataItem } from "../UserDataItem/UserDataItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import {
+  selectUserData,
+  selectIsLoading,
+} from "../../redux/userAccount/useerSelector";
+import { useDispatch } from "react-redux";
+import { updateUserAvatar } from "../../redux/userAccount/operations";
+import { fetchUserData } from "../../redux/userAccount/operations";
 import {
   UserBlock,
   BoxImg,
@@ -14,124 +22,149 @@ import {
   ImageContainer,
   Label,
 } from "./userDataCard.styled";
+
+import AnimationLoader from "../AnimationLoader";
 export const UserDataCard = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserData());
+  }, [dispatch]);
+
+  const data = useSelector(selectUserData);
+  const { name, email, mobile, birthday, city, avatarURL } = data;
   const [newUserAvatar, setNewUserAvatar] = useState();
-  const [previewImageUrl, setPreviewImageUrl] = useState(null);
+  const [previewImageUrl, setPreviewImageUrl] = useState("");
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const isLoading = useSelector(selectIsLoading);
+
+  useEffect(() => {
+    setPreviewImageUrl(avatarURL);
+  });
 
   const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setPreviewImageUrl(reader.result);
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        const image = reader.result;
+        if (
+          image.includes("image/png") ||
+          image.includes("image/jpg") ||
+          image.includes("image/jpeg")
+        ) {
+          setNewUserAvatar(image);
+          const file = new FormData();
+          file.append("image", e.target.files[0]);
+          dispatch(updateUserAvatar(file));
+        }
       };
-      reader.readAsDataURL(file);
-      setNewUserAvatar(file);
     }
   };
 
   return (
     <UserBlock>
-      <>
-        <BoxImg>
-          <ImgUser
-            id="img_container"
-            src={
-              previewImageUrl ||
-              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-            }
-            alt="avatar"
-          />
+      {isLoading ? (
+        <AnimationLoader />
+      ) : (
+        <>
+          <BoxImg>
+            {newUserAvatar ? (
+              <ImgUser id="img_container" src={newUserAvatar} alt="avatar" />
+            ) : (
+              <ImgUser id="img_container" src={previewImageUrl} alt="avatar" />
+            )}
 
-          <EditImgBtn>
-            <ImageContainer>
-              <form>
-                <input
-                  name="userAvatar"
-                  type="file"
-                  id="userAvatar"
-                  accept="image/jpg, image/png, image/jpeg, image/bmp"
-                  onChange={handleAvatarChange}
-                />
-              </form>
-            </ImageContainer>
-            <Label htmlFor="userAvatar">
-              <IconEditImgBtn />
-              Edit photo
-            </Label>
-          </EditImgBtn>
-        </BoxImg>
-        <BoxInfo>
-          <BoxTitle>
-            <Block>
-              <UserForms>
-                <BoxTitle>
-                  <Title>Name:</Title>
-                  <Block>
-                    <UserDataItem
-                      isBtnDisabled={isBtnDisabled}
-                      setIsBtnDisabled={setIsBtnDisabled}
-                      defaultValue={"Rodri"}
-                      name="userName"
-                      type={"text"}
-                    />
-                  </Block>
-                </BoxTitle>
-                <BoxTitle>
-                  <Title>Email:</Title>
-                  <Block>
-                    <UserDataItem
-                      isBtnDisabled={isBtnDisabled}
-                      setIsBtnDisabled={setIsBtnDisabled}
-                      defaultValue={"rodri@mail.com"}
-                      name="email"
-                      type={"email"}
-                    />
-                  </Block>
-                </BoxTitle>
-                {/* <BoxTitle>
-                  <Title>Birthday:</Title>
-                  <Block>
-                    <UserDataItem
-                      isBtnDisabled={isBtnDisabled}
-                      setIsBtnDisabled={setIsBtnDisabled}
-                      defaultValue={"16.06.1995"}
-                      name="birthday"
-                      type={"date"}
-                      min="1940-01-01"
-                    />
-                  </Block>
-                </BoxTitle> */}
-                <BoxTitle>
-                  <Title>Phone:</Title>
-                  <Block>
-                    <UserDataItem
-                      isBtnDisabled={isBtnDisabled}
-                      setIsBtnDisabled={setIsBtnDisabled}
-                      defaultValue={"+380635973039"}
-                      name="phone"
-                      type={"tel"}
-                    />
-                  </Block>
-                </BoxTitle>
-                <BoxTitle>
-                  <Title>City:</Title>
-                  <Block>
-                    <UserDataItem
-                      isBtnDisabled={isBtnDisabled}
-                      setIsBtnDisabled={setIsBtnDisabled}
-                      defaultValue={"Liverpool"}
-                      name="city"
-                      type={"text"}
-                    />
-                  </Block>
-                </BoxTitle>
-              </UserForms>
-            </Block>
-          </BoxTitle>
-        </BoxInfo>
-      </>
+            <EditImgBtn>
+              <ImageContainer>
+                <form>
+                  <input
+                    name="userAvatar"
+                    type="file"
+                    id="userAvatar"
+                    accept="image/jpg, image/png, image/jpeg, image/bmp"
+                    onChange={handleAvatarChange}
+                  />
+                </form>
+              </ImageContainer>
+              <Label htmlFor="userAvatar">
+                <IconEditImgBtn />
+                Edit photo
+              </Label>
+            </EditImgBtn>
+          </BoxImg>
+
+          <BoxInfo>
+            <BoxTitle>
+              <Block>
+                <UserForms>
+                  <BoxTitle>
+                    <Title>Name:</Title>
+                    <Block>
+                      <UserDataItem
+                        isBtnDisabled={isBtnDisabled}
+                        setIsBtnDisabled={setIsBtnDisabled}
+                        defaultValue={name}
+                        name="name"
+                        type={"text"}
+                      />
+                    </Block>
+                  </BoxTitle>
+                  <BoxTitle>
+                    <Title>Email:</Title>
+                    <Block>
+                      <UserDataItem
+                        isBtnDisabled={isBtnDisabled}
+                        setIsBtnDisabled={setIsBtnDisabled}
+                        defaultValue={email}
+                        name="email"
+                        type={"email"}
+                      />
+                    </Block>
+                  </BoxTitle>
+                  <BoxTitle>
+                    <Title>Birthday:</Title>
+                    <Block>
+                      <UserDataItem
+                        isBtnDisabled={isBtnDisabled}
+                        setIsBtnDisabled={setIsBtnDisabled}
+                        defaultValue={birthday}
+                        name="birthday"
+                        type={"date"}
+                        min="1940-01-01"
+                      />
+                    </Block>
+                  </BoxTitle>
+                  <BoxTitle>
+                    <Title>Phone:</Title>
+                    <Block>
+                      <UserDataItem
+                        isBtnDisabled={isBtnDisabled}
+                        setIsBtnDisabled={setIsBtnDisabled}
+                        defaultValue={mobile}
+                        name="mobile"
+                        type={"tel"}
+                      />
+                    </Block>
+                  </BoxTitle>
+                  <BoxTitle>
+                    <Title>City:</Title>
+                    <Block>
+                      <UserDataItem
+                        isBtnDisabled={isBtnDisabled}
+                        setIsBtnDisabled={setIsBtnDisabled}
+                        defaultValue={city}
+                        name="city"
+                        type={"text"}
+                      />
+                    </Block>
+                  </BoxTitle>
+                </UserForms>
+              </Block>
+            </BoxTitle>
+          </BoxInfo>
+        </>
+      )}
     </UserBlock>
   );
 };

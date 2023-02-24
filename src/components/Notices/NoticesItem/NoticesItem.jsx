@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { HiTrash } from "react-icons/hi2";
 import { heartFull as HeartFull, heart as Heart } from "../../../media";
 import {
   selectFavNotices,
@@ -12,7 +13,10 @@ import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
+  delNotice,
   getFavNotices,
+  fetchNoticesByCategory,
+  getOwnNotices
 } from "../../../redux/notices/operation";
 import {
   NoticeItem,
@@ -28,19 +32,18 @@ import {
   CardButton,
 } from "./NoticesItem.styled";
 import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
-import { HiTrash } from "react-icons/hi";
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const isLoggedIn = true
+  const category = useSelector(getStatusFilter)
+   // const isLoggedIn = true
   const user = useSelector(selectUser);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const statusFilter = useSelector(getStatusFilter);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -70,6 +73,22 @@ export const Notice = ({ item }) => {
       dispatch(getFavNotices());
     }
   };
+
+  
+  const handleDeleteClick = async() => {
+    const arrOfCategoryName = ["sell", "lost-found", "for-free"]
+   await dispatch(delNotice(item._id))
+    {
+      if (arrOfCategoryName.includes(category)) {
+        dispatch(fetchNoticesByCategory(category))
+      } else if (category === "own-notices") {
+        dispatch(getOwnNotices())
+      } else {
+        dispatch(getFavNotices())
+      } 
+    }  
+  }
+  
   const CustomToastWithLink = () => (
     <div>
       <Link to="/login">You need to log in</Link>
@@ -111,6 +130,7 @@ export const Notice = ({ item }) => {
   return (
     <NoticeItem>
       <CardTumb>
+      <div style={{flexGrow: 1}}>
         <ImageWrapp>
           <Image src={item.photo} alt={item.title} />
           <ImageText>
@@ -133,37 +153,31 @@ export const Notice = ({ item }) => {
         </ImageWrapp>
         <Title style={{ width: "280px" }}>{item.title}</Title>
         <FeaturesList>
-          <FeaturesItem>
-            <FeaturesText style={{ width: "50px" }}>Breed:</FeaturesText>
-            <FeaturesText style={{ marginLeft: "40px" }}>
-              {item.breed}
-            </FeaturesText>
-          </FeaturesItem>
-          <FeaturesItem>
-            <FeaturesText style={{ width: "50px" }}>Place:</FeaturesText>
-            <FeaturesText style={{ marginLeft: "40px" }}>
-              {item.place}
-            </FeaturesText>
-          </FeaturesItem>
-          <FeaturesItem>
-            <FeaturesText style={{ width: "50px" }}>Age:</FeaturesText>
-            <FeaturesText style={{ marginLeft: "40px" }}>
-              {ageAsWord}
-            </FeaturesText>
-          </FeaturesItem>
+                {item.breed && <FeaturesItem>
+                  <FeaturesText style={{ width: "50px" }}>Breed:</FeaturesText>
+                  <FeaturesText style={{ marginLeft: "40px" }}>
+                    {item.breed}
+                  </FeaturesText>
+                  </FeaturesItem>}
+                  <FeaturesItem>
+                  <FeaturesText style={{ width: "50px" }}>Place:</FeaturesText>
+                  <FeaturesText style={{ marginLeft: "40px" }}>
+                    {item.place}
+                  </FeaturesText>
+                  </FeaturesItem>
+                  {item.birthDate && <FeaturesItem>
+                  <FeaturesText style={{ width: "50px" }}>Age:</FeaturesText>
+                  <FeaturesText style={{ marginLeft: "40px" }}>
+                    {ageAsWord}
+                  </FeaturesText>
+                  </FeaturesItem>}
         </FeaturesList>
-        <CardButton
-          style={item.userId !== user.id && { marginBottom: "32px" }}
-          onClick={openModal}
-        >
-          Learn more
-        </CardButton>
-        {item.userId === user.id && (
-          <CardButton>
+      </div>
+          <CardButton style={item.userId !== user._id ? {marginBottom: '32px'} : {marginBottom: '12px'}} onClick={openModal}>Learn more</CardButton>
+        {item.userId == user._id && <CardButton onClick={handleDeleteClick}>
             Delete
-            <HiTrash style={{ width: "16px", height: "17px" }} />
-          </CardButton>
-        )}
+          <HiTrash width={"16px"} height={"17px"} />  
+          </CardButton>}
       </CardTumb>
       {isModlOpen && (
         <NoticeInfoModal
