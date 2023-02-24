@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { date } from "yup";
+import { useEffect, useState } from "react";
 import { close_menu_icon } from "../../../media";
 import {
   AddNoticeModalBtn,
@@ -20,12 +19,36 @@ import {
   NoticeAddModalRadioLable,
 } from "./NoticeAddModalStep1.styled";
 
+function getNotices() {
+  const notice = JSON.parse(window.localStorage.getItem("notice"));
+  return notice;
+}
+
 export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
-  const [isCategory, setIsCategory] = useState("sell");
-  const [isTitle, setIsTitle] = useState("");
-  const [isPetName, setIsPetName] = useState("");
-  const [isBirthDate, setIsBirthDate] = useState("");
-  const [isBreed, setIsBreed] = useState("");
+  const notice = getNotices();
+
+  const [isCategory, setIsCategory] = useState(
+    notice ? notice.category : "sell"
+  );
+  const [isTitle, setIsTitle] = useState(notice ? notice.title : "");
+  const [isPetName, setIsPetName] = useState(notice ? notice.name : "");
+  const [isBirthDate, setIsBirthDate] = useState(
+    notice ? notice.birthDate : ""
+  );
+  const [isBreed, setIsBreed] = useState(notice ? notice.breed : "");
+
+  useEffect(() => {
+    localStorage.setItem(
+      "notice",
+      JSON.stringify({
+        title: isTitle,
+        breed: isBreed,
+        name: isPetName,
+        birthDate: isBirthDate,
+        category: isCategory,
+      })
+    );
+  }, [isTitle, isBreed, isPetName, isBirthDate, isCategory]);
 
   const onChangeCategory = (evt) => {
     setIsCategory(evt.target.value);
@@ -44,18 +67,17 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
   };
 
   const getAllField = () => {
-    const birthDate = isBirthDate
-      ? isBirthDate.split("-").reverse().join(".")
-      : "unknown";
+    // const birthDate = isBirthDate
+    //   ? isBirthDate.split("-").reverse().join(".")
+    //   : "unknown";
     const notice = {
       title: isTitle,
       breed: isBreed,
       name: isPetName,
-      birthDate,
-      category: isCategory.value,
+      birthDate: isBirthDate,
+      category: isCategory,
     };
     onSubmit(notice);
-    console.log(notice);
     isNext();
   };
 
@@ -74,7 +96,8 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
           <NoticeAddModalRadioInput
             type="radio"
             name="category"
-            value="lost/found"
+            checked={isCategory === "lost-found" ? true : false}
+            value="lost-found"
             id="lost/found"
             onChange={onChangeCategory}
           />
@@ -86,7 +109,8 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
           <NoticeAddModalRadioInput
             type="radio"
             name="category"
-            value="in good hands"
+            checked={isCategory === "for-free" ? true : false}
+            value="for-free"
             id="inGoodHands"
             onChange={onChangeCategory}
           />
@@ -98,7 +122,7 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
           <NoticeAddModalRadioInput
             type="radio"
             name="category"
-            defaultChecked
+            checked={isCategory === "sell" ? true : false}
             value="sell"
             id="sell"
             onChange={onChangeCategory}

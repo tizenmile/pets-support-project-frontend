@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getFavNotices } from "../../redux/notices/operation";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { NoticeList } from "../../components/Notices/NoticesList/NoticesList";
@@ -14,17 +14,8 @@ import { NoticeAddModal } from "../../components/NoticeAddModal/NoticeAddModal";
 const FindPet = () => {
   const { categoryName } = useParams();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  
-  // const isLoggedIn = true
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   useEffect(() => {
     isLoggedIn && dispatch(getFavNotices());
     // dispatch(fetchSellNotices());
@@ -37,9 +28,7 @@ const FindPet = () => {
         <NoticesCategoriesNav category={categoryName} />
       </ContainerMain>
       <Container>
-      <button onClick={openModal}>open modal</button>
         <NoticeList />
-        {isModalOpen && <NoticeAddModal onClose={closeModal} />}
         <Outlet />
       </Container>
     </>

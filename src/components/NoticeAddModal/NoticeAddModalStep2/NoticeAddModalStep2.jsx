@@ -1,5 +1,10 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import React from "react";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { close_menu_icon, female, male, plus } from "../../../media";
 import {
   AddNoticeModalBtn,
@@ -30,24 +35,48 @@ import {
   NoticeAddModalFileLableImg2,
 } from "./NoticeAddModalStep2.styled";
 
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VmZmY5NTAyOWVmNjIxMTZmNmQ2YmEiLCJpYXQiOjE2NzcxNTQ3OTQsImV4cCI6MTY3NzE5MDc5NH0.nsr1hgbQscCgatXGScxuivU5RcHsX9e-I3OaGiNjMnE`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = ``;
-//   },
-// };
+import { AnimationLoader } from "../../AnimationLoader/AnimationLoader";
+
+function getNotices() {
+  const noticeNext = JSON.parse(window.localStorage.getItem("noticeNextPart"));
+  return noticeNext;
+}
 
 export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
+  const noticeNext = getNotices();
+  const token = useSelector((state) => state.auth.token);
   const filePicker = useRef(null);
-  const [isMale, setIsMale] = useState("");
-  const [isLocation, setIsLocation] = useState("");
-  const [isPrice, setIsPrice] = useState("");
-  const [isImage, setIsImage] = useState(null);
-  const [isImageName, setIsImageName] = useState(null);
-  const [isImageUrl, setIsImageUrl] = useState(null);
-  const [isComments, setIsComments] = useState("");
+  const [isMale, setIsMale] = useState(noticeNext ? noticeNext.sex : "");
+  const [isLocation, setIsLocation] = useState(
+    noticeNext ? noticeNext.place : ""
+  );
+  const [isPrice, setIsPrice] = useState(noticeNext ? noticeNext.price : "");
+  const [isImage, setIsImage] = useState(noticeNext ? noticeNext.image : null);
+  const [isImageName, setIsImageName] = useState(
+    noticeNext ? noticeNext.imageName : null
+  );
+  const [isImageUrl, setIsImageUrl] = useState(
+    noticeNext ? noticeNext.imageUrl : null
+  );
+  const [isComments, setIsComments] = useState(
+    noticeNext ? noticeNext.comments : ""
+  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "noticeNextPart",
+      JSON.stringify({
+        image: isImage,
+        imageName: isImageName,
+        imageUrl: isImageUrl,
+        sex: isMale,
+        place: isLocation,
+        price: isPrice,
+        comments: isComments,
+      })
+    );
+  });
 
   const onChangeMale = (evt) => {
     setIsMale(evt.target.value);
@@ -63,6 +92,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
   const onChangeImg = (evt) => {
     const { files } = evt.target;
+    console.log(files);
     setIsImage(files[0]);
     files[0] && setIsImageName(files[0].name);
     if (files) {
@@ -79,9 +109,9 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const hundleSubmit = async (evt) => {
+    setIsLoading(true);
     evt.preventDefault();
     const formData = new FormData();
-
     formData.append("image", isImage);
     formData.append("sex", isMale);
     formData.append("place", isLocation);
@@ -93,128 +123,167 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     formData.append("category", notice.category);
     formData.append("name", notice.name);
 
-    const data = await axios.post(
-      `http://localhost:3002/api/notices/notice`,
-      formData,
-      {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2VmZmY5NTAyOWVmNjIxMTZmNmQ2YmEiLCJpYXQiOjE2NzcxNjczMjAsImV4cCI6MTY3NzIwMzMyMH0.mdIhH5Eswm5yS7M1EAFVp5EGJCwBcbUaybMjx3cORPs",
-        },
-      }
-    );
-    console.log(formData);
-
-    console.log(data);
+    try {
+      const data = await axios.post(
+        `https://pet.tizenmile.keenetic.pro/api/notices/notice`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data);
+      localStorage.removeItem("notice");
+      localStorage.removeItem("noticeNextPart");
+      reset();
+      notifySuccess();
+      onClose();
+    } catch (error) {
+      console.log(error);
+      notifyError();
+    }
+    setIsLoading(false);
   };
 
-  return (
-    <AddNoticeModalContainerSecond name="newForm" onSubmit={hundleSubmit}>
-      <AddNoticeModalBtn type="button" onClick={onClose}>
-        <AddNoticeModalBtnImg src={close_menu_icon}></AddNoticeModalBtnImg>
-      </AddNoticeModalBtn>
-      <AddNoticeModalTitle>Add pet</AddNoticeModalTitle>
-      <NoticeAddModalTextSecond>The sex*:</NoticeAddModalTextSecond>
-      <NoticeModalImgSexList>
-        <NoticeModalImgSexListItem>
-          <NoticeAddModalmgSex src={male}></NoticeAddModalmgSex>
-          <NoticeAddModalSexInput
-            type="radio"
-            name="sex"
-            id="male"
-            value="male"
-            onChange={onChangeMale}
-          ></NoticeAddModalSexInput>
-          <NoticeModalImgListSexLable htmlFor="male">
-            Male
-          </NoticeModalImgListSexLable>
-        </NoticeModalImgSexListItem>
-        <NoticeModalImgSexListItem>
-          <NoticeAddModalmgSex src={female}></NoticeAddModalmgSex>
-          <NoticeAddModalSexInput
-            type="radio"
-            name="sex"
-            id="female"
-            value="female"
-            onChange={onChangeMale}
-          ></NoticeAddModalSexInput>
-          <NoticeModalImgListSexLable htmlFor="female">
-            Female
-          </NoticeModalImgListSexLable>
-        </NoticeModalImgSexListItem>
-      </NoticeModalImgSexList>
-      <NoticeAddModalInputList>
-        <NoticeAddModalInputListItem>
-          <NoticeAddModalLabel>
-            Location*:
-            <AddNoticeModalInput
-              placeholder="Type location"
-              name="place"
-              value={isLocation}
-              onChange={onChangeLocation}
-            />
-          </NoticeAddModalLabel>
-        </NoticeAddModalInputListItem>
-        {notice.category === "sell" && (
-          <NoticeAddModalInputListItem>
-            <NoticeAddModalLabel>
-              Price*:
-              <AddNoticeModalInput
-                type="number"
-                placeholder="Type price"
-                name="price"
-                value={isPrice}
-                onChange={onChangePrice}
-              />
-            </NoticeAddModalLabel>
-          </NoticeAddModalInputListItem>
-        )}
+  const reset = () => {
+    setIsImageUrl(null);
+    setIsImageName(null);
+    setIsImage(null);
+    setIsMale("");
+    setIsLocation("");
+    setIsPrice("");
+    setIsComments("");
+  };
 
-        <NoticeAddModalInputListItem>
-          <NoticeAddModalFileLable>
-            Load the pet’s image:
-            <NoticeAddModalFileLableBtn type="button" onClick={handlePick}>
-              {isImageUrl ? (
-                <NoticeAddModalFileLableImg2
-                  src={isImageUrl}
-                ></NoticeAddModalFileLableImg2>
-              ) : (
-                <NoticeAddModalFileLableImg1
-                  src={plus}
-                ></NoticeAddModalFileLableImg1>
+  const notifyError = () => toast.error("Please enter correct data!");
+  const notifySuccess = () => toast.success("Notice created!");
+
+  return (
+    <>
+      {isLoading ? (
+        <AnimationLoader />
+      ) : (
+        <>
+          <ToastContainer />
+          <AddNoticeModalContainerSecond name="newForm" onSubmit={hundleSubmit}>
+            <AddNoticeModalBtn type="button" onClick={onClose}>
+              <AddNoticeModalBtnImg
+                src={close_menu_icon}
+              ></AddNoticeModalBtnImg>
+            </AddNoticeModalBtn>
+            <AddNoticeModalTitle>Add pet</AddNoticeModalTitle>
+            <NoticeAddModalTextSecond>The sex*:</NoticeAddModalTextSecond>
+            <NoticeModalImgSexList>
+              <NoticeModalImgSexListItem>
+                <NoticeAddModalmgSex src={male}></NoticeAddModalmgSex>
+                <NoticeAddModalSexInput
+                  type="radio"
+                  name="sex"
+                  id="male"
+                  checked={isMale === "male" ? true : false}
+                  value="male"
+                  onChange={onChangeMale}
+                ></NoticeAddModalSexInput>
+                <NoticeModalImgListSexLable htmlFor="male">
+                  Male
+                </NoticeModalImgListSexLable>
+              </NoticeModalImgSexListItem>
+              <NoticeModalImgSexListItem>
+                <NoticeAddModalmgSex src={female}></NoticeAddModalmgSex>
+                <NoticeAddModalSexInput
+                  type="radio"
+                  name="sex"
+                  id="female"
+                  checked={isMale === "female" ? true : false}
+                  value="female"
+                  onChange={onChangeMale}
+                ></NoticeAddModalSexInput>
+                <NoticeModalImgListSexLable htmlFor="female">
+                  Female
+                </NoticeModalImgListSexLable>
+              </NoticeModalImgSexListItem>
+            </NoticeModalImgSexList>
+            <NoticeAddModalInputList>
+              <NoticeAddModalInputListItem>
+                <NoticeAddModalLabel>
+                  Location*:
+                  <AddNoticeModalInput
+                    placeholder="Type location"
+                    name="place"
+                    value={isLocation}
+                    onChange={onChangeLocation}
+                  />
+                </NoticeAddModalLabel>
+              </NoticeAddModalInputListItem>
+              {notice.category === "sell" && (
+                <NoticeAddModalInputListItem>
+                  <NoticeAddModalLabel>
+                    Price*:
+                    <AddNoticeModalInput
+                      type="number"
+                      placeholder="Type price"
+                      name="price"
+                      value={isPrice}
+                      onChange={onChangePrice}
+                    />
+                  </NoticeAddModalLabel>
+                </NoticeAddModalInputListItem>
               )}
-            </NoticeAddModalFileLableBtn>
-            <NoticeAddModalFileInput
-              type="file"
-              name="image"
-              ref={filePicker}
-              accept="image/*,.png,.jpg,.gif,.web"
-              onChange={onChangeImg}
-            />
-          </NoticeAddModalFileLable>
-        </NoticeAddModalInputListItem>
-        <NoticeAddModalInputListItem>
-          <NoticeAddModalTextAreaLabel>
-            Comments:
-            <NoticeAddModalTextArea
-              placeholder="Type comment"
-              name="comments"
-              value={isComments}
-              onChange={onChangeComments}
-            ></NoticeAddModalTextArea>
-          </NoticeAddModalTextAreaLabel>
-        </NoticeAddModalInputListItem>
-      </NoticeAddModalInputList>
-      <NoticeAddModalBtnList>
-        <NoticeAddModalBtnListItem>
-          <NoticeAddModalBottomBtn onClick={isPrev}>
-            Back
-          </NoticeAddModalBottomBtn>
-        </NoticeAddModalBtnListItem>
-        <NoticeAddModalBtnListItem>
-          <NoticeAddModalBottomBtn type="submit">Done</NoticeAddModalBottomBtn>
-        </NoticeAddModalBtnListItem>
-      </NoticeAddModalBtnList>
-    </AddNoticeModalContainerSecond>
+
+              <NoticeAddModalInputListItem>
+                <NoticeAddModalFileLable>
+                  Load the pet’s image:
+                  <NoticeAddModalFileLableBtn
+                    type="button"
+                    onClick={handlePick}
+                  >
+                    {isImageUrl ? (
+                      <NoticeAddModalFileLableImg2
+                        src={isImageUrl}
+                      ></NoticeAddModalFileLableImg2>
+                    ) : (
+                      <NoticeAddModalFileLableImg1
+                        src={plus}
+                      ></NoticeAddModalFileLableImg1>
+                    )}
+                  </NoticeAddModalFileLableBtn>
+                  <NoticeAddModalFileInput
+                    type="file"
+                    name="image"
+                    ref={filePicker}
+                    accept="image/*,.png,.jpg,.gif,.web"
+                    onChange={onChangeImg}
+                  />
+                </NoticeAddModalFileLable>
+              </NoticeAddModalInputListItem>
+              <NoticeAddModalInputListItem>
+                <NoticeAddModalTextAreaLabel>
+                  Comments:
+                  <NoticeAddModalTextArea
+                    placeholder="Type comment"
+                    name="comments"
+                    value={isComments}
+                    onChange={onChangeComments}
+                  ></NoticeAddModalTextArea>
+                </NoticeAddModalTextAreaLabel>
+              </NoticeAddModalInputListItem>
+            </NoticeAddModalInputList>
+            <NoticeAddModalBtnList>
+              <NoticeAddModalBtnListItem>
+                <NoticeAddModalBottomBtn onClick={isPrev}>
+                  Back
+                </NoticeAddModalBottomBtn>
+              </NoticeAddModalBtnListItem>
+              <NoticeAddModalBtnListItem>
+                <NoticeAddModalBottomBtn type="submit">
+                  Done
+                </NoticeAddModalBottomBtn>
+              </NoticeAddModalBtnListItem>
+            </NoticeAddModalBtnList>
+          </AddNoticeModalContainerSecond>
+        </>
+      )}
+    </>
   );
 };
