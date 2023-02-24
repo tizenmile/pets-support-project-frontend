@@ -161,11 +161,11 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
   return (
     <>
+      <ToastContainer />
       {isLoading ? (
         <AnimationLoader />
       ) : (
         <>
-          <ToastContainer />
           <AddNoticeModalContainerSecond name="newForm" onSubmit={hundleSubmit}>
             <AddNoticeModalBtn type="button" onClick={onClose}>
               <AddNoticeModalBtnImg
