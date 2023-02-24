@@ -1,1 +1,0 @@
-import{j as i,a}from"./index-22b5491f.js";import{R as e,a as t,b as r,A as n,c as o,d as s}from"./AuthForm-6236d775.js";import"./index.esm-41901a01.js";import"./formik.esm-cd76c246.js";const m=()=>i(e,{children:a(t,{children:[i(r,{children:"Registration"}),i(n,{}),a(o,{children:["Already have an account?",i(s,{to:"/login",children:"Login"})]})]})});export{m as default};
