@@ -6,4 +6,3 @@ export const getFrends = async () => {
 
   return response;
 };
-console.log(await getFrends());
