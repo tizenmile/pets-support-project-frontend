@@ -33,13 +33,13 @@ export const PetsTitle = styled.h2`
 export const AddPetBtnWrapper = styled.div`
   display: inline-flex;
   align-items: center;
-  @media ${(p) => p.theme.media.desktop} {
-    display: inline-flex;
-  }
 `;
 
 export const AddPetBtnTitle = styled.p`
   margin-right: 15px;
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   font-size: ${(p) => p.theme.fontSizes.xm};
+  @media ${(p) => p.theme.media.desktop} {
+    margin-right: 12px;
+  }
 `;
