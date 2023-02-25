@@ -2,10 +2,12 @@ import { getFrends } from "../../API/api";
 import FriendCard from "../FriendCard/FriendCard";
 import { BordList, BordItem, Wrap } from "./FriendBordStyle";
 
-const response = getFrends();
-const friends = response.data[0].sponsors;
 
-const FriendBord = () => {
+
+const FriendBord = async () => {
+  const response = await getFrends();
+  if(!response) return
+  const friends = response.data[0].sponsors;
   return (
     <Wrap>
       <BordList>
