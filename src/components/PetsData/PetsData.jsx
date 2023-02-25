@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AddPetBtn from "../AddPetBtn";
-// import Modal from "../../Modal";
+import PetsAddModal from "../PetsAddModal";
 import PetsList from "../PetsList";
 
 import {
@@ -12,7 +12,7 @@ import {
 } from "./PetsData.styled";
 
 const PetsData = () => {
-  // const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const toggleAddPetModal = () => {
     setIsModalOpen((prevState) => !prevState);
@@ -28,9 +28,7 @@ const PetsData = () => {
         </AddPetBtnWrapper>
       </PetsNav>
 
-      {/* {!isModalOpen && (
-        <Modal type="pet" title="Add pet" onClose={toggleAddPetModal} />
-      )} */}
+      {!isModalOpen && <PetsAddModal onClose={toggleAddPetModal} />}
 
       <PetsList />
     </PetsWrapper>

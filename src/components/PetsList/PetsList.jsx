@@ -16,6 +16,7 @@ const PetsList = () => {
   const error = useSelector(selectError);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchPets());
   }, [dispatch]);
@@ -31,7 +32,7 @@ const PetsList = () => {
       ) : (
         !error &&
         !isLoading &&
-        pets.map(({ _id, name, date, breed, comments, petAvatar }) => (
+        pets?.map(({ _id, name, date, breed, comments, petAvatar }) => (
           <PetsListItem
             key={_id}
             id={_id}

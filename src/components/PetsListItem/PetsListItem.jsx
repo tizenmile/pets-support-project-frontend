@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { deletePet } from "../../redux/pets/operations";
@@ -13,7 +12,6 @@ import {
   InfoPet,
   Title,
 } from "./PetsListItem.styled";
-
 const PetsListItem = ({ id, name, date, breed, comment, petAvatar }) => {
   const { isDeleting } = useSelector(selectIsDeleting);
   const dispatch = useDispatch();

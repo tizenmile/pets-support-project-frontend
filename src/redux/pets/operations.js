@@ -1,13 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api/";
-
-axios.defaults.headers = {
-  Authorization:
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YzYmU1MGJmZGY4MWE2MDQxMjZkYWEiLCJpYXQiOjE2NzcxNzExMTYsImV4cCI6MTY3NzIwNzExNn0.6Km8vAB4fNF1_0bVSMgYSAtBY7Gbyz3Y7Yv9PZMWFdU",
-};
-
 export const fetchPets = createAsyncThunk(
   "pets/fetchAll",
 
@@ -28,7 +21,7 @@ export const addNewPet = createAsyncThunk(
       const res = await axios.post("/pets", newPet, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      return res.data.data;
+      return res.data.newPet;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
