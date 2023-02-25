@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
 import { useFormik } from "formik";
-import petValidationSchema from "../../helpers/schemaValidation/petValidationSchema";
+import {
+  validationSchema,
+  dateToday,
+} from "../../helpers/schemaValidation/petValidationSchema";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 import { TfiClose, TfiPlus } from "react-icons/tfi";
@@ -46,8 +49,6 @@ const PetsAddModal = ({ onClose }) => {
 
   const { isAdding } = useSelector(selectIsAdding);
 
-  const dateToday = new Date().toISOString().slice(0, 10);
-
   const changePage = (value) => {
     setPage(page + value);
   };
@@ -61,7 +62,7 @@ const PetsAddModal = ({ onClose }) => {
         image: "",
         comments: "",
       },
-      petValidationSchema,
+      validationSchema,
       onSubmit: (values) => {
         const formData = new FormData();
 
@@ -98,6 +99,7 @@ const PetsAddModal = ({ onClose }) => {
       setFile(acceptedFiles[0]);
     },
   });
+
   return (
     <ModalBackdrop>
       <Overlay onClick={handleBackdropClick}>

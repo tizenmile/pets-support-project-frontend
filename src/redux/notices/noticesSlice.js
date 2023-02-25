@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  fetchSellNotices,
+  fetchNoticesByCategory,
+  getOwnNotices,
   getFavNotices,
   addNoticeToFavorite,
 } from "./operation";

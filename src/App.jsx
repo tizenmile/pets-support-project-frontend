@@ -13,7 +13,7 @@ const NewsPage = lazy(() => import("./pages/News/NewsPage"));
 const UserAccount = lazy(() => import("./pages/UserAccount/UserAccount"));
 const RegisterPage = lazy(() => import("./pages/Auth/RegistrationPage"));
 const FindPet = lazy(() => import("./pages/FindPet/FindPetPage"));
-const OurFriend = lazy(() => import("./pages/OurFriends/OurFrindsPage"));
+const OurFriend = lazy(() => import("./pages/OurFriends/OurFriendsPage"));
 const LoginPage = lazy(() => import("./pages/Auth/LoginPage"));
 
 function App() {

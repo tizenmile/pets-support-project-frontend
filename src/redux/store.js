@@ -13,8 +13,10 @@ import storage from "redux-persist/lib/storage";
 import { noticesReducer } from "./notices/noticesSlice";
 import { authReducer } from "./auth/authSlice";
 import { newsReducer } from "./news/newsSlice";
-import { petsReducer } from "./pets/petsSlice";
 import { userReducer } from "./userAccount/userSlice";
+import { petsReducer } from "./pets/petsSlice";
+import { searchSlice } from "./notices/searchSlice";
+import { filtersReducer } from "./notices/filterSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -24,9 +26,11 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
     notices: noticesReducer,
-    auth: persistReducer(authPersistConfig, authReducer),
+    search: searchSlice.reducer,
+    filters: filtersReducer,
     pets: petsReducer,
     user: userReducer,
   },

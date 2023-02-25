@@ -66,6 +66,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   if (!notice) {
     return;
   }
+
   const birthDate = (birthDate) => {
     let dd = new Date(birthDate).getDate();
     if (dd < 10) dd = "0" + dd;

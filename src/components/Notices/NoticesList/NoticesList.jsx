@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import { selectNotices } from '../../../redux/notices/selector';
-import { useSelector } from 'react-redux';
-import { Notice } from '../NoticesItem/NoticesItem';
-import { NoticesList } from './NoticesList.styled';
-
-export const NoticeList = () => {
-  const notices = useSelector(selectNotices);
-  return (
-    <NoticesList>
-      {notices.map(notice => {
-          return <Notice key={notice._id} item={ notice} />;
-      })}
-    </NoticesList>
-=======
 import {
   selectNotices,
   selectFavNotices,
@@ -73,6 +58,5 @@ export const NoticeList = () => {
         </>
       )}
     </>
->>>>>>> 0d11c3dc50f48a7eecaa756ca5494bafbd60a514
   );
 };
