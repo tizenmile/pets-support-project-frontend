@@ -16,10 +16,9 @@ import {
   Title,
   Wrapper,
   WrapperList,
-  Img,
   // NotFoundBox,
 } from "./NewsPage.styled";
-import { Newscard } from "../../components/NewsCard/NewsCard";
+import NewsCard from "../../components/NewsCard";
 
 const NewsPage = () => {
   const [search, setSearch] = useSearchParams();
@@ -58,7 +57,7 @@ const NewsPage = () => {
           <ListCard>
             {newss?.news?.map((value) => (
               <ItemCard key={value?._id}>
-                <Newscard news={value} />
+                <NewsCard news={value} />
               </ItemCard>
             ))}
           </ListCard>

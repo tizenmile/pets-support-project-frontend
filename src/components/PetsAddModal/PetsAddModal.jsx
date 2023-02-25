@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import petValidationSchema from "../../helpers/schemaValidation/petValidationSchema";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
 import { TfiClose, TfiPlus } from "react-icons/tfi";
@@ -52,32 +52,6 @@ const PetsAddModal = ({ onClose }) => {
     setPage(page + value);
   };
 
-  const PetValidationSchema = yup.object({
-    name: yup
-      .string("Please, enter name of the pet")
-      .required("Pet name is required")
-      .min(5, "Minimum 5 symbols")
-      .max(20, "Maximum 20 symbols")
-      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, "Only letters"),
-    date: yup
-      .date()
-      .required()
-      .min("2000-01-01", "The min date is 01.01.2000")
-      .max(dateToday, "The max date of birth is today"),
-    breed: yup
-      .string("Please, enter breed of the pet")
-      .required("Field required")
-      .min(5, "Minimum 5 symbols")
-      .max(20, "Maximum 20 symbols")
-      .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, "Only letters"),
-    petAvatar: yup.string(""),
-    comments: yup
-      .string()
-      .min(5, "Minimum 5 symbols")
-      .max(200, "Maximum 200 symbols")
-      .required("Field required"),
-  });
-
   const { handleSubmit, handleBlur, values, handleChange, errors, touched } =
     useFormik({
       initialValues: {
@@ -87,7 +61,7 @@ const PetsAddModal = ({ onClose }) => {
         image: "",
         comments: "",
       },
-      PetValidationSchema,
+      petValidationSchema,
       onSubmit: (values) => {
         const formData = new FormData();
 

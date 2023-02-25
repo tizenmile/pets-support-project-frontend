@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import Loader from "../Loader";
+import AnimationLoader from "../AnimationLoader";
 import PetsListItem from "../PetsListItem";
 import {
   selectPets,
@@ -25,7 +25,7 @@ const PetsList = () => {
     <>
       {isLoading ? (
         <NotFoundPet>
-          <Loader />
+          <AnimationLoader />
         </NotFoundPet>
       ) : error || pets.length === 0 ? (
         <NotFoundPet>Please add your pet</NotFoundPet>

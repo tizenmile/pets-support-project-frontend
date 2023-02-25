@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { UserSchema } from "../../UserSchemaValidation/UserSchemaValidation";
-import { toast } from "react-toastify";
+import { UserSchema } from "../../helpers/schemaValidation/UserSchemaValidation";
+import { useDispatch } from "react-redux";
+
+import { updateUserData } from "../../redux/userAccount/operations";
 import {
   EditTextBtn,
   EditTextBtnIcon,
   IconCheck,
   UserDataInput,
   UserForm,
+  ErrorText,
+  InputWrapper,
 } from "./UserDataItem.styled";
 
 export const UserDataItem = ({
@@ -17,52 +21,82 @@ export const UserDataItem = ({
   type,
   defaultValue,
 }) => {
-  const [active, setActive] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleClick = (e, values, isValid) => {
-    console.log("click");
-    e.preventDefault();
+  const [editMode, setEditMode] = useState(false);
+  const [inputValue, setInputValue] = useState(defaultValue ?? "");
+  const [valid, setValid] = useState(false);
+
+  const onInputChange = (e) => {
+    setInputValue(e.target.value);
+    setValid(UserSchema.fields[name].isValidSync(e.target.value));
+    // console.log(valid);
+  };
+
+  const onEditClick = () => {
+    setValid(true);
+    setEditMode(true);
     setIsBtnDisabled(true);
-    if (active === true && values[name].length !== 0) {
-      setActive(false);
+  };
+
+  const onSubmitClick = () => {
+    setIsBtnDisabled(true);
+
+    if (inputValue === defaultValue) {
+      setValid(false);
+      setEditMode(false);
       setIsBtnDisabled(false);
-      if (values[name] === defaultValue) {
-        return;
-      }
-      const data = {
-        [name]: values[name],
-      };
-      console.log("59", data);
       return;
     }
-    setActive(true);
+
+    const data = {
+      [name]: inputValue,
+    };
+
+    dispatch(updateUserData(data));
+
+    setEditMode(false);
+    setIsBtnDisabled(false);
   };
 
   return (
     <Formik
       initialValues={{ [name]: defaultValue ?? "" }}
       validationSchema={UserSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(setSubmitting);
-        setSubmitting(false);
-      }}
     >
-      {({ values, isValid }) => (
+      {(formik) => (
         <UserForm>
-          <Field
-            as={UserDataInput}
-            name={name}
-            type={type}
-            value={values[name]}
-            disabled={!active}
-          />
-          <ErrorMessage name={name} />
-          <EditTextBtn
-            onClick={(e) => handleClick(e, values, isValid)}
-            disabled={!active && isBtnDisabled}
-          >
-            {active ? <IconCheck /> : <EditTextBtnIcon />}
-          </EditTextBtn>
+          <InputWrapper>
+            <Field
+              as={UserDataInput}
+              name={name}
+              type={type}
+              value={formik.values[name]}
+              disabled={!editMode}
+              onChange={(e) => {
+                onInputChange(e);
+                formik.handleChange(e);
+              }}
+            />
+            <ErrorMessage component={ErrorText} name={name} />
+          </InputWrapper>
+          {editMode ? (
+            <EditTextBtn
+              type="submit"
+              disabled={!valid}
+              onClick={onSubmitClick}
+            >
+              <IconCheck />
+            </EditTextBtn>
+          ) : (
+            <EditTextBtn
+              type="button"
+              onClick={onEditClick}
+              disabled={isBtnDisabled}
+            >
+              <EditTextBtnIcon />
+            </EditTextBtn>
+          )}
         </UserForm>
       )}
     </Formik>

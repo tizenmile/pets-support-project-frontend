@@ -1,0 +1,299 @@
+import axios from "axios";
+import React from "react";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { close_menu_icon, female, male, plus } from "../../../media";
+import {
+  AddNoticeModalBtn,
+  AddNoticeModalBtnImg,
+  AddNoticeModalInput,
+  AddNoticeModalTitle,
+  NoticeAddModalBottomBtn,
+  NoticeAddModalBtnList,
+  NoticeAddModalBtnListItem,
+  NoticeAddModalInputList,
+  NoticeAddModalInputListItem,
+  NoticeAddModalLabel,
+} from "../NoticeAddModalStep1/NoticeAddModalStep1.styled";
+import {
+  AddNoticeModalContainerSecond,
+  NoticeAddModalFileInput,
+  NoticeAddModalFileLableImg1,
+  NoticeAddModalmgSex,
+  NoticeAddModalTextArea,
+  NoticeAddModalTextAreaLabel,
+  NoticeAddModalTextSecond,
+  NoticeModalImgSexList,
+  NoticeModalImgSexListItem,
+  NoticeModalImgListSexLable,
+  NoticeAddModalSexInput,
+  NoticeAddModalFileLableBtn,
+  NoticeAddModalFileLable,
+  NoticeAddModalFileLableImg2,
+} from "./NoticeAddModalStep2.styled";
+
+import { AnimationLoader } from "../../AnimationLoader/AnimationLoader";
+
+function getNotices() {
+  const noticeNext = JSON.parse(window.localStorage.getItem("noticeNextPart"));
+  return noticeNext;
+}
+
+export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
+  const noticeNext = getNotices();
+  const token = useSelector((state) => state.auth.token);
+  const filePicker = useRef(null);
+  const [isMale, setIsMale] = useState(noticeNext ? noticeNext.sex : "");
+  const [isLocation, setIsLocation] = useState(
+    noticeNext ? noticeNext.place : ""
+  );
+  const [isPrice, setIsPrice] = useState(noticeNext ? noticeNext.price : "");
+  const [isImage, setIsImage] = useState(noticeNext ? noticeNext.image : null);
+  const [isImageName, setIsImageName] = useState(
+    noticeNext ? noticeNext.imageName : null
+  );
+  const [isImageUrl, setIsImageUrl] = useState(
+    noticeNext ? noticeNext.imageUrl : null
+  );
+  const [isComments, setIsComments] = useState(
+    noticeNext ? noticeNext.comments : ""
+  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "noticeNextPart",
+      JSON.stringify({
+        image: isImage,
+        imageName: isImageName,
+        imageUrl: isImageUrl,
+        sex: isMale,
+        place: isLocation,
+        price: isPrice,
+        comments: isComments,
+      })
+    );
+  });
+
+  const onChangeMale = (evt) => {
+    setIsMale(evt.target.value);
+  };
+
+  const onChangeLocation = (evt) => {
+    setIsLocation(evt.target.value);
+  };
+
+  const onChangePrice = (evt) => {
+    setIsPrice(evt.target.value);
+  };
+
+  const onChangeImg = (evt) => {
+    const { files } = evt.target;
+    if (files[0].size > 5242880) {
+      return notifyInfo();
+    }
+    // console.log(files[0].size);
+    setIsImage(files[0]);
+    files[0] && setIsImageName(files[0].name);
+    if (files) {
+      setIsImageUrl(URL.createObjectURL(files[0]));
+    }
+  };
+
+  const onChangeComments = (evt) => {
+    setIsComments(evt.target.value);
+  };
+
+  const handlePick = () => {
+    filePicker.current.click();
+  };
+
+  const hundleSubmit = async (evt) => {
+    setIsLoading(true);
+    evt.preventDefault();
+    const formData = new FormData();
+    formData.append("image", isImage);
+    formData.append("sex", isMale);
+    formData.append("place", isLocation);
+    formData.append("price", isPrice ? isPrice : 1);
+    formData.append("comments", isComments);
+    formData.append("title", notice.title);
+    formData.append("breed", notice.breed);
+    formData.append("birthDate", notice.birthDate);
+    formData.append("category", notice.category);
+    formData.append("name", notice.name);
+
+    try {
+      const data = await axios.post(
+        `https://pet.tizenmile.keenetic.pro/api/notices/notice`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data);
+      localStorage.removeItem("notice");
+      localStorage.removeItem("noticeNextPart");
+      reset();
+      notifySuccess();
+      onClose();
+    } catch (error) {
+      console.log(error);
+      notifyError();
+    }
+    setIsLoading(false);
+  };
+
+  const reset = () => {
+    setIsImageUrl(null);
+    setIsImageName(null);
+    setIsImage(null);
+    setIsMale("");
+    setIsLocation("");
+    setIsPrice("");
+    setIsComments("");
+  };
+
+  const notifyError = () => toast.error("Please enter correct data!");
+  const notifySuccess = () => toast.success("Notice created!");
+  const notifyInfo = () => toast.error("The file must not exceed 5.2 mb!");
+
+  return (
+    <>
+      <ToastContainer />
+      {isLoading ? (
+        <AnimationLoader />
+      ) : (
+        <>
+          <AddNoticeModalContainerSecond name="newForm" onSubmit={hundleSubmit}>
+            <AddNoticeModalBtn type="button" onClick={onClose}>
+              <AddNoticeModalBtnImg
+                src={close_menu_icon}
+              ></AddNoticeModalBtnImg>
+            </AddNoticeModalBtn>
+            <AddNoticeModalTitle>Add pet</AddNoticeModalTitle>
+            <NoticeAddModalTextSecond>The sex*:</NoticeAddModalTextSecond>
+            <NoticeModalImgSexList>
+              <NoticeModalImgSexListItem>
+                <NoticeAddModalmgSex src={male}></NoticeAddModalmgSex>
+                <NoticeAddModalSexInput
+                  type="radio"
+                  name="sex"
+                  id="male"
+                  checked={isMale === "male" ? true : false}
+                  value="male"
+                  onChange={onChangeMale}
+                ></NoticeAddModalSexInput>
+                <NoticeModalImgListSexLable htmlFor="male">
+                  Male
+                </NoticeModalImgListSexLable>
+              </NoticeModalImgSexListItem>
+              <NoticeModalImgSexListItem>
+                <NoticeAddModalmgSex src={female}></NoticeAddModalmgSex>
+                <NoticeAddModalSexInput
+                  type="radio"
+                  name="sex"
+                  id="female"
+                  checked={isMale === "female" ? true : false}
+                  value="female"
+                  onChange={onChangeMale}
+                ></NoticeAddModalSexInput>
+                <NoticeModalImgListSexLable htmlFor="female">
+                  Female
+                </NoticeModalImgListSexLable>
+              </NoticeModalImgSexListItem>
+            </NoticeModalImgSexList>
+            <NoticeAddModalInputList>
+              <NoticeAddModalInputListItem>
+                <NoticeAddModalLabel>
+                  Location*:
+                  <AddNoticeModalInput
+                    type=""
+                    placeholder="Type location"
+                    name="place"
+                    value={isLocation}
+                    onChange={onChangeLocation}
+                  />
+                </NoticeAddModalLabel>
+              </NoticeAddModalInputListItem>
+              {notice.category === "sell" && (
+                <NoticeAddModalInputListItem>
+                  <NoticeAddModalLabel>
+                    Price*:
+                    <AddNoticeModalInput
+                      type="number"
+                      pattern="[1-9]*[.]?[1-9]+"
+                      placeholder="Type price"
+                      name="price"
+                      value={isPrice}
+                      onChange={onChangePrice}
+                    />
+                  </NoticeAddModalLabel>
+                </NoticeAddModalInputListItem>
+              )}
+
+              <NoticeAddModalInputListItem>
+                <NoticeAddModalFileLable>
+                  Load the pet’s image:
+                  <NoticeAddModalFileLableBtn
+                    type="button"
+                    onClick={handlePick}
+                  >
+                    {isImageUrl ? (
+                      <NoticeAddModalFileLableImg2
+                        src={isImageUrl}
+                      ></NoticeAddModalFileLableImg2>
+                    ) : (
+                      <NoticeAddModalFileLableImg1
+                        src={plus}
+                      ></NoticeAddModalFileLableImg1>
+                    )}
+                  </NoticeAddModalFileLableBtn>
+                  <NoticeAddModalFileInput
+                    type="file"
+                    name="image"
+                    ref={filePicker}
+                    accept="image/*,.png,.jpg,.gif,.web"
+                    onChange={onChangeImg}
+                  />
+                </NoticeAddModalFileLable>
+              </NoticeAddModalInputListItem>
+              <NoticeAddModalInputListItem>
+                <NoticeAddModalTextAreaLabel>
+                  Comments:
+                  <NoticeAddModalTextArea
+                    type="text"
+                    min="8"
+                    max="120"
+                    required={true}
+                    placeholder="Type comment"
+                    name="comments"
+                    value={isComments}
+                    onChange={onChangeComments}
+                  ></NoticeAddModalTextArea>
+                </NoticeAddModalTextAreaLabel>
+              </NoticeAddModalInputListItem>
+            </NoticeAddModalInputList>
+            <NoticeAddModalBtnList>
+              <NoticeAddModalBtnListItem>
+                <NoticeAddModalBottomBtn onClick={isPrev}>
+                  Back
+                </NoticeAddModalBottomBtn>
+              </NoticeAddModalBtnListItem>
+              <NoticeAddModalBtnListItem>
+                <NoticeAddModalBottomBtn type="submit">
+                  Done
+                </NoticeAddModalBottomBtn>
+              </NoticeAddModalBtnListItem>
+            </NoticeAddModalBtnList>
+          </AddNoticeModalContainerSecond>
+        </>
+      )}
+    </>
+  );
+};
