@@ -1,4 +1,4 @@
-import{s as i,j as t,F as f,a as o,r as w,v as u}from"./index-769db597.js";const b=i.h1`
+import{s as i,j as t,F as f,a as o,r as w,v as u}from"./index-c784bf85.js";const y=i.h1`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 700;
@@ -18,7 +18,7 @@ margin-top: 22px;
 margin-bottom: 40px;
 margin-top: 64px;
 
-`,y=({title:n})=>t(f,{children:t(b,{children:n})}),z=i.ul`
+`,b=({title:n})=>t(f,{children:t(y,{children:n})}),z=i.ul`
   position: absolute;
   width: 120px;
 
@@ -200,4 +200,4 @@ line-height: 19px;
   @media (min-width: 768px) and (max-width: 1279px) {
     width: 768px;
   }
-`,H=W(),j=H.data[0].sponsors,R=()=>t(D,{children:t(A,{children:j.map(n=>t(B,{children:t(_,{data:n})},n._id))})}),q=()=>o(f,{children:[t(y,{title:"Our friends"}),t(R,{})]});export{q as default};
+`,H=async()=>{const n=await W();if(!n)return;const d=n.data[0].sponsors;return t(D,{children:t(A,{children:d.map(p=>t(B,{children:t(_,{data:p})},p._id))})})},P=()=>o(f,{children:[t(b,{title:"Our friends"}),t(H,{})]});export{P as default};
