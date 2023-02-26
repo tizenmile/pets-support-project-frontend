@@ -43,7 +43,7 @@ const NewsPage = () => {
       dispatch(getNews(page));
     }
   }, [page, query, dispatch]);
-
+  console.log (newss);
   return (
     <Wrapper>
       <Title>News</Title>
@@ -59,13 +59,14 @@ const NewsPage = () => {
               <ItemCard key={value?._id}>
                 <NewsCard news={value} />
               </ItemCard>
-            ))}
+            ))
+            }
           </ListCard>
           <Outlet />
         </WrapperList>
       )}
     </Wrapper>
-  )
+  );
 };
 
 export default NewsPage;

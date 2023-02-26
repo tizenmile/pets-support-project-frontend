@@ -11,7 +11,7 @@ export const BordList = styled.ul`
 
 export const BordItem = styled.li`
   border-radius: 40px;
-  background: #ffffff;
+  background: ${(p) => p.theme.colors.white};
   margin: 16px;
   padding: 16px 4px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -21,7 +21,7 @@ export const BordItem = styled.li`
   @media (min-width: 280px) and (max-width: 767px) {
     width: 100%;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     width: calc(50% - 32px);
   }
 `;
@@ -31,10 +31,11 @@ export const Wrap = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  @media (min-width: 280px) and (max-width: 767px) {
+  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
+      p.theme.media.mobileMax} {
     max-width: 320px;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     width: 768px;
   }
 `;
