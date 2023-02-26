@@ -14,6 +14,7 @@ import { noticesReducer } from "./notices/noticesSlice";
 import { authReducer } from "./auth/authSlice";
 import { newsReducer } from "./news/newsSlice";
 import { userReducer } from "./userAccount/userSlice";
+import { petsReducer } from "./pets/petsSlice";
 import { searchSlice } from "./notices/searchSlice";
 import { filtersReducer } from "./notices/filterSlice";
 
@@ -25,12 +26,12 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
     notices: noticesReducer,
     search: searchSlice.reducer,
     filters: filtersReducer,
-    auth: persistReducer(authPersistConfig, authReducer),
-    news: newsReducer,
+    pets: petsReducer,
     user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
