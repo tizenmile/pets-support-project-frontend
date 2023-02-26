@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 export const Card = styled.div``;
 
@@ -10,11 +9,12 @@ export const Imge = styled.img`
   width: 158px;
   height: 112px;
 
-  @media (min-width: 280px) and (max-width: 767px) {
+  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
+      p.theme.media.mobileMax} {
     width: 110px;
     height: 78px;
   }
-  @media (min-width: 768px) and (max-width: 1280px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     width: 120px;
     height: 85px;
   }
@@ -23,22 +23,23 @@ export const Imge = styled.img`
 export const CardTitle = styled.h2`
   font-family: "Manrope";
   font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
+  font-size: ${(p) => p.theme.fontSizes.xm};
   line-height: 27px;
   align-items: center;
   text-align: center;
   text-decoration-line: underline;
-  color: #f59256;
+  color: ${(p) => p.theme.colors.active};
   margin-bottom: 16px;
-  @media (min-width: 280px) and (max-width: 767px) {
-    font-size: 12px;
+  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
+      p.theme.media.mobileMax} {
+    font-size: ${(p) => p.theme.fontSizes.xxs};
     line-height: 16px;
 
     margin-bottom: 12px;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
-    font-size: 16px;
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
+    font-size: ${(p) => p.theme.fontSizes.s};
     line-height: 22px;
   }
 `;
@@ -46,21 +47,21 @@ export const CardTitle = styled.h2`
 export const TitleLink = styled.a`
 font-family: "Manrope";
 font-style: normal;
-font-weight: 700;
-font-size: 20px;
+font-weight: ${(p) => p.theme.fontWeights.bold};
+font-size: ${(p) => p.theme.fontSizes.xm};
 line-height: 27px;
 align-items: center;
 text-align: center;
 text-decoration-line: underline;
 color: #f59256;
 margin-bottom: 16px;
-@media (min-width: 280px) and (max-width: 767px) {
-  font-size: 12px;
+@media ${(p) => p.theme.media.mobileMin} and ${(p) => p.theme.media.mobileMax} {
+  font-size: ${(p) => p.theme.fontSizes.xxs};
   line-height: 16px;
   margin-bottom: 12px;
 }
-@media (min-width: 768px) and (max-width: 1279px) {
-  font-size: 16px;
+@media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
+  font-size: ${(p) => p.theme.fontSizes.s};
   line-height: 22px;
 `;
 
@@ -69,11 +70,12 @@ export const CardItem = styled.li`
   max-width: 206px;
   margin-left: 12px;
   position: relative;
-  @media (min-width: 280px) and (max-width: 767px) {
+  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
+      p.theme.media.mobileMax} {
     max-width: 150px;
     margin-bottom: 4px;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     margin-bottom: 4px;
   }
 `;
@@ -85,19 +87,20 @@ export const CardInfWrap = styled.div`
 export const CardSpan = styled.span`
   font-family: "Manrope";
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: ${(p) => p.theme.fontSizes.s};
   line-height: 20px;
   display: flex;
   align-items: center;
-  color: #000000;
+  color: ${(p) => p.theme.colors.black};
 
-  @media (min-width: 280px) and (max-width: 767px) {
-    font-size: 14px;
+  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
+      p.theme.media.mobileMax} {
+    font-size: ${(p) => p.theme.fontSizes.xs};
     line-height: 19px;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
-    font-size: 12px;
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
+    font-size: ${(p) => p.theme.fontSizes.xxs};
     line-height: 16px;
   }
 `;
@@ -105,22 +108,23 @@ export const CardSpan = styled.span`
 export const CardLink = styled.a`
   font-family: "Manrope";
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: ${(p) => p.theme.fontSizes.s};
   line-height: 20px;
   display: flex;
   align-items: center;
-  color: #000000;
+  text-decoration-line: none;
+  color: ${(p) => p.theme.colors.black};
   &:hover {
     color: #dc712f;
   }
 
-@media (min-width: 280px) and (max-width: 767px) {
-font-size: 12px;
+@media ${(p) => p.theme.media.mobileMin} and ${(p) => p.theme.media.mobileMax} {
+font-size: ${(p) => p.theme.fontSizes.xxs};
 line-height: 16px;
   
 }
-@media (min-width: 768px) and (max-width: 1279px) {
-font-size: 14px;
+@media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
+font-size: ${(p) => p.theme.fontSizes.xs};
 line-height: 19px;
 `;

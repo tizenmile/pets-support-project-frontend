@@ -86,6 +86,7 @@ export const InfoPet = styled.p`
   }
   font-size: ${(p) => p.theme.fontSizes.xs};
   font-weight: ${(p) => p.theme.fontWeights.normal};
+  font-family: ${(p) => p.theme.fonts.main};
   @media ${(p) => p.theme.media.tablet} {
     font-size: ${(p) => p.theme.fontSizes.s};
   }
