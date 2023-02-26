@@ -10,6 +10,7 @@ export const NoticeModalContainer = styled.div`
   padding-right: 24px;
   border-radius: 40px;
   @media (min-width: 320px) and (max-width: 767px) {
+    margin-top: 150px;
     width: 280px;
   }
 `;

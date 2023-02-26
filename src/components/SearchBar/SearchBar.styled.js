@@ -16,10 +16,13 @@ export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 280px;
+  max-width: 608px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
   overflow: hidden;
+   @media (${p => p.theme.media.mobileMax}) {
+    width: 280px;
+   }
  
 `;
 

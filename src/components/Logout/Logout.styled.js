@@ -3,6 +3,7 @@ import { HiArrowRightOnRectangle } from "react-icons/hi2";
 
 export const LogOut = styled.button`
   position: absolute;
+  width: 89px;
   right: 12px;
   bottom: 20px;
   display: inline-flex;
@@ -10,7 +11,7 @@ export const LogOut = styled.button`
   background-color: transparent;
   color: rgba(17, 17, 17, 0.6);
   font-family: ${(p) => p.theme.fonts.main};
-  font-size: ${(p) => p.theme.fontSizes.s};
+  font-size: ${(p) => p.theme.fontSizes.xxs};
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   line-height: ${(p) => p.theme.lineHeights.body};
   cursor: pointer;
@@ -26,6 +27,7 @@ export const LogOut = styled.button`
     height: 22px;
     margin: ${(p) => p.theme.space[0]};
     padding: ${(p) => p.theme.space[0]};
+    font-size: ${(p) => p.theme.fontSizes.s};
   }
   @media ${(p) => p.theme.media.desktop} {
     left: 17px;
