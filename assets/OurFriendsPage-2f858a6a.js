@@ -1,4 +1,4 @@
-import{s as i,j as t,F as f,a as o,r as w,v as u}from"./index-60fb0207.js";const y=i.h1`
+import{s as t,j as i,F as f,a as d,r as g,d as u,e as b,T as y}from"./index-23d39ed1.js";const z=t.h1`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 700;
@@ -18,7 +18,7 @@ margin-top: 22px;
 margin-bottom: 40px;
 margin-top: 64px;
 
-`,b=({title:n})=>t(f,{children:t(y,{children:n})}),z=i.ul`
+`,M=({title:e})=>i(f,{children:i(z,{children:e})}),T=t.ul`
   position: absolute;
   width: 120px;
 
@@ -31,7 +31,7 @@ margin-top: 64px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   z-index: 1;
-`,v=i.span`
+`,v=t.span`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
@@ -42,11 +42,11 @@ margin-top: 64px;
   text-align: center;
 
   color: #000000;
-`,M=i.div`
+`,O=t.div`
   position: absolute;
   top: 12px;
   right: 13px;
-`,T=i.span`
+`,F=t.span`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
@@ -58,11 +58,11 @@ margin-top: 64px;
   margin-left: auto;
 
   color: #000000;
-`,O=i.li`
+`,S=t.li`
   margin-bottom: 4px;
-`,S=({workDays:n})=>{const d=new Date,p=["MN","TU","WE","TH","FR","SA","SU"],h=["SU","MN","TU","WE","TH","FR","SA"];return t("div",{children:n&&t(z,{children:o(O,{children:[p.map(e=>t(v,{style:{color:h[d.getDay()]===e&&"#f59256"},children:e},e)),t(M,{children:n&&n.map((e,r)=>o(T,{style:{color:d.getDay()===r&&"#f59256"},children:[console.log((r+1||r+1===7||(r=0))===0&&"#f59256"),e&&e.isOpen?e.from:"",e&&e.isOpen&&"-",e&&e.isOpen?e.to:"Closed"]},e._id))})]})})})},k=i.div``,C=i.ul`
+`,C=({workDays:e})=>{const o=new Date,r=["MN","TU","WE","TH","FR","SA","SU"],h=["SU","MN","TU","WE","TH","FR","SA"];return i("div",{children:e&&i(T,{children:d(S,{children:[r.map(n=>i(v,{style:{color:h[o.getDay()]===n&&"#f59256"},children:n},n)),i(O,{children:e&&e.map((n,p)=>d(F,{style:{color:o.getDay()===p&&"#f59256"},children:[console.log((p+1||p+1===7||(p=0))===0&&"#f59256"),n&&n.isOpen?n.from:"",n&&n.isOpen&&"-",n&&n.isOpen?n.to:"Closed"]},n._id))})]})})})},k=t.div``,D=t.ul`
   position: reletive;
-`,F=i.img`
+`,I=t.img`
   width: 158px;
   height: 112px;
 
@@ -74,7 +74,7 @@ margin-top: 64px;
     width: 120px;
     height: 85px;
   }
-`,U=i.h2`
+`,L=t.h2`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 700;
@@ -95,7 +95,7 @@ margin-top: 64px;
     font-size: 16px;
     line-height: 22px;
   }
-`,I=i.a`
+`,U=t.a`
 font-family: "Manrope";
 font-style: normal;
 font-weight: 700;
@@ -114,7 +114,7 @@ margin-bottom: 16px;
 @media (min-width: 768px) and (max-width: 1279px) {
   font-size: 16px;
   line-height: 22px;
-`,m=i.li`
+`,m=t.li`
   margin-bottom: 12px;
   max-width: 206px;
   margin-left: 12px;
@@ -126,9 +126,9 @@ margin-bottom: 16px;
   @media (min-width: 768px) and (max-width: 1279px) {
     margin-bottom: 4px;
   }
-`,L=i.div`
+`,E=t.div`
   display: flex;
-`;i.span`
+`;t.span`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
@@ -146,7 +146,7 @@ margin-bottom: 16px;
     font-size: 12px;
     line-height: 16px;
   }
-`;const l=i.a`
+`;const s=t.a`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
@@ -167,14 +167,14 @@ line-height: 16px;
 @media (min-width: 768px) and (max-width: 1279px) {
 font-size: 14px;
 line-height: 19px;
-`,_=({data:n})=>{const{title:d,url:p,addressUrl:h,imageUrl:e,address:r,workDays:a,phone:x,email:s}=n,[g,c]=w.useState(!1);return o(k,{children:[t(U,{children:t(I,{href:p,target:"_blank",children:d})}),o(L,{children:[t("a",{href:p,target:"_blank",children:t(F,{src:e??"https://animals-city.org/wp-content/themes/animals-city/img/logo.svg",alt:d})}),o(C,{children:[t(m,{children:o(l,{onMouseOver:()=>{c(!0)},onMouseOut:()=>{c(!1)},children:["Time: ",t("br",{}),a&&(a[0].from||a[6].from)?a[0].from||a[6].from:"--------","-",a&&(a[0].to||a[6].to)?a[0].to||a[6].to:"--------",g&&t(S,{workDays:a})]})}),t(m,{children:o(l,{href:r&&h,target:"_blank",children:["Address: ",t("br",{})," ",r||"-----------------"]})}),t(m,{children:o(l,{href:s&&`mailto:${s}`,children:["Email: ",t("br",{}),s||"-----------------"]})}),t(m,{children:o(l,{href:x&&`tel:${x}`,children:["Phone: ",t("br",{}),x||"-----------------"," "]})})]})]})]})},E="https://pet.tizenmile.keenetic.pro/api/static/friends",W=async()=>await u.get(E),A=i.ul`
+`,W=({data:e})=>{const{title:o,url:r,addressUrl:h,imageUrl:n,address:p,workDays:a,phone:x,email:l}=e,[w,c]=g.useState(!1);return d(k,{children:[i(L,{children:i(U,{href:r,target:"_blank",children:o})}),d(E,{children:[i("a",{href:r,target:"_blank",children:i(I,{src:n??"https://animals-city.org/wp-content/themes/animals-city/img/logo.svg",alt:o})}),d(D,{children:[i(m,{children:d(s,{onMouseOver:()=>{c(!0)},onMouseOut:()=>{c(!1)},children:["Time: ",i("br",{}),a&&(a[0].from||a[6].from)?a[0].from||a[6].from:"--------","-",a&&(a[0].to||a[6].to)?a[0].to||a[6].to:"--------",w&&i(C,{workDays:a})]})}),i(m,{children:d(s,{href:p&&h,target:"_blank",children:["Address: ",i("br",{})," ",p||"-----------------"]})}),i(m,{children:d(s,{href:l&&`mailto:${l}`,children:["Email: ",i("br",{}),l||"-----------------"]})}),i(m,{children:d(s,{href:x&&`tel:${x}`,children:["Phone: ",i("br",{}),x||"-----------------"," "]})})]})]})]})},_=t.ul`
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   margin-top: -16px;
   display: flex;
   flex-wrap: wrap;
-`,B=i.li`
+`,H=t.li`
   border-radius: 40px;
   background: #ffffff;
   margin: 16px;
@@ -189,7 +189,7 @@ line-height: 19px;
   @media (min-width: 768px) and (max-width: 1279px) {
     width: calc(50% - 32px);
   }
-`,D=i.div`
+`,j=t.div`
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -200,4 +200,4 @@ line-height: 19px;
   @media (min-width: 768px) and (max-width: 1279px) {
     width: 768px;
   }
-`,H=async()=>{const n=await W();if(!n)return;const d=n.data[0].sponsors;return t(D,{children:t(A,{children:d.map(p=>t(B,{children:t(_,{data:p})},p._id))})})},P=()=>o(f,{children:[t(b,{title:"Our friends"}),t(H,{})]});export{P as default};
+`,A=e=>{var o,r;return(r=(o=e==null?void 0:e.friends)==null?void 0:o.friendsList[0])==null?void 0:r.sponsors},B=()=>{const e=u(A),o=b();if(g.useEffect(()=>{o(y())},[]),!!e)return console.log(e),i(j,{children:i(_,{children:e.map(r=>i(H,{children:i(W,{data:r})},r._id))})})},$=()=>d(f,{children:[i(M,{title:"Our friends"}),i(B,{})]});export{$ as default};
