@@ -11,7 +11,6 @@ import {
   UserDataInput,
   UserForm,
   ErrorText,
-  InputWrapper,
 } from "./UserDataItem.styled";
 
 export const UserDataItem = ({
@@ -30,7 +29,6 @@ export const UserDataItem = ({
   const onInputChange = (e) => {
     setInputValue(e.target.value);
     setValid(UserSchema.fields[name].isValidSync(e.target.value));
-    // console.log(valid);
   };
 
   const onEditClick = () => {
@@ -66,20 +64,19 @@ export const UserDataItem = ({
     >
       {(formik) => (
         <UserForm>
-          <InputWrapper>
-            <Field
-              as={UserDataInput}
-              name={name}
-              type={type}
-              value={formik.values[name]}
-              disabled={!editMode}
-              onChange={(e) => {
-                onInputChange(e);
-                formik.handleChange(e);
-              }}
-            />
-            <ErrorMessage component={ErrorText} name={name} />
-          </InputWrapper>
+          <Field
+            as={UserDataInput}
+            name={name}
+            type={type}
+            value={formik.values[name]}
+            disabled={!editMode}
+            onChange={(e) => {
+              onInputChange(e);
+              formik.handleChange(e);
+            }}
+          />
+          <ErrorMessage component={ErrorText} name={name} />
+
           {editMode ? (
             <EditTextBtn
               type="submit"
