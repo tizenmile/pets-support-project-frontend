@@ -22,6 +22,7 @@ export const PetsNav = styled.div`
 
 export const PetsTitle = styled.h2`
   color: ${(p) => p.theme.colors.black};
+  font-family: ${(p) => p.theme.fonts.main};
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   font-size: ${(p) => p.theme.fontSizes.xm};
   letter-spacing: 0.04em;
@@ -39,6 +40,7 @@ export const AddPetBtnTitle = styled.p`
   margin-right: 15px;
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   font-size: ${(p) => p.theme.fontSizes.xm};
+  font-family: ${(p) => p.theme.fonts.main};
   @media ${(p) => p.theme.media.desktop} {
     margin-right: 12px;
   }

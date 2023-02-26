@@ -4,6 +4,7 @@ export const FormBox = styled.div`
   position: relative;
   width: 280px;
   padding: 40px 20px;
+  font-family: ${(p) => p.theme.fonts.main};
   background-color: ${(p) => p.theme.colors.white};
   border-radius: ${(p) => p.theme.radii.normal};
   @media (min-width: 768px) {
