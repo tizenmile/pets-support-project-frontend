@@ -80,16 +80,6 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
       birthDate: isBirthDate ? isBirthDate : "unknown",
       category: isCategory,
     };
-    // const parsedNotice = NoticeSchema.cast(
-    //   {
-    //     title: isTitle,
-    //     breed: isBreed,
-    //     name: isPetName,
-    //     birthDate: isBirthDate ? isBirthDate : "unknown",
-    //     category: isCategory,
-    //   },
-    //   { strict: true }
-    // );
     onSubmit(notice);
     isNext();
   };
@@ -162,7 +152,6 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
               value={isTitle}
               onChange={onChangeTitle}
             />
-            {/* {isRequire && <span>is require</span>} */}
           </NoticeAddModalLabel>
         </NoticeAddModalInputListItem>
         <NoticeAddModalInputListItem>
