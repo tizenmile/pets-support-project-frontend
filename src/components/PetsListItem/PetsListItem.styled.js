@@ -25,12 +25,10 @@ export const PetItemWrapper = styled.div`
 export const ImgPet = styled.img`
   margin-bottom: 20px;
   width: 240px;
-  height: 240px;
   border-radius: ${(p) => p.theme.radii.normal};
   @media ${(p) => p.theme.media.tablet} {
     margin-right: 32px;
     width: 161px;
-    height: 161px;
   }
 `;
 

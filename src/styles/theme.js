@@ -1,7 +1,7 @@
 export const theme = {
   colors: {
     white: "rgba(255, 255, 255, 1)",
-    black: "rgba(0, 0, 0, 1)",
+    black: "rgba(17, 17, 17, 1)",
     accent: "rgba(245, 146, 86, 1)",
     hover: "rgba(255, 113, 47, 1)",
     background: "rgba(253, 247, 242, 1)",

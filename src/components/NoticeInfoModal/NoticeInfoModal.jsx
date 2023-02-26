@@ -9,9 +9,10 @@ import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
+  getFavNotices,
 } from "../../redux/notices/operation";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
-
+import { getStatusFilter } from "../../redux/notices/selector";
 import {
   NoticeImgContainer,
   NoticeCloseModalButton,
@@ -36,6 +37,8 @@ import {
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const statusFilter = useSelector(getStatusFilter);
+
   // const isLoggedIn = true
 
   const [notice, setNotice] = useState(null);
@@ -43,10 +46,10 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
+    setIsFav((prev) => !prev);
     dispatch(
       isFav ? delNoticeFromFavorite(itemId) : addNoticeToFavorite(itemId)
     );
-    setIsFav((prev) => !prev);
   };
 
   const CustomToastWithLink = () => (
@@ -81,7 +84,14 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   return (
     <ModalBackdrop>
       <NoticeModalContainer>
-        <NoticeCloseModalButton onClick={() => onClose(isFav)}>
+        <NoticeCloseModalButton
+          onClick={() => {
+            onClose(isFav);
+            if (statusFilter === "fav-notice") {
+              dispatch(getFavNotices());
+            }
+          }}
+        >
           <NoticeCloseModalButtonImg
             src={close_menu_icon}
             alt="close_menu_icon"

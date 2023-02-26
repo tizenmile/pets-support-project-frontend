@@ -34,6 +34,8 @@ import {
   NoticeAddModalFileLable,
   NoticeAddModalFileLableImg2,
 } from "./NoticeAddModalStep2.styled";
+import { useDispatch } from "react-redux";
+import { getOwnNotices } from "../../../redux/notices/operation";
 
 import { AnimationLoader } from "../../AnimationLoader/AnimationLoader";
 
@@ -62,6 +64,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     noticeNext ? noticeNext.comments : ""
   );
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem(
