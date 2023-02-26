@@ -47,6 +47,7 @@ export const ImgUser = styled.img`
   height: 233px;
   border-radius: ${(p) => p.theme.radii.round};
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
+  object-fit: cover;
 `;
 
 export const EditImgBtn = styled.button`
@@ -108,18 +109,7 @@ export const BoxInfo = styled.div`
   }
 `;
 
-export const Block = styled.div`
-  position: relative;
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-
-  column-gap: 5px;
-  @media ${(p) => p.theme.media.tablet} {
-    column-gap: 24px;
-  }
-`;
+export const Block = styled.div``;
 
 export const UserForms = styled.div`
   display: flex;
