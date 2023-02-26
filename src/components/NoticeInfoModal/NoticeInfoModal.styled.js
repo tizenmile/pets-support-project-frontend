@@ -141,7 +141,7 @@ export const NoticeInfoModalLink = styled.a`
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   font-size: 16px;
   line-height: 1.36;
-  text-decoration: none;
+  /* text-decoration: none; */
   color: #000000;
   :hover {
     cursor: pointer;
