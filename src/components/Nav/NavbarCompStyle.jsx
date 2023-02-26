@@ -5,7 +5,7 @@ import CloseIcon from "../../media/close_menu_icon.svg";
 import AccIcon from "../../media/acc_icon.svg";
 export const NavbarContainer = styled.nav`
   padding: 20px 16px 20px 16px;
-  max-width: 1248px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   background-color: ${(p) => p.theme.colors.background};
@@ -178,7 +178,7 @@ export const CloseMenuIcon = styled.div`
   height: 40px;
   background-image: url(${CloseIcon});
 
-  @media (min-width: 600px) and (max-width: 1248px) {
+  @media (min-width: 600px) and (max-width: 1280px) {
     position: absolute;
     right: 38px;
     top: 30px;
