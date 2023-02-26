@@ -13,4 +13,9 @@ export const ModalWrapper = styled.div`
   backdrop-filter: blur(10px);
   z-index: 1200;
   overflow-y: scroll;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  /* html {
+    overflow: hidden;
+  } */
 `;

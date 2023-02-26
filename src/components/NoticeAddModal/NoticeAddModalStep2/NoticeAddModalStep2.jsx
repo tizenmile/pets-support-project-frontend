@@ -136,15 +136,15 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
           },
         }
       );
-      console.log(data);
+
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
       reset();
       notifySuccess();
       onClose();
+      return data;
     } catch (error) {
-      console.log(error);
-      notifyError();
+      notifyError(error.response.data.message[0].message);
     }
     setIsLoading(false);
   };
@@ -159,17 +159,17 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     setIsComments("");
   };
 
-  const notifyError = () => toast.error("Please enter correct data!");
+  const notifyError = (error) => toast.error(error);
   const notifySuccess = () => toast.success("Notice created!");
   const notifyInfo = () => toast.error("The file must not exceed 5.2 mb!");
 
   return (
     <>
-      <ToastContainer />
       {isLoading ? (
         <AnimationLoader />
       ) : (
         <>
+          <ToastContainer />
           <AddNoticeModalContainerSecond name="newForm" onSubmit={hundleSubmit}>
             <AddNoticeModalBtn type="button" onClick={onClose}>
               <AddNoticeModalBtnImg
@@ -211,7 +211,9 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
             <NoticeAddModalInputList>
               <NoticeAddModalInputListItem>
                 <NoticeAddModalLabel>
-                  Location*:
+                  <p>
+                    Location<span style={{ color: "#F59256" }}>*</span>:
+                  </p>
                   <AddNoticeModalInput
                     type=""
                     placeholder="Type location"
@@ -224,7 +226,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               {notice.category === "sell" && (
                 <NoticeAddModalInputListItem>
                   <NoticeAddModalLabel>
-                    Price*:
+                    Price:
                     <AddNoticeModalInput
                       type="number"
                       pattern="[1-9]*[.]?[1-9]+"
@@ -265,12 +267,15 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               </NoticeAddModalInputListItem>
               <NoticeAddModalInputListItem>
                 <NoticeAddModalTextAreaLabel>
-                  Comments:
+                  <p>
+                    Comments<span style={{ color: "#F59256" }}>*</span>:
+                  </p>
+
                   <NoticeAddModalTextArea
                     type="text"
-                    min="8"
-                    max="120"
-                    required={true}
+                    minlength="8"
+                    maxlength="120"
+                    required
                     placeholder="Type comment"
                     name="comments"
                     value={isComments}
