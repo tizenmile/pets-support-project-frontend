@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { UserSchema } from "../../UserSchemaValidation/UserSchemaValidation";
+import { UserSchema } from "../../helpers/schemaValidation/UserSchemaValidation";
 import { useDispatch } from "react-redux";
 
 import { updateUserData } from "../../redux/userAccount/operations";

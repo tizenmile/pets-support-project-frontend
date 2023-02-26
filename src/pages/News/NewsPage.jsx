@@ -18,9 +18,9 @@ import {
   WrapperList,
   // NotFoundBox,
 } from './NewsPage.styled';
-import { Newscard } from '../../components/NewsCard/NewsCard';
+import NewsCard from '../../components/NewsCard';
 
-export const NewsPage = () => {
+const NewsPage = () => {
   const [search, setSearch] = useSearchParams();
   const page = search.get('page');
   const query = search.get('text');
@@ -57,7 +57,7 @@ export const NewsPage = () => {
           <ListCard>
             {newss?.news?.map(value => (
               <ItemCard key={value?._id}>
-                <Newscard news={value} />
+                <NewsCard news={value} />
               </ItemCard>
             ))}
           </ListCard>
@@ -67,3 +67,5 @@ export const NewsPage = () => {
     </Wrapper>
   )
 };
+
+export default NewsPage;

@@ -3,8 +3,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api";
 // axios.defaults.baseURL = 'http://localhost:3002/api';
-axios.defaults.headers.common["Authorization"] =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YwOWRkMWUwNjhhYjQ3MzRiMjIxMTciLCJpYXQiOjE2NzcxNzMxMzksImV4cCI6MTY3NzIwOTEzOX0.4kAM8lujgjNFvhJqb82g-wh3KB2YRHDv1YXxUhQIrBA";
+
 
 export const fetchNoticesByCategory = createAsyncThunk(
   "notices/fetchNoticesByCategory",

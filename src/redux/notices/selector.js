@@ -4,3 +4,5 @@ export const selectIsLoading = state => state.notices.isLoading
 
 export const getSearch = (state) => state.search;
 export const getStatusFilter = (state) => state.filters.status;
+
+export const isLoading = (state) => state.notices.isLoading;

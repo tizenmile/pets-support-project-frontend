@@ -7,7 +7,7 @@ export const AddNoticeModalContainerSecond = styled.form`
   background-color: #ffffff;
   border-radius: 40px;
   padding: 40px 80px;
-  margin-top: 90px;
+  margin-top: 150px;
 `;
 
 export const NoticeAddModalTextSecond = styled.p`
@@ -54,15 +54,15 @@ export const NoticeModalImgListSexLable = styled.label`
 export const NoticeAddModalSexInput = styled.input`
   opacity: 0;
   height: 0;
-  width:0;
-  line-heigth: 0 ;
+  width: 0;
   overflow: hidden;
   padding: 0;
-  margin:0;
+  margin: 0;
   transition: ${(p) => p.theme.transition};
   &:checked + ${NoticeModalImgListSexLable} {
     transition: ${(p) => p.theme.transition};
-    color:  #F59256;;
+    color: #f59256;
+  }
 `;
 
 export const NoticeAddModalFileLable = styled.label`
@@ -88,7 +88,6 @@ export const NoticeAddModalFileLableBtn = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  // box-sizing: border-box;
   z-index: 1;
   :hover {
     border: 1px solid rgba(245, 146, 86, 0.5);
@@ -111,7 +110,6 @@ export const NoticeAddModalFileInput = styled.input`
   opacity: 0;
   height: 0;
   width: 0;
-  line-heigth: 0;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -128,7 +126,6 @@ export const NoticeAddModalTextAreaLabel = styled.label`
   line-height: 26px;
   color: #000000;
   cursor: pointer;
-  // width: content-box;
 `;
 
 export const NoticeAddModalTextArea = styled.textarea`

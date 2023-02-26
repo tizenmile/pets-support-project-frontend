@@ -34,6 +34,8 @@ import {
   NoticeAddModalFileLable,
   NoticeAddModalFileLableImg2,
 } from "./NoticeAddModalStep2.styled";
+import { useDispatch } from "react-redux";
+import { getOwnNotices } from "../../../redux/notices/operation";
 
 import { AnimationLoader } from "../../AnimationLoader/AnimationLoader";
 
@@ -62,6 +64,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     noticeNext ? noticeNext.comments : ""
   );
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem(
@@ -92,7 +95,10 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
   const onChangeImg = (evt) => {
     const { files } = evt.target;
-    console.log(files);
+    if (files[0].size > 5242880) {
+      return notifyInfo();
+    }
+    // console.log(files[0].size);
     setIsImage(files[0]);
     files[0] && setIsImageName(files[0].name);
     if (files) {
@@ -133,15 +139,15 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
           },
         }
       );
-      console.log(data);
+
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
       reset();
       notifySuccess();
       onClose();
+      return data;
     } catch (error) {
-      console.log(error);
-      notifyError();
+      notifyError(error.response.data.message[0].message);
     }
     setIsLoading(false);
   };
@@ -156,8 +162,9 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     setIsComments("");
   };
 
-  const notifyError = () => toast.error("Please enter correct data!");
+  const notifyError = (error) => toast.error(error);
   const notifySuccess = () => toast.success("Notice created!");
+  const notifyInfo = () => toast.error("The file must not exceed 5.2 mb!");
 
   return (
     <>
@@ -207,8 +214,11 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
             <NoticeAddModalInputList>
               <NoticeAddModalInputListItem>
                 <NoticeAddModalLabel>
-                  Location*:
+                  <p>
+                    Location<span style={{ color: "#F59256" }}>*</span>:
+                  </p>
                   <AddNoticeModalInput
+                    type=""
                     placeholder="Type location"
                     name="place"
                     value={isLocation}
@@ -219,9 +229,10 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               {notice.category === "sell" && (
                 <NoticeAddModalInputListItem>
                   <NoticeAddModalLabel>
-                    Price*:
+                    Price:
                     <AddNoticeModalInput
                       type="number"
+                      pattern="[1-9]*[.]?[1-9]+"
                       placeholder="Type price"
                       name="price"
                       value={isPrice}
@@ -259,8 +270,15 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               </NoticeAddModalInputListItem>
               <NoticeAddModalInputListItem>
                 <NoticeAddModalTextAreaLabel>
-                  Comments:
+                  <p>
+                    Comments<span style={{ color: "#F59256" }}>*</span>:
+                  </p>
+
                   <NoticeAddModalTextArea
+                    type="text"
+                    minlength="8"
+                    maxlength="120"
+                    required
                     placeholder="Type comment"
                     name="comments"
                     value={isComments}
