@@ -15,7 +15,7 @@ import {
 } from './Newscard.styled';
 import { v4 as uuidv4 } from 'uuid';
 
-export const Newscard = ({ news }) => {
+const NewsCard = ({ news }) => {
     const { title, url, description, date } = news;
 
     const id = uuidv4();
@@ -54,3 +54,5 @@ export const Newscard = ({ news }) => {
 
     );
 };
+
+export default NewsCard;

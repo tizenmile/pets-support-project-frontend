@@ -7,6 +7,8 @@ import {
 import { useSelector } from "react-redux";
 import { Notice } from "../NoticesItem/NoticesItem";
 import { NoticesList } from "./NoticesList.styled";
+import { isLoading } from "../../../redux/notices/selector";
+import AnimationLoader from "../../AnimationLoader";
 
 export const NoticeList = () => {
   const notices = useSelector(selectNotices);
@@ -14,6 +16,7 @@ export const NoticeList = () => {
   const filter = useSelector(getStatusFilter);
   const search = useSelector(getSearch);
   const normalizedFilterSearch = search.toLowerCase();
+  const loading = useSelector(isLoading);
 
   let filteredNotices;
   let filteredFavoriteNotices;
@@ -30,7 +33,9 @@ export const NoticeList = () => {
   }
   return (
     <>
-      {filter !== "fav-notice" ? (
+      {loading ? (
+        <AnimationLoader />
+      ) : filter !== "fav-notice" ? (
         <>
           {filteredNotices !== undefined && filteredNotices.length >= 1 && (
             <NoticesList>
@@ -42,16 +47,14 @@ export const NoticeList = () => {
         </>
       ) : (
         <>
-          <>
-            {filteredFavoriteNotices !== undefined &&
-              filteredFavoriteNotices.length >= 1 && (
-                <NoticesList>
-                  {filteredFavoriteNotices.map((notice) => {
-                    return <Notice key={notice._id} item={notice} />;
-                  })}
-                </NoticesList>
-              )}
-          </>
+          {filteredFavoriteNotices !== undefined &&
+            filteredFavoriteNotices.length >= 1 && (
+              <NoticesList>
+                {filteredFavoriteNotices.map((notice) => {
+                  return <Notice key={notice._id} item={notice} />;
+                })}
+              </NoticesList>
+            )}
         </>
       )}
     </>

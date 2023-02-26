@@ -33,9 +33,11 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
   const [isTitle, setIsTitle] = useState(notice ? notice.title : "");
   const [isPetName, setIsPetName] = useState(notice ? notice.name : "");
   const [isBirthDate, setIsBirthDate] = useState(
-    notice ? notice.birthDate : ""
+    notice ? notice.birthDate : null
   );
   const [isBreed, setIsBreed] = useState(notice ? notice.breed : "");
+
+  // const [isRequire, setIsRequire] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(
@@ -54,7 +56,8 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
     setIsCategory(evt.target.value);
   };
   const onChangeTitle = (evt) => {
-    setIsTitle(evt.target.value);
+    const { value } = evt.target;
+    setIsTitle(value);
   };
   const onChangePetName = (evt) => {
     setIsPetName(evt.target.value);
@@ -74,9 +77,19 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
       title: isTitle,
       breed: isBreed,
       name: isPetName,
-      birthDate: isBirthDate,
+      birthDate: isBirthDate ? isBirthDate : "unknown",
       category: isCategory,
     };
+    // const parsedNotice = NoticeSchema.cast(
+    //   {
+    //     title: isTitle,
+    //     breed: isBreed,
+    //     name: isPetName,
+    //     birthDate: isBirthDate ? isBirthDate : "unknown",
+    //     category: isCategory,
+    //   },
+    //   { strict: true }
+    // );
     onSubmit(notice);
     isNext();
   };
@@ -135,14 +148,21 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
       <NoticeAddModalInputList>
         <NoticeAddModalInputListItem>
           <NoticeAddModalLabel>
-            Tittle of ad*:
+            <p>
+              Tittle of ad<span style={{ color: "#F59256" }}>*</span>:
+            </p>
+
             <AddNoticeModalInput
               type="text"
+              minlength="2"
+              maxlength="48"
+              required
               placeholder="Type name"
               name="title"
               value={isTitle}
               onChange={onChangeTitle}
             />
+            {/* {isRequire && <span>is require</span>} */}
           </NoticeAddModalLabel>
         </NoticeAddModalInputListItem>
         <NoticeAddModalInputListItem>
@@ -150,6 +170,8 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
             Name pet:
             <AddNoticeModalInput
               type="text"
+              minlength="2"
+              maxlength="16"
               placeholder="Type name pet"
               name="name"
               value={isPetName}
@@ -172,6 +194,9 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
           <NoticeAddModalLabel>
             Breed:
             <AddNoticeModalInput
+              type="text"
+              minlength="2"
+              maxlength="24"
               placeholder="Type breed"
               name="breed"
               value={isBreed}
