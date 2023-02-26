@@ -145,6 +145,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
       reset();
       notifySuccess();
       onClose();
+      dispatch(getOwnNotices());
       return data;
     } catch (error) {
       notifyError(error.response.data.message[0].message);
