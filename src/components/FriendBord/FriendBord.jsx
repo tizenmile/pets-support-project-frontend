@@ -1,17 +1,25 @@
-import { getFrends } from "../../API/api";
+// import { getFrends } from "../../API/api";
 import FriendCard from "../FriendCard/FriendCard";
 import { BordList, BordItem, Wrap } from "./FriendBordStyle";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFriends } from "../../redux/friends/friendsSelectors";
+import { getFriends } from "../../redux/friends/friendsOperations";
 
+const FriendBord = () => {
+  const friendsData = useSelector(selectFriends);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getFriends());
+  }, []);
 
-const FriendBord = async () => {
-  const response = await getFrends();
-  if(!response) return
-  const friends = response.data[0].sponsors;
+  if (!friendsData) return;
+  console.log(friendsData);
   return (
     <Wrap>
       <BordList>
-        {friends.map((friend) => (
+        {friendsData.map((friend) => (
           <BordItem key={friend._id}>
             <FriendCard data={friend} />
           </BordItem>
