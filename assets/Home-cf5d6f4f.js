@@ -1,1 +1,0 @@
-import{j as e,H as r,a as o,b as n,L as a,c as t,R as s}from"./index-23d39ed1.js";const i=()=>e(r,{children:o(n,{children:[e(a,{children:e(t,{children:"Take good care of your small pets"})}),e(s,{})]})}),l=()=>e(i,{});export{l as default};
