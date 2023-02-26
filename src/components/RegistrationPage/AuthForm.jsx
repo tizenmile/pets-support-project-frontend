@@ -14,6 +14,18 @@ import {
 } from "./RegistrationPageCompStyle";
 import { useState } from "react";
 
+const notify = (msg) =>
+  toast.info(msg, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
 const stepOneValidationSchema = Yup.object().shape({
   email: Yup.string()
     .max(63, "Must be between 6 and 63 characters.")
@@ -38,10 +50,12 @@ const stepOneValidationSchema = Yup.object().shape({
       "Must include numbers and/or letters (uppercase and lowercase) except for whitespace."
     )
     .required("Password is required"),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
+  // confirmPassword: Yup.string("Confirm password is required")
+  // .required("Confirm password is required")
+  // .oneOf(
+  //   [Yup.ref("password"), null],
+  //   "Passwords must match"
+  // ),
 });
 
 const stepTwoValidationSchema = Yup.object().shape({
@@ -122,7 +136,18 @@ export const AuthForm = () => {
 
 const StepOne = (props) => {
   const handleSubmit = (values) => {
-    props.next(values);
+    if(!values.confirmPassword){
+      notify("Confirm password is required")
+      return
+    } 
+
+    if (values.confirmPassword === values.password) {
+      props.next(values);
+    }
+
+    if (values.confirmPassword !== values.password) {
+      notify("Passwords must match")
+    }
   };
 
   return (
@@ -131,7 +156,7 @@ const StepOne = (props) => {
       validationSchema={stepOneValidationSchema}
       onSubmit={handleSubmit}
     >
-      {({ values }) => (
+      {({ values}) => (
         <RegistrationPageForm>
           <RegistrationPageFormInput
             placeholder="Email"
@@ -151,11 +176,11 @@ const StepOne = (props) => {
             placeholder="Confirm Password"
             type="password"
             name="confirmPassword"
-            value={values.confirmPassword || ""}
+            validate = {Yup.string()}
           />
           <FormError name="confirmPassword" />
 
-          <RegistrationPageButton type="submit">Next</RegistrationPageButton>
+          <RegistrationPageButton type="submit" >Next</RegistrationPageButton>
         </RegistrationPageForm>
       )}
     </Formik>
