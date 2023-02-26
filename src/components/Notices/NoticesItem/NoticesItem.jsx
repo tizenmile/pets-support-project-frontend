@@ -32,6 +32,7 @@ import {
   CardButton,
 } from "./NoticesItem.styled";
 import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
+import { NoticeConfirmModal } from "../NoticeConfirmDelModal/NoticeConfirmModal";
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
@@ -40,6 +41,7 @@ export const Notice = ({ item }) => {
    // const isLoggedIn = true
   const user = useSelector(selectUser);
   const [isModlOpen, setIsModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false);
   const statusFilter = useSelector(getStatusFilter);
 
@@ -48,6 +50,10 @@ export const Notice = ({ item }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  const toggleConfirmModal = () => {
+    setIsConfirmModalOpen(prev => !prev)
+  }
 
   const closeModal = (isFav) => {
     setIsModalOpen(false);
@@ -174,7 +180,7 @@ export const Notice = ({ item }) => {
         </FeaturesList>
       </div>
           <CardButton style={item.userId !== user._id ? {marginBottom: '32px'} : {marginBottom: '12px'}} onClick={openModal}>Learn more</CardButton>
-        {item.userId == user._id && <CardButton onClick={handleDeleteClick}>
+        {item.userId == user._id && <CardButton onClick={toggleConfirmModal}>
             Delete
           <HiTrash width={"16px"} height={"17px"} />  
           </CardButton>}
@@ -186,6 +192,7 @@ export const Notice = ({ item }) => {
           onClose={closeModal}
         />
       )}
+      {isConfirmModalOpen && <NoticeConfirmModal onClose={ toggleConfirmModal} deleteNotice={handleDeleteClick} />}
     </NoticeItem>
   );
 };
