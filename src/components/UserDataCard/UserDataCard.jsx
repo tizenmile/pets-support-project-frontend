@@ -131,7 +131,6 @@ export const UserDataCard = () => {
                         defaultValue={birthday}
                         name="birthday"
                         type={"date"}
-                        min="1940-01-01"
                       />
                     </Block>
                   </BoxTitle>
