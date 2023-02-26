@@ -11,6 +11,8 @@ const noticesInitialState = {
   favNotices: [],
   isLoading: false,
   error: null,
+  page: 0,
+  total: 0
 };
 
 const noticesSlice = createSlice({
@@ -23,11 +25,14 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items = action.payload;
+        
       })
       .addCase(getFavNotices.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.favNotices = action.payload;
+        state.favNotices = [...state.favNotices, ...action.payload.notices]
+        state.page = state.favNotices.length !== state.total ? state.page + 1 : 0 
+        state.total = action.payload.total
       })
       .addCase(getOwnNotices.fulfilled, (state, action) => {
         state.isLoading = false;

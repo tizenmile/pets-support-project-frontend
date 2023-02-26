@@ -16,16 +16,18 @@ import {
 import { statusFilters } from "../../../redux/constans";
 import {
   getStatusFilter,
-  selectFavNotices,
+  selectPage,
+  selectFavNotices
 } from "../../../redux/notices/selector";
 import { setStatusFilter } from "../../../redux/notices/filterSlice";
 import { ButtonEl } from "../Button/Button";
 import { ButtonAddNotice } from "../ButtonAddNotice/ButtonAddNotice";
-// import { selectIsLoggedIn } from "../../redux/notices/selector";
 
 export default function CategoriesNav({ category }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const page = useSelector(selectPage)
+  const favNotices = useSelector(selectFavNotices)
   const filter = useSelector(getStatusFilter);
   useEffect(() => {
     dispatch(setStatusFilter("sell"));
@@ -47,7 +49,7 @@ export default function CategoriesNav({ category }) {
 
   const BBB = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
-    dispatch(getFavNotices());
+    favNotices.length === 0 && dispatch(getFavNotices(page));
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
   return (

@@ -22,9 +22,9 @@ const FindPet = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    isLoggedIn && dispatch(getFavNotices());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   isLoggedIn && dispatch(getFavNotices());
+  // }, [dispatch]);
 
   return (
     <>
