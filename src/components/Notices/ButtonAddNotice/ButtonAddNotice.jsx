@@ -16,7 +16,7 @@ export const ButtonAddNotice = () => {
   return (
     <>
       <AddButtonNotice>
-        <button onClick={openModal}>create notice</button>
+        <button onClick={openModal}> create notice</button>
       </AddButtonNotice>
       {isModalOpen && <NoticeAddModal onClose={closeModal} />}
     </>
