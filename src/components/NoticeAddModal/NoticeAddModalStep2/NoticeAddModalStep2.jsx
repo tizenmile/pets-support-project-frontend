@@ -115,6 +115,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const hundleSubmit = async (evt) => {
+    // console.log(notice.birthDate);
     setIsLoading(true);
     evt.preventDefault();
     const formData = new FormData();
@@ -142,10 +143,13 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
+      dispatch(getOwnNotices());
       reset();
       notifySuccess();
       onClose();
-      return data;
+      notifySuccess();
+
+      // return data;
     } catch (error) {
       notifyError(error.response.data.message[0].message);
     }
@@ -229,7 +233,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               {notice.category === "sell" && (
                 <NoticeAddModalInputListItem>
                   <NoticeAddModalLabel>
-                    Price:
+                    Price<span style={{ color: "#F59256" }}>*</span>:
                     <AddNoticeModalInput
                       type="number"
                       pattern="[1-9]*[.]?[1-9]+"
@@ -270,7 +274,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               </NoticeAddModalInputListItem>
               <NoticeAddModalInputListItem>
                 <NoticeAddModalTextAreaLabel>
-                  <p>
+                  <p style={{ fontSize: "18px" }}>
                     Comments<span style={{ color: "#F59256" }}>*</span>:
                   </p>
 
@@ -279,7 +283,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                     minlength="8"
                     maxlength="120"
                     required
-                    placeholder="Type comment"
+                    placeholder="Type breed"
                     name="comments"
                     value={isComments}
                     onChange={onChangeComments}
@@ -294,7 +298,10 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                 </NoticeAddModalBottomBtn>
               </NoticeAddModalBtnListItem>
               <NoticeAddModalBtnListItem>
-                <NoticeAddModalBottomBtn type="submit">
+                <NoticeAddModalBottomBtn
+                  style={{ color: "#fff", backgroundColor: "#F59256" }}
+                  type="submit"
+                >
                   Done
                 </NoticeAddModalBottomBtn>
               </NoticeAddModalBtnListItem>

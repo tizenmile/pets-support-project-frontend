@@ -1,26 +1,26 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
- @media ${p => p.theme.media.mobileMax} {  
+ @media (${p => p.theme.media.mobileMax} ){  
     display: flex;
     flex-direction: column;
-    ::before {
+    /* ::before {
       content: " ";
       height: 4px;
       margin-bottom: 4px;
       background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
       border-radius: 40px;
       width: 200px;
-    }
+    } */
   }
-  @media ${p => p.theme.media.tablet} {
+  @media (${p => p.theme.media.tablet}) {
     ::before {
       content: " ";
       height: 8px;
       width: 280px;
     }
   }
-  @media ${p => p.theme.media.desktop} {
+  @media( ${p => p.theme.media.desktop}) {
     ::before {
       content: " ";
       width: 340px;
@@ -35,7 +35,7 @@ export const Span = styled.span`
 
 export const Strip = styled.div`
   display: block;
-  width: 200px;
+  /* width: 200px; */
   height: 4px;
   background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   border-radius: 40px;
@@ -43,7 +43,7 @@ export const Strip = styled.div`
 `;
 
 export const Title = styled.h3`
-@media ${p => P.theme.media.mobileMax} {
+@media (${p => p.theme.media.mobileMax}) {
   margin-top: 0px;
   margin-bottom: 16px;
   font-weight: 700;
@@ -56,11 +56,11 @@ export const Title = styled.h3`
     padding: 2px 3px;
     margin-left: 0px;
 
-    @media ${p => p.theme.media.tablet} {
+    @media( ${p => p.theme.media.tablet}) {
       width: calc(((100% - 32px) / 2) * 0.9);
       height: auto;
     }
-    @media ${p => p.theme.media.desktop} {
+    @media( ${p => p.theme.media.desktop}) {
       width: calc((100% - 64px) / 3);
     }
   }
@@ -74,7 +74,7 @@ export const Title = styled.h3`
     color: #535353;
   }
 }
-  @media ${p => p.theme.media.desktop} {
+  @media (${p => p.theme.media.desktop}) {
     letter-spacing: -0.02em;
   }
 `;
@@ -124,8 +124,12 @@ export const Checkbox = styled.input`
 `;
 
 export const P = styled.p`
-  display: inline-block;
-  text-align: justify;
+  height: 154px;
+  overflow-y: hidden;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgb(17, 19, 33);
 `;
 
 export const Footer = styled.div`
