@@ -1,4 +1,4 @@
-import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./index-3c87011e.js";import{e as x,d as u,c as b,a as o,V as f,F as w}from"./index.esm-13c81431.js";import{l as $,i as k,F as n}from"./AuthForm-b797e38c.js";const y=a.div`
+import{s as i,U as m,V as l,r as p,e as c,j as t,a,W as h,F as g}from"./index-0b407767.js";import{e as x,d as u,c as b,a as o,V as f,F as w}from"./index.esm-7a0515cb.js";import{l as $,i as k,F as n}from"./AuthForm-eb5d6ae8.js";import"./index.esm-8d2d8656.js";import"./iconBase-f922d9bd.js";const y=i.div`
   height: 88vh;
   background-image: url(${m});
   background-position: center bottom -200px;
@@ -18,7 +18,7 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
     justify-content: center;
     align-items: center;
   } ;
-`,v=a(x)`
+`,v=i(x)`
   width: 280px;
   display: flex;
   margin-left: auto;
@@ -44,7 +44,7 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
-`,L=a.p`
+`,L=i.p`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -60,7 +60,7 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     margin-top: 60px;
   }
-`,z=a.p`
+`,z=i.p`
   margin-top: 40px;
   font-style: normal;
   font-weight: 400;
@@ -77,7 +77,7 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     margin-bottom: 60px;
   }
-`,F=a(l)`
+`,F=i(l)`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -96,7 +96,7 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
   &:hover {
     text-decoration-thickness: 2px;
   }
-`,r=a(u)`
+`,r=i(u)`
   width: 266px;
   height: 40px;
   left: 20px;
@@ -125,7 +125,7 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
     width: 458px;
     height: 52px;
   }
-`,P=a.button`
+`,P=i.button`
   display: flex;
   justify-content: center;
   list-style: none;
@@ -151,4 +151,4 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     width: 458px;
   }
-`,S=b().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new f("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),j={email:"",password:""},E=()=>{const[e,V]=c.useState(j),s=p();return t(w,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:i(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(P,{type:"submit",children:"Login"}),i(z,{children:["Don't have an account?",t(F,{to:"/register",children:"Register"})]})]})})})},I=()=>t(g,{children:t(E,{})});export{I as default};
+`,S=b().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new f("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),j={email:"",password:""},E=()=>{const[e,V]=p.useState(j),s=c();return t(w,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:a(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(P,{type:"submit",children:"Login"}),a(z,{children:["Don't have an account?",t(F,{to:"/register",children:"Register"})]})]})})})},B=()=>t(g,{children:t(E,{})});export{B as default};

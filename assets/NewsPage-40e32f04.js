@@ -1,4 +1,4 @@
-import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O as M}from"./index-3c87011e.js";import{G as F}from"./iconBase-333054a0.js";function j(e){return F({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{d:"M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"}}]})(e)}const D=i.div`
+import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O as F}from"./index-0b407767.js";import{B as j}from"./index.esm-8d2d8656.js";import"./iconBase-f922d9bd.js";const D=i.div`
   top: 0;
   left: 0;
   /* position: sticky; */
@@ -18,7 +18,7 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
   @media (${e=>e.theme.media.mobileMax}) {
     width: 280px;
   }
-`,I=i.button`
+`,M=i.button`
   display: flex;
   width: 40px;
   height: 40px;
@@ -66,7 +66,7 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
   width: 20px;
   height: 20px;
   margin: auto;
-`,y=({submitForm:e})=>{const[t,o]=b.useState(""),[,r]=w();return n(D,{children:s(E,{onSubmit:c=>{c.preventDefault(),r({text:t}),o("")},children:[n(R,{onChange:c=>{o(c.target.value)},name:"name",type:"text",autocomplete:"off",placeholder:"Search",value:t}),s(I,{type:"submit",children:[n(N,{children:"Search"}),n(T,{})]})]})})};y.propTypes={submitForm:$.func};const B=e=>e.news.news[0],L=e=>{var t,o;return(o=(t=e.news.news)==null?void 0:t.data)==null?void 0:o.totalPages},P=e=>e.news.isLoading,V=i.div`
+`,y=({submitForm:e})=>{const[t,o]=b.useState(""),[,r]=w();return n(D,{children:s(E,{onSubmit:c=>{c.preventDefault(),r({text:t}),o("")},children:[n(R,{onChange:c=>{o(c.target.value)},name:"name",type:"text",autocomplete:"off",placeholder:"Search",value:t}),s(M,{type:"submit",children:[n(N,{children:"Search"}),n(T,{})]})]})})};y.propTypes={submitForm:S.func};const B=e=>e.news.news[0],I=e=>{var t,o;return(o=(t=e.news.news)==null?void 0:t.data)==null?void 0:o.totalPages},L=e=>e.news.isLoading,P=i.div`
   background-color: rgba(253, 247, 242, 1);
   @media (${e=>e.theme.media.mobileMax}) {
     padding: 45px 20px 100px 20px;
@@ -97,7 +97,7 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
     font-size: 48px;
     line-height: 66px;
   }
-`,A=i.ul`
+`,V=i.ul`
   @media (${e=>e.theme.media.tablet}) {
     display: flex;
     flex-wrap: wrap;
@@ -106,7 +106,7 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
     display: flex;
     flex-wrap: wrap;
   }
-`,G=i.li`
+`,U=i.li`
   @media (${e=>e.theme.media.mobileMax}) {
     margin-left: auto;
     margin-right: auto;
@@ -134,7 +134,7 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
       margin-left: 0px;
     }
   }
-`,U=i.div`
+`,W=i.div`
   margin-left: auto;
   margin-right: auto;
   @media (${e=>e.theme.media.mobileMax}) {
@@ -165,7 +165,7 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
     width: 608px;
     height: 44px;
   }
-`;const W=i.div`
+`;const A=i.div`
  @media (${e=>e.theme.media.mobileMax} ){  
     display: flex;
     flex-direction: column;
@@ -191,7 +191,7 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
       width: 340px;
     }
   }
-`,v=i.span`
+`,k=i.span`
   display: inline-block;
   text-align: justify;
 `,H=i.div`
@@ -242,9 +242,9 @@ import{s as i,p as $,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
 `,q=i.div`
 display: block ;
 /* margin-bottom: auto; */
-`,k=i.span`
+`,v=i.span`
   display: inline;
-`,S=i.label`
+`,$=i.label`
   color: rgba(245, 146, 86, 1);
   cursor: pointer;
   :hover {
@@ -255,39 +255,39 @@ display: block ;
     margin-top: 15px;
     content: 'Show more';
   }
-`,Q=i.input`
+`,G=i.input`
   display: none;
-  :checked ~ ${v} {
+  :checked ~ ${k} {
     display: inline;
     opacity: 1;
     font-size: inherit;
     max-height: 999em;
   }
-  :checked ~ ${k} {
+  :checked ~ ${v} {
     display: none;
   }
-  :checked ~ ${S} {
+  :checked ~ ${$} {
     :before {
       content: 'Show less';
     }
   }
-`,X=i.p`
+`,Q=i.p`
   height: 154px;
   overflow-y: hidden;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   color: rgb(17, 19, 33);
-`,J=i.div`
+`,X=i.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-`,K=i.div`
+`,J=i.div`
   font-weight: 400;
   font-size: 24px;
   line-height: 1.36;
   color: rgba(49, 21, 4, 0.07);
-`,Y=i.a`
+`,K=i.a`
   font-weight: 500;
   font-size: 24px;
   line-height: 1.36;
@@ -297,4 +297,4 @@ display: block ;
   :hover {
     color: rgba(255, 97, 1, 1);
   }
-`;var m,Z=new Uint8Array(16);function ee(){if(!m&&(m=typeof crypto<"u"&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto)||typeof msCrypto<"u"&&typeof msCrypto.getRandomValues=="function"&&msCrypto.getRandomValues.bind(msCrypto),!m))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return m(Z)}const te=/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;function ie(e){return typeof e=="string"&&te.test(e)}var a=[];for(var x=0;x<256;++x)a.push((x+256).toString(16).substr(1));function ne(e){var t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:0,o=(a[e[t+0]]+a[e[t+1]]+a[e[t+2]]+a[e[t+3]]+"-"+a[e[t+4]]+a[e[t+5]]+"-"+a[e[t+6]]+a[e[t+7]]+"-"+a[e[t+8]]+a[e[t+9]]+"-"+a[e[t+10]]+a[e[t+11]]+a[e[t+12]]+a[e[t+13]]+a[e[t+14]]+a[e[t+15]]).toLowerCase();if(!ie(o))throw TypeError("Stringified UUID is invalid");return o}function oe(e,t,o){e=e||{};var r=e.random||(e.rng||ee)();if(r[6]=r[6]&15|64,r[8]=r[8]&63|128,t){o=o||0;for(var d=0;d<16;++d)t[o+d]=r[d];return t}return ne(r)}const ae=({news:e})=>{const{title:t,url:o,description:r,date:d}=e,p=oe(),c=r.slice(0,195),h=r.slice(195);return s(W,{children:[s("div",{children:[n(H,{}),n(O,{children:t||"no title"})]}),n(_,{children:n(q,{children:s(X,{children:[n(Q,{type:"checkbox",id:p}),c||"no description",n(k,{children:" ..."}),n(v,{children:h}),n(S,{htmlFor:p})]})})}),s(J,{children:[n(K,{children:d||""}),n(Y,{href:o,target:"_blank",children:"Read more"})]})]})},pe=()=>{var h;const[e,t]=w(),o=e.get("page"),r=e.get("text");g(P);const d=z(),p=g(B);g(L);const c=l=>{d(f(l))};return b.useEffect(()=>{d(r?f(r):C(o))},[o,r,d]),console.log(p),s(V,{children:[n(u,{children:"News"}),n(y,{submitForm:c}),p?s(U,{children:[n(A,{children:(h=p==null?void 0:p.news)==null?void 0:h.map(l=>n(G,{children:n(ae,{news:l})},l==null?void 0:l._id))}),n(M,{})]}):n("div",{children:n(u,{children:"Nothing found. Please, try again"})})]})};export{pe as default};
+`;var h,Y=new Uint8Array(16);function Z(){if(!h&&(h=typeof crypto<"u"&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto)||typeof msCrypto<"u"&&typeof msCrypto.getRandomValues=="function"&&msCrypto.getRandomValues.bind(msCrypto),!h))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return h(Y)}const ee=/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;function te(e){return typeof e=="string"&&ee.test(e)}var a=[];for(var x=0;x<256;++x)a.push((x+256).toString(16).substr(1));function ie(e){var t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:0,o=(a[e[t+0]]+a[e[t+1]]+a[e[t+2]]+a[e[t+3]]+"-"+a[e[t+4]]+a[e[t+5]]+"-"+a[e[t+6]]+a[e[t+7]]+"-"+a[e[t+8]]+a[e[t+9]]+"-"+a[e[t+10]]+a[e[t+11]]+a[e[t+12]]+a[e[t+13]]+a[e[t+14]]+a[e[t+15]]).toLowerCase();if(!te(o))throw TypeError("Stringified UUID is invalid");return o}function ne(e,t,o){e=e||{};var r=e.random||(e.rng||Z)();if(r[6]=r[6]&15|64,r[8]=r[8]&63|128,t){o=o||0;for(var d=0;d<16;++d)t[o+d]=r[d];return t}return ie(r)}const oe=({news:e})=>{const{title:t,url:o,description:r,date:d}=e,p=ne(),c=r.slice(0,195),m=r.slice(195);return s(A,{children:[s("div",{children:[n(H,{}),n(O,{children:t||"no title"})]}),n(_,{children:n(q,{children:s(Q,{children:[n(G,{type:"checkbox",id:p}),c||"no description",n(v,{children:" ..."}),n(k,{children:m}),n($,{htmlFor:p})]})})}),s(X,{children:[n(J,{children:d||""}),n(K,{href:o,target:"_blank",children:"Read more"})]})]})},pe=()=>{var m;const[e,t]=w(),o=e.get("page"),r=e.get("text");g(L);const d=z(),p=g(B);g(I);const c=l=>{d(f(l))};return b.useEffect(()=>{d(r?f(r):C(o))},[o,r,d]),console.log(p),s(P,{children:[n(u,{children:"News"}),n(y,{submitForm:c}),p?s(W,{children:[n(V,{children:(m=p==null?void 0:p.news)==null?void 0:m.map(l=>n(U,{children:n(oe,{news:l})},l==null?void 0:l._id))}),n(F,{})]}):n("div",{children:n(u,{children:"Nothing found. Please, try again"})})]})};export{pe as default};
