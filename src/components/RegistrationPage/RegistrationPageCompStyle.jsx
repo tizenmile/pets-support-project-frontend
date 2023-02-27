@@ -35,7 +35,7 @@ export const RegistrationPageFormContainer = styled.div`
 
   @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     width: 608px;
-    margin-top: -46px;
+    margin-top: -180px;
     background-color: ${(p) => p.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
