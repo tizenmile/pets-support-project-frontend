@@ -135,6 +135,23 @@ export const NoticeModalBottomText = styled.p`
   }
 `;
 
+export const NoticeInfoModalLink = styled.a`
+  font-family: ${(p) => p.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  font-size: 16px;
+  line-height: 1.36;
+  /* text-decoration: none; */
+  color: #000000;
+  :hover {
+    cursor: pointer;
+    color: #f59256;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 14px;
+  }
+`;
+
 export const NoticeModalList = styled.ul`
   //   background-color: red;
 `;

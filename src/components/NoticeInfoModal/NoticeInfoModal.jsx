@@ -32,6 +32,7 @@ import {
   NoticeContactBtn,
   NoticeModalAddToFavoriteBtnImage,
   NoticeCloseModalButtonImg,
+  NoticeInfoModalLink,
 } from "./NoticeInfoModal.styled";
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
@@ -150,15 +151,15 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
               </NoticeModalListItem>
               <NoticeModalListItem>
                 <NoticeModalTopText>Email:</NoticeModalTopText>
-                <NoticeModalBottomText>
+                <NoticeInfoModalLink href={"mailto:" + notice.user.email}>
                   {notice.user.email}
-                </NoticeModalBottomText>
+                </NoticeInfoModalLink>
               </NoticeModalListItem>
               <NoticeModalListItem>
                 <NoticeModalTopText>Phone:</NoticeModalTopText>
-                <NoticeModalBottomText>
+                <NoticeInfoModalLink href={"tel:" + notice.user.mobile}>
                   {notice.user.mobile}
-                </NoticeModalBottomText>
+                </NoticeInfoModalLink>
               </NoticeModalListItem>
 
               {notice.notice.category === "sell" && (
