@@ -1,4 +1,4 @@
-import{s as i,U as m,V as l,r as p,e as c,j as t,a,W as h,F as g}from"./index-5b802fe3.js";import{e as x,d as u,c as b,a as o,V as f,F as w}from"./index.esm-9e1cdbe1.js";import{l as $,i as k,F as n}from"./AuthForm-ccab6481.js";import"./index.esm-7f91d557.js";import"./iconBase-61a010ec.js";const y=i.div`
+import{s as i,U as m,V as l,r as c,e as p,j as t,a,W as h,F as g}from"./index-79f56e00.js";import{e as x,d as u,c as b,a as o,V as f,F as w}from"./index.esm-1cb117ed.js";import{l as $,i as k,F as n}from"./AuthForm-321f03ca.js";import"./index.esm-1a46ca95.js";import"./iconBase-c3830ac4.js";const y=i.div`
   height: 88vh;
   background-image: url(${m});
   background-position: center bottom -200px;
@@ -29,7 +29,6 @@ import{s as i,U as m,V as l,r as p,e as c,j as t,a,W as h,F as g}from"./index-5b
 
   @media (${e=>e.theme.media.tablet}) and (max-width: 1280px) {
     width: 608px;
-    /* margin-top: 180px; */
     /* margin-top: 180px; */
     background-color: ${e=>e.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -151,4 +150,4 @@ import{s as i,U as m,V as l,r as p,e as c,j as t,a,W as h,F as g}from"./index-5b
   @media (${e=>e.theme.media.desktop}) {
     width: 458px;
   }
-`,S=b().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new f("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),j={email:"",password:""},E=()=>{const[e,V]=p.useState(j),s=c();return t(w,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:a(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(P,{type:"submit",children:"Login"}),a(z,{children:["Don't have an account?",t(F,{to:"/register",children:"Register"})]})]})})})},B=()=>t(g,{children:t(E,{})});export{B as default};
+`,S=b().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new f("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),j={email:"",password:""},E=()=>{const[e,V]=c.useState(j),s=p();return t(w,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:a(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(P,{type:"submit",children:"Login"}),a(z,{children:["Don't have an account?",t(F,{to:"/register",children:"Register"})]})]})})})},B=()=>t(g,{children:t(E,{})});export{B as default};
