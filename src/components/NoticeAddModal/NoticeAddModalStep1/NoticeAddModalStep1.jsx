@@ -145,10 +145,7 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
         <NoticeAddModalInputList>
           <NoticeAddModalInputListItem>
             <NoticeAddModalLabel>
-              <p>
-                Tittle of ad<span style={{ color: "#F59256" }}>*</span>:
-              </p>
-
+              Tittle of ad<span style={{ color: "#F59256" }}>*</span>:
               <AddNoticeModalInput
                 type="text"
                 minlength="2"
@@ -208,7 +205,11 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
             </NoticeAddModalBottomBtn>
           </NoticeAddModalBtnListItem>
           <NoticeAddModalBtnListItem>
-            <NoticeAddModalBottomBtn type="button" onClick={getAllField}>
+            <NoticeAddModalBottomBtn
+              style={{ color: "#fff", backgroundColor: "#F59256" }}
+              type="button"
+              onClick={getAllField}
+            >
               Next
             </NoticeAddModalBottomBtn>
           </NoticeAddModalBtnListItem>
