@@ -195,7 +195,7 @@ export const Notice = ({ item }) => {
         >
           Learn more
         </CardButton>
-        {item.userId == user._id && (
+        {item.userId == user._id && isLoggedIn && (
           <CardButton onClick={toggleConfirmModal}>
             Delete
             <HiTrash width={"16px"} height={"17px"} />
