@@ -11,6 +11,7 @@ import {
   UserDataInput,
   UserForm,
   ErrorText,
+  InputWrapper
 } from "./UserDataItem.styled";
 
 export const UserDataItem = ({
