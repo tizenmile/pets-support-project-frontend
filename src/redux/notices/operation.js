@@ -8,7 +8,7 @@ export const fetchNoticesByCategory = createAsyncThunk(
   "notices/fetchNoticesByCategory",
   async ({categoryName, page}, thunkAPI) => {
     try {
-      const response = await axios.get(`notices/category/${categoryName}?limit=3&page=${page}`);
+      const response = await axios.get(`notices/category/${categoryName}?limit=8&page=${page}`);
       return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
