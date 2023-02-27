@@ -7,9 +7,9 @@ export const NoticeItem = styled.li`
 `;
 
 export const CardTumb = styled.div`
- display: flex;
- flex-direction: column;
- height: 612px;
+  display: flex;
+  flex-direction: column;
+  height: 612px;
 `;
 
 export const Image = styled.img`
@@ -71,7 +71,8 @@ export const FeaturesItem = styled.li`
   margin-bottom: 8px;
 
   &&:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
+  }
 `;
 export const FeaturesText = styled.p`
   font-family: "Manrope";
@@ -98,18 +99,17 @@ export const CardButton = styled.button`
   line-height: 1.37;
   letter-spacing: 0.04em;
   color: #f59256;
-  
 
   &&:hover {
     border-color: #ff6101;
     color: #ff6101;
-    
+
     cursor: pointer;
   }
 `;
 
 export const IconTrash = styled.img`
- width: 16px;
- height: 17px;
- fill: currentColor;
+  width: 16px;
+  height: 17px;
+  fill: currentColor;
 `;

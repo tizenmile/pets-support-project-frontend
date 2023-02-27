@@ -26,7 +26,7 @@ import { NavLink, Link } from "react-router-dom";
 
 const links = [
   { path: "/News", label: "News", exact: "false" },
-  { path: "/FindPet/:categoryName", label: "Find pet", exact: "false" },
+  { path: "/FindPet/sell", label: "Find pet", exact: "false" },
   { path: "/OurFriend", label: "Our friends", exact: "false" },
 ];
 
