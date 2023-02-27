@@ -9,7 +9,8 @@ export const AddNoticeModalContainerSecond = styled.form`
   padding: 40px 80px;
   margin-top: 150px;
   @media (min-width: 320px) and (max-width: 767px) {
-    padding: 20px 40px;
+    padding: 40px 20px 28px 20px;
+    width: 280px;
   }
 `;
 
@@ -35,23 +36,34 @@ export const NoticeModalImgSexListItem = styled.li`
   align-items: center;
   justify-content: center;
   :not(:last-child) {
-    margin-right: 90px;
+    margin-right: 80px;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    :not(:last-child) {
+      margin-right: 40px;
+    }
   }
 `;
 
 export const NoticeAddModalmgSex = styled.img`
-  width: 54px;
+  width: 60px;
   margin-bottom: 20px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 40px;
+    margin-bottom: 12px;
+  }
 `;
 
 export const NoticeModalImgListSexLable = styled.label`
-  font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
   color: #000000;
   cursor: pointer;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 export const NoticeAddModalSexInput = styled.input`
@@ -79,6 +91,9 @@ export const NoticeAddModalFileLable = styled.label`
   width: max-content;
   display: block;
   cursor: pointer;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 export const NoticeAddModalFileLableBtn = styled.button`
@@ -95,11 +110,16 @@ export const NoticeAddModalFileLableBtn = styled.button`
   :hover {
     border: 1px solid rgba(245, 146, 86, 0.5);
   }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 116px;
+    height: 116px;
+    margin-bottom: 28px;
+  }
 `;
 
 export const NoticeAddModalFileLableImg1 = styled.img`
   width: 47px;
-  hegth: 47px;
+  height: 47px;
 `;
 export const NoticeAddModalFileLableImg2 = styled.img`
   min-width: 140px;
@@ -116,7 +136,7 @@ export const NoticeAddModalFileInput = styled.input`
   overflow: hidden;
   padding: 0;
   margin: 0;
-  // display: none;
+  display: none;
 `;
 
 export const NoticeAddModalTextAreaLabel = styled.label`
@@ -155,5 +175,9 @@ export const NoticeAddModalTextArea = styled.textarea`
     font-size: 16px;
     line-height: 26px;
     color: rgba(17, 17, 17, 0.6);
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    height: 40px;
+    padding-top: 6px;
   }
 `;
