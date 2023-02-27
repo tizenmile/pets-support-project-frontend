@@ -12,8 +12,8 @@ import {
   delNoticeFromFavorite,
   getFavNotices,
 } from "../../redux/notices/operation";
-import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
-import { getStatusFilter } from "../../redux/notices/selector";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { getStatusFilter, selectPage } from "../../redux/notices/selector";
 import {
   NoticeImgContainer,
   NoticeCloseModalButton,
@@ -40,9 +40,7 @@ import { AllModalWrapper } from "../NoticeAddModal/NoticeAddModal.styled";
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const statusFilter = useSelector(getStatusFilter);
-
-  // const isLoggedIn = true
-
+  const page = useSelector(selectPage);
   const [notice, setNotice] = useState(null);
   const [isFav, setIsFav] = useState(isFavorite);
   const dispatch = useDispatch();
@@ -99,7 +97,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
             onClick={() => {
               onClose(isFav);
               if (statusFilter === "fav-notice") {
-                dispatch(getFavNotices());
+                dispatch(getFavNotices(page));
               }
             }}
           >

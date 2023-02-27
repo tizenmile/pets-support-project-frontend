@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -9,7 +9,7 @@ import {
   SearchFormButton,
   SearchFormButtonLabel,
   SearchFormInput,
-} from './SearchBar.styled.js';
+} from "./SearchBar.styled.js";
 
 import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
