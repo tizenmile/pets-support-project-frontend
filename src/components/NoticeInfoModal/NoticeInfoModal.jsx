@@ -10,10 +10,11 @@ import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
 } from "../../redux/notices/operation";
-import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import {
   getStatusFilter,
 } from "../../redux/notices/selector";
+import { setFavNotices } from "../../redux/notices/noticesSlice";
 
 import {
   NoticeImgContainer,
@@ -38,17 +39,17 @@ import {
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const category = useSelector(getStatusFilter)
+  // const category = useSelector(getStatusFilter)
   const [notice, setNotice] = useState(null);
   const [isFav, setIsFav] = useState(isFavorite);
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    console.log(category);
     setIsFav((prev) => !prev);
      dispatch(
       isFav ? delNoticeFromFavorite(itemId) : addNoticeToFavorite(itemId)
     );
+    
   };
 
   const CustomToastWithLink = () => (

@@ -53,12 +53,13 @@ export const Notice = ({ item }) => {
     setIsModalOpen(false);
     setIsFavorite(isFav);
     if (category === "fav-notice") {
-        dispatch(getFavNotices(0))
-      } else if (category === "own-notices") {
-        dispatch(getOwnNotices(0))
-      } else {
-       dispatch(fetchNoticesByCategory({page: 0, categoryName: category}))
-    }  
+        dispatch(setFavNotices(item._id))
+    }
+    // else if (category === "own-notices") {
+    //     dispatch(getOwnNotices(0))
+    //   } else {
+    //    dispatch(fetchNoticesByCategory({page: 0, categoryName: category}))
+    // }  
   };
 
   const favNoticesIdArr = favNotices.reduce((acc, item) => {

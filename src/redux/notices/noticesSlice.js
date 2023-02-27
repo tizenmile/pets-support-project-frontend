@@ -35,8 +35,8 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        console.log(action.payload);
         state.items = state.page !== 0 ? [...state.items, ...action.payload.notices] : action.payload.notices
-        console.log(state.items);
         state.page = state.items.length !== state.total && state.items.length !== 0 ? state.page + 1 : 0 
         state.total = action.payload.total
       })
