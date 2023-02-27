@@ -51,6 +51,26 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
     );
   }, [isTitle, isBreed, isPetName, isBirthDate, isCategory]);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  // const handleBackdropClick = (event) => {
+  //   // console.log(event.currentTarget);
+  //   // console.log(event.target);
+  //   if (event.currentTarget !== event.target) {
+  //     onClose();
+  //   }
+  // };
+
   const onChangeCategory = (evt) => {
     setIsCategory(evt.target.value);
   };
