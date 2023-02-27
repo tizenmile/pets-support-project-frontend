@@ -20,6 +20,8 @@ export const LogOut = styled.button`
   :hover {
     fill: ${(p) => p.theme.colors.active};
     color: rgba(17, 17, 17, 1);
+    transform: scale(1.1);
+    transition: color ${(p) => p.theme.transition};
   }
   @media ${(p) => p.theme.media.tablet} {
     left: ${(p) => p.theme.space[5]}px;
