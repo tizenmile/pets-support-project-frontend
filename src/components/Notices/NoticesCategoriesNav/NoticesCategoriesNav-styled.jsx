@@ -32,5 +32,7 @@ export const Item = styled.li`
 export const NoticesCategoriesNavBox = styled.div`
   @media (${(p) => p.theme.media.tablet}) {
     display: flex;
+    align-items: baseline;
+    justify-content: space-between;
   }
 `;

@@ -79,7 +79,15 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
         comments: isComments,
       })
     );
-  });
+  }, [
+    isComments,
+    isImage,
+    isImageName,
+    isImageUrl,
+    isMale,
+    isLocation,
+    isPrice,
+  ]);
 
   const onChangeMale = (evt) => {
     setIsMale(evt.target.value);
@@ -98,7 +106,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     if (files[0].size > 5242880) {
       return notifyInfo();
     }
-    // console.log(files[0].size);
     setIsImage(files[0]);
     files[0] && setIsImageName(files[0].name);
     if (files) {
@@ -115,7 +122,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const hundleSubmit = async (evt) => {
-    // console.log(notice.birthDate);
     setIsLoading(true);
     evt.preventDefault();
     const formData = new FormData();
@@ -140,10 +146,10 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
           },
         }
       );
-
+      dispatch(getOwnNotices());
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
-      dispatch(getOwnNotices());
+
       reset();
       notifySuccess();
       onClose();
