@@ -202,3 +202,30 @@ export const ErrorText = styled.p`
   letter-spacing: 0.04em;
   color: red;
 `;
+
+export const PasswordField = styled.div`
+display: grid;
+height: 56px;
+
+@media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  height: 68px;
+}
+@media (${(p) => p.theme.media.desktop}) {
+  height: 68px;
+}
+`
+
+export const PasswordShowHideButton = styled.span`
+position: relative;
+bottom: 38px;
+left: 220px;
+
+@media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  bottom: 45px;
+  left: 400px
+}
+@media (${(p) => p.theme.media.desktop}) {
+  bottom: 46px;
+  left: 410px
+}
+`
