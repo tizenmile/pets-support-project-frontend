@@ -10,7 +10,7 @@ export const LoginPageContainer = styled.div`
   background-image: url(${mobile_hero_img});
   background-position: center bottom -170px;
   background-repeat: no-repeat;
-  @media (${(p) => p.theme.media.tablet}) {
+  @media ${(p) => p.theme.media.tablet} {
     background-image: url(${login_page_bg});
     background-position: center bottom -180px;
     position: relative;
@@ -24,14 +24,14 @@ export const LoginPageFormContainer = styled(Form)`
   flex-direction: column;
   align-items: center;
 
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1280px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1280px) {
     width: 608px;
     margin-top: 180px;
     background-color: ${(p) => p.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     width: 618px;
     margin-top: 60px;
     background-color: ${(p) => p.theme.colors.white};
@@ -50,10 +50,10 @@ export const LoginPageTitle = styled.p`
   margin-bottom: 24px;
 
   color: ${(p) => p.theme.colors.mainText};
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1280px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1280px) {
     margin-top: 60px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     margin-top: 60px;
   }
 `;
@@ -68,10 +68,10 @@ export const LoginPageDescription = styled.p`
   letter-spacing: 0.04em;
 
   color: rgba(17, 17, 17, 0.6);
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1280px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1280px) {
     margin-bottom: 60px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     margin-bottom: 60px;
   }
 `;
@@ -117,11 +117,11 @@ export const LoginPageFormInput = styled(Field)`
     letter-spacing: 0.04em;
     color: rgba(17, 17, 17, 0.6);
   }
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1280px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1280px) {
     width: 448px;
     height: 52px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     width: 458px;
     height: 52px;
   }
@@ -145,12 +145,12 @@ export const LoginPageButton = styled.button`
   padding: 10px 28px;
   cursor: pointer;
   &:hover {
-    ${(p) => p.theme.colors.hover};
+    background: ${(p) => p.theme.colors.hover};
   }
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     width: 448px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     width: 458px;
   }
 `;

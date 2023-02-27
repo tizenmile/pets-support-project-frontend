@@ -9,8 +9,7 @@ export const Imge = styled.img`
   width: 158px;
   height: 112px;
 
-  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
-      p.theme.media.mobileMax} {
+  @media ${(p) => p.theme.media.mobileMin} and (max-width: 767px) {
     width: 110px;
     height: 78px;
   }
@@ -31,8 +30,7 @@ export const CardTitle = styled.h2`
   text-decoration-line: underline;
   color: ${(p) => p.theme.colors.active};
   margin-bottom: 16px;
-  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
-      p.theme.media.mobileMax} {
+  @media ${(p) => p.theme.media.mobileMin} and (max-width: 767px) {
     font-size: ${(p) => p.theme.fontSizes.xxs};
     line-height: 16px;
 
@@ -45,24 +43,25 @@ export const CardTitle = styled.h2`
 `;
 
 export const TitleLink = styled.a`
-font-family: "Manrope";
-font-style: normal;
-font-weight: ${(p) => p.theme.fontWeights.bold};
-font-size: ${(p) => p.theme.fontSizes.xm};
-line-height: 27px;
-align-items: center;
-text-align: center;
-text-decoration-line: underline;
-color: #f59256;
-margin-bottom: 16px;
-@media ${(p) => p.theme.media.mobileMin} and ${(p) => p.theme.media.mobileMax} {
-  font-size: ${(p) => p.theme.fontSizes.xxs};
-  line-height: 16px;
-  margin-bottom: 12px;
-}
-@media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
-  font-size: ${(p) => p.theme.fontSizes.s};
-  line-height: 22px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
+  font-size: ${(p) => p.theme.fontSizes.xm};
+  line-height: 27px;
+  align-items: center;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #f59256;
+  margin-bottom: 16px;
+  @media ${(p) => p.theme.media.mobileMin} and (max-width: 767px) {
+    font-size: ${(p) => p.theme.fontSizes.xxs};
+    line-height: 16px;
+    margin-bottom: 12px;
+  }
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
+    font-size: ${(p) => p.theme.fontSizes.s};
+    line-height: 22px;
+  }
 `;
 
 export const CardItem = styled.li`
@@ -70,8 +69,7 @@ export const CardItem = styled.li`
   max-width: 206px;
   margin-left: 12px;
   position: relative;
-  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
-      p.theme.media.mobileMax} {
+  @media ${(p) => p.theme.media.mobileMin} and (max-width: 767px) {
     max-width: 150px;
     margin-bottom: 4px;
   }
@@ -94,8 +92,7 @@ export const CardSpan = styled.span`
   align-items: center;
   color: ${(p) => p.theme.colors.black};
 
-  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
-      p.theme.media.mobileMax} {
+  @media ${(p) => p.theme.media.mobileMin} and (max-width: 767px) {
     font-size: ${(p) => p.theme.fontSizes.xs};
     line-height: 19px;
   }
@@ -119,12 +116,12 @@ export const CardLink = styled.a`
     color: #dc712f;
   }
 
-@media ${(p) => p.theme.media.mobileMin} and ${(p) => p.theme.media.mobileMax} {
-font-size: ${(p) => p.theme.fontSizes.xxs};
-line-height: 16px;
-  
-}
-@media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
-font-size: ${(p) => p.theme.fontSizes.xs};
-line-height: 19px;
+  @media ${(p) => p.theme.media.mobileMin} and(max-width: 767px) {
+    font-size: ${(p) => p.theme.fontSizes.xxs};
+    line-height: 16px;
+  }
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
+    font-size: ${(p) => p.theme.fontSizes.xs};
+    line-height: 19px;
+  }
 `;
