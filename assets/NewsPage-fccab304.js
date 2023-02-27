@@ -1,4 +1,4 @@
-import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O as F}from"./index-9ca88b16.js";import{B as j}from"./index.esm-98befe02.js";import"./iconBase-e12f5515.js";const D=i.div`
+import{s as i,p as z,r as b,u as w,j as n,a as c,d as g,e as C,g as f,f as M,O as j}from"./index-5b802fe3.js";import{B as F}from"./index.esm-7f91d557.js";import"./iconBase-61a010ec.js";const D=i.div`
   top: 0;
   left: 0;
   /* position: sticky; */
@@ -14,11 +14,13 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
   max-width: 608px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
+  margin-bottom: 60px;
+  margin-top: 40px;
   overflow: hidden;
   @media (${e=>e.theme.media.mobileMax}) {
     width: 280px;
-  }
-`,M=i.button`
+   }
+`,I=i.button`
   display: flex;
   width: 40px;
   height: 40px;
@@ -44,6 +46,7 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   clip-path: inset(50%);
+  
 `,R=i.input`
   display: inline-block;
   width: 100%;
@@ -58,15 +61,20 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
   padding-top: 10px;
   padding-bottom: 10px;
   ::placeholder {
-    font: inherit;
+    font-family: "Inter"
+    font-style: medium;
+    /* font: inherit; */
     font-size: 20px;
-    line-height: 1.36;
+    align-items: left;
+    line-height: 24px;
+    letter-spacing: 4%;
+    color: rgba(83, 83, 83, 1);
   }
-`,T=i(j)`
+`,T=i(F)`
   width: 20px;
   height: 20px;
   margin: auto;
-`,y=({submitForm:e})=>{const[t,o]=b.useState(""),[,r]=w();return n(D,{children:s(E,{onSubmit:c=>{c.preventDefault(),r({text:t}),o("")},children:[n(R,{onChange:c=>{o(c.target.value)},name:"name",type:"text",autocomplete:"off",placeholder:"Search",value:t}),s(M,{type:"submit",children:[n(N,{children:"Search"}),n(T,{})]})]})})};y.propTypes={submitForm:S.func};const B=e=>e.news.news[0],I=e=>{var t,o;return(o=(t=e.news.news)==null?void 0:t.data)==null?void 0:o.totalPages},L=e=>e.news.isLoading,P=i.div`
+`,y=({submitForm:e})=>{const[t,o]=b.useState(""),[,r]=w();return n(D,{children:c(E,{onSubmit:m=>{m.preventDefault(),r({text:t}),o("")},children:[n(R,{onChange:m=>{o(m.target.value)},name:"name",type:"text",autocomplete:"off",placeholder:"Search",value:t}),c(I,{type:"submit",children:[n(N,{children:"Search"}),n(T,{})]})]})})};y.propTypes={submitForm:z.func};const B=e=>e.news.news[0],L=e=>{var t,o;return(o=(t=e.news.news)==null?void 0:t.data)==null?void 0:o.totalPages},P=e=>e.news.isLoading,V=i.div`
   background-color: rgba(253, 247, 242, 1);
   @media (${e=>e.theme.media.mobileMax}) {
     padding: 45px 20px 100px 20px;
@@ -97,7 +105,7 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
     font-size: 48px;
     line-height: 66px;
   }
-`,V=i.ul`
+`,U=i.ul`
   @media (${e=>e.theme.media.tablet}) {
     display: flex;
     flex-wrap: wrap;
@@ -106,7 +114,7 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
     display: flex;
     flex-wrap: wrap;
   }
-`,U=i.li`
+`,W=i.li`
   @media (${e=>e.theme.media.mobileMax}) {
     margin-left: auto;
     margin-right: auto;
@@ -134,7 +142,7 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
       margin-left: 0px;
     }
   }
-`,W=i.div`
+`,A=i.div`
   margin-left: auto;
   margin-right: auto;
   @media (${e=>e.theme.media.mobileMax}) {
@@ -165,7 +173,12 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
     width: 608px;
     height: 44px;
   }
-`;const A=i.div`
+`;i.div`
+@media (${e=>e.theme.media.desktop}) {
+  width: 395px;
+  height: 254px;
+}
+`;const H=i.div`
  @media (${e=>e.theme.media.mobileMax} ){  
     display: flex;
     flex-direction: column;
@@ -194,21 +207,23 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
 `,k=i.span`
   display: inline-block;
   text-align: justify;
-`,H=i.div`
+`,O=i.div`
   display: block;
   /* width: 200px; */
   height: 4px;
   background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   border-radius: 40px;
   margin-top: 40px;
-`,O=i.h3`
+  margin-bottom: 4px;
+`,_=i.h3`
 @media (${e=>e.theme.media.mobileMax}) {
   margin-top: 0px;
-  margin-bottom: 16px;
+  padding-bottom: 16px;
   font-weight: 700;
   font-size: 24px;
   line-height: 1.36;
   letter-spacing: -0.01em;
+
 
   span {
     display: none;
@@ -234,12 +249,12 @@ import{s as i,p as S,r as b,u as w,j as n,a as s,d as g,e as z,g as f,f as C,O a
   }
 }
   @media (${e=>e.theme.media.desktop}) {
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
-`,_=i.div`
+`,q=i.div`
   display: flex;
   justify-content: space-between;
-`,q=i.div`
+`,G=i.div`
 display: block ;
 /* margin-bottom: auto; */
 `,v=i.span`
@@ -255,7 +270,7 @@ display: block ;
     margin-top: 15px;
     content: 'Show more';
   }
-`,G=i.input`
+`,Q=i.input`
   display: none;
   :checked ~ ${k} {
     display: inline;
@@ -271,25 +286,28 @@ display: block ;
       content: 'Show less';
     }
   }
-`,Q=i.p`
-  height: 154px;
+`,X=i.p`
+  height: 110px;
+  margin-top: 16px;
   overflow-y: hidden;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   color: rgb(17, 19, 33);
-`,X=i.div`
+`,J=i.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-`,J=i.div`
+`,K=i.div`
+  font-family: "Manrope";
   font-weight: 400;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1.36;
-  color: rgba(49, 21, 4, 0.07);
-`,K=i.a`
+  color: rgba(17, 17, 17, 0.6);
+`,Y=i.a`
+  font-family: "Manrope";
   font-weight: 500;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1.36;
   text-align: right;
   text-decoration-line: underline;
@@ -297,4 +315,4 @@ display: block ;
   :hover {
     color: rgba(255, 97, 1, 1);
   }
-`;var h,Y=new Uint8Array(16);function Z(){if(!h&&(h=typeof crypto<"u"&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto)||typeof msCrypto<"u"&&typeof msCrypto.getRandomValues=="function"&&msCrypto.getRandomValues.bind(msCrypto),!h))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return h(Y)}const ee=/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;function te(e){return typeof e=="string"&&ee.test(e)}var a=[];for(var x=0;x<256;++x)a.push((x+256).toString(16).substr(1));function ie(e){var t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:0,o=(a[e[t+0]]+a[e[t+1]]+a[e[t+2]]+a[e[t+3]]+"-"+a[e[t+4]]+a[e[t+5]]+"-"+a[e[t+6]]+a[e[t+7]]+"-"+a[e[t+8]]+a[e[t+9]]+"-"+a[e[t+10]]+a[e[t+11]]+a[e[t+12]]+a[e[t+13]]+a[e[t+14]]+a[e[t+15]]).toLowerCase();if(!te(o))throw TypeError("Stringified UUID is invalid");return o}function ne(e,t,o){e=e||{};var r=e.random||(e.rng||Z)();if(r[6]=r[6]&15|64,r[8]=r[8]&63|128,t){o=o||0;for(var d=0;d<16;++d)t[o+d]=r[d];return t}return ie(r)}const oe=({news:e})=>{const{title:t,url:o,description:r,date:d}=e,p=ne(),c=r.slice(0,195),m=r.slice(195);return s(A,{children:[s("div",{children:[n(H,{}),n(O,{children:t||"no title"})]}),n(_,{children:n(q,{children:s(Q,{children:[n(G,{type:"checkbox",id:p}),c||"no description",n(v,{children:" ..."}),n(k,{children:m}),n($,{htmlFor:p})]})})}),s(X,{children:[n(J,{children:d||""}),n(K,{href:o,target:"_blank",children:"Read more"})]})]})},pe=()=>{var m;const[e,t]=w(),o=e.get("page"),r=e.get("text");g(L);const d=z(),p=g(B);g(I);const c=l=>{d(f(l))};return b.useEffect(()=>{d(r?f(r):C(o))},[o,r,d]),console.log(p),s(P,{children:[n(u,{children:"News"}),n(y,{submitForm:c}),p?s(W,{children:[n(V,{children:(m=p==null?void 0:p.news)==null?void 0:m.map(l=>n(U,{children:n(oe,{news:l})},l==null?void 0:l._id))}),n(F,{})]}):n("div",{children:n(u,{children:"Nothing found. Please, try again"})})]})};export{pe as default};
+`;var h,Z=new Uint8Array(16);function ee(){if(!h&&(h=typeof crypto<"u"&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto)||typeof msCrypto<"u"&&typeof msCrypto.getRandomValues=="function"&&msCrypto.getRandomValues.bind(msCrypto),!h))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return h(Z)}const te=/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;function ie(e){return typeof e=="string"&&te.test(e)}var a=[];for(var x=0;x<256;++x)a.push((x+256).toString(16).substr(1));function ne(e){var t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:0,o=(a[e[t+0]]+a[e[t+1]]+a[e[t+2]]+a[e[t+3]]+"-"+a[e[t+4]]+a[e[t+5]]+"-"+a[e[t+6]]+a[e[t+7]]+"-"+a[e[t+8]]+a[e[t+9]]+"-"+a[e[t+10]]+a[e[t+11]]+a[e[t+12]]+a[e[t+13]]+a[e[t+14]]+a[e[t+15]]).toLowerCase();if(!ie(o))throw TypeError("Stringified UUID is invalid");return o}function oe(e,t,o){e=e||{};var r=e.random||(e.rng||ee)();if(r[6]=r[6]&15|64,r[8]=r[8]&63|128,t){o=o||0;for(var d=0;d<16;++d)t[o+d]=r[d];return t}return ne(r)}const ae=({news:e})=>{const{title:t,url:o,description:r,date:d}=e,p=oe(),m=r.slice(0,195),l=r.slice(195),s=d==null?void 0:d.split("-").reverse().join("/"),S=(t==null?void 0:t.length)<45?t:(t==null?void 0:t.slice(0,45))+"...";return c(H,{children:[c("div",{children:[n(O,{}),n(_,{children:S})]}),n(q,{children:n(G,{children:c(X,{children:[n(Q,{type:"checkbox",id:p}),m||"no description",n(v,{children:" ..."}),n(k,{children:l}),n($,{htmlFor:p})]})})}),c(J,{children:[n(K,{children:s}),n(Y,{href:o,target:"_blank",children:"Read more"})]})]})},se=()=>{var l;const[e,t]=w(),o=e.get("page"),r=e.get("text");g(P);const d=C(),p=g(B);g(L);const m=s=>{d(f(s))};return b.useEffect(()=>{d(r?f(r):M(o))},[o,r,d]),console.log(p),c(V,{children:[n(u,{children:"News"}),n(y,{submitForm:m}),p?c(A,{children:[n(U,{children:(l=p==null?void 0:p.news)==null?void 0:l.map(s=>n(W,{children:n(ae,{news:s})},s==null?void 0:s._id))}),n(j,{})]}):n("div",{children:n(u,{children:"Nothing found. Please, try again"})})]})};export{se as default};
