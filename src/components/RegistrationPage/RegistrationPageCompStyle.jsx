@@ -1,48 +1,39 @@
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
-import { Form, Field, ErrorMessage } from "formik";
+import {Form, Field, ErrorMessage} from "formik"
 import login_page_bg from "../../media/login_page_bg.svg";
 import mobile_hero_img from "../../media/mobile_hero_img.svg";
 export const RegistrationPageContainer = styled.div`
-  height: 88vh;
-  overscroll-behavior: none;
-  touch-action: none;
+  margin-top: 28px;
+  height: 100vh;
   background-image: url(${mobile_hero_img});
-  background-position: center bottom -200px;
+  background-position: center bottom -170px;
   background-repeat: no-repeat;
   @media (${(p) => p.theme.media.tablet}) {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-image: url(${login_page_bg});
-    background-position: center bottom;
+    background-position: center bottom -180px;
     position: relative;
   }
 `;
 export const RegistrationPageFormContainer = styled.div`
-  width: 320px;
+  width: 280px;
 
   display: flex;
   margin-left: auto;
   margin-right: auto;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  overscroll-behavior: none;
-  touch-action: none;
 
   @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     width: 608px;
-    margin-top: -180px;
+    margin-top: 180px;
     background-color: ${(p) => p.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
   @media (${(p) => p.theme.media.desktop}) {
     width: 618px;
-    margin-top: -46px;
+    margin-top: 60px;
     background-color: ${(p) => p.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
@@ -50,11 +41,11 @@ export const RegistrationPageFormContainer = styled.div`
 `;
 
 export const RegistrationPageForm = styled(Form)`
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  align-items: center;
+display: flex;
+margin-left: auto;
+margin-right: auto;
+flex-direction: column;
+align-items: center;
 `;
 
 export const RegistrationPageTitle = styled.p`
@@ -93,7 +84,7 @@ export const RegistrationPageDescription = styled.p`
   }
 `;
 export const RegistrationPageDescriptionLink = styled(NavLink)`
-  font-style: normal;
+   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
@@ -173,34 +164,34 @@ export const RegistrationPageButton = styled.button`
 `;
 
 export const RegisterPrevButtonStyled = styled.button`
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin-top: 16px;
-  padding: 0px;
-  background: ${(p) => p.theme.colors.white};
-  border-radius: ${(p) => p.theme.radii.large};
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.semiBold};
-  font-size: ${(p) => p.theme.fontSizes.xm};
-  color: ${(p) => p.theme.colors.mainText};
-  border: 2px solid ${(p) => p.theme.colors.accent};
-  text-decoration: none;
-  padding: 10px 28px;
-  cursor: pointer;
-  &:hover {
-    background: ${(p) => p.theme.colors.hover};
-    border: 2px solid ${(p) => p.theme.colors.hover};
-    color: ${(p) => p.theme.colors.white};
-  }
+display: flex;
+justify-content: center;
+list-style: none;
+margin-top: 16px;
+padding: 0px;
+background: ${(p) => p.theme.colors.white};
+border-radius: ${(p) => p.theme.radii.large};
+font-style: normal;
+font-weight: ${(p) => p.theme.fontWeights.semiBold};
+font-size: ${(p) => p.theme.fontSizes.xm};
+color: ${(p) => p.theme.colors.mainText};
+border: 2px solid ${(p) => p.theme.colors.accent};
+text-decoration: none;
+padding: 10px 28px;
+cursor: pointer;
+&:hover {
+  background: ${(p) => p.theme.colors.hover};
+  border: 2px solid ${(p) => p.theme.colors.hover};
+  color: ${(p) => p.theme.colors.white};
+}
 
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
-    width: 448px;
-  }
-  @media (${(p) => p.theme.media.desktop}) {
-    width: 458px;
-  }
-`;
+@media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  width: 448px;
+}
+@media (${(p) => p.theme.media.desktop}) {
+  width: 458px;
+}
+`
 
 export const ErrorText = styled.p`
   font-style: normal;
@@ -210,6 +201,7 @@ export const ErrorText = styled.p`
   margin-top: 5px;
   letter-spacing: 0.04em;
   color: red;
+<<<<<<< HEAD
 `;
 
 export const PasswordField = styled.div`
@@ -238,3 +230,6 @@ left: 220px;
   left: 410px
 }
 `
+=======
+`;
+>>>>>>> parent of 47a377f (try to fix scroll on burger menu and login/register page)
