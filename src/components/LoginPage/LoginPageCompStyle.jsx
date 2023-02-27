@@ -5,16 +5,25 @@ import mobile_hero_img from "../../media/mobile_hero_img.svg";
 import { Field, Form } from "formik";
 
 export const LoginPageContainer = styled.div`
-  margin-top: 28px;
-  height: 100vh;
+  height: 88vh;
   background-image: url(${mobile_hero_img});
-  background-position: center bottom -170px;
+  background-position: center bottom -200px;
   background-repeat: no-repeat;
+  overscroll-behavior: none;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   @media (${(p) => p.theme.media.tablet}) {
     background-image: url(${login_page_bg});
-    background-position: center bottom -180px;
+    background-position: center bottom;
     position: relative;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } ;
 `;
 export const LoginPageFormContainer = styled(Form)`
   width: 280px;
@@ -22,14 +31,17 @@ export const LoginPageFormContainer = styled(Form)`
   margin-left: auto;
   margin-right: auto;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   @media (${(p) => p.theme.media.tablet}) and (max-width: 1280px) {
     width: 608px;
-    margin-top: 180px;
+    /* margin-top: 180px; */
     background-color: ${(p) => p.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
+    display: flex;
+    justify-content: center;  
   }
   @media (${(p) => p.theme.media.desktop}) {
     width: 618px;
