@@ -1,4 +1,4 @@
-import{s as h,j as c,F as Z,a as x,r as ee,d as de,e as le,S as ce}from"./index-2bb7042e.js";const me=h.h1`
+import{s as h,j as c,F as Z,a as x,r as ee,d as de,e as le,V as ce}from"./index-bb5fb7e0.js";const me=h.h1`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 700;
