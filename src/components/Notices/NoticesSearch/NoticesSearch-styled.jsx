@@ -144,7 +144,7 @@ export const Input = styled.input`
   &:hover,
   &:focus,
   &:active {
-    border: solid ${(p) => p.theme.colors.accent};
+    border: solid 1px rgba(245, 146, 86, 0.5);
     scale: 1.02;
   }
   transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
