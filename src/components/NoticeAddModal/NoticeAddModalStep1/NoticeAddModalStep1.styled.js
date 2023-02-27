@@ -11,6 +11,7 @@ export const AddNoticeModalContainer = styled.form`
   @media (min-width: 320px) and (max-width: 767px) {
     padding: 40px 20px 28px 20px;
     width: 280px;
+    margin-top: 200px;
   }
 `;
 

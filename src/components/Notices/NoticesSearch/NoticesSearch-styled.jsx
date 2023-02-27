@@ -20,11 +20,11 @@ export const IconSearchReset = styled(FiXCircle)`
   }
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  @media (${(p) => p.theme.media.mobileMax}) {
+  @media ${(p) => p.theme.media.mobileMax} {
     width: 20px;
     height: 20px;
   }
-  @media (${(p) => p.theme.media.tablet}) {
+  @media ${(p) => p.theme.media.tablet} {
     width: 24px;
     height: 24px;
   }
@@ -46,6 +46,7 @@ export const ContainerMain = styled.div`
   }
 
   @media ${(p) => p.theme.media.tablet} {
+
     max-width: 1280px;
     padding-left: 32px;
     padding-right: 32px;

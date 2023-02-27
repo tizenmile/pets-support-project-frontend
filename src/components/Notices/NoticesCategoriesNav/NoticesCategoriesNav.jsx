@@ -8,7 +8,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import {
   fetchNoticesByCategory,
   getFavNotices,
@@ -23,9 +22,8 @@ import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 import { setStatusFilter } from "../../../redux/notices/filterSlice";
 import { ButtonEl } from "../ButtonChangeCategory/Button";
 import { ButtonAddNotice } from "../ButtonAddNotice/ButtonAddNotice";
-// import { selectIsLoggedIn } from "../../redux/notices/selector";
 
-export default function CategoriesNav({ category }) {
+export default function CategoriesNav() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const navigate = useNavigate();

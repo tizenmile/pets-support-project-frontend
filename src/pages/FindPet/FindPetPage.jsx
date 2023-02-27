@@ -33,7 +33,7 @@ const FindPet = () => {
     <>
       <ContainerMain>
         <NoticesSearch />
-        <NoticesCategoriesNav category={categoryName} />
+        <NoticesCategoriesNav />
       </ContainerMain>
       <Container>
         <NoticeList />

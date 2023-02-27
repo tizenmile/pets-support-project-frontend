@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { close_menu_icon, heart, heartFull } from "../../media";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
-import {transformDate} from "../../helpers/transformDate"
+import { transformDate } from "../../helpers/transformDate";
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
@@ -157,7 +157,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
                 <NoticeModalListItem>
                   <NoticeModalTopText>Price:</NoticeModalTopText>
                   <NoticeModalBottomText>
-                    {`${notice.notice.price}$`}
+                    {`${notice.notice.price} ₴`}
                   </NoticeModalBottomText>
                 </NoticeModalListItem>
               )}
@@ -166,7 +166,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
         </NoticeModalGeneralContainer>
 
         <NoticeModalComments>
-          comments
+          Comments
           <NoticeModalCommentsText>
             : {notice.notice.comments}
           </NoticeModalCommentsText>
