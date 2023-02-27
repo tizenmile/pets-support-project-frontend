@@ -6,3 +6,5 @@ export const selectTotal = state => state.notices.total
 
 export const getSearch = (state) => state.search;
 export const getStatusFilter = (state) => state.filters.status;
+
+export const isLoading = (state) => state.notices.isLoading;

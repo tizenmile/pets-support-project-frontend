@@ -2,8 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api";
-axios.defaults.baseURL = 'http://localhost:3002/api';
-axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YwOWRkMWUwNjhhYjQ3MzRiMjIxMTciLCJpYXQiOjE2Nzc0MzU2MTUsImV4cCI6MTY3NzQ3MTYxNX0.ScqG7_hnXzRgHv6O50fBe2_F8cHUHH_qudHRvXdX3kc";
+// axios.defaults.baseURL = 'http://localhost:3002/api';
 
 export const fetchNoticesByCategory = createAsyncThunk(
   "notices/fetchNoticesByCategory",

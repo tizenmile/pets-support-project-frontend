@@ -3,6 +3,7 @@ import {
   List,
   Item,
   NoticesCategoriesNavBox,
+  Section,
 } from "./NoticesCategoriesNav-styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -20,12 +21,15 @@ import {
   selectFavNotices,
   selectTotal
 } from "../../../redux/notices/selector";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 import { setStatusFilter } from "../../../redux/notices/filterSlice";
 import { setPage } from "../../../redux/notices/noticesSlice";
-import { ButtonEl } from "../Button/Button";
+import { ButtonEl } from "../ButtonChangeCategory/Button";
 import { ButtonAddNotice } from "../ButtonAddNotice/ButtonAddNotice";
 
 export default function CategoriesNav({ category }) {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const page = useSelector(selectPage)
@@ -48,21 +52,21 @@ export default function CategoriesNav({ category }) {
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
 
-  const AAA = (filterStatus) => {
+  const filterMyAds = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getOwnNotices(0));
     dispatch(setPage(0))
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
 
-  const BBB = (filterStatus) => {
+  const filterFavorite = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getFavNotices(0));
     dispatch(setPage(0))
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
   return (
-    <section>
+    <Section>
       <NoticesCategoriesNavBox>
         <Wrapper>
           <List>
@@ -91,12 +95,12 @@ export default function CategoriesNav({ category }) {
               </ButtonEl>
             </Item>
 
-            {true && (
+            {isLoggedIn && (
               <>
                 <Item>
                   <ButtonEl
                     selected={filter === statusFilters.favorite}
-                    onClick={() => BBB(statusFilters.favorite)}
+                    onClick={() => filterFavorite(statusFilters.favorite)}
                   >
                     favorite ads
                   </ButtonEl>
@@ -104,7 +108,7 @@ export default function CategoriesNav({ category }) {
                 <Item>
                   <ButtonEl
                     selected={filter === statusFilters.my}
-                    onClick={() => AAA(statusFilters.my)}
+                    onClick={() => filterMyAds(statusFilters.my)}
                   >
                     my ads
                   </ButtonEl>
@@ -113,9 +117,8 @@ export default function CategoriesNav({ category }) {
             )}
           </List>
         </Wrapper>
-        <ButtonAddNotice />
-        <div></div>
+        {isLoggedIn && <ButtonAddNotice />}
       </NoticesCategoriesNavBox>
-    </section>
+    </Section>
   );
 }

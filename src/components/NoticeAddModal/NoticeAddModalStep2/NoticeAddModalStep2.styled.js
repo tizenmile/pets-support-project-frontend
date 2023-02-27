@@ -7,7 +7,11 @@ export const AddNoticeModalContainerSecond = styled.form`
   background-color: #ffffff;
   border-radius: 40px;
   padding: 40px 80px;
-  margin-top: 90px;
+  margin-top: 150px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    padding: 40px 20px 28px 20px;
+    width: 280px;
+  }
 `;
 
 export const NoticeAddModalTextSecond = styled.p`
@@ -32,37 +36,48 @@ export const NoticeModalImgSexListItem = styled.li`
   align-items: center;
   justify-content: center;
   :not(:last-child) {
-    margin-right: 90px;
+    margin-right: 80px;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    :not(:last-child) {
+      margin-right: 40px;
+    }
   }
 `;
 
 export const NoticeAddModalmgSex = styled.img`
-  width: 54px;
+  width: 60px;
   margin-bottom: 20px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 40px;
+    margin-bottom: 12px;
+  }
 `;
 
 export const NoticeModalImgListSexLable = styled.label`
-  font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
   color: #000000;
   cursor: pointer;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 export const NoticeAddModalSexInput = styled.input`
   opacity: 0;
   height: 0;
-  width:0;
-  line-heigth: 0 ;
+  width: 0;
   overflow: hidden;
   padding: 0;
-  margin:0;
+  margin: 0;
   transition: ${(p) => p.theme.transition};
   &:checked + ${NoticeModalImgListSexLable} {
     transition: ${(p) => p.theme.transition};
-    color:  #F59256;;
+    color: #f59256;
+  }
 `;
 
 export const NoticeAddModalFileLable = styled.label`
@@ -76,6 +91,9 @@ export const NoticeAddModalFileLable = styled.label`
   width: max-content;
   display: block;
   cursor: pointer;
+  @media (min-width: 320px) and (max-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 export const NoticeAddModalFileLableBtn = styled.button`
@@ -88,16 +106,20 @@ export const NoticeAddModalFileLableBtn = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  // box-sizing: border-box;
   z-index: 1;
   :hover {
     border: 1px solid rgba(245, 146, 86, 0.5);
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 116px;
+    height: 116px;
+    margin-bottom: 28px;
   }
 `;
 
 export const NoticeAddModalFileLableImg1 = styled.img`
   width: 47px;
-  hegth: 47px;
+  height: 47px;
 `;
 export const NoticeAddModalFileLableImg2 = styled.img`
   min-width: 140px;
@@ -111,11 +133,10 @@ export const NoticeAddModalFileInput = styled.input`
   opacity: 0;
   height: 0;
   width: 0;
-  line-heigth: 0;
   overflow: hidden;
   padding: 0;
   margin: 0;
-  // display: none;
+  display: none;
 `;
 
 export const NoticeAddModalTextAreaLabel = styled.label`
@@ -128,7 +149,6 @@ export const NoticeAddModalTextAreaLabel = styled.label`
   line-height: 26px;
   color: #000000;
   cursor: pointer;
-  // width: content-box;
 `;
 
 export const NoticeAddModalTextArea = styled.textarea`
@@ -141,7 +161,7 @@ export const NoticeAddModalTextArea = styled.textarea`
   font-size: 16px;
   line-height: 26px;
   color: #000000;
-  resize: none;
+  resize: vertical;
   outline: none;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
@@ -155,5 +175,9 @@ export const NoticeAddModalTextArea = styled.textarea`
     font-size: 16px;
     line-height: 26px;
     color: rgba(17, 17, 17, 0.6);
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    height: 40px;
+    padding-top: 6px;
   }
 `;

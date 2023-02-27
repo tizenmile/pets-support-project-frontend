@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
 export const NoticeItem = styled.li`
+  /* position: relative; */
   background-color: #fff;
   border-radius: 0 0 40px 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 `;
 
 export const CardTumb = styled.div`
- display: flex;
- flex-direction: column;
- height: 612px;
+  display: flex;
+  flex-direction: column;
+  height: 612px;
 `;
 
 export const Image = styled.img`
@@ -71,7 +72,8 @@ export const FeaturesItem = styled.li`
   margin-bottom: 8px;
 
   &&:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
+  }
 `;
 export const FeaturesText = styled.p`
   font-family: "Manrope";
@@ -98,18 +100,41 @@ export const CardButton = styled.button`
   line-height: 1.37;
   letter-spacing: 0.04em;
   color: #f59256;
-  
 
   &&:hover {
     border-color: #ff6101;
     color: #ff6101;
-    
+
     cursor: pointer;
   }
 `;
 
 export const IconTrash = styled.img`
- width: 16px;
- height: 17px;
- fill: currentColor;
+  width: 16px;
+  height: 17px;
+  fill: currentColor;
 `;
+
+// export const AddNoticeBtnItemWarpper = styled.div`
+//   right: 0;
+//   top: 78px;
+//   position: absolute;
+//   @media (min-width: 767.99px) {
+//     display: none;
+//   }
+// `;
+
+// export const AddNoticeBtnItemImg = styled(TfiPlus)`
+//   width: 22px;
+//   height: 22px;
+// `;
+
+// export const AddNoticeBtnItemText = styled.p`
+//   font-family: "Manrope";
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: 16px;
+
+//   color: #ffffff;
+// `;

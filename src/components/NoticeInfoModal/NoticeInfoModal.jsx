@@ -6,16 +6,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { close_menu_icon, heart, heartFull } from "../../media";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
+import {transformDate} from "../../helpers/transformDate"
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
+  getFavNotices,
 } from "../../redux/notices/operation";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import {
-  getStatusFilter,
-} from "../../redux/notices/selector";
 import { setFavNotices } from "../../redux/notices/noticesSlice";
-
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+import { getStatusFilter, selectPage } from "../../redux/notices/selector";
 import {
   NoticeImgContainer,
   NoticeCloseModalButton,
@@ -35,10 +34,16 @@ import {
   NoticeContactBtn,
   NoticeModalAddToFavoriteBtnImage,
   NoticeCloseModalButtonImg,
+  NoticeInfoModalLink,
 } from "./NoticeInfoModal.styled";
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const statusFilter = useSelector(getStatusFilter);
+  const page = useSelector(selectPage)
+
+  // const isLoggedIn = true
+
   const [notice, setNotice] = useState(null);
   const [isFav, setIsFav] = useState(isFavorite);
   const dispatch = useDispatch();
@@ -70,20 +75,17 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
     return;
   }
 
-  const birthDate = (birthDate) => {
-    console.log(notice.notice.birthDate);
-    const dateString = new Date(birthDate);
-    const day = dateString.getDate().toString().padStart(2, "0");
-    const month = (dateString.getMonth() + 1).toString().padStart(2, "0");
-    const year = dateString.getFullYear();
-
-  return `${day}.${month}.${year}`;
-  };
-
   return (
     <ModalBackdrop>
       <NoticeModalContainer>
-        <NoticeCloseModalButton onClick={() => onClose(isFav)}>
+        <NoticeCloseModalButton
+          onClick={() => {
+            onClose(isFav);
+            if (statusFilter === "fav-notice") {
+              dispatch(getFavNotices(page));
+            }
+          }}
+        >
           <NoticeCloseModalButtonImg
             src={close_menu_icon}
             alt="close_menu_icon"
@@ -98,25 +100,31 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
           <div>
             <NoticeModalTitle>{notice.notice.title}</NoticeModalTitle>
             <NoticeModalList>
-              {notice.notice.name && <NoticeModalListItem>
-                <NoticeModalTopText>Name:</NoticeModalTopText>
-                <NoticeModalBottomText>
-                  {notice.notice.name}
-                </NoticeModalBottomText>
-              </NoticeModalListItem>}
+              {notice.notice.name && (
+                <NoticeModalListItem>
+                  <NoticeModalTopText>Name:</NoticeModalTopText>
+                  <NoticeModalBottomText>
+                    {notice.notice.name}
+                  </NoticeModalBottomText>
+                </NoticeModalListItem>
+              )}
 
-              {notice.notice.birthDate && <NoticeModalListItem>
-                <NoticeModalTopText>Birthday:</NoticeModalTopText>
-                <NoticeModalBottomText>
-                  {birthDate(notice.notice.birthDate)}
-                </NoticeModalBottomText>
-              </NoticeModalListItem>}
-              {notice.notice.breed && <NoticeModalListItem>
-                <NoticeModalTopText>Breed:</NoticeModalTopText>
-                <NoticeModalBottomText>
-                  {notice.notice.breed}
-                </NoticeModalBottomText>
-              </NoticeModalListItem>}
+              {notice.notice.birthDate && (
+                <NoticeModalListItem>
+                  <NoticeModalTopText>Birthday:</NoticeModalTopText>
+                  <NoticeModalBottomText>
+                    {transformDate(notice.notice.birthDate)}
+                  </NoticeModalBottomText>
+                </NoticeModalListItem>
+              )}
+              {notice.notice.breed && (
+                <NoticeModalListItem>
+                  <NoticeModalTopText>Breed:</NoticeModalTopText>
+                  <NoticeModalBottomText>
+                    {notice.notice.breed}
+                  </NoticeModalBottomText>
+                </NoticeModalListItem>
+              )}
               <NoticeModalListItem>
                 <NoticeModalTopText>Place:</NoticeModalTopText>
                 <NoticeModalBottomText>
@@ -137,15 +145,15 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
               </NoticeModalListItem>
               <NoticeModalListItem>
                 <NoticeModalTopText>Email:</NoticeModalTopText>
-                <NoticeModalBottomText>
+                <NoticeInfoModalLink href={"mailto:" + notice.user.email}>
                   {notice.user.email}
-                </NoticeModalBottomText>
+                </NoticeInfoModalLink>
               </NoticeModalListItem>
               <NoticeModalListItem>
                 <NoticeModalTopText>Phone:</NoticeModalTopText>
-                <NoticeModalBottomText>
+                <NoticeInfoModalLink href={"tel:" + notice.user.mobile}>
                   {notice.user.mobile}
-                </NoticeModalBottomText>
+                </NoticeInfoModalLink>
               </NoticeModalListItem>
 
               {notice.notice.category === "sell" && (

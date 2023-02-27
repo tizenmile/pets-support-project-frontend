@@ -1,6 +1,14 @@
 import { useState } from "react";
+// import AddPetBtn from "../../AddPetBtn";
 import { NoticeAddModal } from "../../NoticeAddModal/NoticeAddModal";
-import { AddButtonNotice } from "./ButtonAddNotice.styled";
+import { AddPetBtnWrapper } from "../../PetsData/PetsData.styled";
+import {
+  AddNoticeBtn,
+  AddNoticeBtnWarpper,
+  AddPetIcon,
+  AddNoticeBtnTitle,
+  AddNoticeBtnItemText,
+} from "./ButtonAddNotice.styled";
 
 export const ButtonAddNotice = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,11 +22,18 @@ export const ButtonAddNotice = () => {
   };
 
   return (
-    <>
-      <AddButtonNotice>
-        <button onClick={openModal}>open modal</button>
-      </AddButtonNotice>
+    <AddNoticeBtnWarpper>
+      <AddPetBtnWrapper>
+        <AddNoticeBtnTitle>Add pet</AddNoticeBtnTitle>
+        <AddNoticeBtn onClick={openModal}>
+          <div>
+            <AddPetIcon />
+            <AddNoticeBtnItemText>Add pet</AddNoticeBtnItemText>
+          </div>
+        </AddNoticeBtn>
+        {/* <button onClick={openModal}> create notice</button> */}
+      </AddPetBtnWrapper>
       {isModalOpen && <NoticeAddModal onClose={closeModal} />}
-    </>
+    </AddNoticeBtnWarpper>
   );
 };

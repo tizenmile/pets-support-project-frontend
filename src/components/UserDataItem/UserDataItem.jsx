@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { UserSchema } from "../../UserSchemaValidation/UserSchemaValidation";
+import { UserSchema } from "../../helpers/schemaValidation/UserSchemaValidation";
 import { useDispatch } from "react-redux";
 
 import { updateUserData } from "../../redux/userAccount/operations";
@@ -11,7 +11,7 @@ import {
   UserDataInput,
   UserForm,
   ErrorText,
-  InputWrapper,
+  InputWrapper
 } from "./UserDataItem.styled";
 
 export const UserDataItem = ({
@@ -30,7 +30,6 @@ export const UserDataItem = ({
   const onInputChange = (e) => {
     setInputValue(e.target.value);
     setValid(UserSchema.fields[name].isValidSync(e.target.value));
-    // console.log(valid);
   };
 
   const onEditClick = () => {
@@ -52,6 +51,7 @@ export const UserDataItem = ({
     const data = {
       [name]: inputValue,
     };
+    console.log(data);
 
     dispatch(updateUserData(data));
 
@@ -80,6 +80,7 @@ export const UserDataItem = ({
             />
             <ErrorMessage component={ErrorText} name={name} />
           </InputWrapper>
+
           {editMode ? (
             <EditTextBtn
               type="submit"

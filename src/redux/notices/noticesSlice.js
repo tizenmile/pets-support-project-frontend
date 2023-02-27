@@ -35,7 +35,7 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log(action.payload);
+        console.log(action.payload.notices);
         state.items = state.page !== 0 ? [...state.items, ...action.payload.notices] : action.payload.notices
         state.page = state.items.length !== state.total && state.items.length !== 0 ? state.page + 1 : 0 
         state.total = action.payload.total
@@ -44,8 +44,6 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.favNotices = state.page !== 0 ? [...state.favNotices, ...action.payload.notices] : action.payload.notices
-        console.log(state.favNotices);
-        console.log(action.payload.notices);
         state.page = state.favNotices.length !== state.total && state.favNotices.length !== 0 ? state.page + 1 : 0 
         state.total = action.payload.total
       })
@@ -58,24 +56,25 @@ const noticesSlice = createSlice({
         console.log(action.payload);
       })
 
-      .addMatcher(fetchNoticesByCategory.pending, (state) => {
+      .addCase(fetchNoticesByCategory.pending, (state) => {
         state.isLoading = true;
       })
-      .addMatcher(getFavNotices.pending, (state) => {
+      .addCase(getFavNotices.pending, (state) => {
         state.isLoading = true;
       })
-      .addMatcher(getOwnNotices.pending, (state) => {
+      .addCase(getOwnNotices.pending, (state) => {
         state.isLoading = true;
       })
 
-      .addMatcher(fetchNoticesByCategory.rejected, (state, action) => {
+      .addCase(fetchNoticesByCategory.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addMatcher(getFavNotices.rejected, (state, action) => {
+      .addCase(getFavNotices.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
       })
-      .addMatcher(getOwnNotices.rejected, (state, action) => {
+      .addCase(getOwnNotices.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

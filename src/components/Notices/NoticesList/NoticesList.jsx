@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFavNotices, fetchNoticesByCategory } from '../../../redux/notices/operation';
 import { Notice } from "../NoticesItem/NoticesItem";
 import { NoticesList } from "./NoticesList.styled";
-import { useEffect } from 'react';
+import AnimationLoader from "../../AnimationLoader";
 
 export const NoticeList = () => {
   const notices = useSelector(selectNotices);
@@ -24,7 +24,6 @@ export const NoticeList = () => {
   const search = useSelector(getSearch);
   const normalizedFilterSearch = search.toLowerCase();
   const dispatch = useDispatch()
-  
 
   let filteredNotices;
   let filteredFavoriteNotices;
@@ -44,24 +43,23 @@ export const NoticeList = () => {
 
   return (
     <>
-    {filter !== "fav-notice" ? (
+      {filter !== "fav-notice" ?
+        (
         <>
-          {filteredNotices !== undefined && filteredNotices.length >= 1 &&
-             <InfiniteScroll
+            {filteredNotices !== undefined && filteredNotices.length >= 1 && (
+              <InfiniteScroll
                 pageStart={page + 1}
-                loadMore={() => filteredNotices.length < total && dispatch(fetchNoticesByCategory({page, categoryName: filter}))}
+                loadMore={() => !isLoading && dispatch(fetchNoticesByCategory({page, categoryName: filter}))}
                 hasMore={filteredNotices.length !== total ? true : false}
-                // initialLoad={false}
-                loader={<div key={page}>Loading ...</div>}
+                loader={<AnimationLoader key={page } />}
               >
                 <NoticesList>
-                  {filteredNotices.map((notice) => { 
+                  {filteredNotices.map((notice) => {
                     return <Notice key={notice._id} item={notice} />;
                   })}
                 </NoticesList>
               </InfiniteScroll>
-            
-          }
+          )}
         </>
       ) : (
         <>
@@ -69,11 +67,10 @@ export const NoticeList = () => {
               filteredFavoriteNotices.length >= 1 &&
           
               <InfiniteScroll
-                pageStart={page === 0 ? page + 1 : page}
-                loadMore={() => filteredFavoriteNotices.length < total && dispatch(getFavNotices(page))}
+                pageStart={page + 1}
+                loadMore={() => !isLoading && dispatch(getFavNotices(page))}
                 hasMore={filteredFavoriteNotices.length !== total ? true : false}
-                // initialLoad={false}
-                loader={<div key={page}>Loading ...</div>}
+                loader={<AnimationLoader key={page } />}
               >
                 <NoticesList>
                   {filteredFavoriteNotices.map((notice) => {
