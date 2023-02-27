@@ -11,7 +11,10 @@ export const UserSchema = Yup.object().shape({
     ),
   email: Yup.string()
     .required("Required")
-    .matches(/^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/, "Invalid email"),
+    .matches(
+      /^[a-zA-Z0-9._][a-zA-Z0-9._-]{0,}[a-zA-Z0-9._-]{0,}[a-zA-Z0-9._]@([a-zA-Z0-9.-]+\.)+[a-zA-Z]{2,}$/,
+      "Invalid email"
+    ),
 
   mobile: Yup.string()
     .matches(/^[+](380)[0-9]{9}$/, "Invalid phone number")
@@ -25,3 +28,5 @@ export const UserSchema = Yup.object().shape({
     ),
   birthday: Yup.date().required("Required"),
 });
+
+// /^[a-zA-Z0-9._][a-zA-Z0-9._-]{0,}[a-zA-Z0-9._-]{0,}[a-zA-Z0-9._]@([a-zA-Z0-9.-]+\.)+[a-zA-Z]{2,}$/
