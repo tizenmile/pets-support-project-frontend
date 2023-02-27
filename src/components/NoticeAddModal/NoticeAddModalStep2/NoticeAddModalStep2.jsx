@@ -274,7 +274,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               </NoticeAddModalInputListItem>
               <NoticeAddModalInputListItem>
                 <NoticeAddModalTextAreaLabel>
-                  <p>
+                  <p style={{ fontSize: "18px" }}>
                     Comments<span style={{ color: "#F59256" }}>*</span>:
                   </p>
 
@@ -283,7 +283,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                     minlength="8"
                     maxlength="120"
                     required
-                    placeholder="Type comment"
+                    placeholder="Type breed"
                     name="comments"
                     value={isComments}
                     onChange={onChangeComments}
@@ -298,7 +298,10 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                 </NoticeAddModalBottomBtn>
               </NoticeAddModalBtnListItem>
               <NoticeAddModalBtnListItem>
-                <NoticeAddModalBottomBtn type="submit">
+                <NoticeAddModalBottomBtn
+                  style={{ color: "#fff", backgroundColor: "#F59256" }}
+                  type="submit"
+                >
                   Done
                 </NoticeAddModalBottomBtn>
               </NoticeAddModalBtnListItem>
