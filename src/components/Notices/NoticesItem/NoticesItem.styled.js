@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const NoticeItem = styled.li`
+  /* position: relative; */
   background-color: #fff;
   border-radius: 0 0 40px 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -113,3 +114,27 @@ export const IconTrash = styled.img`
   height: 17px;
   fill: currentColor;
 `;
+
+// export const AddNoticeBtnItemWarpper = styled.div`
+//   right: 0;
+//   top: 78px;
+//   position: absolute;
+//   @media (min-width: 767.99px) {
+//     display: none;
+//   }
+// `;
+
+// export const AddNoticeBtnItemImg = styled(TfiPlus)`
+//   width: 22px;
+//   height: 22px;
+// `;
+
+// export const AddNoticeBtnItemText = styled.p`
+//   font-family: "Manrope";
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: 16px;
+
+//   color: #ffffff;
+// `;

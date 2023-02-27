@@ -106,7 +106,7 @@ export default function CategoriesNav({ category }) {
             )}
           </List>
         </Wrapper>
-        <ButtonAddNotice />
+        {isLoggedIn && <ButtonAddNotice />}
       </NoticesCategoriesNavBox>
     </Section>
   );

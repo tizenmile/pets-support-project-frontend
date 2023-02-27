@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiTrash } from "react-icons/hi2";
-import { heartFull as HeartFull, heart as Heart } from "../../../media";
+import { heartFull as HeartFull, heart as Heart, plus } from "../../../media";
 import {
   selectFavNotices,
   getStatusFilter,
@@ -60,6 +60,7 @@ export const Notice = ({ item }) => {
     setIsModalOpen(false);
     setIsFavorite(isFav);
   };
+
   const favNoticesIdArr = favNotices.reduce((acc, item) => {
     acc.push(item._id);
     return acc;
@@ -201,6 +202,16 @@ export const Notice = ({ item }) => {
             <HiTrash width={"16px"} height={"17px"} />
           </CardButton>
         )}
+        {/* {isLoggedIn && (
+          <AddNoticeBtnItemWarpper>
+            <AddNoticeBtn onClick={openAddModal}>
+              <div>
+                <AddNoticeBtnItemImg src={plus}></AddNoticeBtnItemImg>
+                <AddNoticeBtnItemText>Add pet</AddNoticeBtnItemText>
+              </div>
+            </AddNoticeBtn>
+          </AddNoticeBtnItemWarpper>
+        )} */}
       </CardTumb>
       {isModlOpen && (
         <NoticeInfoModal
