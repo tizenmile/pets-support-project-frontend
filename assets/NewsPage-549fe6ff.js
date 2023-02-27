@@ -1,4 +1,4 @@
-import{s as i,p as z,r as b,u as w,j as n,a as c,d as g,e as C,g as f,f as M,O as j}from"./index-191a71af.js";import{B as F}from"./index.esm-606903e2.js";import"./iconBase-ebe29b94.js";const D=i.div`
+import{s as i,p as z,r as b,u as w,j as n,a as c,d as g,e as C,g as f,f as M,O as j}from"./index-a163e17d.js";import{B as F}from"./index.esm-b624a68d.js";import"./iconBase-7f21dd93.js";const D=i.div`
   top: 0;
   left: 0;
   /* position: sticky; */
@@ -14,8 +14,8 @@ import{s as i,p as z,r as b,u as w,j as n,a as c,d as g,e as C,g as f,f as M,O a
   max-width: 608px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
-  margin-bottom: 60px;
-  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-top: 20px;
   overflow: hidden;
   @media (${e=>e.theme.media.mobileMax}) {
     width: 280px;
@@ -56,7 +56,7 @@ import{s as i,p as z,r as b,u as w,j as n,a as c,d as g,e as C,g as f,f as M,O a
 
   border: none;
   outline: none;
-  padding-left: 10px;
+  padding-left: 20px;
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -83,18 +83,18 @@ import{s as i,p as z,r as b,u as w,j as n,a as c,d as g,e as C,g as f,f as M,O a
     padding: 90px 32px 100px 32px;
   }
   @media (${e=>e.theme.media.desktop}) {
-    padding: 69px 16px 200px 16px;
+    padding: 49px 16px 200px 16px;
   }
 `,u=i.h2`
   @media (${e=>e.theme.media.mobileMax}) {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 8px;
     font-size: 24px;
     line-height: 1.36;
   }
   @media (${e=>e.theme.media.tablet}) {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 8px;
     font-size: 48px;
     line-height: 66px;
   }
@@ -213,7 +213,7 @@ import{s as i,p as z,r as b,u as w,j as n,a as c,d as g,e as C,g as f,f as M,O a
   height: 4px;
   background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   border-radius: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 4px;
 `,_=i.h3`
 @media (${e=>e.theme.media.mobileMax}) {
