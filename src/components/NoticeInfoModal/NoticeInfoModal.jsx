@@ -39,7 +39,6 @@ import {
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const category = useSelector(getStatusFilter)
   const [notice, setNotice] = useState(null);
   const [isFav, setIsFav] = useState(isFavorite);
   const dispatch = useDispatch();
