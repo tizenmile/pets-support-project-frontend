@@ -201,7 +201,6 @@ export const ErrorText = styled.p`
   margin-top: 5px;
   letter-spacing: 0.04em;
   color: red;
-<<<<<<< HEAD
 `;
 
 export const PasswordField = styled.div`
@@ -230,6 +229,3 @@ left: 220px;
   left: 410px
 }
 `
-=======
-`;
->>>>>>> parent of 47a377f (try to fix scroll on burger menu and login/register page)
