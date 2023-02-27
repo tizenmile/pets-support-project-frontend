@@ -7,9 +7,11 @@ import tablet_girl_img from "../../media/bg1-home-tablet-min.png";
 import mobile_girl_img from "../../media/bg1-home-mobile-min.png";
 
 export const HeroContainer = styled.div`
-  background-position: center bottom -80px;
+  background-position: left -60px bottom;
   background-repeat: no-repeat;
-  height: 529px;
+  overscroll-behavior: none;
+  height: 90vh;
+  touch-action: none;
   overflow: hidden;
   background-image: url(${mobile_hero_img});
 
@@ -30,12 +32,14 @@ export const HeroContentContainer = styled.div`
   position: relative;
   max-width: 1280px;
   padding: 0px 16px 0px 16px;
-  margin-top: 46px;
+  /* margin-top: 46px; */
   display: flex;
 
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
+  justify-content: space-between;
+  height: 100vh;
 
   @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     padding: 0px 32px 0px 32px;
@@ -53,6 +57,7 @@ export const HeroTitle = styled.h1`
   font-weight: 700;
   font-size: 32px;
   line-height: 44px;
+  margin-top: 46px;
 
   max-width: 407px;
 
@@ -76,10 +81,11 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   width: 320px;
-  height: 337px;
+  height: 400px;
 
-  margin-top: 60px;
+  /* margin-top: 60px; */
   background-image: url(${mobile_girl_img});
+  background-repeat: no-repeat;
 
   @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
     background-image: url(${tablet_girl_img});
