@@ -31,20 +31,12 @@ const notify = (msg) =>
 
 const stepOneValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .max(63, "Must be between 6 and 63 characters.")
-    .min(6, "Must be between 6 and 63 characters.")
-    .email("Invalid email address")
-    .matches(
-      /[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,
-      "The @ symbol must be preceded by at least 2 characters"
-    )
-    .required("Email is required")
-    .test(
-      "is-valid",
-      (message) => `${message.path} is invalid`,
-      (value) =>
-        value ? isEmail(value) : new Yup.ValidationError("Invalid value")
-    ),
+  .max(63, "Must be between 6 and 63 characters.")
+  .min(6, "Must be between 6 and 63 characters.")
+  .email("Invalid email address")
+  .matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/, "The @ symbol must be preceded by at least 2 characters")
+  .required("Email is required")
+  .test("is-valid", (message) => `${message.path} is invalid`, (value) => value ? isEmail(value) : new Yup.ValidationError("Invalid value")),
   password: Yup.string()
     .min(7, "Must be between 7 and 32 characters.")
     .max(32, "Must be between 7 and 32 characters.")
@@ -161,10 +153,24 @@ const StepOne = (props) => {
   } = props;
 
   const handleSubmit = (values) => {
-    if (!values.confirmPassword) {
-      notify("Confirm password is required");
-      return;
+    if(values.email.toLowerCase().includes(".ru")){
+      toast.error("Москалей не регистрируем", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+      return
     }
+
+    if(!values.confirmPassword){
+      notify("Confirm password is required")
+      return
+    } 
 
     if (values.confirmPassword === values.password) {
       props.next(values);
