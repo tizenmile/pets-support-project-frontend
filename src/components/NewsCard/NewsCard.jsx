@@ -29,7 +29,6 @@ const NewsCard = ({ news }) => {
     return (
 
         <Wrapper>
-            
                 <div>
                     <Strip />
                 <Title>
