@@ -4,7 +4,6 @@ import axios from "axios";
 // axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api";
 // axios.defaults.baseURL = 'http://localhost:3002/api';
 
-
 export const fetchNoticesByCategory = createAsyncThunk(
   "notices/fetchNoticesByCategory",
   async (categoryName, thunkAPI) => {
