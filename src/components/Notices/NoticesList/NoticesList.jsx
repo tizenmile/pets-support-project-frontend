@@ -9,9 +9,10 @@ import {
   selectTotal
 } from "../../../redux/notices/selector";
 import { useSelector, useDispatch } from "react-redux";
-import { getFavNotices } from '../../../redux/notices/operation';
+import { getFavNotices, fetchNoticesByCategory } from '../../../redux/notices/operation';
 import { Notice } from "../NoticesItem/NoticesItem";
 import { NoticesList } from "./NoticesList.styled";
+import { useEffect } from 'react';
 
 export const NoticeList = () => {
   const notices = useSelector(selectNotices);
@@ -24,6 +25,7 @@ export const NoticeList = () => {
   const normalizedFilterSearch = search.toLowerCase();
   const dispatch = useDispatch()
   
+
   let filteredNotices;
   let filteredFavoriteNotices;
 
@@ -34,20 +36,31 @@ export const NoticeList = () => {
     
   }
   if (favoriteNotices !== undefined && favoriteNotices.length > 0) {
+    console.log(favoriteNotices);
     filteredFavoriteNotices = favoriteNotices.filter((notice) =>
       notice.title.toLowerCase().includes(normalizedFilterSearch)
     );
   }
+
   return (
     <>
     {filter !== "fav-notice" ? (
         <>
           {filteredNotices !== undefined && filteredNotices.length >= 1 &&
-            <NoticesList>
-              {filteredNotices.map((notice) => { 
-                return <Notice key={notice._id} item={notice} />;
-              })}
-            </NoticesList>
+             <InfiniteScroll
+                pageStart={page + 1}
+                loadMore={() => filteredNotices.length < total && dispatch(fetchNoticesByCategory({page, categoryName: filter}))}
+                hasMore={filteredNotices.length !== total ? true : false}
+                // initialLoad={false}
+                loader={<div key={page}>Loading ...</div>}
+              >
+                <NoticesList>
+                  {filteredNotices.map((notice) => { 
+                    return <Notice key={notice._id} item={notice} />;
+                  })}
+                </NoticesList>
+              </InfiniteScroll>
+            
           }
         </>
       ) : (
@@ -56,15 +69,14 @@ export const NoticeList = () => {
               filteredFavoriteNotices.length >= 1 &&
           
               <InfiniteScroll
-                pageStart={1}
+                pageStart={page === 0 ? page + 1 : page}
                 loadMore={() => filteredFavoriteNotices.length < total && dispatch(getFavNotices(page))}
-                hasMore={filteredFavoriteNotices.length !== total && true}
-                initialLoad={false}
+                hasMore={filteredFavoriteNotices.length !== total ? true : false}
+                // initialLoad={false}
                 loader={<div key={page}>Loading ...</div>}
               >
                 <NoticesList>
                   {filteredFavoriteNotices.map((notice) => {
-                  console.log(page);
                   return <Notice key={notice._id} item={notice} />;
                 })}
                 </NoticesList>

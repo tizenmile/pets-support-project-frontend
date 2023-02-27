@@ -3,14 +3,14 @@ import axios from "axios";
 
 // axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api";
 axios.defaults.baseURL = 'http://localhost:3002/api';
-// axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YwOWRkMWUwNjhhYjQ3MzRiMjIxMTciLCJpYXQiOjE2NzcxNzMxMzksImV4cCI6MTY3NzIwOTEzOX0.4kAM8lujgjNFvhJqb82g-wh3KB2YRHDv1YXxUhQIrBA";
+axios.defaults.headers.common['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2YwOWRkMWUwNjhhYjQ3MzRiMjIxMTciLCJpYXQiOjE2Nzc0MzU2MTUsImV4cCI6MTY3NzQ3MTYxNX0.ScqG7_hnXzRgHv6O50fBe2_F8cHUHH_qudHRvXdX3kc";
 
 export const fetchNoticesByCategory = createAsyncThunk(
   "notices/fetchNoticesByCategory",
-  async (categoryName, thunkAPI) => {
+  async ({categoryName, page}, thunkAPI) => {
     try {
-      const response = await axios.get(`notices/category/${categoryName}`);
-      return response.data.notices;
+      const response = await axios.get(`notices/category/${categoryName}?limit=3&page=${page}`);
+      return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -22,6 +22,7 @@ export const addNoticeToFavorite = createAsyncThunk(
   async (noticeId, thunkAPI) => {
     try {
       const response = await axios.put(`notices/add-to-fav/${noticeId}`);
+      console.log(response.data);
       return response.data.notices;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -34,6 +35,7 @@ export const delNoticeFromFavorite = createAsyncThunk(
   async (noticeId, thunkAPI) => {
     try {
       const response = await axios.put(`notices/del-from-fav/${noticeId}`);
+      console.log(response.data);
       return response.data.notices;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -57,10 +59,10 @@ export const getFavNotices = createAsyncThunk(
 
 export const getOwnNotices = createAsyncThunk(
   "notices/getOwnNotices",
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await axios.get(`notices/owner/own-notices`);
-      return response.data.noticesList;
+      const response = await axios.get(`notices/owner/own-notices?limit=3&page=${page}`);
+      return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

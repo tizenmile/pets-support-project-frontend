@@ -71,13 +71,13 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   }
 
   const birthDate = (birthDate) => {
-    let dd = new Date(birthDate).getDate();
-    if (dd < 10) dd = "0" + dd;
-    let mm = new Date(birthDate).getMonth();
-    if (mm < 10) mm = "0" + mm;
-    let yy = new Date(birthDate).getFullYear();
-    if (yy < 10) yy = "0" + yy;
-    return dd + "." + mm + "." + yy;
+    console.log(notice.notice.birthDate);
+    const dateString = new Date(birthDate);
+    const day = dateString.getDate().toString().padStart(2, "0");
+    const month = (dateString.getMonth() + 1).toString().padStart(2, "0");
+    const year = dateString.getFullYear();
+
+  return `${day}.${month}.${year}`;
   };
 
   return (

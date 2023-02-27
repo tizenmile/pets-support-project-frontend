@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import { HiTrash } from "react-icons/hi2";
 import { heartFull as HeartFull, heart as Heart } from "../../../media";
 import {
   selectFavNotices,
   getStatusFilter,
+  selectPage
 } from "../../../redux/notices/selector";
 import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
 import {
@@ -32,12 +33,13 @@ import {
   CardButton,
 } from "./NoticesItem.styled";
 import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
+import { setFavNotices, setPage } from "../../../redux/notices/noticesSlice";
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const category = useSelector(getStatusFilter)
-   // const isLoggedIn = true
+  const page = useSelector(selectPage)
   const user = useSelector(selectUser);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -51,13 +53,14 @@ export const Notice = ({ item }) => {
     setIsModalOpen(false);
     setIsFavorite(isFav);
     if (category === "fav-notice") {
-        dispatch(getFavNotices())
+        dispatch(getFavNotices(0))
       } else if (category === "own-notices") {
-        dispatch(getOwnNotices())
+        dispatch(getOwnNotices(0))
       } else {
-       dispatch(fetchNoticesByCategory(category))
+       dispatch(fetchNoticesByCategory({page: 0, categoryName: category}))
     }  
   };
+
   const favNoticesIdArr = favNotices.reduce((acc, item) => {
     acc.push(item._id);
     return acc;
@@ -67,15 +70,16 @@ export const Notice = ({ item }) => {
     setIsFavorite(favNoticesIdArr.includes(item._id));
   }, [favNotices]);
 
-  const handleAuthorizedClick = async () => {
-     setIsFavorite((prev) => !prev);
-   await dispatch(
+  const handleAuthorizedClick = () => {
+    setIsFavorite(prev => !prev);
+     dispatch(
       isFavorite
         ? delNoticeFromFavorite(item._id)
         : addNoticeToFavorite(item._id)
-    );
-   
-    dispatch(getFavNotices());
+    );    
+    console.log(page);
+    // category === 'fav-notice' && setPage(0)
+    category === 'fav-notice' && dispatch(setFavNotices(item._id))
     
   };
 
@@ -85,11 +89,11 @@ export const Notice = ({ item }) => {
    await dispatch(delNotice(item._id))
     
       if (arrOfCategoryName.includes(category)) {
-        dispatch(fetchNoticesByCategory(category))
+        dispatch(fetchNoticesByCategory({page: 0, categoryName: category}))
       } else if (category === "own-notices") {
-        dispatch(getOwnNotices())
+        dispatch(getOwnNotices(0))
       } else {
-        dispatch(getFavNotices())
+        dispatch(getFavNotices(0))
       
     }  
   }
@@ -148,7 +152,7 @@ export const Notice = ({ item }) => {
               <img src={Heart} alt="heart" />
             )}
           </HeartButton>
-          <ToastContainer />
+          {/* <ToastContainer /> */}
         </ImageWrapp>
         <Title style={{ width: "280px" }}>{item.title}</Title>
         <FeaturesList>

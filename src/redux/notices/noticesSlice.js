@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import {
   fetchNoticesByCategory,
   getOwnNotices,
@@ -18,26 +18,44 @@ const noticesInitialState = {
 const noticesSlice = createSlice({
   name: "notices",
   initialState: noticesInitialState,
-
+   reducers: {
+    setPage(state, action) {
+       state.page = action.payload;
+       console.log(state.page);
+     },
+     setFavNotices(state, action) {
+        console.log(state.favNotices); 
+       state.favNotices = state.favNotices.filter(item => item._id !== action.payload)
+       console.log(state.favNotices); 
+       console.log(action.payload);
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload;
-        
+        state.items = state.page !== 0 ? [...state.items, ...action.payload.notices] : action.payload.notices
+        console.log(state.items);
+        state.page = state.items.length !== state.total && state.items.length !== 0 ? state.page + 1 : 0 
+        state.total = action.payload.total
       })
       .addCase(getFavNotices.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.favNotices = [...state.favNotices, ...action.payload.notices]
-        state.page = state.favNotices.length !== state.total ? state.page + 1 : 0 
+        state.favNotices = state.page !== 0 ? [...state.favNotices, ...action.payload.notices] : action.payload.notices
+        console.log(state.favNotices);
+        console.log(action.payload.notices);
+        state.page = state.favNotices.length !== state.total && state.favNotices.length !== 0 ? state.page + 1 : 0 
         state.total = action.payload.total
       })
       .addCase(getOwnNotices.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = state.page !== 0 ? [...state.items, ...action.payload.noticesList] : action.payload.noticesList
+        state.page = state.items.length !== state.total && state.items.length !== 0 ? state.page + 1 : 0 
+        state.total = action.payload.total
+        console.log(action.payload);
       })
 
       .addMatcher(fetchNoticesByCategory.pending, (state) => {
@@ -64,4 +82,5 @@ const noticesSlice = createSlice({
   },
 });
 
+export const { setPage, setFavNotices } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
