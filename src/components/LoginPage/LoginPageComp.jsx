@@ -2,6 +2,9 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import isEmail from 'validator/lib/isEmail';
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { ToastContainer} from "react-toastify";
+import {BiHide, BiShow} from "react-icons/bi";
+import { IconContext } from "react-icons";
 
 import {
   LoginPageContainer,
@@ -16,6 +19,7 @@ import {
 import { useState } from "react";
 import { logIn } from "../../redux/auth/operations";
 import { FormError } from "../RegistrationPage/AuthForm";
+import { PasswordField, PasswordShowHideButton } from "../RegistrationPage/RegistrationPageCompStyle";
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -39,14 +43,20 @@ const initialValues = {
 
 export const LoginPage = () => {
   const [data, setData] = useState(initialValues);
+  const [showPassword, setShowPassword] = useState(false)
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     dispatch(logIn(e));
   };
 
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <Formik
+    <>
+     <Formik
       initialValues={data}
       validationSchema={loginValidationSchema}
       onSubmit={handleSubmit}
@@ -60,11 +70,18 @@ export const LoginPage = () => {
               name="email"
             ></LoginPageFormInput>
             <FormError name="email" />
-            <LoginPageFormInput
-              placeholder="Password"
-              type="password"
-              name="password"
-            ></LoginPageFormInput>
+             <PasswordField><LoginPageFormInput
+            placeholder="Password"
+            name="password"
+            type = {showPassword? "text": "password"}
+          />
+          <PasswordShowHideButton onClick={togglePassword}>
+            <IconContext.Provider value={{ color: "rgba(245, 146, 86, 1)", size: 35}}>
+              {showPassword? <BiHide/>:<BiShow/>}
+            </IconContext.Provider>
+          </PasswordShowHideButton>
+          
+          </PasswordField>
             <FormError name="password" />
             <LoginPageButton type="submit">Login</LoginPageButton>
             <LoginPageDescription>
@@ -77,5 +94,19 @@ export const LoginPage = () => {
         </LoginPageContainer>
       )}
     </Formik>
+    <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      ></ToastContainer>
+    </>
+   
   );
 };
