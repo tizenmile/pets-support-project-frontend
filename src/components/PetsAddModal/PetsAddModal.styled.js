@@ -137,7 +137,7 @@ export const FormPage = styled.div`
     padding: 11px 11px 12px 14px;
     background: ${(p) => p.theme.colors.background};
     border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.accent};
-    border-radius: ${(p) => p.theme.radii.normal};
+    border-radius: ${(p) => p.theme.radii.large};
     margin-top: 8px;
     color: rgba(27, 27, 27, 0.6);
     &:focus,
@@ -261,9 +261,18 @@ export const BackButton = styled(AcseptButton)`
     @media ${(p) => p.theme.media.mobileMax} {
       visibility: hidden;
     }
-    @media ${(p) => p.theme.media.tablet} {
-      order: 0;
-    }
+  }
+  @media ${(p) => p.theme.media.tablet} {
+    order: 0;
+
+  }
+  :hover,
+  :focus {
+    color: ${(p) => p.theme.colors.white};
+    background: ${(p) => p.theme.colors.hover};
+    border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.hover};
+    transform: scale(1.1);
+    transition: ${(p) => p.theme.transition};
   }
 `;
 
