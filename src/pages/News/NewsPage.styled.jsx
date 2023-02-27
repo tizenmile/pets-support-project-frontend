@@ -111,10 +111,9 @@ export const SearchBar = styled.form`
   }
 `;
 
-// export const NewsCard = styled.div`
-// @media (${(p) => p.theme.media.desktop}) {
-//   width: 395px;
-//   height: 254px;
-// }
-
-// `;
+export const NewsCard = styled.div`
+@media (${(p) => p.theme.media.desktop}) {
+  width: 395px;
+  height: 254px;
+}
+`;

@@ -4,21 +4,21 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api/";
-// axios.defaults.baseURL = 'http://localhost:3002/api/';
+// axios.defaults.baseURL = "http://localhost:3002/api/";
 
 // Utility to add JWT
-const setAuthHeader = () => {
-  axios.interceptors.request.use(
-    (config) => {
-      config.headers["Authorization"] = `Bearer ${localStorage.getItem(
-        "token"
-      )}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+const setAuthHeader = (token) => {
+  if (token) {
+    axios.interceptors.request.use(
+      (config) => {
+        config.headers["Authorization"] = `Bearer ${token}`;
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+  }
 };
 
 // Utility to remove JWT
@@ -55,6 +55,7 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post("auth/register", credentials);
+
       if (res.status !== 200) {
         return thunkAPI.rejectWithValue(error.message);
       }
@@ -62,12 +63,10 @@ export const register = createAsyncThunk(
       // After successful registration, add the token to the HTTP header
       //  axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
 
-      setAuthHeader();
+      setAuthHeader(res.data.token);
 
       return res.data;
     } catch (error) {
-      console.log(error);
-
       if (error.response.status === 409) {
         notify("User is already exist");
         return;
@@ -95,9 +94,8 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post("/auth/login", credentials);
-
       // After successful login, add the token to the HTTP header
-      setAuthHeader();
+      setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
       notify("Incorrect email or password! Try again!");

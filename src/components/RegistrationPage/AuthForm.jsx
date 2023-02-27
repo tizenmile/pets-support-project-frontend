@@ -4,15 +4,30 @@ import isEmail from "validator/lib/isEmail";
 import { Formik, ErrorMessage } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import { register } from "../../redux/auth/operations";
+import { BiHide, BiShow } from "react-icons/bi";
+import { IconContext } from "react-icons";
 import {
   RegistrationPageFormInput,
   RegistrationPageForm,
   RegistrationPageButton,
-  RegistrationPageFormContainer,
   ErrorText,
   RegisterPrevButtonStyled,
+  PasswordShowHideButton,
+  PasswordField,
 } from "./RegistrationPageCompStyle";
 import { useState } from "react";
+
+const notify = (msg) =>
+  toast.info(msg, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
 const stepOneValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -37,11 +52,8 @@ const stepOneValidationSchema = Yup.object().shape({
       /^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,
       "Must include numbers and/or letters (uppercase and lowercase) except for whitespace."
     )
+    .matches(/^\S*$/, "Password must not contain spaces")
     .required("Password is required"),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
 });
 
 const stepTwoValidationSchema = Yup.object().shape({
@@ -49,6 +61,10 @@ const stepTwoValidationSchema = Yup.object().shape({
   city: Yup.string().required("City, region are required"),
   mobile: Yup.string()
     .length(13, "For example +380##########. Must be 13 characters.")
+    .matches(
+      "^[+](380)[0-9]{9}$",
+      "For example +380##########. Must be 13 characters."
+    )
     .required("Mobile phone is required"),
 });
 
@@ -72,6 +88,15 @@ export const FormError = ({ name }) => {
 export const AuthForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const toggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   const dispatch = useDispatch();
 
@@ -97,7 +122,14 @@ export const AuthForm = () => {
   };
 
   const steps = [
-    <StepOne next={handleNextStep} data={data} />,
+    <StepOne
+      next={handleNextStep}
+      data={data}
+      showPassword={showPassword}
+      togglePassword={() => togglePassword()}
+      showConfirmPassword={showConfirmPassword}
+      toggleConfirmPassword={() => toggleConfirmPassword()}
+    />,
     <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
 
@@ -121,8 +153,26 @@ export const AuthForm = () => {
 };
 
 const StepOne = (props) => {
+  const {
+    showPassword,
+    togglePassword,
+    showConfirmPassword,
+    toggleConfirmPassword,
+  } = props;
+
   const handleSubmit = (values) => {
-    props.next(values);
+    if (!values.confirmPassword) {
+      notify("Confirm password is required");
+      return;
+    }
+
+    if (values.confirmPassword === values.password) {
+      props.next(values);
+    }
+
+    if (values.confirmPassword !== values.password) {
+      notify("Passwords must match");
+    }
   };
 
   return (
@@ -140,21 +190,38 @@ const StepOne = (props) => {
             value={values.email || ""}
           />
           <FormError name="email" />
-          <RegistrationPageFormInput
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={values.password || ""}
-          />
+          <PasswordField>
+            <RegistrationPageFormInput
+              placeholder="Password"
+              name="password"
+              value={values.password || ""}
+              type={showPassword ? "text" : "password"}
+            />
+            <PasswordShowHideButton onClick={togglePassword}>
+              <IconContext.Provider
+                value={{ color: "rgba(245, 146, 86, 1)", size: 35 }}
+              >
+                {showPassword ? <BiHide /> : <BiShow />}
+              </IconContext.Provider>
+            </PasswordShowHideButton>
+          </PasswordField>
           <FormError name="password" />
-          <RegistrationPageFormInput
-            placeholder="Confirm Password"
-            type="password"
-            name="confirmPassword"
-            value={values.confirmPassword || ""}
-          />
+          <PasswordField>
+            <RegistrationPageFormInput
+              placeholder="Confirm Password"
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              validate={Yup.string()}
+            />
+            <PasswordShowHideButton onClick={toggleConfirmPassword}>
+              <IconContext.Provider
+                value={{ color: "rgba(245, 146, 86, 1)", size: 35 }}
+              >
+                {showConfirmPassword ? <BiHide /> : <BiShow />}
+              </IconContext.Provider>
+            </PasswordShowHideButton>
+          </PasswordField>
           <FormError name="confirmPassword" />
-
           <RegistrationPageButton type="submit">Next</RegistrationPageButton>
         </RegistrationPageForm>
       )}

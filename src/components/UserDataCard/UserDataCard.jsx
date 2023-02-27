@@ -24,6 +24,7 @@ import {
 } from "./userDataCard.styled";
 
 import AnimationLoader from "../AnimationLoader";
+import { toast } from "react-toastify";
 export const UserDataCard = () => {
   const dispatch = useDispatch();
 
@@ -44,6 +45,10 @@ export const UserDataCard = () => {
 
   const handleAvatarChange = (e) => {
     const reader = new FileReader();
+    if (e.target.files[0].size > 5242880) {
+      toast.error("Image size bigger than 5MB");
+      return;
+    }
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
       reader.onloadend = () => {

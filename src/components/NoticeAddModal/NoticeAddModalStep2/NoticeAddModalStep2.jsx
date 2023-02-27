@@ -79,7 +79,15 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
         comments: isComments,
       })
     );
-  });
+  }, [
+    isComments,
+    isImage,
+    isImageName,
+    isImageUrl,
+    isMale,
+    isLocation,
+    isPrice,
+  ]);
 
   const onChangeMale = (evt) => {
     setIsMale(evt.target.value);
@@ -98,7 +106,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     if (files[0].size > 5242880) {
       return notifyInfo();
     }
-    // console.log(files[0].size);
     setIsImage(files[0]);
     files[0] && setIsImageName(files[0].name);
     if (files) {
@@ -139,14 +146,16 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
           },
         }
       );
-
+      dispatch(getOwnNotices());
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
+
       reset();
       notifySuccess();
       onClose();
-      dispatch(getOwnNotices());
-      return data;
+      notifySuccess();
+
+      // return data;
     } catch (error) {
       notifyError(error.response.data.message[0].message);
     }
@@ -230,7 +239,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               {notice.category === "sell" && (
                 <NoticeAddModalInputListItem>
                   <NoticeAddModalLabel>
-                    Price:
+                    Price<span style={{ color: "#F59256" }}>*</span>:
                     <AddNoticeModalInput
                       type="number"
                       pattern="[1-9]*[.]?[1-9]+"
@@ -271,7 +280,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               </NoticeAddModalInputListItem>
               <NoticeAddModalInputListItem>
                 <NoticeAddModalTextAreaLabel>
-                  <p>
+                  <p style={{ fontSize: "18px" }}>
                     Comments<span style={{ color: "#F59256" }}>*</span>:
                   </p>
 
@@ -280,7 +289,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                     minlength="8"
                     maxlength="120"
                     required
-                    placeholder="Type comment"
+                    placeholder="Type breed"
                     name="comments"
                     value={isComments}
                     onChange={onChangeComments}
@@ -295,7 +304,10 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                 </NoticeAddModalBottomBtn>
               </NoticeAddModalBtnListItem>
               <NoticeAddModalBtnListItem>
-                <NoticeAddModalBottomBtn type="submit">
+                <NoticeAddModalBottomBtn
+                  style={{ color: "#fff", backgroundColor: "#F59256" }}
+                  type="submit"
+                >
                   Done
                 </NoticeAddModalBottomBtn>
               </NoticeAddModalBtnListItem>

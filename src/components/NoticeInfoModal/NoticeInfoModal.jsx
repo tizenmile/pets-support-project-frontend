@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { close_menu_icon, heart, heartFull } from "../../media";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
+import {transformDate} from "../../helpers/transformDate"
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
@@ -32,6 +33,7 @@ import {
   NoticeContactBtn,
   NoticeModalAddToFavoriteBtnImage,
   NoticeCloseModalButtonImg,
+  NoticeInfoModalLink,
 } from "./NoticeInfoModal.styled";
 
 export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
@@ -69,16 +71,6 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
   if (!notice) {
     return;
   }
-
-  const birthDate = (birthDate) => {
-    let dd = new Date(birthDate).getDate();
-    if (dd < 10) dd = "0" + dd;
-    let mm = new Date(birthDate).getMonth();
-    if (mm < 10) mm = "0" + mm;
-    let yy = new Date(birthDate).getFullYear();
-    if (yy < 10) yy = "0" + yy;
-    return dd + "." + mm + "." + yy;
-  };
 
   return (
     <ModalBackdrop>
@@ -118,7 +110,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
                 <NoticeModalListItem>
                   <NoticeModalTopText>Birthday:</NoticeModalTopText>
                   <NoticeModalBottomText>
-                    {birthDate(notice.notice.birthDate)}
+                    {transformDate(notice.notice.birthDate)}
                   </NoticeModalBottomText>
                 </NoticeModalListItem>
               )}
@@ -150,15 +142,15 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
               </NoticeModalListItem>
               <NoticeModalListItem>
                 <NoticeModalTopText>Email:</NoticeModalTopText>
-                <NoticeModalBottomText>
+                <NoticeInfoModalLink href={"mailto:" + notice.user.email}>
                   {notice.user.email}
-                </NoticeModalBottomText>
+                </NoticeInfoModalLink>
               </NoticeModalListItem>
               <NoticeModalListItem>
                 <NoticeModalTopText>Phone:</NoticeModalTopText>
-                <NoticeModalBottomText>
+                <NoticeInfoModalLink href={"tel:" + notice.user.mobile}>
                   {notice.user.mobile}
-                </NoticeModalBottomText>
+                </NoticeInfoModalLink>
               </NoticeModalListItem>
 
               {notice.notice.category === "sell" && (
