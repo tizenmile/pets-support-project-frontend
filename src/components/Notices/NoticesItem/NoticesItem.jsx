@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiTrash } from "react-icons/hi2";
-import { heartFull as HeartFull, heart as Heart } from "../../../media";
+import { heartFull as HeartFull, heart as Heart, plus } from "../../../media";
 import {
   selectFavNotices,
   getStatusFilter,
 } from "../../../redux/notices/selector";
-import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
+import {selectUserData} from "../../../redux/userAccount/useerSelector"
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
@@ -39,7 +40,7 @@ export const Notice = ({ item }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const category = useSelector(getStatusFilter);
   // const isLoggedIn = true
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUserData);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -59,6 +60,7 @@ export const Notice = ({ item }) => {
     setIsModalOpen(false);
     setIsFavorite(isFav);
   };
+
   const favNoticesIdArr = favNotices.reduce((acc, item) => {
     acc.push(item._id);
     return acc;
@@ -123,7 +125,7 @@ export const Notice = ({ item }) => {
   if (age < 1) {
     ageAsWord = "Less than a year";
   } else if (age > 15) {
-    ageAsWord = "very old dog";
+    ageAsWord = "very old pet";
   } else if (age >= 1 && age <= 15) {
     ageAsWord = variantAgeArr[age - 1];
   } else {
@@ -200,6 +202,16 @@ export const Notice = ({ item }) => {
             <HiTrash width={"16px"} height={"17px"} />
           </CardButton>
         )}
+        {/* {isLoggedIn && (
+          <AddNoticeBtnItemWarpper>
+            <AddNoticeBtn onClick={openAddModal}>
+              <div>
+                <AddNoticeBtnItemImg src={plus}></AddNoticeBtnItemImg>
+                <AddNoticeBtnItemText>Add pet</AddNoticeBtnItemText>
+              </div>
+            </AddNoticeBtn>
+          </AddNoticeBtnItemWarpper>
+        )} */}
       </CardTumb>
       {isModlOpen && (
         <NoticeInfoModal

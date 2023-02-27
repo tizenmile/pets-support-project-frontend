@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api";
+// axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api";
 // axios.defaults.baseURL = 'http://localhost:3002/api';
-
 
 export const fetchNoticesByCategory = createAsyncThunk(
   "notices/fetchNoticesByCategory",
@@ -46,6 +45,7 @@ export const getFavNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`notices/fav-notice/`);
+      
       return response.data.notices;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

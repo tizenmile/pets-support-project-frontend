@@ -39,17 +39,19 @@ export const Strip = styled.div`
   height: 4px;
   background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   border-radius: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-bottom: 4px;
 `;
 
 export const Title = styled.h3`
 @media (${p => p.theme.media.mobileMax}) {
   margin-top: 0px;
-  margin-bottom: 16px;
+  padding-bottom: 16px;
   font-weight: 700;
   font-size: 24px;
   line-height: 1.36;
   letter-spacing: -0.01em;
+
 
   span {
     display: none;
@@ -75,7 +77,7 @@ export const Title = styled.h3`
   }
 }
   @media (${p => p.theme.media.desktop}) {
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 `;
 
@@ -124,7 +126,8 @@ export const Checkbox = styled.input`
 `;
 
 export const P = styled.p`
-  height: 154px;
+  height: 110px;
+  margin-top: 16px;
   overflow-y: hidden;
   font-weight: 400;
   font-size: 16px;
@@ -139,15 +142,17 @@ export const Footer = styled.div`
 `;
 
 export const Data = styled.div`
+  font-family: "Manrope";
   font-weight: 400;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1.36;
-  color: rgba(49, 21, 4, 0.07);
+  color: rgba(17, 17, 17, 0.6);
 `;
 
 export const Link = styled.a`
+  font-family: "Manrope";
   font-weight: 500;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1.36;
   text-align: right;
   text-decoration-line: underline;

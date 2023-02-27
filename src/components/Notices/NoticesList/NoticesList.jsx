@@ -48,13 +48,13 @@ export const NoticeList = () => {
       ) : (
         <>
           {filteredFavoriteNotices !== undefined &&
-            filteredFavoriteNotices.length >= 1 && (
+            filteredFavoriteNotices.length >= 1 ? (
               <NoticesList>
                 {filteredFavoriteNotices.map((notice) => {
                   return <Notice key={notice._id} item={notice} />;
                 })}
               </NoticesList>
-            )}
+            ) : <h1 style={{margin: "0 auto", fontFamily: "Manrope", color: "rgba(47,48,64,1)"}}>You do not have any favorite ads</h1>}
         </>
       )}
     </>

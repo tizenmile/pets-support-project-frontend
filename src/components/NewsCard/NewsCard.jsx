@@ -22,15 +22,18 @@ const NewsCard = ({ news }) => {
 
     const newDescriptionStart = description.slice(0, 195);
     const newDescriptionEnd = description.slice(195);
+    const newdate = date?.split("-").reverse().join("/");
+    const name = title?.length < 45 ? title : title?.slice(0, 45) + "...";
 
 
     return (
 
         <Wrapper>
-            
                 <div>
                     <Strip />
-                    <Title>{title || 'no title'}</Title>
+                <Title>
+                    {name}
+                </Title>
                 </div>
                 <Content>
                     <Div>
@@ -45,7 +48,7 @@ const NewsCard = ({ news }) => {
                 </Content>
            
             <Footer>
-                <Data>{date || ''}</Data>
+                <Data>{newdate}</Data>
                 <Link href={url} target="_blank">
                     Read more
                 </Link>

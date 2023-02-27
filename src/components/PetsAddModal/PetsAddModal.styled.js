@@ -7,7 +7,7 @@ export const FormBox = styled.div`
   font-family: ${(p) => p.theme.fonts.main};
   background-color: ${(p) => p.theme.colors.white};
   border-radius: ${(p) => p.theme.radii.normal};
-  @media (min-width: 768px) {
+  @media ${(p) => p.theme.media.tablet} {
     width: 608px;
     padding: ${(p) => (p.secondPage ? "40px 107px" : "40px 80px")};
   }
@@ -17,7 +17,7 @@ export const FormBox = styled.div`
     font-size: ${(p) => p.theme.fontSizes.m};
     font-weight: ${(p) => p.theme.fontWeights.semiBold};
     text-align: center;
-    @media (min-width: 768px) {
+    @media ${(p) => p.theme.media.tablet} {
       margin-bottom: 40px;
       font-size: ${(p) => p.theme.fontSizes.xxl};
     }
@@ -27,7 +27,7 @@ export const FormBox = styled.div`
     font-size: ${(p) => p.theme.fontSizes.s};
     font-weight: ${(p) => p.theme.fontWeights.semiBold};
     text-align: center;
-    @media (min-width: 768px) {
+    @media ${(p) => p.theme.media.tablet} {
       font-size: ${(p) => p.theme.fontSizes.xm};
     }
   }
@@ -35,7 +35,7 @@ export const FormBox = styled.div`
   label {
     font-size: ${(p) => p.theme.fontSizes.xxm};
     font-weight: ${(p) => p.theme.fontWeights.semiBold};
-    @media (min-width: 768px) {
+    @media ${(p) => p.theme.media.tablet} {
       font-size: ${(p) => p.theme.fontSizes.m};
     }
   }
@@ -67,18 +67,38 @@ export const FileLable = styled.div`
 
 export const CloseBtn = styled.button`
   position: absolute;
-  top: 23px;
-  right: 23px;
+  top: 20px;
+  right: 20px;
   padding: 0;
+  width: 34px;
+  height: 34px;
   color: ${(p) => p.theme.colors.black};
-  background-color: transparent;
+  background-color: ${(p) => p.theme.colors.background};
+  border-radius: ${(p) => p.theme.radii.round};
+  backdrop-filter: blur(2px);
+  transition: ${(p) => p.theme.transition};
   cursor: pointer;
+  @media ${(p) => p.theme.media.tablet} {
+    width: 44px;
+    height: 44px;
+  }
+  @media ${(p) => p.theme.media.desktop} {
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+  }
   :hover,
   :focus {
-    color: ${(p) => p.theme.colors.accent};
+    color: ${(p) => p.theme.colors.white};
+    background-color: ${(p) => p.theme.colors.hover};
+    transform: scale(0.8);
+    transition: ${(p) => p.theme.transition};
   }
   svg {
-    @media (min-width: 768px) {
+    width: 15.56px;
+    height: 15.56px;
+    @media ${(p) => p.theme.media.tablet} {
       width: 20px;
       height: 20px;
     }
@@ -117,14 +137,14 @@ export const FormPage = styled.div`
     padding: 11px 11px 12px 14px;
     background: ${(p) => p.theme.colors.background};
     border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.accent};
-    border-radius: ${(p) => p.theme.radii.normal};
+    border-radius: ${(p) => p.theme.radii.large};
     margin-top: 8px;
     color: rgba(27, 27, 27, 0.6);
     &:focus,
     &:hover {
       outline: none;
     }
-    @media (min-width: 768px) {
+    @media ${(p) => p.theme.media.tablet} {
       margin-top: 12px;
       width: 100%;
     }
@@ -161,7 +181,7 @@ export const AddButton = styled.div`
   background-color: ${(p) => p.theme.colors.background};
   border-radius: ${(p) => p.theme.radii.normal};
   cursor: pointer;
-  @media (min-width: 768px) {
+  @media ${(p) => p.theme.media.tablet} {
     border-radius: ${(p) => p.theme.radii.large};
   }
 
@@ -182,7 +202,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  @media (min-width: 768px) {
+  @media ${(p) => p.theme.media.tablet} {
     flex-direction: row;
     justify-content: center;
     margin-top: 12px;
@@ -190,6 +210,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const AcseptButton = styled.button`
+  position: relative;
   width: 100%;
   height: 40px;
   padding: 7px 0 8px;
@@ -199,77 +220,59 @@ export const AcseptButton = styled.button`
   background: ${(p) => p.theme.colors.accent};
   border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.accent};
   border-radius: ${(p) => p.theme.radii.large};
-  transform: scale(1);
   transition: ${(p) => p.theme.transition};
   cursor: pointer;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: hidden;
   :hover,
   :focus {
-    transform: scale(1);
+    color: ${(p) => p.theme.colors.white};
+    background: ${(p) => p.theme.colors.hover};
+    transform: scale(1.1);
     transition: ${(p) => p.theme.transition};
   }
   :hover:before {
     left: 100%;
-    @media screen and (max-width: 767px) {
+    @media ${(p) => p.theme.media.mobileMax} {
       visibility: visible;
     }
   }
-  :before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    @media screen and (max-width: 767px) {
-      visibility: hidden;
-    }
-    background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    );
-    transition: all 650ms;
-  }
-  :disabled {
-    opacity: 0.5;
-    cursor: auto;
-    transform: none;
-    transition: none;
-  }
-  :disabled:before {
-    transform: none;
-    transition: none;
-  }
-  @media (min-width: 768px) {
+  @media ${(p) => p.theme.media.tablet} {
     width: 180px;
     height: 44px;
     margin-top: 0px;
     font-size: ${(p) => p.theme.fontSizes.xm};
   }
 `;
+
 export const BackButton = styled(AcseptButton)`
   color: ${(p) => p.theme.colors.black};
   background: ${(p) => p.theme.colors.white};
   border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.accent};
   order: 2;
   margin-top: 0;
+  :hover,
+  :focus {
+    color: ${(p) => p.theme.colors.white};
+    background: ${(p) => p.theme.colors.hover};
+    border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.hover};
+    transform: scale(1.1);
+    transition: ${(p) => p.theme.transition};
+  }
   :before {
-    @media screen and (max-width: 767px) {
+    @media ${(p) => p.theme.media.mobileMax} {
       visibility: hidden;
     }
-    background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(245, 146, 86, 0.9),
-      transparent
-    );
   }
-  @media (min-width: 768px) {
+  @media ${(p) => p.theme.media.tablet} {
     order: 0;
+
+  }
+  :hover,
+  :focus {
+    color: ${(p) => p.theme.colors.white};
+    background: ${(p) => p.theme.colors.hover};
+    border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.hover};
+    transform: scale(1.1);
+    transition: ${(p) => p.theme.transition};
   }
 `;
 

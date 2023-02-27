@@ -9,20 +9,20 @@ export const Wrapper = styled.div`
     padding: 90px 32px 100px 32px;
   }
   @media (${(p) => p.theme.media.desktop}) {
-    padding: 69px 16px 200px 16px;
+    padding: 49px 16px 200px 16px;
   }
 `;
 
 export const Title = styled.h2`
   @media (${(p) => p.theme.media.mobileMax}) {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 8px;
     font-size: 24px;
     line-height: 1.36;
   }
   @media (${(p) => p.theme.media.tablet}) {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 8px;
     font-size: 48px;
     line-height: 66px;
   }
@@ -111,10 +111,9 @@ export const SearchBar = styled.form`
   }
 `;
 
-// export const NewsCard = styled.div`
-// @media (${(p) => p.theme.media.desktop}) {
-//   width: 395px;
-//   height: 254px;
-// }
-
-// `;
+export const NewsCard = styled.div`
+@media (${(p) => p.theme.media.desktop}) {
+  width: 395px;
+  height: 254px;
+}
+`;

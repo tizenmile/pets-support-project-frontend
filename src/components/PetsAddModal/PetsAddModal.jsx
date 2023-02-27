@@ -88,6 +88,11 @@ const PetsAddModal = ({ onClose }) => {
       "image/*": [".png", ".jpg"],
     },
     onDrop: (acceptedFiles) => {
+      if (acceptedFiles[0].size > 5242880) {
+        toast.warning("Image size bigger than 5MB");
+        toast.info("Please add file less than 5MB");
+        return;
+      }
       setYourImage(
         acceptedFiles.map((upFile) =>
           Object.assign(upFile, {
@@ -215,7 +220,18 @@ const PetsAddModal = ({ onClose }) => {
                 >
                   Back
                 </BackButton>
-                <AcseptButton type="submit" disabled={isAdding}>
+                <AcseptButton
+                  type="submit"
+                  onClick={() => {
+                    const { comments } = values;
+                    if (!comments) {
+                      toast.info("Please fill in required fields");
+                      return;
+                    }
+                    toast.success("Hooray, pet added successfully");
+                  }}
+                  disabled={isAdding}
+                >
                   Done
                 </AcseptButton>
               </ButtonWrapper>
