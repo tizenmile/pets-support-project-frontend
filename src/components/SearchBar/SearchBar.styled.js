@@ -19,14 +19,12 @@ export const SearchForm = styled.form`
   max-width: 608px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
-  margin-bottom: 60px;
-  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-top: 20px;
   overflow: hidden;
    @media (${p => p.theme.media.mobileMax}) {
     width: 280px;
    }
-
- 
 `;
 
 export const SearchFormButton = styled.button`
@@ -69,7 +67,7 @@ export const SearchFormInput = styled.input`
   line-height: 1.36;
   border: none;
   outline: none;
-  padding-left: 10px;
+  padding-left: 20px;
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
