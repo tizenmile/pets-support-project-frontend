@@ -63,7 +63,10 @@ export const PetDeleteBtm = styled.button`
   transition: color ${(p) => p.theme.transition};
   :hover,
   :focus {
-    color: ${(p) => p.theme.colors.accent};
+    color: ${(p) => p.theme.colors.white};
+    background-color: ${(p) => p.theme.colors.hover};
+    transform: scale(1.1);
+    transition: ${(p) => p.theme.transition};
   }
   svg {
     fill: currentColor;

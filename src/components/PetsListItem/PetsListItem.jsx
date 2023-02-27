@@ -12,6 +12,7 @@ import {
   InfoPet,
   Title,
 } from "./PetsListItem.styled";
+import { toast } from "react-toastify";
 const PetsListItem = ({ id, name, date, breed, comment, petAvatar }) => {
   const { isDeleting } = useSelector(selectIsDeleting);
   const dispatch = useDispatch();
@@ -26,8 +27,11 @@ const PetsListItem = ({ id, name, date, breed, comment, petAvatar }) => {
       <PetBoxInfo>
         <PetDeleteBtm
           type="button"
+          onClick={() => {
+            toast.info("Hooray, pet delete successfully");
+            removePet(id);
+          }}
           disabled={isDeleting}
-          onClick={() => removePet(id)}
         >
           <PetDelIcon />
         </PetDeleteBtm>
