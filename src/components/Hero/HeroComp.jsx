@@ -12,8 +12,8 @@ const Hero = () => {
         <LeftContainer>
           <HeroTitle>Take good care of your small pets</HeroTitle>
         </LeftContainer>
-        <RightContainer></RightContainer>
       </HeroContentContainer>
+      <RightContainer></RightContainer>
     </HeroContainer>
   );
 };
