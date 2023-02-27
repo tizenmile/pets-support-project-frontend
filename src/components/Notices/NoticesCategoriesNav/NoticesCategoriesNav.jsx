@@ -16,10 +16,10 @@ import {
 import { statusFilters } from "../../../redux/constans";
 import {
   getStatusFilter,
-  selectFavNotices,
 } from "../../../redux/notices/selector";
 import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 import { setStatusFilter } from "../../../redux/notices/filterSlice";
+import { setPage } from "../../../redux/notices/noticesSlice";
 import { ButtonEl } from "../ButtonChangeCategory/Button";
 import { ButtonAddNotice } from "../ButtonAddNotice/ButtonAddNotice";
 
@@ -29,27 +29,33 @@ export default function CategoriesNav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const filter = useSelector(getStatusFilter);
+
   useEffect(() => {
+    
     dispatch(setStatusFilter("sell"));
-    dispatch(fetchNoticesByCategory("sell"));
+    dispatch(fetchNoticesByCategory({page: 0, categoryName: "sell"}));
+    dispatch(setPage(0))
     navigate(`/FindPet/sell`, { replace: true });
   }, [dispatch]);
 
   const handleFilterChange = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
-    dispatch(fetchNoticesByCategory(filterStatus));
+    dispatch(fetchNoticesByCategory({ page: 0, categoryName: filterStatus }));
+    dispatch(setPage(0))
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
 
   const filterMyAds = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
-    dispatch(getOwnNotices());
+    dispatch(getOwnNotices(0));
+    dispatch(setPage(0))
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
 
   const filterFavorite = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
-    dispatch(getFavNotices());
+    dispatch(getFavNotices(0));
+    dispatch(setPage(0))
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
   return (

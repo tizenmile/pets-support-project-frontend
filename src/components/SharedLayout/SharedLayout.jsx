@@ -7,9 +7,11 @@ import { ToastContainer } from "react-toastify";
 const SharedLayout = () => {
   return (
     <>
+      
       <Header />
       <ToastContainer />
       <Suspense fallback={<AnimationLoader />}>
+        <ToastContainer/>
         <Outlet />
       </Suspense>
     </>
