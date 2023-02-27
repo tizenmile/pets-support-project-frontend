@@ -19,7 +19,7 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Poppins', 'Manrope', 'Inter', sans-serif;
+  font-family: ${(p) => p.theme.fonts.main};
   background-color: ${(p) => p.theme.colors.background};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

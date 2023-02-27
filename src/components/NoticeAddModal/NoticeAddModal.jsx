@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
 import { AddNoticeModalStep1 } from "./NoticeAddModalStep1/NoticeAddModalStep1";
 import { AddNoticeModalStep2 } from "./NoticeAddModalStep2/NoticeAddModalStep2";

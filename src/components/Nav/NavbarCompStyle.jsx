@@ -5,12 +5,13 @@ import CloseIcon from "../../media/close_menu_icon.svg";
 import AccIcon from "../../media/acc_icon.svg";
 export const NavbarContainer = styled.nav`
   padding: 20px 16px 20px 16px;
-  max-width: 1248px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   background-color: ${(p) => p.theme.colors.background};
   display: flex;
   flex-direction: column;
+  
 
   @media (${(p) => p.theme.media.mobileMin}) and (max-width: 767px) {
     padding: 20px 16px 20px 16px;
@@ -31,12 +32,15 @@ export const MenuContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  
 `;
 export const AuthContainer = styled.div`
   display: flex;
   margin-left: auto;
   align-items: flex-start;
   margin-right: 0px;
+  overscroll-behavior: none;
+  touch-action: none;
 
   @media (max-width: 968px) {
     margin-right: 20px;
@@ -52,6 +56,7 @@ export const NavbarExtendedAuthContainer = styled.div`
   margin-top: 32px;
   margin-bottom: 60px;
   align-items: flex-start;
+  
   @media (min-width: 599px) {
     display: none;
   }
@@ -158,6 +163,16 @@ export const NavbarExtendedContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
+  background-color: ${(p) => p.theme.colors.background};
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+
   @media (min-width: 968px) {
     display: none;
   }
@@ -178,7 +193,7 @@ export const CloseMenuIcon = styled.div`
   height: 40px;
   background-image: url(${CloseIcon});
 
-  @media (min-width: 600px) and (max-width: 1248px) {
+  @media (min-width: 600px) and (max-width: 1280px) {
     position: absolute;
     right: 38px;
     top: 30px;
