@@ -39,7 +39,7 @@ export const Strip = styled.div`
   height: 4px;
   background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   border-radius: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 4px;
 `;
 
