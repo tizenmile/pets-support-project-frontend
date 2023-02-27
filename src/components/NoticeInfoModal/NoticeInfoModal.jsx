@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { close_menu_icon, heart, heartFull } from "../../media";
 import { ModalBackdrop } from "../ModalBackdrop/ModalBackdrop";
+import {transformDate} from "../../helpers/transformDate"
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
@@ -71,16 +72,6 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
     return;
   }
 
-  const birthDate = (birthDate) => {
-    let dd = new Date(birthDate).getDate();
-    if (dd < 10) dd = "0" + dd;
-    let mm = new Date(birthDate).getMonth();
-    if (mm < 10) mm = "0" + mm;
-    let yy = new Date(birthDate).getFullYear();
-    if (yy < 10) yy = "0" + yy;
-    return dd + "." + mm + "." + yy;
-  };
-
   return (
     <ModalBackdrop>
       <NoticeModalContainer>
@@ -119,7 +110,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
                 <NoticeModalListItem>
                   <NoticeModalTopText>Birthday:</NoticeModalTopText>
                   <NoticeModalBottomText>
-                    {birthDate(notice.notice.birthDate)}
+                    {transformDate(notice.notice.birthDate)}
                   </NoticeModalBottomText>
                 </NoticeModalListItem>
               )}

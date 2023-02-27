@@ -9,7 +9,8 @@ import {
   selectFavNotices,
   getStatusFilter,
 } from "../../../redux/notices/selector";
-import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
+import {selectUserData} from "../../../redux/userAccount/useerSelector"
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
@@ -39,7 +40,7 @@ export const Notice = ({ item }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const category = useSelector(getStatusFilter);
   // const isLoggedIn = true
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUserData);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -123,7 +124,7 @@ export const Notice = ({ item }) => {
   if (age < 1) {
     ageAsWord = "Less than a year";
   } else if (age > 15) {
-    ageAsWord = "very old dog";
+    ageAsWord = "very old pet";
   } else if (age >= 1 && age <= 15) {
     ageAsWord = variantAgeArr[age - 1];
   } else {

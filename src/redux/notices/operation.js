@@ -45,6 +45,7 @@ export const getFavNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`notices/fav-notice/`);
+      
       return response.data.notices;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
