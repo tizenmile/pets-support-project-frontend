@@ -19,10 +19,13 @@ export const SearchForm = styled.form`
   max-width: 608px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
+  margin-bottom: 60px;
+  margin-top: 40px;
   overflow: hidden;
    @media (${p => p.theme.media.mobileMax}) {
     width: 280px;
    }
+
  
 `;
 
@@ -55,6 +58,7 @@ export const SearchFormButtonLabel = styled.span`
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   clip-path: inset(50%);
+  
 `;
 
 export const SearchFormInput = styled.input`
@@ -70,9 +74,14 @@ export const SearchFormInput = styled.input`
   padding-top: 10px;
   padding-bottom: 10px;
   ::placeholder {
-    font: inherit;
+    font-family: "Inter"
+    font-style: medium;
+    /* font: inherit; */
     font-size: 20px;
-    line-height: 1.36;
+    align-items: left;
+    line-height: 24px;
+    letter-spacing: 4%;
+    color: rgba(83, 83, 83, 1);
   }
 
 `;
