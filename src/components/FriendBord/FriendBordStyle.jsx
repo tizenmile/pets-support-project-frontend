@@ -31,8 +31,7 @@ export const Wrap = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  @media ${(p) => p.theme.media.mobileMin} and ${(p) =>
-      p.theme.media.mobileMax} {
+  @media ${(p) => p.theme.media.mobileMin} and (max-width: 767px) {
     max-width: 320px;
   }
   @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {

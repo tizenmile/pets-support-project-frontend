@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BiSearchAlt2 } from "react-icons/bi";
-
+import { TbSearch } from "react-icons/tb";
 export const HeaderSearchBar = styled.div`
   top: 0;
   left: 0;
@@ -13,36 +13,25 @@ export const HeaderSearchBar = styled.div`
 `;
 
 export const SearchForm = styled.form`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 608px;
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 40px;
-  margin-bottom: 40px;
-  margin-top: 20px;
-  overflow: hidden;
-  @media (${(p) => p.theme.media.mobileMax}) {
-    width: 280px;
-   }
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  @media ${(p) => p.theme.media.mobileMax} {
+    max-width: 280px;
+    height: 40px;
+    margin-bottom: 28px;
+    font-size: ${(p) => p.theme.fontSizes.s};
+  }
+  @media ${(p) => p.theme.media.tablet} {
+    width: 608px;
+    height: 44px;
+    margin-bottom: 40px;
+    font-size: ${(p) => p.theme.fontSizes.xm};
+  }
 `;
 
 export const SearchFormButton = styled.button`
-  display: flex;
-  width: 40px;
-  height: 40px;
-  border: 0;
-  background-color: rgba(255, 255, 255, 1);
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.6;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  outline: none;
-  :hover {
-    opacity: 1;
-  }
+  padding: 0px 0px;
 `;
 
 export const SearchFormButtonLabel = styled.span`
@@ -55,36 +44,50 @@ export const SearchFormButtonLabel = styled.span`
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   clip-path: inset(50%);
-  
 `;
 
 export const SearchFormInput = styled.input`
-  display: inline-block;
-  width: 100%;
-  font: inherit;
-  font-size: 24px;
-  line-height: 1.36;
-
-  border: none;
   outline: none;
-  padding-left: 20px;
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  ::placeholder {
-    font-family: "Inter"
-    font-style: medium;
-    /* font: inherit; */
-    font-size: 20px;
-    align-items: left;
-    line-height: 24px;
-    letter-spacing: 4%;
-    color: rgba(83, 83, 83, 1);
+  width: 100%;
+  height: 100%;
+  font-family: ${(p) => p.theme.fonts.main};
+  font-weight: ${(p) => p.theme.fontWeights.semiBold};
+  color: ${(p) => p.theme.colors.searchText};
+  border-radius: 40px;
+  border: solid 2px #fff;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  &:hover,
+  &:focus,
+  &:active {
+    border: solid 2px ${(p) => p.theme.colors.accent};
+  }
+
+  @media ${(p) => p.theme.media.mobileMax} {
+    padding-left: 12px;
+  }
+  @media ${(p) => p.theme.media.tablet} {
+    padding-left: 20px;
   }
 `;
 
-export const IconSearch = styled(BiSearchAlt2)`
-  width: 20px;
-  height: 20px;
-  margin: auto;
+export const IconSearch = styled(TbSearch)`
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+
+  color: black;
+  &:hover {
+    color: ${(p) => p.theme.colors.accent};
+    scale: 1.15;
+  }
+
+  @media ${(p) => p.theme.media.mobileMax} {
+    width: 17px;
+    height: 17px;
+  }
+  @media ${(p) => p.theme.media.tablet} {
+    width: 20px;
+    height: 20px;
+  }
 `;

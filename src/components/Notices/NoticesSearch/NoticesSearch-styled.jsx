@@ -46,7 +46,8 @@ export const ContainerMain = styled.div`
   }
 
   @media ${(p) => p.theme.media.tablet} {
-    max-width: 1248px;
+
+    max-width: 1280px;
     padding-left: 32px;
     padding-right: 32px;
     padding-top: 64px;
@@ -138,17 +139,14 @@ export const Input = styled.input`
   font-family: ${(p) => p.theme.fonts.main};
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   color: ${(p) => p.theme.colors.searchText};
-  border-radius: 14px;
-  border: none;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25), 7px 4px 6px rgba(49, 21, 4, 0.07);
+  border-radius: 40px;
+  border: solid 2px #fff;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   &:hover,
   &:focus,
   &:active {
-    border: solid 1px rgba(245, 146, 86, 0.5);
-    scale: 1.02;
+    border: solid 2px ${(p) => p.theme.colors.accent};
   }
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media ${(p) => p.theme.media.mobileMax} {
     padding-left: 12px;

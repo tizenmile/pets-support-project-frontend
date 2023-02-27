@@ -24,7 +24,7 @@ export const Item = styled.li`
   }
   @media ${(p) => p.theme.media.tablet} {
     &:nth-child(-n + 3) {
-      margin-bottom: 16px;
+      margin-bottom: 0px;
     }
   }
 `;

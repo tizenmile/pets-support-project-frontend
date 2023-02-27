@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
- @media (${p => p.theme.media.mobileMax} ){  
+  @media (${(p) => p.theme.media.mobileMax}) {
     display: flex;
     flex-direction: column;
     /* ::before {
@@ -13,14 +13,14 @@ export const Wrapper = styled.div`
       width: 200px;
     } */
   }
-  @media (${p => p.theme.media.tablet}) {
+  @media (${(p) => p.theme.media.tablet}) {
     ::before {
       content: " ";
       height: 8px;
       width: 280px;
     }
   }
-  @media( ${p => p.theme.media.desktop}) {
+  @media (${(p) => p.theme.media.desktop}) {
     ::before {
       content: " ";
       width: 340px;
@@ -44,39 +44,38 @@ export const Strip = styled.div`
 `;
 
 export const Title = styled.h3`
-@media (${p => p.theme.media.mobileMax}) {
-  margin-top: 0px;
-  padding-bottom: 16px;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.36;
-  letter-spacing: -0.01em;
+  @media ${(p) => p.theme.media.mobileMax} {
+    margin-top: 0px;
+    padding-bottom: 16px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.36;
+    letter-spacing: -0.01em;
 
+    span {
+      display: none;
+      padding: 2px 3px;
+      margin-left: 0px;
 
-  span {
-    display: none;
-    padding: 2px 3px;
-    margin-left: 0px;
-
-    @media( ${p => p.theme.media.tablet}) {
-      width: calc(((100% - 32px) / 2) * 0.9);
-      height: auto;
+      @media ${(p) => p.theme.media.tablet} {
+        width: calc(((100% - 32px) / 2) * 0.9);
+        height: auto;
+      }
+      @media ${(p) => p.theme.media.desktop} {
+        width: calc((100% - 64px) / 3);
+      }
     }
-    @media( ${p => p.theme.media.desktop}) {
-      width: calc((100% - 64px) / 3);
+    :hover span {
+      display: inline-block;
+      position: absolute;
+      background: #fdf7f2;
+      border: 1px solid #f59256;
+      font-size: 18px;
+      border-radius: 10px;
+      color: #535353;
     }
   }
-  :hover span {
-    display: inline-block;
-    position: absolute;
-    background: #fdf7f2;
-    border: 1px solid #f59256;
-    font-size: 18px;
-    border-radius: 10px;
-    color: #535353;
-  }
-}
-  @media (${p => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     letter-spacing: -0.01em;
   }
 `;
@@ -87,9 +86,9 @@ export const Content = styled.div`
 `;
 
 export const Div = styled.div`
-display: block ;
-/* margin-bottom: auto; */
-`
+  display: block;
+  /* margin-bottom: auto; */
+`;
 export const SpanDots = styled.span`
   display: inline;
 `;
@@ -103,7 +102,7 @@ export const Label = styled.label`
   :before {
     display: block;
     margin-top: 15px;
-    content: 'Show more';
+    content: "Show more";
   }
 `;
 
@@ -120,7 +119,7 @@ export const Checkbox = styled.input`
   }
   :checked ~ ${Label} {
     :before {
-      content: 'Show less';
+      content: "Show less";
     }
   }
 `;
@@ -161,4 +160,3 @@ export const Link = styled.a`
     color: rgba(255, 97, 1, 1);
   }
 `;
-
