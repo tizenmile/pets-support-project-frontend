@@ -3,7 +3,6 @@ import {
   fetchNoticesByCategory,
   getOwnNotices,
   getFavNotices,
-  addNoticeToFavorite,
 } from "./operation";
 
 const noticesInitialState = {
@@ -21,13 +20,12 @@ const noticesSlice = createSlice({
    reducers: {
     setPage(state, action) {
        state.page = action.payload;
-       console.log(state.page);
      },
      setFavNotices(state, action) {
-        console.log(state.favNotices); 
        state.favNotices = state.favNotices.filter(item => item._id !== action.payload)
-       console.log(state.favNotices); 
-       console.log(action.payload);
+     },
+     setNotices(state, action) {
+       state.items = state.items.filter(item => item._id !== action.payload)
     }
   },
   extraReducers: (builder) => {
@@ -35,7 +33,6 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log(action.payload.notices);
         state.items = state.page !== 0 ? [...state.items, ...action.payload.notices] : action.payload.notices
         state.page = state.items.length !== state.total && state.items.length !== 0 ? state.page + 1 : 0 
         state.total = action.payload.total
@@ -53,7 +50,6 @@ const noticesSlice = createSlice({
         state.items = state.page !== 0 ? [...state.items, ...action.payload.noticesList] : action.payload.noticesList
         state.page = state.items.length !== state.total && state.items.length !== 0 ? state.page + 1 : 0 
         state.total = action.payload.total
-        console.log(action.payload);
       })
 
       .addCase(fetchNoticesByCategory.pending, (state) => {
@@ -81,5 +77,5 @@ const noticesSlice = createSlice({
   },
 });
 
-export const { setPage, setFavNotices } = noticesSlice.actions;
+export const { setPage, setFavNotices, setNotices } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

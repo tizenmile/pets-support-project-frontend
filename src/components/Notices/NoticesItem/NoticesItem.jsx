@@ -32,7 +32,7 @@ import {
   CardButton,
 } from "./NoticesItem.styled";
 import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
-import { setFavNotices, setPage } from "../../../redux/notices/noticesSlice";
+import { setFavNotices, setNotices } from "../../../redux/notices/noticesSlice";
 import { NoticeConfirmModal } from "../NoticeConfirmDelModal/NoticeConfirmModal";
 
 export const Notice = ({ item }) => {
@@ -44,7 +44,6 @@ export const Notice = ({ item }) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
-  console.log(user._id);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -82,18 +81,10 @@ export const Notice = ({ item }) => {
   };
 
   
-  const handleDeleteClick = async() => {
-    const arrOfCategoryName = ["sell", "lost-found", "for-free"]
-   await dispatch(delNotice(item._id))
-    
-      if (arrOfCategoryName.includes(category)) {
-        dispatch(fetchNoticesByCategory({page: 0, categoryName: category}))
-      } else if (category === "own-notices") {
-        dispatch(getOwnNotices(0))
-      } else {
-        dispatch(getFavNotices(0))
-      
-    }  
+  const handleDeleteClick = () => {
+    dispatch(delNotice(item._id))
+    dispatch(setNotices(item._id))
+    toggleConfirmModal()
   }
   
   const CustomToastWithLink = () => (

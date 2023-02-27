@@ -35,7 +35,6 @@ export const NoticeList = () => {
     
   }
   if (favoriteNotices !== undefined && favoriteNotices.length > 0) {
-    console.log(favoriteNotices);
     filteredFavoriteNotices = favoriteNotices.filter((notice) =>
       notice.title.toLowerCase().includes(normalizedFilterSearch)
     );
@@ -46,7 +45,7 @@ export const NoticeList = () => {
       {filter !== "fav-notice" ?
         (
         <>
-            {filteredNotices !== undefined && filteredNotices.length >= 1 && (
+            {filteredNotices !== undefined && filteredNotices.length >= 1 ? (
               <InfiniteScroll
                 pageStart={page + 1}
                 loadMore={() => !isLoading && dispatch(fetchNoticesByCategory({page, categoryName: filter}))}
@@ -59,7 +58,7 @@ export const NoticeList = () => {
                   })}
                 </NoticesList>
               </InfiniteScroll>
-          )}
+          ) : <h1 style={{margin: "0 auto", fontFamily: "Manrope", color: "rgba(47,48,64,1)"}}>You do not have any own ads</h1>}
         </>
       ) : (
         <>
