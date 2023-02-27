@@ -1,28 +1,40 @@
-import{s as a,U as m,V as p,r as l,e as c,j as t,a as i,W as h,F as g}from"./index-8880376f.js";import{e as x,d as b,c as u,a as o,V as w,F as f}from"./index.esm-a359f716.js";import{l as $,i as k,F as n}from"./AuthForm-74cb1483.js";const y=a.div`
-  margin-top: 28px;
-  height: 100vh;
+import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./index-219a0c1a.js";import{e as x,d as u,c as b,a as o,V as f,F as w}from"./index.esm-db41679a.js";import{l as $,i as k,F as n}from"./AuthForm-fa7ba341.js";const y=a.div`
+  height: 88vh;
   background-image: url(${m});
-  background-position: center bottom -170px;
+  background-position: center bottom -200px;
   background-repeat: no-repeat;
+  overscroll-behavior: none;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   @media (${e=>e.theme.media.tablet}) {
     background-image: url(${$});
-    background-position: center bottom -180px;
+    background-position: center bottom;
     position: relative;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } ;
 `,v=a(x)`
   width: 280px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   @media (${e=>e.theme.media.tablet}) and (max-width: 1280px) {
     width: 608px;
-    margin-top: 180px;
+    /* margin-top: 180px; */
     background-color: ${e=>e.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
+    display: flex;
+    justify-content: center;  
   }
   @media (${e=>e.theme.media.desktop}) {
     width: 618px;
@@ -64,7 +76,7 @@ import{s as a,U as m,V as p,r as l,e as c,j as t,a as i,W as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     margin-bottom: 60px;
   }
-`,F=a(p)`
+`,F=a(l)`
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -83,7 +95,7 @@ import{s as a,U as m,V as p,r as l,e as c,j as t,a as i,W as h,F as g}from"./ind
   &:hover {
     text-decoration-thickness: 2px;
   }
-`,r=a(b)`
+`,r=a(u)`
   width: 266px;
   height: 40px;
   left: 20px;
@@ -138,4 +150,4 @@ import{s as a,U as m,V as p,r as l,e as c,j as t,a as i,W as h,F as g}from"./ind
   @media (${e=>e.theme.media.desktop}) {
     width: 458px;
   }
-`,S=u().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new w("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),E={email:"",password:""},V=()=>{const[e,D]=l.useState(E),s=c();return t(f,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:i(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(P,{type:"submit",children:"Login"}),i(z,{children:["Don't have an account?",t(F,{to:"/register",children:"Register"})]})]})})})},I=()=>t(g,{children:t(V,{})});export{I as default};
+`,S=b().shape({email:o().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?k(e):new f("Invalid value")),password:o().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),j={email:"",password:""},E=()=>{const[e,V]=c.useState(j),s=p();return t(w,{initialValues:e,validationSchema:S,onSubmit:d=>{s(h(d))},children:()=>t(y,{children:i(v,{children:[t(L,{children:"Login"}),t(r,{placeholder:"Email",name:"email"}),t(n,{name:"email"}),t(r,{placeholder:"Password",type:"password",name:"password"}),t(n,{name:"password"}),t(P,{type:"submit",children:"Login"}),i(z,{children:["Don't have an account?",t(F,{to:"/register",children:"Register"})]})]})})})},I=()=>t(g,{children:t(E,{})});export{I as default};
