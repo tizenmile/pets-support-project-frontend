@@ -115,6 +115,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const hundleSubmit = async (evt) => {
+    // console.log(notice.birthDate);
     setIsLoading(true);
     evt.preventDefault();
     const formData = new FormData();
@@ -142,11 +143,13 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
+      dispatch(getOwnNotices());
       reset();
       notifySuccess();
       onClose();
-      dispatch(getOwnNotices());
-      return data;
+      notifySuccess();
+
+      // return data;
     } catch (error) {
       notifyError(error.response.data.message[0].message);
     }
@@ -230,7 +233,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
               {notice.category === "sell" && (
                 <NoticeAddModalInputListItem>
                   <NoticeAddModalLabel>
-                    Price:
+                    Price<span style={{ color: "#F59256" }}>*</span>:
                     <AddNoticeModalInput
                       type="number"
                       pattern="[1-9]*[.]?[1-9]+"

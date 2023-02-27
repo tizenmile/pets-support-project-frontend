@@ -8,6 +8,9 @@ export const AddNoticeModalContainerSecond = styled.form`
   border-radius: 40px;
   padding: 40px 80px;
   margin-top: 150px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    padding: 20px 40px;
+  }
 `;
 
 export const NoticeAddModalTextSecond = styled.p`
@@ -138,7 +141,7 @@ export const NoticeAddModalTextArea = styled.textarea`
   font-size: 16px;
   line-height: 26px;
   color: #000000;
-  resize: none;
+  resize: vertical;
   outline: none;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
