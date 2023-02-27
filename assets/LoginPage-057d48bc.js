@@ -1,4 +1,4 @@
-import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./index-219a0c1a.js";import{e as x,d as u,c as b,a as o,V as f,F as w}from"./index.esm-db41679a.js";import{l as $,i as k,F as n}from"./AuthForm-fa7ba341.js";const y=a.div`
+import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./index-c740226f.js";import{e as x,d as u,c as b,a as o,V as f,F as w}from"./index.esm-191a3abb.js";import{l as $,i as k,F as n}from"./AuthForm-845fc7b5.js";const y=a.div`
   height: 88vh;
   background-image: url(${m});
   background-position: center bottom -200px;
@@ -29,6 +29,7 @@ import{s as a,U as m,V as l,r as c,e as p,j as t,a as i,W as h,F as g}from"./ind
 
   @media (${e=>e.theme.media.tablet}) and (max-width: 1280px) {
     width: 608px;
+    /* margin-top: 180px; */
     /* margin-top: 180px; */
     background-color: ${e=>e.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
