@@ -155,7 +155,7 @@ export const NoticeInfoModal = ({ onClose, itemId, isFavorite }) => {
                   </NoticeModalBottomText>
                 </NoticeModalListItem>
                 <NoticeModalListItem>
-                  <NoticeModalTopText>UserName:</NoticeModalTopText>
+                  <NoticeModalTopText>Owner:</NoticeModalTopText>
                   <NoticeModalBottomText>
                     {notice.user.name}
                   </NoticeModalBottomText>
