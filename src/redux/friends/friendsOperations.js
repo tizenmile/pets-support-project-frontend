@@ -1,8 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-console.log("sdsad");
-
 export const getFriends = createAsyncThunk(
   "friends/getFriends",
   async (categoryName, thunkAPI) => {

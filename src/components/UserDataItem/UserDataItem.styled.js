@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HiPencil } from "react-icons/hi";
 import { BsCheckLg } from "react-icons/bs";
+import { Form } from "formik";
 
 export const EditTextBtn = styled.button`
   display: flex;
@@ -72,7 +73,7 @@ export const UserDataInput = styled.input`
   }
 `;
 
-export const UserForm = styled.div`
+export const UserForm = styled(Form)`
   position: relative;
   display: flex;
 

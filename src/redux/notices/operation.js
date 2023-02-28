@@ -6,9 +6,11 @@ axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api";
 
 export const fetchNoticesByCategory = createAsyncThunk(
   "notices/fetchNoticesByCategory",
-  async ({categoryName, page}, thunkAPI) => {
+  async ({ categoryName, page }, thunkAPI) => {
     try {
-      const response = await axios.get(`notices/category/${categoryName}?limit=8&page=${page}`);
+      const response = await axios.get(
+        `notices/category/${categoryName}?limit=8&page=${page}`
+      );
       return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -44,9 +46,10 @@ export const getFavNotices = createAsyncThunk(
   "notices/getFavNotices",
   async (page, thunkAPI) => {
     try {
-      const response = await axios.get(`notices/fav-notice?limit=3&page=${page}`);
+      const response = await axios.get(
+        `notices/fav-notice?limit=3&page=${page}`
+      );
       return response.data.data;
-      
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -57,7 +60,9 @@ export const getOwnNotices = createAsyncThunk(
   "notices/getOwnNotices",
   async (page, thunkAPI) => {
     try {
-      const response = await axios.get(`notices/owner/own-notices?limit=3&page=${page}`);
+      const response = await axios.get(
+        `notices/owner/own-notices?limit=3&page=${page}`
+      );
       return response.data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

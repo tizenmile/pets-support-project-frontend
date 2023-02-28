@@ -1,10 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api/";
-axios.defaults.baseURL = "http://localhost:3002/api/";
+axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api/";
+// axios.defaults.baseURL = "http://localhost:3002/api/";
 
 // Utility to add JWT
 const setAuthHeader = (token) => {
@@ -64,6 +64,7 @@ export const register = createAsyncThunk(
       //  axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
 
       setAuthHeader(res.data.token);
+      console.log(res.data);
 
       return res.data;
     } catch (error) {
