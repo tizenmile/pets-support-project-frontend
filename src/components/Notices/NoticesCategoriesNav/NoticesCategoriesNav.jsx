@@ -30,6 +30,7 @@ export default function CategoriesNav() {
 
   useEffect(() => {
     dispatch(setStatusFilter("sell"));
+    dispatch(getFavNotices(0));
     dispatch(fetchNoticesByCategory({ page: 0, categoryName: "sell" }));
     dispatch(setPage(0));
     navigate(`/notices/sell`, { replace: true });
@@ -107,7 +108,7 @@ export default function CategoriesNav() {
             )}
           </List>
         </Wrapper>
-        {isLoggedIn && <ButtonAddNotice />}
+        <ButtonAddNotice />
       </NoticesCategoriesNavBox>
     </Section>
   );

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 // import AddPetBtn from "../../AddPetBtn";
 import { NoticeAddModal } from "../../NoticeAddModal/NoticeAddModal";
 import { AddPetBtnWrapper } from "../../PetsData/PetsData.styled";
@@ -12,9 +15,14 @@ import {
 
 export const ButtonAddNotice = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const isLogin = useSelector(selectIsLoggedIn);
+  const notify = () => toast("You need to login first");
   const openModal = () => {
-    setIsModalOpen(true);
+    if (isLogin) {
+      setIsModalOpen(true);
+      return
+    } 
+    notify();
   };
 
   const closeModal = () => {
@@ -23,6 +31,18 @@ export const ButtonAddNotice = () => {
 
   return (
     <AddNoticeBtnWarpper>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      ></ToastContainer>
       <AddPetBtnWrapper>
         <AddNoticeBtnTitle>Add pet</AddNoticeBtnTitle>
         <AddNoticeBtn onClick={openModal}>
