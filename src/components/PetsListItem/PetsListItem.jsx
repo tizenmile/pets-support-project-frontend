@@ -12,7 +12,7 @@ import {
   InfoPet,
   Title,
 } from "./PetsListItem.styled";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 const PetsListItem = ({ id, name, date, breed, comment, petAvatar }) => {
   const { isDeleting } = useSelector(selectIsDeleting);
   const dispatch = useDispatch();
@@ -22,37 +22,40 @@ const PetsListItem = ({ id, name, date, breed, comment, petAvatar }) => {
   };
 
   return (
-    <PetItemWrapper>
-      <ImgPet src={petAvatar} alt={`${name}`}></ImgPet>
-      <PetBoxInfo>
-        <PetDeleteBtm
-          type="button"
-          onClick={() => {
-            toast.info("Hooray, pet delete successfully");
-            removePet(id);
-          }}
-          disabled={isDeleting}
-        >
-          <PetDelIcon />
-        </PetDeleteBtm>
-        <InfoPet>
-          <Title>Name: </Title>
-          {name}
-        </InfoPet>
-        <InfoPet>
-          <Title>Date of birth: </Title>
-          {transformDate(date)}
-        </InfoPet>
-        <InfoPet>
-          <Title>Breed: </Title>
-          {breed}
-        </InfoPet>
-        <InfoPet>
-          <Title>Comments: </Title>
-          {comment}
-        </InfoPet>
-      </PetBoxInfo>
-    </PetItemWrapper>
+    <>
+      <ToastContainer />
+      <PetItemWrapper>
+        <ImgPet src={petAvatar} alt={`${name}`}></ImgPet>
+        <PetBoxInfo>
+          <PetDeleteBtm
+            type="button"
+            onClick={() => {
+              toast.info("Hooray, pet delete successfully");
+              removePet(id);
+            }}
+            disabled={isDeleting}
+          >
+            <PetDelIcon />
+          </PetDeleteBtm>
+          <InfoPet>
+            <Title>Name: </Title>
+            {name}
+          </InfoPet>
+          <InfoPet>
+            <Title>Date of birth: </Title>
+            {transformDate(date)}
+          </InfoPet>
+          <InfoPet>
+            <Title>Breed: </Title>
+            {breed}
+          </InfoPet>
+          <InfoPet>
+            <Title>Comments: </Title>
+            {comment}
+          </InfoPet>
+        </PetBoxInfo>
+      </PetItemWrapper>
+    </>
   );
 };
 
