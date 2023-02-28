@@ -1,4 +1,14 @@
-export const selectNews = state => state.news.news[0];
-export const selectTotalPages = state => state.news.news?.data?.totalPages;
-export const selectPage = state => state.news.news?.data?.page;
-export const selectSpinnerToggle = state => state.news.isLoading;
+import { createSelector } from '@reduxjs/toolkit';
+
+const noSortedNews = state => state.news.items;
+
+export const selectNews = createSelector([noSortedNews], news => {
+  if (news && news.length > 0) {
+    const newNewsArray = [...news].map(news => {
+      return { ...news, changeDate: Date.parse(news.date) || 0 };
+    });
+    return newNewsArray.sort((a, b) => b.changeDate - a.changeDate);
+  }
+});
+export const selectIsLoading = state => state.news.isLoading;
+export const selectError = state => state.news.error;

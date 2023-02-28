@@ -1,27 +1,14 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getNews = createAsyncThunk('news', async (page, thunkApi) => {
+export const getNews = createAsyncThunk(
+  "news/getNews",
+  async (_, { rejectWithValue }) => {
     try {
-        const response = await axios.get('/static/news', {
-            params: { page },
-        });
-
-        return response.data;
+      const res = await axios.get("/static/news");
+      return res.data[0].news;
     } catch (error) {
-        return thunkApi.rejectWithValue(error.response.status);
+      return rejectWithValue(error.message);
     }
-});
-
-export const getByQueryNews = createAsyncThunk(
-    'news/getByQuery',
-    async (query, thunkApi) => {
-        try {
-            const response = await axios.get(`/static/news/search?text=${query}`);
-            // console.log('notice/getByQuery', response.data);
-            return response.data; // TODO
-        } catch (error) {
-            return thunkApi.rejectWithValue(error.response.status);
-        }
-    }
+  }
 );

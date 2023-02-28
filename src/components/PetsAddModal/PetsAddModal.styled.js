@@ -54,14 +54,14 @@ export const FileLable = styled.div`
   height: 182px;
   margin: 0 auto;
   position: relative;
-  border-radius: ${(p) => p.theme.radii.mainBorderRadius};
+  border-radius: ${(p) => p.theme.radii.large};
   img {
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: ${(p) => p.theme.radii.secondaryBorderRadius};
+    border-radius: ${(p) => p.theme.radii.normal};
   }
 `;
 
