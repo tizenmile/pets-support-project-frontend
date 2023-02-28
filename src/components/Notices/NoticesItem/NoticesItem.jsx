@@ -174,6 +174,14 @@ export const Notice = ({ item }) => {
                 </FeaturesText>
               </FeaturesItem>
             )}
+            {category === "sell" && (
+              <FeaturesItem>
+                <FeaturesText style={{ width: "50px" }}>Price:</FeaturesText>
+                <FeaturesText style={{ marginLeft: "40px" }}>
+                  {item.price}
+                </FeaturesText>
+              </FeaturesItem>
+            )}
           </FeaturesList>
         </div>
         <CardButton
