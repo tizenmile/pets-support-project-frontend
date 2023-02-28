@@ -30,7 +30,7 @@ export const CardTitle = styled.h2`
   text-decoration-line: underline;
   color: ${(p) => p.theme.colors.active};
   margin-bottom: 16px;
-  @media ${(p) => p.theme.media.mobileMin} and (max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: ${(p) => p.theme.fontSizes.xxs};
     line-height: 16px;
 
@@ -112,12 +112,9 @@ export const CardLink = styled.a`
   align-items: center;
   text-decoration-line: none;
   color: ${(p) => p.theme.colors.black};
-  &:hover {
-    color: #dc712f;
-  }
 
-  @media ${(p) => p.theme.media.mobileMin} and(max-width: 767px) {
-    font-size: ${(p) => p.theme.fontSizes.xxs};
+  @media (max-width: 767px) {
+    font-size: 12px;
     line-height: 16px;
   }
   @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
