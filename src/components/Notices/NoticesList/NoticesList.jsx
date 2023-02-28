@@ -42,9 +42,10 @@ export const NoticeList = () => {
     );
   }
 
-  return (
-    <>
-      {filter !== "fav-notice" ? (
+  return ( isLoading && page === 0 ? <AnimationLoader/> :
+   <>
+      {filter !== "fav-notice" ?
+        (
         <>
           {filteredNotices !== undefined && filteredNotices.length >= 1 ? (
             <InfiniteScroll
