@@ -14,7 +14,6 @@ const FriendBord = () => {
   }, []);
 
   if (!friendsData) return;
-  console.log(friendsData);
   return (
     <Wrap>
       <BordList>
