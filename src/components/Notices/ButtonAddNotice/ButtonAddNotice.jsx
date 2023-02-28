@@ -20,7 +20,8 @@ export const ButtonAddNotice = () => {
   const openModal = () => {
     if (isLogin) {
       setIsModalOpen(true);
-    }
+      return
+    } 
     notify();
   };
 

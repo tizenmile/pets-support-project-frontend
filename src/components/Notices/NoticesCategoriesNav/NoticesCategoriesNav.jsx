@@ -21,7 +21,6 @@ import { setPage } from "../../../redux/notices/noticesSlice";
 import { ButtonEl } from "../ButtonChangeCategory/Button";
 import { ButtonAddNotice } from "../ButtonAddNotice/ButtonAddNotice";
 
-
 export default function CategoriesNav() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -41,21 +40,21 @@ export default function CategoriesNav() {
     dispatch(setStatusFilter(filterStatus));
     dispatch(fetchNoticesByCategory({ page: 0, categoryName: filterStatus }));
     dispatch(setPage(0));
-    navigate(`/FindPet/${filterStatus}`, { replace: true });
+    navigate(`/notices/${filterStatus}`, { replace: true });
   };
 
   const filterMyAds = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getOwnNotices(0));
     dispatch(setPage(0));
-    navigate(`/FindPet/${filterStatus}`, { replace: true });
+    navigate(`/notices/${filterStatus}`, { replace: true });
   };
 
   const filterFavorite = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getFavNotices(0));
     dispatch(setPage(0));
-    navigate(`/FindPet/${filterStatus}`, { replace: true });
+    navigate(`/notices/${filterStatus}`, { replace: true });
   };
   return (
     <Section>

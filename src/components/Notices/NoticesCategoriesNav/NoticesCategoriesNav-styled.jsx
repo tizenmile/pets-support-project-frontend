@@ -1,10 +1,23 @@
 import styled from "styled-components";
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  margin: 0 50px;
+`;
 
 export const Wrapper = styled.div`
+  margin: 30px auto;
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+
+  @media ${(p) => p.theme.media.tablet} {
+    margin: 40px 32px 60px 32px;
+    width: 768px;
+  }
   @media ${(p) => p.theme.media.desktop} {
-    margin-right: auto;
+    margin: 40px 16px 60px 16px;
+    width: 1280px;
   }
 `;
 
