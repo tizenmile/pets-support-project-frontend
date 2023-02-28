@@ -8,7 +8,7 @@ export const validationSchema = yup.object().shape({
     .required("Pet name is required")
     .min(2, "Minimum 2 symbols")
     .max(16, "Maximum 16 symbols")
-    .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, "Only letters"),
+    .matches(/^[a-zA-Zа-щА-ЩґҐіІїЇєЄ']+$/, "Only letters"),
   date: yup
     .date()
     .required()
@@ -19,7 +19,7 @@ export const validationSchema = yup.object().shape({
     .required("Field required")
     .min(2, "Minimum 2 symbols")
     .max(16, "Maximum 16 symbols")
-    .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, "Only letters"),
+    .matches(/^[a-zA-Zа-щА-ЩґҐіІїЇєЄ']+$/, "Only letters"),
   petAvatar: yup.string(),
   comments: yup
     .string()
