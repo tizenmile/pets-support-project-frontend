@@ -151,7 +151,6 @@ export const refreshUser = createAsyncThunk(
       );
 
       const res = await axios.get("auth/current");
-      console.log(res.data);
       return res.data;
     } catch (error) {
       clearAuthHeader();

@@ -31,15 +31,15 @@ export default function CategoriesNav() {
   useEffect(() => {
     dispatch(setStatusFilter("sell"));
     dispatch(fetchNoticesByCategory({ page: 0, categoryName: "sell" }));
-    // dispatch(getFavNotices(0))
-    dispatch(setPage(0))
-    navigate(`/FindPet/sell`, { replace: true });
+    dispatch(setPage(0));
+    navigate(`/notices/sell`, { replace: true });
   }, [dispatch]);
 
   const handleFilterChange = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(fetchNoticesByCategory({ page: 0, categoryName: filterStatus }));
     dispatch(setPage(0));
+
     navigate(`/notices/${filterStatus}`, { replace: true });
   };
 
@@ -47,6 +47,7 @@ export default function CategoriesNav() {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getOwnNotices(0));
     dispatch(setPage(0));
+
     navigate(`/notices/${filterStatus}`, { replace: true });
   };
 
@@ -108,7 +109,7 @@ export default function CategoriesNav() {
             )}
           </List>
         </Wrapper>
-        <ButtonAddNotice />
+        <ButtonAddNotice isLoggedIn={isLoggedIn} />
       </NoticesCategoriesNavBox>
     </Section>
   );
