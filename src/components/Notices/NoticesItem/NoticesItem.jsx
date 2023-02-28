@@ -174,11 +174,11 @@ export const Notice = ({ item }) => {
                 </FeaturesText>
               </FeaturesItem>
             )}
-            {category === "sell" && (
+            {(category !== "lost-found" && category !== "for-free") && (
               <FeaturesItem>
                 <FeaturesText style={{ width: "50px" }}>Price:</FeaturesText>
                 <FeaturesText style={{ marginLeft: "40px" }}>
-                  {`${item.price}$`}
+                  {`${item.price}₴`}
                 </FeaturesText>
               </FeaturesItem>
             )}

@@ -41,7 +41,6 @@ export const NoticeList = () => {
       notice.title.toLowerCase().includes(normalizedFilterSearch)
     );
   }
-
   return ( isLoading && page === 0 ? <AnimationLoader/> :
    <>
       {filter !== "fav-notice" ?

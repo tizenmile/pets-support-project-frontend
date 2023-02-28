@@ -30,10 +30,10 @@ export default function CategoriesNav() {
 
   useEffect(() => {
     dispatch(setStatusFilter("sell"));
-    dispatch(getFavNotices(0));
     dispatch(fetchNoticesByCategory({ page: 0, categoryName: "sell" }));
-    dispatch(setPage(0));
-    navigate(`/notices/sell`, { replace: true });
+    // dispatch(getFavNotices(0))
+    dispatch(setPage(0))
+    navigate(`/FindPet/sell`, { replace: true });
   }, [dispatch]);
 
   const handleFilterChange = (filterStatus) => {
