@@ -1,4 +1,4 @@
-import{s as f,a as c,F as ue,j as x,r as L,d as de,u as le,V as ce}from"./index-b148c0c8.js";const me=f.h1`
+import{s as f,a as c,F as ue,j as x,r as L,d as de,u as le,V as ce}from"./index-aa85b3ad.js";const me=f.h1`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 700;
@@ -195,7 +195,7 @@ import{s as f,a as c,F as ue,j as x,r as L,d as de,u as le,V as ce}from"./index-
   @media ${e=>e.theme.media.tablet} and (max-width: 1279px) {
     width: 768px;
   }
-`,Qt=e=>{var a,t;return(t=(a=e==null?void 0:e.friends)==null?void 0:a.friendsList[0])==null?void 0:t.sponsors},Xt=()=>{const e=de(Qt),a=le();if(L.useEffect(()=>{a(ce())},[]),!!e)return console.log(e),c(Bt,{children:c(Rt,{children:e.map(t=>c(At,{children:c(It,{data:t})},t._id))})})},Gt=f.section`
+`,Qt=e=>{var a,t;return(t=(a=e==null?void 0:e.friends)==null?void 0:a.friendsList[0])==null?void 0:t.sponsors},Xt=()=>{const e=de(Qt),a=le();if(L.useEffect(()=>{a(ce())},[]),!!e)return c(Bt,{children:c(Rt,{children:e.map(t=>c(At,{children:c(It,{data:t})},t._id))})})},Gt=f.section`
   padding: 54px 20px 100px 20px;
   margin: 0 auto;
   width: 100%;
