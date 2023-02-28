@@ -1,4 +1,3 @@
-// import { getFrends } from "../../API/api";
 import FriendCard from "../FriendCard/FriendCard";
 import { BordList, BordItem, Wrap } from "./FriendBordStyle";
 import { useEffect } from "react";

@@ -6,10 +6,10 @@ export const Title = styled.h1`
   font-size: 48px;
   line-height: 66px;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   margin-top: 52px;
 
-  @media (min-width: 280px) and (max-width: 767px) {
+  @media (max-width: 767px) {
 margin-bottom: 28px;
 margin-top: 22px;
 
