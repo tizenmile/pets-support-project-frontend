@@ -1,22 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { HiTrash } from "react-icons/hi2";
 import { heartFull as HeartFull, heart as Heart, plus } from "../../../media";
 import {
   selectFavNotices,
   getStatusFilter,
 } from "../../../redux/notices/selector";
-import { selectIsLoggedIn } from "../../../redux/auth/selectors";
+import { selectIsLoggedIn, selectUser } from "../../../redux/auth/selectors";
 import {selectUserData} from "../../../redux/userAccount/useerSelector"
 import {
   addNoticeToFavorite,
   delNoticeFromFavorite,
   delNotice,
-  getFavNotices,
-  fetchNoticesByCategory,
-  getOwnNotices,
 } from "../../../redux/notices/operation";
 import {
   NoticeItem,
@@ -39,7 +36,8 @@ export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const category = useSelector(getStatusFilter);
-  const user = useSelector(selectUserData);
+  const userFirst = useSelector(selectUserData);
+  const userRefresh = useSelector(selectUser);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -87,6 +85,8 @@ export const Notice = ({ item }) => {
     toggleConfirmModal()
   }
   
+  const user = !userFirst._id ? userRefresh : userFirst
+
   const CustomToastWithLink = () => (
     <div>
       <Link to="/login">You need to log in</Link>
@@ -148,7 +148,7 @@ export const Notice = ({ item }) => {
                 <img src={Heart} alt="heart" />
               )}
             </HeartButton>
-            {/* <ToastContainer /> */}
+            <ToastContainer />
           </ImageWrapp>
           <Title style={{ width: "280px" }}>{item.title}</Title>
           <FeaturesList>
@@ -174,11 +174,11 @@ export const Notice = ({ item }) => {
                 </FeaturesText>
               </FeaturesItem>
             )}
-            {category === "sell" && (
+            {(category !== "lost-found" && category !== "for-free") && (
               <FeaturesItem>
                 <FeaturesText style={{ width: "50px" }}>Price:</FeaturesText>
                 <FeaturesText style={{ marginLeft: "40px" }}>
-                  {`${item.price}$`}
+                  {`${item.price}₴`}
                 </FeaturesText>
               </FeaturesItem>
             )}

@@ -194,13 +194,18 @@ export const RegisterPrevButtonStyled = styled.button`
 `;
 
 export const ErrorText = styled.p`
+  position: absolute;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  margin-top: 5px;
+  margin-left: 15px;
   letter-spacing: 0.04em;
   color: red;
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
 `;
 
 export const PasswordField = styled.div`

@@ -172,7 +172,9 @@ const PetsAddModal = ({ onClose }) => {
                         !date ||
                         !breed ||
                         breed.length < 2 ||
-                        breed.length > 16
+                        breed.length > 16 ||
+                        errors.breed ||
+                        errors.name
                       ) {
                         toast.info("Please fill in required fields");
                         return;

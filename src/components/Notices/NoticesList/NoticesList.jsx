@@ -41,7 +41,6 @@ export const NoticeList = () => {
       notice.title.toLowerCase().includes(normalizedFilterSearch)
     );
   }
-
   return ( isLoading && page === 0 ? <AnimationLoader/> :
    <>
       {filter !== "fav-notice" ?
@@ -54,7 +53,7 @@ export const NoticeList = () => {
                 !isLoading &&
                 dispatch(fetchNoticesByCategory({ page, categoryName: filter }))
               }
-              hasMore={filteredNotices.length !== total ? true : false}
+              hasMore={filteredNotices.length !== total && page !== 0 ? true : false}
               loader={<AnimationLoader key={page} />}
             >
               <NoticesList>
@@ -83,8 +82,9 @@ export const NoticeList = () => {
           filteredFavoriteNotices.length >= 1 ? (
             <InfiniteScroll
               pageStart={page + 1}
-              loadMore={() => !isLoading && dispatch(getFavNotices(page))}
-              hasMore={filteredFavoriteNotices.length !== total ? true : false}
+              loadMore={() => !isLoading &&
+                dispatch(getFavNotices(page))}
+              hasMore={filteredFavoriteNotices.length !== total && page !== 0 ? true : false}
               loader={<AnimationLoader key={page} />}
             >
               <NoticesList>

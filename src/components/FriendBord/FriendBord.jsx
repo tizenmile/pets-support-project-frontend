@@ -1,4 +1,3 @@
-// import { getFrends } from "../../API/api";
 import FriendCard from "../FriendCard/FriendCard";
 import { BordList, BordItem, Wrap } from "./FriendBordStyle";
 import { useEffect } from "react";
@@ -15,7 +14,6 @@ const FriendBord = () => {
   }, []);
 
   if (!friendsData) return;
-  console.log(friendsData);
   return (
     <Wrap>
       <BordList>

@@ -21,11 +21,9 @@ export const UserSchema = Yup.object().shape({
     .required("Required"),
   city: Yup.string()
     .required("Required")
+    .max(2, "City name must be less than 30 characters")
     .max(30, "City name must be less than 30 characters")
-    .matches(
-      /^(([a-zA-Zа-яА-Я`'іІїЇ]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я`'іІїЇ](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
-      "Example: Lviv, Karpaty"
-    ),
+    .matches(/^[^\d]*$/u, "Example: Kamyanets-Podilsky"),
   birthday: Yup.date().required("Required"),
 });
 

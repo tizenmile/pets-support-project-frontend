@@ -56,12 +56,23 @@ export const Title = styled.p`
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+-ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -ms-line-clamp: 2;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  box-orient: vertical;
+  -webkit-box-orient: vertical;
   font-family: "Manrope";
   font-weight: 700;
   font-size: 28px;
   line-height: 1.36;
   letter-spacing: -0.01em;
   color: #111111;
+    overflow: hidden;
 `;
 
 export const FeaturesList = styled.ul`

@@ -21,6 +21,7 @@ import { friendsReducer } from "./friends/friendsSlice";
 
 const authPersistConfig = {
   key: "auth",
+  key: "user",
   storage,
   whitelist: ["token"],
 };

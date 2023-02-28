@@ -1,6 +1,8 @@
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
-// import AddPetBtn from "../../AddPetBtn";
+import { useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 import { NoticeAddModal } from "../../NoticeAddModal/NoticeAddModal";
 import { AddPetBtnWrapper } from "../../PetsData/PetsData.styled";
 import {
@@ -13,7 +15,8 @@ import {
 
 export const ButtonAddNotice = ({ isLoggedIn }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const isLogin = useSelector(selectIsLoggedIn);
+  const notify = () => toast("You need to login first");
   const openModal = () => {
     if (!isLoggedIn) {
       notifyInfo();
@@ -39,6 +42,18 @@ export const ButtonAddNotice = ({ isLoggedIn }) => {
   clearLS();
   return (
     <AddNoticeBtnWarpper>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      ></ToastContainer>
       <AddPetBtnWrapper>
         <AddNoticeBtnTitle>Add pet</AddNoticeBtnTitle>
         <AddNoticeBtn onClick={openModal}>
@@ -54,7 +69,6 @@ export const ButtonAddNotice = ({ isLoggedIn }) => {
             <AddNoticeBtnItemText>Add pet</AddNoticeBtnItemText>
           </div>
         </AddNoticeBtn>
-        {/* <button onClick={openModal}> create notice</button> */}
       </AddPetBtnWrapper>
       {isModalOpen && <NoticeAddModal onClose={closeModal} />}
       <ToastContainer />

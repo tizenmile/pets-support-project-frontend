@@ -28,7 +28,6 @@ const friendsSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.friendsList = action.payload;
-      console.log(action.payload);
     });
   },
 });

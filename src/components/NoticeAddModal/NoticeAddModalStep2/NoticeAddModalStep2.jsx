@@ -36,6 +36,7 @@ import {
 } from "./NoticeAddModalStep2.styled";
 import { useDispatch } from "react-redux";
 import { getOwnNotices } from "../../../redux/notices/operation";
+import { refreshUser } from "../../../redux/auth/operations";
 
 import { AnimationLoader } from "../../AnimationLoader/AnimationLoader";
 
@@ -66,30 +67,11 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
-  // function getBase64Image(img) {
-  //   var canvas = document.createElement("canvas");
-  //   canvas.width = img.width;
-  //   canvas.height = img.height;
-
-  //   var ctx = canvas.getContext("2d");
-  //   ctx.drawImage(img, 0, 0);
-
-  //   var dataURL = canvas.toDataURL("image/png");
-
-  //   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-  // }
-
   useEffect(() => {
     // const b64IMg = getBase64Image(isImage);
     localStorage.setItem(
       "noticeNextPart",
       JSON.stringify({
-        // image: {
-        //   name: isImage.name,
-        //   size: isImage.size,
-        //   lastModified: isImage.lastModified,
-        //   type: isImage.type,
-        // },
         image: isImage,
         imageName: isImageName,
         imageUrl: isImageUrl,
@@ -133,21 +115,8 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     setIsPrice(evt.target.value);
   };
 
-  // const handleAvatarChange = (e) => {
-  //   const reader = new FileReader();
-  //   const file = e.target.files[0];
-
-  //   reader.onload = () => {
-  //     const imageString = reader.result;
-  //     localStorage.setItem("avatar", imageString);
-  //     console.log(imageString);
-  //   };
-
-  //   reader.readAsDataURL(file);
-  // };
 
   const onChangeImg = (evt) => {
-    // handleAvatarChange(evt);
     const { files } = evt.target;
     if (files[0].size > 5242880) {
       return notifyInfo();
@@ -183,17 +152,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     formData.append("birthDate", notice.birthDate);
     formData.append("category", notice.category);
     formData.append("name", notice.name);
-
-    // const currentNotice = {
-    //   ...notice,
-    //   image: isImage,
-    //   sex: isMale,
-    //   place: isLocation,
-    //   price: isPrice,
-    //   comments: isComments,
-    // };
-
-    // console.log(currentNotice);
 
     try {
       await axios.post(
