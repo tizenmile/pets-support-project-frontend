@@ -122,11 +122,11 @@ export const BoxTitle = styled.div`
   display: flex;
   align-items: center;
   &:not(:last-child) {
-    margin-bottom: ${(p) => p.theme.space[3]}px;
+    margin-bottom: 11px;
   }
   &:not(:last-child) {
     @media ${(p) => p.theme.media.desktop} {
-      margin-bottom: ${(p) => p.theme.space[3]}px;
+      margin-bottom: 11px;
     }
   }
 `;

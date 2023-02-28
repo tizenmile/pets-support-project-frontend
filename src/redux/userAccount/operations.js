@@ -33,7 +33,9 @@ export const updateUserAvatar = createAsyncThunk(
   async (image, { rejectWithValue }) => {
     try {
       const response = await axios.post(`/auth/avatar`, image, {});
-      toast.success("Your avatar updated successfully");
+      toast.success("Your avatar updated successfully", {
+        position: toast.POSITION.TOP_LEFT,
+      });
       return response.data.avatarURL;
     } catch (error) {
       toast.error(`${error.message}`);
