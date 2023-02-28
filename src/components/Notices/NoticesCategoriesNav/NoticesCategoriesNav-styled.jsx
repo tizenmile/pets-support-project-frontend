@@ -22,7 +22,12 @@ export const Item = styled.li`
       margin-bottom: 12px;
     }
   }
-  @media ${(p) => p.theme.media.tablet} {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 981px) {
+    &:nth-child(-n + 3) {
+      margin-bottom: 16px;
+    }
+  }
+  @media (min-width: 982px) {
     &:nth-child(-n + 3) {
       margin-bottom: 0px;
     }
