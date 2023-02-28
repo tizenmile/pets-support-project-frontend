@@ -1,4 +1,4 @@
-import{s as h,a as c,F as Z,j as x,r as ee,d as de,u as le,T as ce}from"./index-a66ab7ff.js";const me=h.h1`
+import{s as h,a as c,F as Z,j as x,r as ee,d as de,u as le,T as ce}from"./index-bc206673.js";const me=h.h1`
   font-family: "Manrope";
   font-style: normal;
   font-weight: 700;
@@ -158,7 +158,7 @@ margin-top: 64px;
   text-decoration-line: none;
   color: ${e=>e.theme.colors.black};
   &:hover {
-    color: #dc712f;
+    color: ${e=>e.hovering?"#dc712f":"black"};
   }
 
   @media ${e=>e.theme.media.mobileMin} and(max-width: 767px) {
@@ -169,7 +169,7 @@ margin-top: 64px;
     font-size: ${e=>e.theme.fontSizes.xs};
     line-height: 19px;
   }
-`,Rt=({data:e})=>{const{title:a,url:t,addressUrl:n,imageUrl:r,address:i,workDays:o,phone:s,email:d}=e,[l,f]=ee.useState(!1);return x(Ft,{children:[c(qt,{children:c(zt,{href:t,target:"_blank",children:a})}),x(Ht,{children:[c("a",{href:t,target:"_blank",children:c(Lt,{src:r??"https://animals-city.org/wp-content/themes/animals-city/img/logo.svg",alt:a})}),x(Nt,{children:[c(F,{children:x(N,{onMouseOver:()=>{f(!0)},onMouseOut:()=>{f(!1)},children:["Time: ",c("br",{}),o&&(o[0].from||o[6].from)?o[0].from||o[6].from:"--------","-",o&&(o[0].to||o[6].to)?o[0].to||o[6].to:"--------",l&&c(Et,{workDays:o})]})}),c(F,{children:x(N,{href:i&&n,target:"_blank",children:["Address: ",c("br",{})," ",i||"-----------------"]})}),c(F,{children:x(N,{href:d&&`mailto:${d}`,children:["Email: ",c("br",{}),d||"-----------------"]})}),c(F,{children:x(N,{href:s&&`tel:${s}`,children:["Phone: ",c("br",{}),s||"-----------------"," "]})})]})]})]})},It=h.ul`
+`,Rt=({data:e})=>{const{title:a,url:t,addressUrl:n,imageUrl:r,address:i,workDays:o,phone:s,email:d}=e,[l,f]=ee.useState(!1);return x(Ft,{children:[c(qt,{children:c(zt,{href:t,target:"_blank",children:a})}),x(Ht,{children:[c("a",{href:t,target:"_blank",children:c(Lt,{src:r??"https://animals-city.org/wp-content/themes/animals-city/img/logo.svg",alt:a})}),x(Nt,{children:[c(F,{hovering:o,children:x(N,{onMouseOver:()=>{f(!0)},onMouseOut:()=>{f(!1)},children:["Time: ",c("br",{}),o&&(o[0].from||o[6].from)?o[0].from||o[6].from:"--------","-",o&&(o[0].to||o[6].to)?o[0].to||o[6].to:"--------",l&&c(Et,{workDays:o})]})}),c(F,{children:x(N,{href:i&&n,target:"_blank",hovering:i,children:["Address: ",c("br",{})," ",i||"-----------------"]})}),c(F,{children:x(N,{href:d&&`mailto:${d}`,hovering:d,children:["Email: ",c("br",{}),d||"-----------------"]})}),c(F,{children:x(N,{href:s&&`tel:${s}`,hovering:s,children:["Phone: ",c("br",{}),s||"-----------------"," "]})})]})]})]})},It=h.ul`
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
