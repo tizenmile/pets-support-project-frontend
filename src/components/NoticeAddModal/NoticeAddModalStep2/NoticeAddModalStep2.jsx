@@ -89,6 +89,24 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     isPrice,
   ]);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  // const handleBackdropClick = (event) => {
+  //   if (event.currentTarget === event.target) {
+  //     onClose();
+  //   }
+  // };
+
   const onChangeMale = (evt) => {
     setIsMale(evt.target.value);
   };

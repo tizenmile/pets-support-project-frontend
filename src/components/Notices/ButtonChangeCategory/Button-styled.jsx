@@ -8,6 +8,7 @@ export const Button = styled.button`
   border-radius: 40px;
   font-family: ${(p) => p.theme.fonts.main};
   line-height: ${(p) => p.theme.lineHeights.body};
+  transition: all 250ms;
   &:hover,
   &:active {
     color: #fff;

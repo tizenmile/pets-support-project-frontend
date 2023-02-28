@@ -26,16 +26,13 @@ export const AddNoticeBtn = styled.button`
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
+  transition: all 250ms;
   :hover,
   :focus {
-    transform: scale(1.1);
+    transform: scale(1.15);
+    background-color: ${(p) => p.theme.colors.hover};
   }
-  :hover:before {
-    left: 100%;
-    @media ${(p) => p.theme.media.mobileMax} {
-      visibility: visible;
-    }
-  }
+
   :before {
     content: "";
     position: absolute;

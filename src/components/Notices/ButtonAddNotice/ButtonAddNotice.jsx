@@ -26,7 +26,14 @@ export const ButtonAddNotice = () => {
       <AddPetBtnWrapper>
         <AddNoticeBtnTitle>Add pet</AddNoticeBtnTitle>
         <AddNoticeBtn onClick={openModal}>
-          <div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <AddPetIcon />
             <AddNoticeBtnItemText>Add pet</AddNoticeBtnItemText>
           </div>
