@@ -36,6 +36,7 @@ import {
 } from "./NoticeAddModalStep2.styled";
 import { useDispatch } from "react-redux";
 import { getOwnNotices } from "../../../redux/notices/operation";
+import { refreshUser } from "../../../redux/auth/operations";
 
 import { AnimationLoader } from "../../AnimationLoader/AnimationLoader";
 
@@ -164,7 +165,8 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
           },
         }
       );
-      dispatch(getOwnNotices());
+      // dispatch(getOwnNotices(0));
+      dispatch(refreshUser())
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
 
