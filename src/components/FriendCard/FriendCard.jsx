@@ -42,12 +42,9 @@ const FriendCard = ({ data }) => {
           />
         </a>
         <CardList>
-          <CardItem>
+          <CardItem hovering={workDays}>
             <CardLink onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
               Time: <br />
-              {/*{date.getDay() === 1 || workDays*/}
-              {/*? workDays[0].from*/}
-              {/*: "--------"}*/}
               {workDays && (workDays[0].from || workDays[6].from)
                 ? workDays[0].from || workDays[6].from
                 : "--------"}
@@ -59,18 +56,18 @@ const FriendCard = ({ data }) => {
             </CardLink>
           </CardItem>
           <CardItem>
-            <CardLink href={address && addressUrl} target={"_blank"}>
+          <CardLink href={address && addressUrl} target={"_blank"} hovering={address}>
               Address: <br /> {address ? address : "-----------------"}
             </CardLink>
           </CardItem>
           <CardItem>
-            <CardLink href={email && `mailto:${email}`}>
+            <CardLink href={email && `mailto:${email}`}  hovering={email}>
               Email: <br />
               {email ? email : "-----------------"}
             </CardLink>
           </CardItem>
           <CardItem>
-            <CardLink href={phone && `tel:${phone}`}>
+            <CardLink href={phone && `tel:${phone}`}  hovering={phone}>
               Phone: <br />
               {phone ? phone : "-----------------"}{" "}
             </CardLink>

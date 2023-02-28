@@ -113,7 +113,7 @@ export const CardLink = styled.a`
   text-decoration-line: none;
   color: ${(p) => p.theme.colors.black};
   &:hover {
-    color: #dc712f;
+    color: ${props => !props.hovering ? "black" : "#dc712f"};
   }
 
   @media ${(p) => p.theme.media.mobileMin} and(max-width: 767px) {
