@@ -25,9 +25,9 @@ import LogoImg from "../../media/logo.svg";
 import { NavLink, Link } from "react-router-dom";
 
 const links = [
-  { path: "/News", label: "News", exact: "false" },
-  { path: "/FindPet/:sell", label: "Find pet", exact: "false" },
-  { path: "/OurFriend", label: "Our friends", exact: "false" },
+  { path: "/news", label: "News", exact: "false" },
+  { path: "/notices/:sell", label: "Find pet", exact: "false" },
+  { path: "/friends", label: "Our friends", exact: "false" },
 ];
 
 function Navbar() {

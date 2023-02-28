@@ -31,9 +31,9 @@ function App() {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
             <Route path="news" element={<NewsPage />} />
-            <Route path="FindPet/:categoryName" element={<FindPet />} />
+            <Route path="notices/:categoryName" element={<FindPet />} />
 
-            <Route path="OurFriend" element={<OurFriend />} />
+            <Route path="friends" element={<OurFriend />} />
             <Route
               path="/login"
               element={
@@ -63,7 +63,3 @@ function App() {
 }
 
 export default App;
-
-// {<RestrictedRoute
-//   redirectTo="/user"
-//   component={<RegisterPage />}
