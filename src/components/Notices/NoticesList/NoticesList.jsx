@@ -40,8 +40,8 @@ export const NoticeList = () => {
     );
   }
 
-  return (
-    <>
+  return ( isLoading && page === 0 ? <AnimationLoader/> :
+   <>
       {filter !== "fav-notice" ?
         (
         <>
@@ -82,10 +82,5 @@ export const NoticeList = () => {
         </>
       )} 
     </>
-     
-
-    
-      
-    
   );
 };
