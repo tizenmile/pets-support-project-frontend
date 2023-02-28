@@ -2,10 +2,8 @@ import ScrollToTop from "react-scroll-to-top";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 26px 20px 100px 20px;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 54px 20px 100px 20px;
+  margin: 0 auto;
   width: 100%;
 
   font-family: ${(p) => p.theme.fonts.main};
@@ -16,11 +14,11 @@ export const Wrapper = styled.div`
   }
 
   @media ${(p) => p.theme.media.tablet} {
-    padding: 62px 32px 100px 32px;
+    padding: 90px 32px 100px 32px;
     width: 768px;
   }
   @media ${(p) => p.theme.media.desktop} {
-    padding: 39px 16px 200px 16px;
+    padding: 70px 16px 200px 16px;
     width: 1280px;
   }
 `;
