@@ -97,7 +97,8 @@ export const NavbarLink = styled(NavLink)`
     display: none;
   }
 
-  &:hover {
+  &:hover,
+  :focus {
     color: ${(p) => p.theme.colors.accent};
     text-decoration: underline;
   }
