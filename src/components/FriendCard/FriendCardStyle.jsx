@@ -113,6 +113,7 @@ export const CardLink = styled.a`
   text-decoration-line: none;
   color: ${(p) => p.theme.colors.black};
 
+
   @media (max-width: 767px) {
     font-size: 12px;
     line-height: 16px;

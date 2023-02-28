@@ -14,14 +14,13 @@ import {
   getOwnNotices,
 } from "../../../redux/notices/operation";
 import { statusFilters } from "../../../redux/constans";
-import {
-  getStatusFilter,
-} from "../../../redux/notices/selector";
+import { getStatusFilter } from "../../../redux/notices/selector";
 import { selectIsLoggedIn } from "../../../redux/auth/selectors";
 import { setStatusFilter } from "../../../redux/notices/filterSlice";
 import { setPage } from "../../../redux/notices/noticesSlice";
 import { ButtonEl } from "../ButtonChangeCategory/Button";
 import { ButtonAddNotice } from "../ButtonAddNotice/ButtonAddNotice";
+
 
 export default function CategoriesNav() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -31,31 +30,30 @@ export default function CategoriesNav() {
   const filter = useSelector(getStatusFilter);
 
   useEffect(() => {
-    
     dispatch(setStatusFilter("sell"));
-    dispatch(fetchNoticesByCategory({page: 0, categoryName: "sell"}));
-    dispatch(setPage(0))
+    dispatch(fetchNoticesByCategory({ page: 0, categoryName: "sell" }));
+    dispatch(setPage(0));
     navigate(`/FindPet/sell`, { replace: true });
   }, [dispatch]);
 
   const handleFilterChange = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(fetchNoticesByCategory({ page: 0, categoryName: filterStatus }));
-    dispatch(setPage(0))
+    dispatch(setPage(0));
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
 
   const filterMyAds = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getOwnNotices(0));
-    dispatch(setPage(0))
+    dispatch(setPage(0));
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
 
   const filterFavorite = (filterStatus) => {
     dispatch(setStatusFilter(filterStatus));
     dispatch(getFavNotices(0));
-    dispatch(setPage(0))
+    dispatch(setPage(0));
     navigate(`/FindPet/${filterStatus}`, { replace: true });
   };
   return (
@@ -110,7 +108,7 @@ export default function CategoriesNav() {
             )}
           </List>
         </Wrapper>
-        {isLoggedIn && <ButtonAddNotice />}
+        <ButtonAddNotice />
       </NoticesCategoriesNavBox>
     </Section>
   );

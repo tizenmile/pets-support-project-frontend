@@ -1,44 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getByQueryNews, getNews } from './newsOperations';
-
-const newsState = {
-  news: [],
-  isLoading: false,
-  error: null,
-};
-
-const pendingHandler = state => {
-  state.isLoading = true;
-  state.error = null;
-};
-
-const rejectedHandler = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
+import { getNews } from './newsOperations';
 
 const newsSlice = createSlice({
   name: 'news',
-  initialState: newsState,
-  extraReducers: builder => {
-    builder.addCase(getNews.pending, pendingHandler);
-    builder.addCase(getByQueryNews.pending, pendingHandler);
-
-    builder.addCase(getNews.rejected, rejectedHandler);
-    builder.addCase(getByQueryNews.rejected, rejectedHandler);
-
-    builder.addCase(getNews.fulfilled, (state, action) => {
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
+  extraReducers: {
+    [getNews.pending]: state => {
+      state.isLoading = true;
       state.error = null;
+    },
+    [getNews.fulfilled]: (state, { payload }) => {
+      state.items = payload;
       state.isLoading = false;
-      state.news = action.payload;
-    });
-    builder.addCase(getByQueryNews.fulfilled, (state, action) => {
-      state.error = null;
+    },
+    [getNews.rejected]: (state, { payload }) => {
+      state.error = payload;
       state.isLoading = false;
-      state.news = action.payload;
-    });
-
+    },
   },
 });
 

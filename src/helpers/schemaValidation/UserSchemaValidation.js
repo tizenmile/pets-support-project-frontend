@@ -4,7 +4,7 @@ export const UserSchema = Yup.object().shape({
   name: Yup.string()
     .required("Required")
     .min(2, "Username must be at least 2 characters")
-    .max(30, "Username must be less than 30 characters")
+    .max(16, "Username must be less than 16 characters")
     .matches(
       /^[a-zA-Zа-щА-ЩЬьЮюЯяІіЇїЄєҐґ\s]+$/,
       "Username can only contain letters and spaces"

@@ -178,7 +178,7 @@ export const Notice = ({ item }) => {
               <FeaturesItem>
                 <FeaturesText style={{ width: "50px" }}>Price:</FeaturesText>
                 <FeaturesText style={{ marginLeft: "40px" }}>
-                  {item.price}
+                  {`${item.price}$`}
                 </FeaturesText>
               </FeaturesItem>
             )}
