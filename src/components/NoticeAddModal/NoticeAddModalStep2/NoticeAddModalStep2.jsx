@@ -53,7 +53,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     noticeNext ? noticeNext.place : ""
   );
   const [isPrice, setIsPrice] = useState(noticeNext ? noticeNext.price : "");
-  const [isImage, setIsImage] = useState(noticeNext ? noticeNext.image : null);
+  const [isImage, setIsImage] = useState(noticeNext ? noticeNext.image : {});
   const [isImageName, setIsImageName] = useState(
     noticeNext ? noticeNext.imageName : null
   );
@@ -66,10 +66,30 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
+  // function getBase64Image(img) {
+  //   var canvas = document.createElement("canvas");
+  //   canvas.width = img.width;
+  //   canvas.height = img.height;
+
+  //   var ctx = canvas.getContext("2d");
+  //   ctx.drawImage(img, 0, 0);
+
+  //   var dataURL = canvas.toDataURL("image/png");
+
+  //   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  // }
+
   useEffect(() => {
+    // const b64IMg = getBase64Image(isImage);
     localStorage.setItem(
       "noticeNextPart",
       JSON.stringify({
+        // image: {
+        //   name: isImage.name,
+        //   size: isImage.size,
+        //   lastModified: isImage.lastModified,
+        //   type: isImage.type,
+        // },
         image: isImage,
         imageName: isImageName,
         imageUrl: isImageUrl,
@@ -101,12 +121,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     };
   }, [onClose]);
 
-  // const handleBackdropClick = (event) => {
-  //   if (event.currentTarget === event.target) {
-  //     onClose();
-  //   }
-  // };
-
   const onChangeMale = (evt) => {
     setIsMale(evt.target.value);
   };
@@ -119,11 +133,26 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     setIsPrice(evt.target.value);
   };
 
+  // const handleAvatarChange = (e) => {
+  //   const reader = new FileReader();
+  //   const file = e.target.files[0];
+
+  //   reader.onload = () => {
+  //     const imageString = reader.result;
+  //     localStorage.setItem("avatar", imageString);
+  //     console.log(imageString);
+  //   };
+
+  //   reader.readAsDataURL(file);
+  // };
+
   const onChangeImg = (evt) => {
+    // handleAvatarChange(evt);
     const { files } = evt.target;
     if (files[0].size > 5242880) {
       return notifyInfo();
     }
+    // console.log(files[0]);
     setIsImage(files[0]);
     files[0] && setIsImageName(files[0].name);
     if (files) {
@@ -140,6 +169,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const hundleSubmit = async (evt) => {
+    // console.log(isImage);
     setIsLoading(true);
     evt.preventDefault();
     const formData = new FormData();
@@ -154,8 +184,19 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     formData.append("category", notice.category);
     formData.append("name", notice.name);
 
+    // const currentNotice = {
+    //   ...notice,
+    //   image: isImage,
+    //   sex: isMale,
+    //   place: isLocation,
+    //   price: isPrice,
+    //   comments: isComments,
+    // };
+
+    // console.log(currentNotice);
+
     try {
-      const data = await axios.post(
+      await axios.post(
         `https://pet.tizenmile.keenetic.pro/api/notices/notice`,
         formData,
         {
@@ -164,16 +205,16 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
           },
         }
       );
+
       dispatch(getOwnNotices());
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
-
+      // console.log(
+      //   FileReader.FileReader.readAsBinaryString(localStorage.getItem("avatar"))
+      // );
       reset();
-      notifySuccess();
       onClose();
       notifySuccess();
-
-      // return data;
     } catch (error) {
       notifyError(error.response.data.message[0].message);
     }

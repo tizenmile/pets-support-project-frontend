@@ -1,3 +1,4 @@
+import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 // import AddPetBtn from "../../AddPetBtn";
 import { NoticeAddModal } from "../../NoticeAddModal/NoticeAddModal";
@@ -10,17 +11,32 @@ import {
   AddNoticeBtnItemText,
 } from "./ButtonAddNotice.styled";
 
-export const ButtonAddNotice = () => {
+export const ButtonAddNotice = ({ isLoggedIn }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    setIsModalOpen(true);
+    if (!isLoggedIn) {
+      notifyInfo();
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    localStorage.removeItem("notice");
+    localStorage.removeItem("noticeNextPart");
   };
 
+  const notifyInfo = () => toast.info("You need to log in");
+
+  const clearLS = () => {
+    if (isModalOpen === false) {
+      localStorage.removeItem("notice");
+      localStorage.removeItem("noticeNextPart");
+    }
+  };
+  clearLS();
   return (
     <AddNoticeBtnWarpper>
       <AddPetBtnWrapper>
@@ -41,6 +57,7 @@ export const ButtonAddNotice = () => {
         {/* <button onClick={openModal}> create notice</button> */}
       </AddPetBtnWrapper>
       {isModalOpen && <NoticeAddModal onClose={closeModal} />}
+      <ToastContainer />
     </AddNoticeBtnWarpper>
   );
 };

@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const AddNoticeModalContainer = styled.form`
-  position: relative;
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
   width: 608px;
   min-height: 885px;
   background-color: #ffffff;
   border-radius: 40px;
   padding: 40px 80px;
-  margin-top: 100px;
   @media (min-width: 320px) and (max-width: 767px) {
     padding: 40px 20px 28px 20px;
     width: 280px;
-    margin-top: 200px;
   }
 `;
 
