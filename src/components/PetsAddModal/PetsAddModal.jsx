@@ -104,7 +104,9 @@ const PetsAddModal = ({ onClose }) => {
       setFile(acceptedFiles[0]);
     },
   });
+  const { name, breed } = values;
 
+  console.log(name.length, breed);
   return (
     <ModalBackdrop>
       <Overlay onClick={handleBackdropClick}>
@@ -163,7 +165,15 @@ const PetsAddModal = ({ onClose }) => {
                   type="button"
                   onClick={() => {
                     const { name, date, breed } = values;
-                    if (!name || !date || !breed) {
+                    if (
+                      !name ||
+                      name.length < 2 ||
+                      name.length > 16 ||
+                      !date ||
+                      !breed ||
+                      breed.length < 2 ||
+                      breed.length > 16
+                    ) {
                       toast.info("Please fill in required fields");
                       return;
                     }
@@ -224,7 +234,11 @@ const PetsAddModal = ({ onClose }) => {
                   type="submit"
                   onClick={() => {
                     const { comments } = values;
-                    if (!comments) {
+                    if (
+                      !comments ||
+                      comments.length < 8 ||
+                      comments.length > 120
+                    ) {
                       toast.info("Please fill in required fields");
                       return;
                     }
@@ -244,3 +258,4 @@ const PetsAddModal = ({ onClose }) => {
 };
 
 export default PetsAddModal;
+
