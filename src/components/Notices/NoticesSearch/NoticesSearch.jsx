@@ -40,42 +40,32 @@ export default function NoticesSearch() {
     dispatch(foundedNotices(value));
   };
   const onChange1234 = (e) => {
-    e.preventDefault();
-    if (value !== "") {
-      dispatch(foundedNotices(value));
-      setFocus(false);
-      handleInputBlur(e);
-      input.blur();
-    }
-    if (value === "") {
-      dispatch(foundedNotices(""));
-    }
+    setValue("");
+    setFocus(false);
+    dispatch(foundedNotices(""));
   };
   return (
     <>
       <NoticesSearchTitle>Find your favorite pet</NoticesSearchTitle>
       <Wrapper>
-        <Form onSubmit={onChange}>
+        <Form onChange={onChange} onFocus={handleInputFocus} onBlur={handleInputBlur}>
           <Input
             id="input"
             type="text"
             onChange={handleChange}
             value={value}
             placeholder="Search"
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
+            
           />
           {!focus ? (
             <Button type="submit">
               <IconSearch />
             </Button>
-          ) : null}
-
-          {focus ? (
+          ) : (
             <Button onClick={onChange1234}>
               <IconSearchReset />
             </Button>
-          ) : null}
+          )}
         </Form>
       </Wrapper>
     </>
