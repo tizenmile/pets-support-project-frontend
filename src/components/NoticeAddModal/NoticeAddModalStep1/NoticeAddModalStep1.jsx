@@ -63,14 +63,6 @@ export const AddNoticeModalStep1 = ({ onClose, isNext, onSubmit }) => {
     };
   }, [onClose]);
 
-  // const handleBackdropClick = (event) => {
-  //   // console.log(event.currentTarget);
-  //   // console.log(event.target);
-  //   if (event.currentTarget !== event.target) {
-  //     onClose();
-  //   }
-  // };
-
   const onChangeCategory = (evt) => {
     setIsCategory(evt.target.value);
   };
