@@ -249,6 +249,14 @@ export const BackButton = styled(AcseptButton)`
   border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.accent};
   order: 2;
   margin-top: 0;
+  :hover,
+  :focus {
+    color: ${(p) => p.theme.colors.white};
+    background: ${(p) => p.theme.colors.hover};
+    border: ${(p) => p.theme.borders.normal} ${(p) => p.theme.colors.hover};
+    transform: scale(1.1);
+    transition: ${(p) => p.theme.transition};
+  }
   :before {
     @media ${(p) => p.theme.media.mobileMax} {
       visibility: hidden;
@@ -256,6 +264,7 @@ export const BackButton = styled(AcseptButton)`
   }
   @media ${(p) => p.theme.media.tablet} {
     order: 0;
+
   }
   :hover,
   :focus {

@@ -21,13 +21,7 @@ export default function NoticesSearch() {
   const search = useSelector(getSearch);
   const input = document.getElementById("input");
   const handleInputFocus = (e) => {
-    // if (e.currentTarget === e.target) {
-    //   console.log("focused self");
-    // } else {
-    //   console.log("focused child", e.target);
-    // }
     setFocus(true);
-    console.log(focus);
   };
   const handleInputBlur = (e) => {
     if (e.currentTarget === e.target) {

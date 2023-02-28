@@ -7,25 +7,23 @@ import tablet_girl_img from "../../media/bg1-home-tablet-min.png";
 import mobile_girl_img from "../../media/bg1-home-mobile-min.png";
 
 export const HeroContainer = styled.div`
-  background-position: center bottom -80px;
+  background-position: center bottom -20px;
   background-repeat: no-repeat;
-  height: 529px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background-image: url(${mobile_hero_img});
-
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  position: fixed;
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     background-image: url(${tablet_hero_img});
-    background-position: center bottom -200px;
-    position: relative;
-    height: 1100px;
+    background-position: center bottom -20px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     background-image: url(${laptop_hero_img});
     background-position: center bottom;
-    position: relative;
-    height: 680px;
   }
 `;
+
 export const HeroContentContainer = styled.div`
   position: relative;
   max-width: 1280px;
@@ -37,11 +35,11 @@ export const HeroContentContainer = styled.div`
   align-items: center;
   text-align: center;
 
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     padding: 0px 32px 0px 32px;
     margin-top: 64px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     flex-direction: row;
     margin-left: auto;
     margin-right: auto;
@@ -57,12 +55,12 @@ export const HeroTitle = styled.h1`
   max-width: 407px;
 
   color: ${(p) => p.theme.colors.mainText};
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     font-size: 68px;
     line-height: 100px;
     max-width: 600px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     font-size: 68px;
     line-height: 100px;
     text-align: left;
@@ -70,27 +68,32 @@ export const HeroTitle = styled.h1`
   }
 `;
 export const LeftContainer = styled.div`
+  z-index: 10;
   @media (min-width: 1280px) {
-    margin-top: -380px;
+    margin-top: 90px;
   }
 `;
 export const RightContainer = styled.div`
   width: 320px;
   height: 337px;
-
-  margin-top: 60px;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  margin-left: -160px;
+  z-index: 1;
   background-image: url(${mobile_girl_img});
 
-  @media (${(p) => p.theme.media.tablet}) and (max-width: 1279px) {
+  @media ${(p) => p.theme.media.tablet} and (max-width: 1279px) {
     background-image: url(${tablet_girl_img});
     width: 645px;
     height: 715px;
-    margin-top: 122px;
+    left: 50%;
+    margin-left: -322px;
   }
-  @media (${(p) => p.theme.media.desktop}) {
+  @media ${(p) => p.theme.media.desktop} {
     background-image: url(${laptop_girl_img});
     width: 590px;
     height: 640px;
-    margin-top: 0px;
+    margin-left: 0;
   }
 `;

@@ -87,7 +87,7 @@ export const NavbarLink = styled(NavLink)`
   line-height: 27px;
   text-decoration: none;
   margin-left: 80px;
-
+  transition: all 250ms;
   &.active {
     color: ${(p) => p.theme.colors.accent};
     text-decoration: underline;
@@ -109,7 +109,7 @@ export const NavbarLinkExtended = styled(NavLink)`
   line-height: 44px;
   color: ${(p) => p.theme.colors.mainText};
   text-decoration: none;
-
+  transition: all 250ms;
   &.active {
     color: ${(p) => p.theme.colors.accent};
     text-decoration: underline;
@@ -194,6 +194,7 @@ export const LoginButtonStyled = styled(NavLink)`
   text-decoration: none;
   padding: 12px 28px;
   cursor: pointer;
+  transition: all 250ms;
   &:hover {
     background: ${(p) => p.theme.colors.hover};
   }
@@ -210,6 +211,7 @@ export const RegisterButtonStyled = styled(Link)`
   text-decoration: none;
   padding: 10px 28px;
   cursor: pointer;
+  transition: all 250ms;
   &:hover {
     background: ${(p) => p.theme.colors.hover};
     border: 2px solid ${(p) => p.theme.colors.hover};
@@ -231,6 +233,7 @@ export const AuthButtonStyled = styled(NavLink)`
   padding-right: 28px;
 
   cursor: pointer;
+  transition: all 250ms;
   &:hover {
     background: ${(p) => p.theme.colors.hover};
   }

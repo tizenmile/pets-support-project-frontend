@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { HiTrash } from "react-icons/hi2";
 import { heartFull as HeartFull, heart as Heart, plus } from "../../../media";
 import {
@@ -33,19 +32,17 @@ import {
   CardButton,
 } from "./NoticesItem.styled";
 import { NoticeInfoModal } from "../../NoticeInfoModal/NoticeInfoModal";
+import { setFavNotices, setNotices } from "../../../redux/notices/noticesSlice";
 import { NoticeConfirmModal } from "../NoticeConfirmDelModal/NoticeConfirmModal";
 
 export const Notice = ({ item }) => {
   const favNotices = useSelector(selectFavNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const category = useSelector(getStatusFilter);
-  // const isLoggedIn = true
   const user = useSelector(selectUserData);
   const [isModlOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const statusFilter = useSelector(getStatusFilter);
-
   const dispatch = useDispatch();
 
   const openModal = () => {
@@ -59,6 +56,9 @@ export const Notice = ({ item }) => {
   const closeModal = (isFav) => {
     setIsModalOpen(false);
     setIsFavorite(isFav);
+    if (category === "fav-notice") {
+       !isFav && dispatch(setFavNotices(item._id))
+    }
   };
 
   const favNoticesIdArr = favNotices.reduce((acc, item) => {
@@ -70,32 +70,23 @@ export const Notice = ({ item }) => {
     setIsFavorite(favNoticesIdArr.includes(item._id));
   }, [favNotices]);
 
-  const handleAuthorizedClick = async () => {
-    setIsFavorite((prev) => !prev);
-    await dispatch(
+  const handleAuthorizedClick = () => {
+    setIsFavorite(prev => !prev);
+     dispatch(
       isFavorite
         ? delNoticeFromFavorite(item._id)
         : addNoticeToFavorite(item._id)
-    );
-    if (statusFilter === "fav-notice") {
-      dispatch(getFavNotices());
-    }
+    );    
+    category === 'fav-notice' && dispatch(setFavNotices(item._id))
   };
 
-  const handleDeleteClick = async () => {
-    const arrOfCategoryName = ["sell", "lost-found", "for-free"];
-    await dispatch(delNotice(item._id));
-    {
-      if (arrOfCategoryName.includes(category)) {
-        dispatch(fetchNoticesByCategory(category));
-      } else if (category === "own-notices") {
-        dispatch(getOwnNotices());
-      } else {
-        dispatch(getFavNotices());
-      }
-    }
-  };
-
+  
+  const handleDeleteClick = () => {
+    dispatch(delNotice(item._id))
+    dispatch(setNotices(item._id))
+    toggleConfirmModal()
+  }
+  
   const CustomToastWithLink = () => (
     <div>
       <Link to="/login">You need to log in</Link>
@@ -133,7 +124,6 @@ export const Notice = ({ item }) => {
   }
 
   const categoryName = item.category;
-  const features = ["Breed", "Place", "Age"];
   return (
     <NoticeItem>
       <CardTumb>
@@ -158,7 +148,7 @@ export const Notice = ({ item }) => {
                 <img src={Heart} alt="heart" />
               )}
             </HeartButton>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
           </ImageWrapp>
           <Title style={{ width: "280px" }}>{item.title}</Title>
           <FeaturesList>
@@ -184,6 +174,14 @@ export const Notice = ({ item }) => {
                 </FeaturesText>
               </FeaturesItem>
             )}
+            {category === "sell" && (
+              <FeaturesItem>
+                <FeaturesText style={{ width: "50px" }}>Price:</FeaturesText>
+                <FeaturesText style={{ marginLeft: "40px" }}>
+                  {`${item.price}$`}
+                </FeaturesText>
+              </FeaturesItem>
+            )}
           </FeaturesList>
         </div>
         <CardButton
@@ -196,7 +194,7 @@ export const Notice = ({ item }) => {
         >
           Learn more
         </CardButton>
-        {item.userId == user._id && (
+        {item.userId == user._id && isLoggedIn && (
           <CardButton onClick={toggleConfirmModal}>
             Delete
             <HiTrash width={"16px"} height={"17px"} />

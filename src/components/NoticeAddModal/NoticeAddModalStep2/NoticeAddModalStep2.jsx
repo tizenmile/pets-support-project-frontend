@@ -89,6 +89,24 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     isPrice,
   ]);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  // const handleBackdropClick = (event) => {
+  //   if (event.currentTarget === event.target) {
+  //     onClose();
+  //   }
+  // };
+
   const onChangeMale = (evt) => {
     setIsMale(evt.target.value);
   };
@@ -178,11 +196,11 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
 
   return (
     <>
+      <ToastContainer />
       {isLoading ? (
         <AnimationLoader />
       ) : (
         <>
-          <ToastContainer />
           <AddNoticeModalContainerSecond name="newForm" onSubmit={hundleSubmit}>
             <AddNoticeModalBtn type="button" onClick={onClose}>
               <AddNoticeModalBtnImg
@@ -193,7 +211,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
             <NoticeAddModalTextSecond>The sex*:</NoticeAddModalTextSecond>
             <NoticeModalImgSexList>
               <NoticeModalImgSexListItem>
-                <NoticeAddModalmgSex src={male}></NoticeAddModalmgSex>
                 <NoticeAddModalSexInput
                   type="radio"
                   name="sex"
@@ -203,11 +220,11 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                   onChange={onChangeMale}
                 ></NoticeAddModalSexInput>
                 <NoticeModalImgListSexLable htmlFor="male">
+                  <NoticeAddModalmgSex src={male}></NoticeAddModalmgSex>
                   Male
                 </NoticeModalImgListSexLable>
               </NoticeModalImgSexListItem>
               <NoticeModalImgSexListItem>
-                <NoticeAddModalmgSex src={female}></NoticeAddModalmgSex>
                 <NoticeAddModalSexInput
                   type="radio"
                   name="sex"
@@ -217,6 +234,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
                   onChange={onChangeMale}
                 ></NoticeAddModalSexInput>
                 <NoticeModalImgListSexLable htmlFor="female">
+                  <NoticeAddModalmgSex src={female}></NoticeAddModalmgSex>
                   Female
                 </NoticeModalImgListSexLable>
               </NoticeModalImgSexListItem>
