@@ -1,4 +1,4 @@
-import{s as a,W as x,X as u,r,e as b,j as i,F as l,a as t,y as w,Y as f}from"./index-11780ca7.js";import{e as $,d as k,c as P,a as n,V as v,F as y}from"./index.esm-0c5ac157.js";import{l as L,i as F,F as s,P as z,e as S,B,f as C}from"./AuthForm-38f4eee9.js";import{I as E}from"./iconBase-52e6e74f.js";const I=a.div`
+import{s as a,W as x,X as u,r as n,e as b,j as i,F as m,a as t,y as w,Y as f}from"./index-f29cc0c2.js";import{e as $,d as k,c as P,a as s,V as v,F as y}from"./index.esm-fc1555e1.js";import{l as L,i as F,F as d,P as z,e as S,B,f as C}from"./AuthForm-98bf4de6.js";import{I as E}from"./iconBase-61b4674d.js";const I=a.div`
   margin-top: 28px;
   height: 100vh;
   background-image: url(${x});
@@ -83,7 +83,7 @@ import{s as a,W as x,X as u,r,e as b,j as i,F as l,a as t,y as w,Y as f}from"./i
   &:hover {
     text-decoration-thickness: 2px;
   }
-`,d=a(k)`
+`,l=a(k)`
   width: 266px;
   height: 40px;
   left: 20px;
@@ -138,4 +138,4 @@ import{s as a,W as x,X as u,r,e as b,j as i,F as l,a as t,y as w,Y as f}from"./i
   @media ${e=>e.theme.media.desktop} {
     width: 458px;
   }
-`,q=P().shape({email:n().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?F(e):new v("Invalid value")),password:n().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),O={email:"",password:""},T=()=>{const[e,A]=r.useState(O),[o,m]=r.useState(!1),p=b(),c=g=>{p(f(g))},h=()=>{m(!o)};return i(l,{children:[t(y,{initialValues:e,validationSchema:q,onSubmit:c,children:()=>t(I,{children:i(D,{children:[t(M,{children:"Login"}),t(d,{placeholder:"Email",name:"email"}),t(s,{name:"email"}),i(z,{children:[t(d,{placeholder:"Password",name:"password",type:o?"text":"password"}),t(S,{onClick:h,children:t(E.Provider,{value:{color:"rgba(245, 146, 86, 1)",size:35},children:o?t(B,{}):t(C,{})})})]}),t(s,{name:"password"}),t(j,{type:"submit",children:"Login"}),i(V,{children:["Don't have an account?",t(_,{to:"/register",children:"Register"})]})]})})}),t(w,{position:"bottom-right",autoClose:5e3,hideProgressBar:!1,newestOnTop:!1,closeOnClick:!0,rtl:!1,pauseOnFocusLoss:!0,draggable:!0,pauseOnHover:!0,theme:"colored"})]})},R=()=>t(l,{children:t(T,{})});export{R as default};
+`,q=P().shape({email:s().max(63,"Must be between 6 and 63 characters.").min(6,"Must be between 6 and 63 characters.").email("Invalid email address").matches(/[a-zA-Z]([-.\s]?[0-9a-zA-Z_-]){1,}@/,"The @ symbol must be preceded by at least 2 characters").required("Email is required").test("is-valid",e=>`${e.path} is invalid`,e=>e?F(e):new v("Invalid value")).trim(),password:s().min(7,"Must be between 7 and 32 characters.").max(32,"Must be between 7 and 32 characters.").matches(/^([-.\s]?[a-zA-Zа-яёА-ЯЁ0-9]*)*$/,"Must include numbers and/or letters (uppercase and lowercase) except for whitespace.").required("Password is required")}),O={email:"",password:""},T=()=>{const[e,A]=n.useState(O),[o,p]=n.useState(!1),c=b(),h=r=>{r.email=r.email.trim(),c(f(r))},g=()=>{p(!o)};return i(m,{children:[t(y,{initialValues:e,validationSchema:q,onSubmit:h,children:()=>t(I,{children:i(D,{children:[t(M,{children:"Login"}),t(l,{placeholder:"Email",name:"email"}),t(d,{name:"email"}),i(z,{children:[t(l,{placeholder:"Password",name:"password",type:o?"text":"password"}),t(S,{onClick:g,children:t(E.Provider,{value:{color:"rgba(245, 146, 86, 1)",size:35},children:o?t(B,{}):t(C,{})})})]}),t(d,{name:"password"}),t(j,{type:"submit",children:"Login"}),i(V,{children:["Don't have an account?",t(_,{to:"/register",children:"Register"})]})]})})}),t(w,{position:"bottom-right",autoClose:5e3,hideProgressBar:!1,newestOnTop:!1,closeOnClick:!0,rtl:!1,pauseOnFocusLoss:!0,draggable:!0,pauseOnHover:!0,theme:"colored"})]})},R=()=>t(m,{children:t(T,{})});export{R as default};
