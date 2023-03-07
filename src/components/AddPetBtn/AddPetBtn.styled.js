@@ -42,13 +42,6 @@ export const AddPetWrapper = styled.button`
     @media ${(p) => p.theme.media.mobileMax} {
       visibility: hidden;
     }
-    /* background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    );
-    transition: all 650ms; */
   }
 `;
 

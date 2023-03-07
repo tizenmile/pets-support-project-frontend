@@ -70,15 +70,6 @@ export const AddNoticeBtnTitle = styled.p`
   }
 `;
 
-// export const AddNoticeBtnItemWarpper = styled.div`
-//   right: 0;
-//   top: 78px;
-//   position: absolute;
-//   @media (min-width: 767.99px) {
-//     display: none;
-//   }
-// `;
-
 export const AddNoticeBtnItemText = styled.p`
   font-family: "Manrope";
   font-style: normal;

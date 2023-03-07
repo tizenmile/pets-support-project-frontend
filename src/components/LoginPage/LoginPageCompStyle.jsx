@@ -80,7 +80,6 @@ export const LoginPageDescriptionLink = styled(NavLink)`
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  // text-decoration: underline;
   text-decoration-thickness: 1px;
   cursor: pointer;
   margin-left: 5px;

@@ -1,27 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-import { getNews } from './newsOperations';
+import { getNews } from "./newsOperations";
+
+const pendingHandler = (state) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const rejectedHandler = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
 
 const newsSlice = createSlice({
-  name: 'news',
+  name: "news",
   initialState: {
     items: [],
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    [getNews.pending]: state => {
-      state.isLoading = true;
+  extraReducers: (builder) => {
+    builder.addCase(getNews.pending, pendingHandler);
+    builder.addCase(getNews.rejected, rejectedHandler);
+    builder.addCase(getNews.fulfilled, (state, action) => {
       state.error = null;
-    },
-    [getNews.fulfilled]: (state, { payload }) => {
-      state.items = payload;
       state.isLoading = false;
-    },
-    [getNews.rejected]: (state, { payload }) => {
-      state.error = payload;
-      state.isLoading = false;
-    },
+      state.items = action.payload;
+    });
   },
 });
 

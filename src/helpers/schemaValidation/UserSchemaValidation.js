@@ -26,5 +26,3 @@ export const UserSchema = Yup.object().shape({
     .matches(/^[^\d]*$/u, "Example: Kamyanets-Podilsky"),
   birthday: Yup.date().required("Required"),
 });
-
-// /^[a-zA-Z0-9._][a-zA-Z0-9._-]{0,}[a-zA-Z0-9._-]{0,}[a-zA-Z0-9._]@([a-zA-Z0-9.-]+\.)+[a-zA-Z]{2,}$/

@@ -5,8 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 axios.defaults.baseURL = "https://pet.tizenmile.keenetic.pro/api/";
 //axios.defaults.baseURL = "http://localhost:3002/api/";
-
-// Utility to add JWT
 const setAuthHeader = (token) => {
   if (token) {
     axios.interceptors.request.use(
@@ -60,11 +58,7 @@ export const register = createAsyncThunk(
         return thunkAPI.rejectWithValue(error.message);
       }
 
-      // After successful registration, add the token to the HTTP header
-      //  axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-
       setAuthHeader(res.data.token);
-      console.log(res.data);
 
       return res.data;
     } catch (error) {
@@ -133,7 +127,6 @@ export const refreshUser = createAsyncThunk(
     const token = thunkAPI.getState().auth?.token;
 
     if (!token) {
-      // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue("Unable to fetch user");
     }
 

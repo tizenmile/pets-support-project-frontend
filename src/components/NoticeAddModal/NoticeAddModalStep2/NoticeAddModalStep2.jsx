@@ -36,7 +36,6 @@ import {
 } from "./NoticeAddModalStep2.styled";
 import { useDispatch } from "react-redux";
 import { getOwnNotices } from "../../../redux/notices/operation";
-import { refreshUser } from "../../../redux/auth/operations";
 
 import { AnimationLoader } from "../../AnimationLoader/AnimationLoader";
 
@@ -68,7 +67,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // const b64IMg = getBase64Image(isImage);
     localStorage.setItem(
       "noticeNextPart",
       JSON.stringify({
@@ -121,7 +119,7 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
     if (files[0].size > 5242880) {
       return notifyInfo();
     }
-    // console.log(files[0]);
+
     setIsImage(files[0]);
     files[0] && setIsImageName(files[0].name);
     if (files) {
@@ -138,7 +136,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
   };
 
   const hundleSubmit = async (evt) => {
-    // console.log(isImage);
     setIsLoading(true);
     evt.preventDefault();
     const formData = new FormData();
@@ -167,9 +164,6 @@ export const AddNoticeModalStep2 = ({ onClose, isPrev, notice }) => {
       dispatch(getOwnNotices());
       localStorage.removeItem("notice");
       localStorage.removeItem("noticeNextPart");
-      // console.log(
-      //   FileReader.FileReader.readAsBinaryString(localStorage.getItem("avatar"))
-      // );
       reset();
       onClose();
       notifySuccess();

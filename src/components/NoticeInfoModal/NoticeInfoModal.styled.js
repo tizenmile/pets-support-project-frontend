@@ -153,7 +153,6 @@ export const NoticeInfoModalLink = styled.a`
 `;
 
 export const NoticeModalList = styled.ul`
-  //   background-color: red;
 `;
 
 export const NoticeModalListItem = styled.li`
