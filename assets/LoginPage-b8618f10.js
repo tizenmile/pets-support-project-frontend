@@ -1,4 +1,4 @@
-import{s as a,V as x,W as u,r as n,u as b,j as i,F as l,a as t,k as w,X as f}from"./index-60c71024.js";import{F as $,e as k,c as P,a as s,V as v,d as y}from"./index.esm-e89a4047.js";import{l as L,i as F,F as d,P as z,e as S}from"./AuthForm-27e15c5d.js";import{a as B,b as C}from"./index.esm-3094e199.js";import{I as E}from"./iconBase-7ce0f6ee.js";const I=a.div`
+import{s as a,V as x,W as u,r as n,u as b,j as i,F as l,a as t,k as w,X as f}from"./index-387358ac.js";import{F as $,e as k,c as P,a as s,V as v,d as y}from"./index.esm-8378f531.js";import{l as L,i as F,F as d,P as z,e as S}from"./AuthForm-44ca8f61.js";import{a as B,b as C}from"./index.esm-5e9884da.js";import{I as E}from"./iconBase-24442d85.js";const I=a.div`
   margin-top: 28px;
   height: 100vh;
   background-image: url(${x});
@@ -69,7 +69,6 @@ import{s as a,V as x,W as u,r as n,u as b,j as i,F as l,a as t,k as w,X as f}fro
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  // text-decoration: underline;
   text-decoration-thickness: 1px;
   cursor: pointer;
   margin-left: 5px;
